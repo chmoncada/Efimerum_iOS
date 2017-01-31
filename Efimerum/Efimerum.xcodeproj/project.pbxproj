@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C2D1FAF8E1FD096BDC8ED27 /* Pods_EfimerumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398AC87E508AB1563F87D297 /* Pods_EfimerumTests.framework */; };
+		B55305C277B45378805B2DF0 /* Pods_Efimerum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF573619DAAF686EA3943A9 /* Pods_Efimerum.framework */; };
+		D01635511E40F5D6008ADC0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D01635501E40F5D6008ADC0E /* GoogleService-Info.plist */; };
+		D01635551E40F8DB008ADC0E /* PhotoWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01635531E40F8DB008ADC0E /* PhotoWallViewController.swift */; };
+		D01635561E40F8DB008ADC0E /* PhotoWallViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D01635541E40F8DB008ADC0E /* PhotoWallViewController.xib */; };
 		D04B0D2C1E3D2BB5008E4777 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B0D2B1E3D2BB5008E4777 /* AppDelegate.swift */; };
 		D04B0D2E1E3D2BB5008E4777 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D04B0D2D1E3D2BB5008E4777 /* Assets.xcassets */; };
 		D04B0D311E3D2BB5008E4777 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D04B0D2F1E3D2BB5008E4777 /* LaunchScreen.storyboard */; };
@@ -24,6 +29,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11F661A47F85895402995AE5 /* Pods-Efimerum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Efimerum.release.xcconfig"; path = "Pods/Target Support Files/Pods-Efimerum/Pods-Efimerum.release.xcconfig"; sourceTree = "<group>"; };
+		1CF573619DAAF686EA3943A9 /* Pods_Efimerum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Efimerum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E5BB7434DD4DEEED93B9DCA /* Pods-EfimerumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EfimerumTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EfimerumTests/Pods-EfimerumTests.release.xcconfig"; sourceTree = "<group>"; };
+		398AC87E508AB1563F87D297 /* Pods_EfimerumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EfimerumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		55D1975ABD99428D75EBB75D /* Pods-EfimerumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EfimerumTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EfimerumTests/Pods-EfimerumTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C46CD46925E841A53F082941 /* Pods-Efimerum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Efimerum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Efimerum/Pods-Efimerum.debug.xcconfig"; sourceTree = "<group>"; };
+		D01635501E40F5D6008ADC0E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D01635531E40F8DB008ADC0E /* PhotoWallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallViewController.swift; sourceTree = "<group>"; };
+		D01635541E40F8DB008ADC0E /* PhotoWallViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoWallViewController.xib; sourceTree = "<group>"; };
 		D04B0D281E3D2BB5008E4777 /* Efimerum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Efimerum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D04B0D2B1E3D2BB5008E4777 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D04B0D2D1E3D2BB5008E4777 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -39,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B55305C277B45378805B2DF0 /* Pods_Efimerum.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,18 +61,50 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C2D1FAF8E1FD096BDC8ED27 /* Pods_EfimerumTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A682E55FCB92AB6A3B16379 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C46CD46925E841A53F082941 /* Pods-Efimerum.debug.xcconfig */,
+				11F661A47F85895402995AE5 /* Pods-Efimerum.release.xcconfig */,
+				55D1975ABD99428D75EBB75D /* Pods-EfimerumTests.debug.xcconfig */,
+				1E5BB7434DD4DEEED93B9DCA /* Pods-EfimerumTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B90C4115485EA2B8A6EFB461 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1CF573619DAAF686EA3943A9 /* Pods_Efimerum.framework */,
+				398AC87E508AB1563F87D297 /* Pods_EfimerumTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D01635521E40F8B2008ADC0E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D01635531E40F8DB008ADC0E /* PhotoWallViewController.swift */,
+				D01635541E40F8DB008ADC0E /* PhotoWallViewController.xib */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		D04B0D1F1E3D2BB5008E4777 = {
 			isa = PBXGroup;
 			children = (
 				D04B0D2A1E3D2BB5008E4777 /* Efimerum */,
 				D04B0D3A1E3D2BB5008E4777 /* EfimerumTests */,
 				D04B0D291E3D2BB5008E4777 /* Products */,
+				1A682E55FCB92AB6A3B16379 /* Pods */,
+				B90C4115485EA2B8A6EFB461 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,10 +120,12 @@
 		D04B0D2A1E3D2BB5008E4777 /* Efimerum */ = {
 			isa = PBXGroup;
 			children = (
+				D01635521E40F8B2008ADC0E /* Controllers */,
 				D04B0D2B1E3D2BB5008E4777 /* AppDelegate.swift */,
 				D04B0D2D1E3D2BB5008E4777 /* Assets.xcassets */,
 				D04B0D2F1E3D2BB5008E4777 /* LaunchScreen.storyboard */,
 				D04B0D321E3D2BB5008E4777 /* Info.plist */,
+				D01635501E40F5D6008ADC0E /* GoogleService-Info.plist */,
 			);
 			path = Efimerum;
 			sourceTree = "<group>";
@@ -97,9 +146,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D04B0D401E3D2BB5008E4777 /* Build configuration list for PBXNativeTarget "Efimerum" */;
 			buildPhases = (
+				F60AE6C491E516C97C5A46A2 /* [CP] Check Pods Manifest.lock */,
 				D04B0D241E3D2BB5008E4777 /* Sources */,
 				D04B0D251E3D2BB5008E4777 /* Frameworks */,
 				D04B0D261E3D2BB5008E4777 /* Resources */,
+				816D783B11D74E96EDA84DD6 /* [CP] Embed Pods Frameworks */,
+				260021E8413BA42A13E7180F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -114,9 +166,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D04B0D431E3D2BB5008E4777 /* Build configuration list for PBXNativeTarget "EfimerumTests" */;
 			buildPhases = (
+				1BBD5DCE8092CA3D881E119A /* [CP] Check Pods Manifest.lock */,
 				D04B0D331E3D2BB5008E4777 /* Sources */,
 				D04B0D341E3D2BB5008E4777 /* Frameworks */,
 				D04B0D351E3D2BB5008E4777 /* Resources */,
+				4FCCFBF6A8A32A0C66940263 /* [CP] Embed Pods Frameworks */,
+				4E9CBEA42D326F7527F793B1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -174,7 +229,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D04B0D2E1E3D2BB5008E4777 /* Assets.xcassets in Resources */,
+				D01635561E40F8DB008ADC0E /* PhotoWallViewController.xib in Resources */,
 				D04B0D311E3D2BB5008E4777 /* LaunchScreen.storyboard in Resources */,
+				D01635511E40F5D6008ADC0E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,12 +244,106 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1BBD5DCE8092CA3D881E119A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		260021E8413BA42A13E7180F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Efimerum/Pods-Efimerum-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4E9CBEA42D326F7527F793B1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EfimerumTests/Pods-EfimerumTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4FCCFBF6A8A32A0C66940263 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EfimerumTests/Pods-EfimerumTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		816D783B11D74E96EDA84DD6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Efimerum/Pods-Efimerum-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F60AE6C491E516C97C5A46A2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D04B0D241E3D2BB5008E4777 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D04B0D2C1E3D2BB5008E4777 /* AppDelegate.swift in Sources */,
+				D01635551E40F8DB008ADC0E /* PhotoWallViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +472,7 @@
 		};
 		D04B0D411E3D2BB5008E4777 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C46CD46925E841A53F082941 /* Pods-Efimerum.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Efimerum/Info.plist;
@@ -333,6 +485,7 @@
 		};
 		D04B0D421E3D2BB5008E4777 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11F661A47F85895402995AE5 /* Pods-Efimerum.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Efimerum/Info.plist;
@@ -345,6 +498,7 @@
 		};
 		D04B0D441E3D2BB5008E4777 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55D1975ABD99428D75EBB75D /* Pods-EfimerumTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -359,6 +513,7 @@
 		};
 		D04B0D451E3D2BB5008E4777 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E5BB7434DD4DEEED93B9DCA /* Pods-EfimerumTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -390,6 +545,7 @@
 				D04B0D421E3D2BB5008E4777 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D04B0D431E3D2BB5008E4777 /* Build configuration list for PBXNativeTarget "EfimerumTests" */ = {
 			isa = XCConfigurationList;
@@ -398,6 +554,7 @@
 				D04B0D451E3D2BB5008E4777 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

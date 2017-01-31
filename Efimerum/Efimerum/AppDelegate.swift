@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,10 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window = UIWindow(frame: UIScreen.main.bounds)
         // Override point for customization after application launch.
-        self.window!.backgroundColor = UIColor.whiteColor()
+        
+        FIRApp.configure()
+        
+        self.window!.backgroundColor = UIColor.white
         self.window!.makeKeyAndVisible()
+        
+        let photoWallVC = PhotoWallViewController(nibName: "PhotoWallViewController", bundle: nil)
+        let nav = UINavigationController(rootViewController: photoWallVC)
+        self.window?.rootViewController = nav
+        
         return true
     }
 
