@@ -8,10 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		0C2D1FAF8E1FD096BDC8ED27 /* Pods_EfimerumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398AC87E508AB1563F87D297 /* Pods_EfimerumTests.framework */; };
+		A1E6B82B1E4D167100445895 /* PhotoDetailDragModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E6B82A1E4D167100445895 /* PhotoDetailDragModel.swift */; };
+		A1E6B82E1E4D184900445895 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E6B82D1E4D184900445895 /* Photo.swift */; };
+		A1E9CAA01E4C23D0002F4493 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CA9F1E4C23D0002F4493 /* AppCoordinator.swift */; };
+		A1E9CAA41E4C241B002F4493 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAA31E4C241B002F4493 /* Photos.swift */; };
+		A1E9CAA61E4C2426002F4493 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAA51E4C2426002F4493 /* Coordinator.swift */; };
+		A1E9CAAA1E4C2473002F4493 /* DraggableCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAA91E4C2473002F4493 /* DraggableCardView.swift */; };
+		A1E9CAAC1E4C247D002F4493 /* KolodaCardStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAAB1E4C247D002F4493 /* KolodaCardStorage.swift */; };
+		A1E9CAAE1E4C2487002F4493 /* KolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAAD1E4C2487002F4493 /* KolodaView.swift */; };
+		A1E9CAB01E4C248F002F4493 /* KolodaViewAnimatior.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAAF1E4C248F002F4493 /* KolodaViewAnimatior.swift */; };
+		A1E9CAB21E4C2499002F4493 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAB11E4C2499002F4493 /* OverlayView.swift */; };
+		A1E9CAB41E4C24A4002F4493 /* SwipeResultDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAB31E4C24A4002F4493 /* SwipeResultDirection.swift */; };
+		A1E9CAB71E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAB61E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift */; };
+		A1E9CAB91E4C24FB002F4493 /* PhotoDetailDragViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAB81E4C24FB002F4493 /* PhotoDetailDragViewController.swift */; };
+		A1E9CABB1E4C2503002F4493 /* PhotoDetailDragViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1E9CABA1E4C2503002F4493 /* PhotoDetailDragViewController.xib */; };
+		A1E9CABD1E4C250E002F4493 /* CustomKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CABC1E4C250E002F4493 /* CustomKolodaView.swift */; };
+		A1E9CABF1E4C254F002F4493 /* PhotoWallCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CABE1E4C254F002F4493 /* PhotoWallCoordinator.swift */; };
+		A1E9CAC11E4C2559002F4493 /* PhotoWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAC01E4C2559002F4493 /* PhotoWallViewController.swift */; };
+		A1E9CAC31E4C2564002F4493 /* PhotoWallModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAC21E4C2564002F4493 /* PhotoWallModel.swift */; };
+		A1E9CAC61E4C258A002F4493 /* PhotoWallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAC51E4C258A002F4493 /* PhotoWallCollectionViewCell.swift */; };
+		A1E9CAC81E4C2594002F4493 /* PhotoWallCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1E9CAC71E4C2594002F4493 /* PhotoWallCollectionViewCell.xib */; };
 		B55305C277B45378805B2DF0 /* Pods_Efimerum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF573619DAAF686EA3943A9 /* Pods_Efimerum.framework */; };
 		D01635511E40F5D6008ADC0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D01635501E40F5D6008ADC0E /* GoogleService-Info.plist */; };
-		D01635551E40F8DB008ADC0E /* PhotoWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01635531E40F8DB008ADC0E /* PhotoWallViewController.swift */; };
-		D01635561E40F8DB008ADC0E /* PhotoWallViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D01635541E40F8DB008ADC0E /* PhotoWallViewController.xib */; };
 		D04B0D2C1E3D2BB5008E4777 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B0D2B1E3D2BB5008E4777 /* AppDelegate.swift */; };
 		D04B0D2E1E3D2BB5008E4777 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D04B0D2D1E3D2BB5008E4777 /* Assets.xcassets */; };
 		D04B0D311E3D2BB5008E4777 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D04B0D2F1E3D2BB5008E4777 /* LaunchScreen.storyboard */; };
@@ -34,10 +52,28 @@
 		1E5BB7434DD4DEEED93B9DCA /* Pods-EfimerumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EfimerumTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EfimerumTests/Pods-EfimerumTests.release.xcconfig"; sourceTree = "<group>"; };
 		398AC87E508AB1563F87D297 /* Pods_EfimerumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EfimerumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D1975ABD99428D75EBB75D /* Pods-EfimerumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EfimerumTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EfimerumTests/Pods-EfimerumTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A1E6B82A1E4D167100445895 /* PhotoDetailDragModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailDragModel.swift; sourceTree = "<group>"; };
+		A1E6B82D1E4D184900445895 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		A1E9CA9F1E4C23D0002F4493 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		A1E9CAA31E4C241B002F4493 /* Photos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
+		A1E9CAA51E4C2426002F4493 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		A1E9CAA91E4C2473002F4493 /* DraggableCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableCardView.swift; sourceTree = "<group>"; };
+		A1E9CAAB1E4C247D002F4493 /* KolodaCardStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KolodaCardStorage.swift; sourceTree = "<group>"; };
+		A1E9CAAD1E4C2487002F4493 /* KolodaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KolodaView.swift; sourceTree = "<group>"; };
+		A1E9CAAF1E4C248F002F4493 /* KolodaViewAnimatior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KolodaViewAnimatior.swift; sourceTree = "<group>"; };
+		A1E9CAB11E4C2499002F4493 /* OverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
+		A1E9CAB31E4C24A4002F4493 /* SwipeResultDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeResultDirection.swift; sourceTree = "<group>"; };
+		A1E9CAB61E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailDragCoordinator.swift; sourceTree = "<group>"; };
+		A1E9CAB81E4C24FB002F4493 /* PhotoDetailDragViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailDragViewController.swift; sourceTree = "<group>"; };
+		A1E9CABA1E4C2503002F4493 /* PhotoDetailDragViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoDetailDragViewController.xib; sourceTree = "<group>"; };
+		A1E9CABC1E4C250E002F4493 /* CustomKolodaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomKolodaView.swift; sourceTree = "<group>"; };
+		A1E9CABE1E4C254F002F4493 /* PhotoWallCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallCoordinator.swift; sourceTree = "<group>"; };
+		A1E9CAC01E4C2559002F4493 /* PhotoWallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallViewController.swift; sourceTree = "<group>"; };
+		A1E9CAC21E4C2564002F4493 /* PhotoWallModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallModel.swift; sourceTree = "<group>"; };
+		A1E9CAC51E4C258A002F4493 /* PhotoWallCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallCollectionViewCell.swift; sourceTree = "<group>"; };
+		A1E9CAC71E4C2594002F4493 /* PhotoWallCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoWallCollectionViewCell.xib; sourceTree = "<group>"; };
 		C46CD46925E841A53F082941 /* Pods-Efimerum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Efimerum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Efimerum/Pods-Efimerum.debug.xcconfig"; sourceTree = "<group>"; };
 		D01635501E40F5D6008ADC0E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D01635531E40F8DB008ADC0E /* PhotoWallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallViewController.swift; sourceTree = "<group>"; };
-		D01635541E40F8DB008ADC0E /* PhotoWallViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoWallViewController.xib; sourceTree = "<group>"; };
 		D04B0D281E3D2BB5008E4777 /* Efimerum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Efimerum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D04B0D2B1E3D2BB5008E4777 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D04B0D2D1E3D2BB5008E4777 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,6 +115,78 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A1E9CA9E1E4C23B5002F4493 /* Bootstrap */ = {
+			isa = PBXGroup;
+			children = (
+				D04B0D2B1E3D2BB5008E4777 /* AppDelegate.swift */,
+				A1E9CA9F1E4C23D0002F4493 /* AppCoordinator.swift */,
+			);
+			name = Bootstrap;
+			sourceTree = "<group>";
+		};
+		A1E9CAA11E4C23E7002F4493 /* Photo Wall */ = {
+			isa = PBXGroup;
+			children = (
+				A1E9CABE1E4C254F002F4493 /* PhotoWallCoordinator.swift */,
+				A1E9CAC01E4C2559002F4493 /* PhotoWallViewController.swift */,
+				A1E9CAC21E4C2564002F4493 /* PhotoWallModel.swift */,
+				A1E9CAC41E4C2578002F4493 /* Views */,
+			);
+			name = "Photo Wall";
+			sourceTree = "<group>";
+		};
+		A1E9CAA21E4C23FA002F4493 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				A1E9CAA51E4C2426002F4493 /* Coordinator.swift */,
+				A1E9CAA31E4C241B002F4493 /* Photos.swift */,
+				A1E6B82D1E4D184900445895 /* Photo.swift */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
+		A1E9CAA71E4C243C002F4493 /* FrameWorks */ = {
+			isa = PBXGroup;
+			children = (
+				A1E9CAA81E4C2464002F4493 /* Koloda */,
+			);
+			name = FrameWorks;
+			sourceTree = "<group>";
+		};
+		A1E9CAA81E4C2464002F4493 /* Koloda */ = {
+			isa = PBXGroup;
+			children = (
+				A1E9CAA91E4C2473002F4493 /* DraggableCardView.swift */,
+				A1E9CAAB1E4C247D002F4493 /* KolodaCardStorage.swift */,
+				A1E9CAAD1E4C2487002F4493 /* KolodaView.swift */,
+				A1E9CAAF1E4C248F002F4493 /* KolodaViewAnimatior.swift */,
+				A1E9CAB11E4C2499002F4493 /* OverlayView.swift */,
+				A1E9CAB31E4C24A4002F4493 /* SwipeResultDirection.swift */,
+			);
+			name = Koloda;
+			sourceTree = "<group>";
+		};
+		A1E9CAB51E4C24C4002F4493 /* Photo Detail Drag */ = {
+			isa = PBXGroup;
+			children = (
+				A1E9CAB61E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift */,
+				A1E9CAB81E4C24FB002F4493 /* PhotoDetailDragViewController.swift */,
+				A1E9CABA1E4C2503002F4493 /* PhotoDetailDragViewController.xib */,
+				A1E6B82A1E4D167100445895 /* PhotoDetailDragModel.swift */,
+				A1E9CABC1E4C250E002F4493 /* CustomKolodaView.swift */,
+			);
+			name = "Photo Detail Drag";
+			sourceTree = "<group>";
+		};
+		A1E9CAC41E4C2578002F4493 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A1E9CAC51E4C258A002F4493 /* PhotoWallCollectionViewCell.swift */,
+				A1E9CAC71E4C2594002F4493 /* PhotoWallCollectionViewCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		B90C4115485EA2B8A6EFB461 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,15 +194,6 @@
 				398AC87E508AB1563F87D297 /* Pods_EfimerumTests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D01635521E40F8B2008ADC0E /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				D01635531E40F8DB008ADC0E /* PhotoWallViewController.swift */,
-				D01635541E40F8DB008ADC0E /* PhotoWallViewController.xib */,
-			);
-			name = Controllers;
 			sourceTree = "<group>";
 		};
 		D04B0D1F1E3D2BB5008E4777 = {
@@ -120,10 +219,13 @@
 		D04B0D2A1E3D2BB5008E4777 /* Efimerum */ = {
 			isa = PBXGroup;
 			children = (
-				D01635521E40F8B2008ADC0E /* Controllers */,
-				D04B0D2B1E3D2BB5008E4777 /* AppDelegate.swift */,
-				D04B0D2D1E3D2BB5008E4777 /* Assets.xcassets */,
+				A1E9CA9E1E4C23B5002F4493 /* Bootstrap */,
+				A1E9CAA11E4C23E7002F4493 /* Photo Wall */,
+				A1E9CAB51E4C24C4002F4493 /* Photo Detail Drag */,
+				A1E9CAA71E4C243C002F4493 /* FrameWorks */,
+				A1E9CAA21E4C23FA002F4493 /* Others */,
 				D04B0D2F1E3D2BB5008E4777 /* LaunchScreen.storyboard */,
+				D04B0D2D1E3D2BB5008E4777 /* Assets.xcassets */,
 				D04B0D321E3D2BB5008E4777 /* Info.plist */,
 				D01635501E40F5D6008ADC0E /* GoogleService-Info.plist */,
 			);
@@ -195,6 +297,7 @@
 				TargetAttributes = {
 					D04B0D271E3D2BB5008E4777 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 692K8L98GH;
 						ProvisioningStyle = Automatic;
 					};
 					D04B0D361E3D2BB5008E4777 = {
@@ -228,8 +331,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1E9CAC81E4C2594002F4493 /* PhotoWallCollectionViewCell.xib in Resources */,
+				A1E9CABB1E4C2503002F4493 /* PhotoDetailDragViewController.xib in Resources */,
 				D04B0D2E1E3D2BB5008E4777 /* Assets.xcassets in Resources */,
-				D01635561E40F8DB008ADC0E /* PhotoWallViewController.xib in Resources */,
 				D04B0D311E3D2BB5008E4777 /* LaunchScreen.storyboard in Resources */,
 				D01635511E40F5D6008ADC0E /* GoogleService-Info.plist in Resources */,
 			);
@@ -342,8 +446,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1E9CAC61E4C258A002F4493 /* PhotoWallCollectionViewCell.swift in Sources */,
+				A1E9CAB91E4C24FB002F4493 /* PhotoDetailDragViewController.swift in Sources */,
+				A1E9CABF1E4C254F002F4493 /* PhotoWallCoordinator.swift in Sources */,
+				A1E6B82B1E4D167100445895 /* PhotoDetailDragModel.swift in Sources */,
+				A1E9CAB41E4C24A4002F4493 /* SwipeResultDirection.swift in Sources */,
+				A1E9CAB01E4C248F002F4493 /* KolodaViewAnimatior.swift in Sources */,
+				A1E9CAAE1E4C2487002F4493 /* KolodaView.swift in Sources */,
+				A1E9CAA41E4C241B002F4493 /* Photos.swift in Sources */,
+				A1E9CAB71E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift in Sources */,
+				A1E9CAA01E4C23D0002F4493 /* AppCoordinator.swift in Sources */,
+				A1E9CABD1E4C250E002F4493 /* CustomKolodaView.swift in Sources */,
+				A1E9CAA61E4C2426002F4493 /* Coordinator.swift in Sources */,
+				A1E6B82E1E4D184900445895 /* Photo.swift in Sources */,
+				A1E9CAC31E4C2564002F4493 /* PhotoWallModel.swift in Sources */,
+				A1E9CAC11E4C2559002F4493 /* PhotoWallViewController.swift in Sources */,
 				D04B0D2C1E3D2BB5008E4777 /* AppDelegate.swift in Sources */,
-				D01635551E40F8DB008ADC0E /* PhotoWallViewController.swift in Sources */,
+				A1E9CAAC1E4C247D002F4493 /* KolodaCardStorage.swift in Sources */,
+				A1E9CAAA1E4C2473002F4493 /* DraggableCardView.swift in Sources */,
+				A1E9CAB21E4C2499002F4493 /* OverlayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,6 +596,7 @@
 			baseConfigurationReference = C46CD46925E841A53F082941 /* Pods-Efimerum.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 692K8L98GH;
 				INFOPLIST_FILE = Efimerum/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.efimerum.Efimerum;
@@ -488,6 +610,7 @@
 			baseConfigurationReference = 11F661A47F85895402995AE5 /* Pods-Efimerum.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 692K8L98GH;
 				INFOPLIST_FILE = Efimerum/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.efimerum.Efimerum;
