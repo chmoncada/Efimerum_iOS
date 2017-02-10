@@ -29,15 +29,16 @@ class PhotoWallViewController: UIViewController {
         return lazyLayout!
     }()
     
-    // TODO: wrap the model to his own class
-    var assetFetchResults: PHFetchResult<PHAsset>?
+    //var assetFetchResults: PHFetchResult<PHAsset>?
+    var model: PhotoWallModelType?
     
-    init(assetFetchResults: PHFetchResult<PHAsset> = allElementsFromLibrary()) {
+    
+    init(model: PhotoWallModelType) {
         
         super.init(nibName: nil, bundle: nil)
         
         // the photos to show
-        self.assetFetchResults = assetFetchResults
+        self.model = model
         
         // The custom layout use a Flow Layout in the barebones
         let layout = UICollectionViewFlowLayout()
@@ -85,37 +86,23 @@ extension PhotoWallViewController: UICollectionViewDataSource  {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let asset = self.assetFetchResults?[indexPath.item]
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        
+        let asset = self.model?.photo(at: indexPath.item)
         
         if let photoCell = cell as? PhotoWallCollectionViewCell {
             
             photoCell.backgroundColor = UIColor.clear
             
-            // put the photo from carrousel in the cell
-            let options = PHImageRequestOptions()
-            options.resizeMode = .fast
-            options.deliveryMode = .opportunistic
-            options.version = .current
-            options.isSynchronous = false
+            photoCell.photoView.image = asset
             
-            let scale = min(2.0, UIScreen.main.scale)
-            let requestImageSize = CGSize(width: cell.bounds.width * scale, height: cell.bounds.height * scale)
-            PHCachingImageManager.default().requestImage(for: asset!,
-                                                         targetSize: requestImageSize,
-                                                         contentMode: PHImageContentMode.aspectFit,
-                                                         options: options,
-                                                         resultHandler: { (result, info) in
-                                                            photoCell.photoView.image = result
-            })
         }
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.assetFetchResults!.count
+        return self.model!.numberOfPhotos
     }
 }
 
@@ -124,9 +111,8 @@ extension PhotoWallViewController: UICollectionViewDataSource  {
 extension PhotoWallViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //print("apretaron el index: \(indexPath.item)")
+        
         didSelectPhoto(indexPath.item)
-        //let photoDetailDragViewController = PhotoDetailDragViewController()
         
     }
 }
@@ -145,9 +131,9 @@ extension PhotoWallViewController: UICollectionViewDelegateFlowLayout {
 extension PhotoWallViewController: GreedoCollectionViewLayoutDataSource {
     
     func greedoCollectionViewLayout(_ layout: GreedoCollectionViewLayout!, originalImageSizeAt indexPath: IndexPath!) -> CGSize {
-        if (indexPath.item < self.assetFetchResults!.count) {
-            let asset = (self.assetFetchResults?[indexPath.item])!
-            return CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
+        if (indexPath.item < self.model!.numberOfPhotos) {
+            let asset = (self.model?.photo(at: indexPath.item))!
+            return CGSize(width: asset.size.width, height: asset.size.height)
         }
         
         return CGSize(width: 0.1, height: 0.1)

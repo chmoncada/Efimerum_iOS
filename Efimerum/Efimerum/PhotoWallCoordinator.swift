@@ -15,7 +15,7 @@ final class PhotoWallCoordinator: Coordinator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        viewController = PhotoWallViewController()
+        viewController = PhotoWallViewController(model: PhotoWallAssetsModel())
         
         super.init()
         
@@ -23,8 +23,7 @@ final class PhotoWallCoordinator: Coordinator {
             guard let strongSelf = self else {
                 return
             }
-            print("apretaron el index: \(index)")
-            
+
             let coordinator = PhotoDetailDragCoordinator(navigationController: navigationController)
             strongSelf.add(child: coordinator)
             

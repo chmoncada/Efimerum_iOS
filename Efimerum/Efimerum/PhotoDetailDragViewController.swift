@@ -7,8 +7,6 @@
 //
 
 import UIKit
-//import Koloda
-import Photos
 import pop
 
 private let frameAnimationSpringBounciness: CGFloat = 9
@@ -19,17 +17,17 @@ private let kolodaAlphaValueSemiTransparent: CGFloat = 0.0
 
 class PhotoDetailDragViewController: UIViewController {
 
-    var assetFetchResults: PHFetchResult<PHAsset>?
+    var model: PhotoDetailDragModelType?
     
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
     var didFinish: () -> Void = {}
     
-    init(assetFetchResults: PHFetchResult<PHAsset> = allElementsFromLibrary()) {
+    init(model: PhotoDetailDragModelType) {
         
         super.init(nibName: nil, bundle: nil)
         
-        self.assetFetchResults = assetFetchResults
+        self.model = model
         
     }
     
@@ -62,12 +60,9 @@ class PhotoDetailDragViewController: UIViewController {
     
     @IBAction func dismissView(_ sender: Any) {
         
-        print("me apretaron")
-        navigationController?.popViewController(animated: false)
-        
+        let _ = navigationController?.popViewController(animated: false)
+    
     }
-    
-    
     
 }
 
@@ -107,50 +102,16 @@ extension PhotoDetailDragViewController: KolodaViewDelegate {
 extension PhotoDetailDragViewController: KolodaViewDataSource {
     
     func kolodaNumberOfCards(_ koloda:KolodaView) -> Int {
-        return assetFetchResults!.count
+        return model!.numberOfPhotos
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         
-        let asset = self.assetFetchResults?[index]
+        let image = model?.photo(at: index)
         
-        let options = PHImageRequestOptions()
-        options.resizeMode = .exact
-        options.deliveryMode = .opportunistic
-        options.version = .original
-        options.isSynchronous = true
-        
-        var imageView = UIImageView()
-        //imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let ratio1 = CGFloat((asset?.pixelWidth)!) / koloda.bounds.width
-        let ratio2 = CGFloat((asset?.pixelHeight)!) / koloda.bounds.height
-        var ratio3: CGFloat = 0
-        
-        if ratio1 < ratio2 {
-            ratio3 = ratio2
-        } else {
-            ratio3 = ratio1
-        }
-        
-        
-        let requestImageSize = CGSize(width: CGFloat(asset!.pixelWidth) / ratio3, height: CGFloat(asset!.pixelHeight) / ratio3)
-        PHCachingImageManager.default().requestImage(for: asset!,
-                                                     targetSize: requestImageSize,
-                                                     contentMode: PHImageContentMode.aspectFit,
-                                                     options: options,
-                                                     resultHandler: { (result, info) in
-                                                        imageView = UIImageView(image: result)
-                                                        
-        })
-        
-
-        //imageView.backgroundColor = UIColor.white
+        let imageView = UIImageView(image: image)
         
         return imageView
-        
-        
     }
     
 }

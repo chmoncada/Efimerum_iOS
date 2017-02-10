@@ -17,7 +17,7 @@ final class PhotoDetailDragCoordinator: Coordinator {
     }
     
     override func start() {
-        let viewController = PhotoDetailDragViewController()
+        let viewController = PhotoDetailDragViewController(model: PhotoAssetsModel())
         
         viewController.didFinish = { [weak self] in
             guard let `self` = self else {
