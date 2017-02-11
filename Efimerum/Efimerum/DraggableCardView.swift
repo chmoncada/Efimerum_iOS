@@ -105,7 +105,12 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
         }
         
         self.contentView = view
+        
+        // Configure view and corner of layout
         self.backgroundColor = UIColor.white
+        self.layer.cornerRadius = 20
+        self.layer.masksToBounds = true
+        
         configureContentView()
     }
     
@@ -207,7 +212,7 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
                     relatedBy: NSLayoutRelation.equal,
                     toItem: self,
                     attribute: NSLayoutAttribute.width,
-                    multiplier: 0.95 / (cardAspectRatio * aspectRatio),
+                    multiplier: 0.95 / ( cardAspectRatio * aspectRatio) ,
                     constant: 0)
                 let centerX = NSLayoutConstraint (
                     item: contentView,
@@ -227,23 +232,6 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
                     constant: 0)
                 addConstraints([width, height,centerX, centerY])
             }
-
-//            let top = NSLayoutConstraint (
-//                item: contentView,
-//                attribute: NSLayoutAttribute.top,
-//                relatedBy: NSLayoutRelation.equal,
-//                toItem: self,
-//                attribute: NSLayoutAttribute.top,
-//                multiplier: 1.0,
-//                constant: 0)
-//            let leading = NSLayoutConstraint (
-//                item: contentView,
-//                attribute: NSLayoutAttribute.leading,
-//                relatedBy: NSLayoutRelation.equal,
-//                toItem: self,
-//                attribute: NSLayoutAttribute.leading,
-//                multiplier: 1.0,
-//                constant: 0)
 
         }
     }

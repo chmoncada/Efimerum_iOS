@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0C2D1FAF8E1FD096BDC8ED27 /* Pods_EfimerumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398AC87E508AB1563F87D297 /* Pods_EfimerumTests.framework */; };
+		A10477521E4D6DC300F2C3C3 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10477511E4D6DC300F2C3C3 /* LoginCoordinator.swift */; };
+		A1DE9A011E4E17330059CABB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE9A001E4E17330059CABB /* LoginViewController.swift */; };
 		A1E6B82B1E4D167100445895 /* PhotoDetailDragModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E6B82A1E4D167100445895 /* PhotoDetailDragModel.swift */; };
 		A1E6B82E1E4D184900445895 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E6B82D1E4D184900445895 /* Photo.swift */; };
 		A1E9CAA01E4C23D0002F4493 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CA9F1E4C23D0002F4493 /* AppCoordinator.swift */; };
@@ -52,6 +54,8 @@
 		1E5BB7434DD4DEEED93B9DCA /* Pods-EfimerumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EfimerumTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EfimerumTests/Pods-EfimerumTests.release.xcconfig"; sourceTree = "<group>"; };
 		398AC87E508AB1563F87D297 /* Pods_EfimerumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EfimerumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D1975ABD99428D75EBB75D /* Pods-EfimerumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EfimerumTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EfimerumTests/Pods-EfimerumTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A10477511E4D6DC300F2C3C3 /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		A1DE9A001E4E17330059CABB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A1E6B82A1E4D167100445895 /* PhotoDetailDragModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailDragModel.swift; sourceTree = "<group>"; };
 		A1E6B82D1E4D184900445895 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		A1E9CA9F1E4C23D0002F4493 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -113,6 +117,15 @@
 				1E5BB7434DD4DEEED93B9DCA /* Pods-EfimerumTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		A10477501E4D6D9E00F2C3C3 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A10477511E4D6DC300F2C3C3 /* LoginCoordinator.swift */,
+				A1DE9A001E4E17330059CABB /* LoginViewController.swift */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 		A1E9CA9E1E4C23B5002F4493 /* Bootstrap */ = {
@@ -222,6 +235,7 @@
 				A1E9CA9E1E4C23B5002F4493 /* Bootstrap */,
 				A1E9CAA11E4C23E7002F4493 /* Photo Wall */,
 				A1E9CAB51E4C24C4002F4493 /* Photo Detail Drag */,
+				A10477501E4D6D9E00F2C3C3 /* Login */,
 				A1E9CAA71E4C243C002F4493 /* FrameWorks */,
 				A1E9CAA21E4C23FA002F4493 /* Others */,
 				D04B0D2F1E3D2BB5008E4777 /* LaunchScreen.storyboard */,
@@ -446,8 +460,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1DE9A011E4E17330059CABB /* LoginViewController.swift in Sources */,
 				A1E9CAC61E4C258A002F4493 /* PhotoWallCollectionViewCell.swift in Sources */,
 				A1E9CAB91E4C24FB002F4493 /* PhotoDetailDragViewController.swift in Sources */,
+				A10477521E4D6DC300F2C3C3 /* LoginCoordinator.swift in Sources */,
 				A1E9CABF1E4C254F002F4493 /* PhotoWallCoordinator.swift in Sources */,
 				A1E6B82B1E4D167100445895 /* PhotoDetailDragModel.swift in Sources */,
 				A1E9CAB41E4C24A4002F4493 /* SwipeResultDirection.swift in Sources */,

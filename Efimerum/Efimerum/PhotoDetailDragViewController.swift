@@ -23,6 +23,8 @@ class PhotoDetailDragViewController: UIViewController {
     
     var didFinish: () -> Void = {}
     
+    var needAuthLogin: () -> Void = {}
+    
     init(model: PhotoDetailDragModelType) {
         
         super.init(nibName: nil, bundle: nil)
@@ -95,6 +97,19 @@ extension PhotoDetailDragViewController: KolodaViewDelegate {
         animation?.springBounciness = frameAnimationSpringBounciness
         animation?.springSpeed = frameAnimationSpringSpeed
         return animation
+    }
+    
+    func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
+        
+        switch direction {
+        case .left:
+            print("No me gusto, paso a la siguiente")
+        case .right:
+            print("Me gusto, darle like a la foto")
+            needAuthLogin()
+        default:
+            print("No pasa nada")
+        }
     }
     
 }
