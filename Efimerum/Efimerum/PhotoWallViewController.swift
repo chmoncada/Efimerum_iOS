@@ -154,10 +154,10 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
     
     func setupFloatButtons(scroll: UIScrollView){
         
-        let frameRight = CGRect(x: scroll.bounds.size.width - 40 - 30,
-                                y: scroll.bounds.size.height - 40 - 20,
-                                width: 40,
-                                height: 40)
+        let frameRight = CGRect(x: scroll.bounds.size.width - 56 - 20,
+                                y: scroll.bounds.size.height - 56 - 20,
+                                width: 56,
+                                height: 56)
         
         let rightButton = MBFloatScrollButton(frame: frameRight, with: UIImage(named: "btnSearch")!, on: scroll, hasFloatAction: false)
         
@@ -165,10 +165,10 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
         rightButton.delegate = self
         self.view.addSubview(rightButton)
         
-        let frameLeft = CGRect(x: scroll.bounds.origin.x + 30,
-                               y: scroll.bounds.size.height - 40 - 20,
-                               width: 40,
-                               height: 40)
+        let frameLeft = CGRect(x: scroll.bounds.origin.x + 20,
+                               y: scroll.bounds.size.height - 56 - 20,
+                               width: 56,
+                               height: 56)
         
         let leftButton = MBFloatScrollButton(frame: frameLeft, with: UIImage(named: "btnFilter")!, on: scroll, hasFloatAction: true)
         leftButton.hideWhileScrolling = true
@@ -176,10 +176,10 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
         self.view.addSubview(leftButton)
         
         
-        let frameCenter = CGRect(x: scroll.bounds.size.width/2 - 25,
-                                 y: scroll.bounds.size.height - 50 - 20,
-                                 width: 50,
-                                 height: 50)
+        let frameCenter = CGRect(x: scroll.bounds.size.width/2 - 36,
+                                 y: scroll.bounds.size.height - 72 - 20,
+                                 width: 72,
+                                 height: 72)
         
         let centerButton = MBFloatScrollButton(frame: frameCenter, with: UIImage(named: "btnCamera")!, on: scroll, hasFloatAction: false)
         
