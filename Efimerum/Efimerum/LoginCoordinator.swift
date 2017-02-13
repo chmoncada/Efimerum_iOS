@@ -19,14 +19,16 @@ final class LoginCoordinator: Coordinator {
         
         super.init()
         
-//        viewController.didFinish = { [weak self] in
-//            guard let `self` = self else {
-//                return
-//            }
-//            
-//            // This will remove the coordinator from its parent
-//            self.didFinish()
-//        }
+        viewController.didFinish = { [weak self] in
+            guard let `self` = self else {
+                return
+            }
+            
+            // This will remove the coordinator from its parent
+            self.navigationController.dismiss(animated: true, completion: nil
+            )
+            self.didFinish()
+        }
         
    
     }

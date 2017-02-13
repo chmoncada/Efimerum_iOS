@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C2D1FAF8E1FD096BDC8ED27 /* Pods_EfimerumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398AC87E508AB1563F87D297 /* Pods_EfimerumTests.framework */; };
 		A10477521E4D6DC300F2C3C3 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10477511E4D6DC300F2C3C3 /* LoginCoordinator.swift */; };
+		A1B259061E50AF13009B187B /* LoginViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B259051E50AF13009B187B /* LoginViewController+handlers.swift */; };
 		A1DE9A011E4E17330059CABB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE9A001E4E17330059CABB /* LoginViewController.swift */; };
 		A1E6B82B1E4D167100445895 /* PhotoDetailDragModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E6B82A1E4D167100445895 /* PhotoDetailDragModel.swift */; };
 		A1E6B82E1E4D184900445895 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E6B82D1E4D184900445895 /* Photo.swift */; };
@@ -55,6 +56,7 @@
 		398AC87E508AB1563F87D297 /* Pods_EfimerumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EfimerumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D1975ABD99428D75EBB75D /* Pods-EfimerumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EfimerumTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EfimerumTests/Pods-EfimerumTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A10477511E4D6DC300F2C3C3 /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		A1B259051E50AF13009B187B /* LoginViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginViewController+handlers.swift"; sourceTree = "<group>"; };
 		A1DE9A001E4E17330059CABB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A1E6B82A1E4D167100445895 /* PhotoDetailDragModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailDragModel.swift; sourceTree = "<group>"; };
 		A1E6B82D1E4D184900445895 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			children = (
 				A10477511E4D6DC300F2C3C3 /* LoginCoordinator.swift */,
 				A1DE9A001E4E17330059CABB /* LoginViewController.swift */,
+				A1B259051E50AF13009B187B /* LoginViewController+handlers.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				A1E6B82E1E4D184900445895 /* Photo.swift in Sources */,
 				A1E9CAC31E4C2564002F4493 /* PhotoWallModel.swift in Sources */,
 				A1E9CAC11E4C2559002F4493 /* PhotoWallViewController.swift in Sources */,
+				A1B259061E50AF13009B187B /* LoginViewController+handlers.swift in Sources */,
 				D04B0D2C1E3D2BB5008E4777 /* AppDelegate.swift in Sources */,
 				A1E9CAAC1E4C247D002F4493 /* KolodaCardStorage.swift in Sources */,
 				A1E9CAAA1E4C2473002F4493 /* DraggableCardView.swift in Sources */,
@@ -611,6 +615,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C46CD46925E841A53F082941 /* Pods-Efimerum.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 692K8L98GH;
 				INFOPLIST_FILE = Efimerum/Info.plist;
@@ -625,6 +630,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 11F661A47F85895402995AE5 /* Pods-Efimerum.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 692K8L98GH;
 				INFOPLIST_FILE = Efimerum/Info.plist;
