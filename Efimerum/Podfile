@@ -10,9 +10,12 @@ target 'Efimerum' do
   
   pod 'Hero'
   pod 'GreedoLayout'
-  # pod 'Koloda', '~> 4.0'
   pod 'pop', '~> 1.0'
+  pod 'PKHUD', '~> 4.0'
   pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Database'
 
   target 'EfimerumTests' do
     inherit! :search_paths

@@ -8,6 +8,7 @@
 
 import UIKit
 import pop
+import FirebaseAuth
 
 private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
@@ -22,6 +23,8 @@ class PhotoDetailDragViewController: UIViewController {
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
     var didFinish: () -> Void = {}
+    
+    var needAuthLogin: () -> Void = {}
     
     init(model: PhotoDetailDragModelType) {
         
@@ -64,6 +67,15 @@ class PhotoDetailDragViewController: UIViewController {
     
     }
     
+    @IBAction func firebaseLogout(_ sender: Any) {
+        
+        do {
+            try FIRAuth.auth()?.signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
+        
+    }
 }
 
 extension PhotoDetailDragViewController: KolodaViewDelegate {
@@ -95,6 +107,25 @@ extension PhotoDetailDragViewController: KolodaViewDelegate {
         animation?.springBounciness = frameAnimationSpringBounciness
         animation?.springSpeed = frameAnimationSpringSpeed
         return animation
+    }
+    
+    func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
+        
+        switch direction {
+        case .left:
+            print("No me gusto, paso a la siguiente")
+        case .right:
+            print("Me gusto, darle like a la foto")
+            // user is not logged in
+            if FIRAuth.auth()?.currentUser?.uid == nil {
+                needAuthLogin()
+            } else {
+                print("Ya estoy logueado")
+            }
+            
+        default:
+            print("No pasa nada")
+        }
     }
     
 }

@@ -9,6 +9,7 @@
 import UIKit
 import GreedoLayout
 import Photos
+import FirebaseAuth
 
 private let reuseIdentifier =  "PhotoWalletCell"
 

@@ -36,13 +36,26 @@
                         <action selector="dismissView:" destination="-1" eventType="touchUpInside" id="EHt-5k-m0c"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbO-iV-NT8" userLabel="Logout">
+                    <rect key="frame" x="289" y="20" width="66" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="3oX-bd-nEL"/>
+                        <constraint firstAttribute="width" constant="66" id="V0o-Ry-BKP"/>
+                    </constraints>
+                    <state key="normal" title="Logout"/>
+                    <connections>
+                        <action selector="firebaseLogout:" destination="-1" eventType="touchUpInside" id="9Oz-mQ-xMw"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="UjZ-r6-n9Z" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8RC-Xh-Tgl"/>
                 <constraint firstItem="B0e-XS-4lW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="WxD-kJ-Nl4"/>
                 <constraint firstAttribute="trailing" secondItem="UjZ-r6-n9Z" secondAttribute="trailing" id="eHD-vm-fcc"/>
+                <constraint firstAttribute="trailing" secondItem="IbO-iV-NT8" secondAttribute="trailing" constant="20" id="hno-to-FNP"/>
                 <constraint firstItem="UjZ-r6-n9Z" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="i4T-wu-hb5"/>
                 <constraint firstItem="B0e-XS-4lW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="jja-tO-jyK"/>
+                <constraint firstItem="IbO-iV-NT8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="rNJ-zd-RJx"/>
                 <constraint firstAttribute="bottom" secondItem="UjZ-r6-n9Z" secondAttribute="bottom" id="tbv-jR-AvV"/>
             </constraints>
             <point key="canvasLocation" x="25.5" y="51.5"/>
