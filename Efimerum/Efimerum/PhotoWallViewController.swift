@@ -172,6 +172,7 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
         
         let leftButton = MBFloatScrollButton(frame: frameLeft, with: UIImage(named: "btnFilter")!, on: scroll, hasFloatAction: true)
         leftButton.hideWhileScrolling = true
+        leftButton.delegate = self
         self.view.addSubview(leftButton)
         
         

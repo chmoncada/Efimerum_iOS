@@ -26,6 +26,7 @@ class FilterItemView: UIView {
                            height: 40)
         super.init(frame: frame)
         
+        self.isUserInteractionEnabled = true
         setupViews()
     }
     

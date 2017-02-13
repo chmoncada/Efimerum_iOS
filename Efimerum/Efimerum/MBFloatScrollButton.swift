@@ -122,6 +122,9 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         }
         
         if theKeypath == "contentOffset" {
+            if isShowingMenu {
+                self.dismissMenu()
+            }
             
             let diff = previousOffset - scrollView.contentOffset.y
             
@@ -133,6 +136,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
                 } else {
                     showButtonDuringScroll(shouldShow: true)
                 }
+
             }
             
         }
@@ -143,8 +147,6 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     
     func showMenu() {
         isShowingMenu = true
-        
-        self.scrollView.isUserInteractionEnabled = false
         
         self.maskBackgroundView = UIControl(frame: self.scrollView.bounds)
         self.maskBackgroundView?.backgroundColor = UIColor(white: 0, alpha: 0.5)
@@ -191,7 +193,6 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     
     func dismissMenu() {
         isShowingMenu = false
-        self.scrollView.isUserInteractionEnabled = true
         
         UIView.animate(withDuration: 0.25, animations: {
             self.filterItem1.titleLabel.alpha = 0
