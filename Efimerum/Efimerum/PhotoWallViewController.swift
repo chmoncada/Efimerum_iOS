@@ -66,11 +66,19 @@ class PhotoWallViewController: UIViewController {
         
         // Add the collectionView to the view
         self.view.addSubview(collectionView)
-
+        
+        // set floatButtons
+        setupFloatButtons(scroll: collectionView)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -140,5 +148,66 @@ extension PhotoWallViewController: GreedoCollectionViewLayoutDataSource {
         return CGSize(width: 0.1, height: 0.1)
     }
 }
+
+
+extension PhotoWallViewController :MBFloatScrollButtonDelegate {
+    
+    func setupFloatButtons(scroll: UIScrollView){
+        
+        let frameRight = CGRect(x: scroll.bounds.size.width - 40 - 30,
+                                y: scroll.bounds.size.height - 40 - 20,
+                                width: 40,
+                                height: 40)
+        
+        let rightButton = MBFloatScrollButton(frame: frameRight, with: UIImage(named: "btnSearch")!, on: scroll, hasFloatAction: false)
+        
+        rightButton.hideWhileScrolling = true
+        rightButton.delegate = self
+        self.view.addSubview(rightButton)
+        
+        let frameLeft = CGRect(x: scroll.bounds.origin.x + 30,
+                               y: scroll.bounds.size.height - 40 - 20,
+                               width: 40,
+                               height: 40)
+        
+        let leftButton = MBFloatScrollButton(frame: frameLeft, with: UIImage(named: "btnFilter")!, on: scroll, hasFloatAction: true)
+        leftButton.hideWhileScrolling = true
+        self.view.addSubview(leftButton)
+        
+        
+        let frameCenter = CGRect(x: scroll.bounds.size.width/2 - 25,
+                                 y: scroll.bounds.size.height - 50 - 20,
+                                 width: 50,
+                                 height: 50)
+        
+        let centerButton = MBFloatScrollButton(frame: frameCenter, with: UIImage(named: "btnCamera")!, on: scroll, hasFloatAction: false)
+        
+        centerButton.hideWhileScrolling = true
+        centerButton.delegate = self
+        self.view.addSubview(centerButton)
+    }
+    
+    func didTap(button: MBFloatScrollButton) {
+        print("boton pulsado")
+    }
+    
+    func didTap(filter: FilterType) {
+        print(filter.getText())
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

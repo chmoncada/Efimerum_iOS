@@ -37,6 +37,10 @@
 		D04B0D2E1E3D2BB5008E4777 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D04B0D2D1E3D2BB5008E4777 /* Assets.xcassets */; };
 		D04B0D311E3D2BB5008E4777 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D04B0D2F1E3D2BB5008E4777 /* LaunchScreen.storyboard */; };
 		D04B0D3C1E3D2BB5008E4777 /* EfimerumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B0D3B1E3D2BB5008E4777 /* EfimerumTests.swift */; };
+		D0BA667B1E52350B00C4F18F /* MBFloatScrollButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA66781E52350A00C4F18F /* MBFloatScrollButton.swift */; };
+		D0BA667C1E52350B00C4F18F /* FilterItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA66791E52350A00C4F18F /* FilterItemView.swift */; };
+		D0BA667D1E52350B00C4F18F /* FilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA667A1E52350B00C4F18F /* FilterType.swift */; };
+		D0BA667F1E523E2D00C4F18F /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = D0BA667E1E523E2D00C4F18F /* plus.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +92,10 @@
 		D04B0D371E3D2BB5008E4777 /* EfimerumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EfimerumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D04B0D3B1E3D2BB5008E4777 /* EfimerumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EfimerumTests.swift; sourceTree = "<group>"; };
 		D04B0D3D1E3D2BB5008E4777 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0BA66781E52350A00C4F18F /* MBFloatScrollButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBFloatScrollButton.swift; sourceTree = "<group>"; };
+		D0BA66791E52350A00C4F18F /* FilterItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterItemView.swift; sourceTree = "<group>"; };
+		D0BA667A1E52350B00C4F18F /* FilterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterType.swift; sourceTree = "<group>"; };
+		D0BA667E1E523E2D00C4F18F /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +243,7 @@
 		D04B0D2A1E3D2BB5008E4777 /* Efimerum */ = {
 			isa = PBXGroup;
 			children = (
+				D0BA66771E52308300C4F18F /* MBFloatButtonScroll */,
 				A1E9CA9E1E4C23B5002F4493 /* Bootstrap */,
 				A1E9CAA11E4C23E7002F4493 /* Photo Wall */,
 				A1E9CAB51E4C24C4002F4493 /* Photo Detail Drag */,
@@ -256,6 +265,17 @@
 				D04B0D3D1E3D2BB5008E4777 /* Info.plist */,
 			);
 			path = EfimerumTests;
+			sourceTree = "<group>";
+		};
+		D0BA66771E52308300C4F18F /* MBFloatButtonScroll */ = {
+			isa = PBXGroup;
+			children = (
+				D0BA667E1E523E2D00C4F18F /* plus.png */,
+				D0BA66781E52350A00C4F18F /* MBFloatScrollButton.swift */,
+				D0BA66791E52350A00C4F18F /* FilterItemView.swift */,
+				D0BA667A1E52350B00C4F18F /* FilterType.swift */,
+			);
+			name = MBFloatButtonScroll;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +373,7 @@
 				D04B0D2E1E3D2BB5008E4777 /* Assets.xcassets in Resources */,
 				D04B0D311E3D2BB5008E4777 /* LaunchScreen.storyboard in Resources */,
 				D01635511E40F5D6008ADC0E /* GoogleService-Info.plist in Resources */,
+				D0BA667F1E523E2D00C4F18F /* plus.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,7 +489,9 @@
 				A1E9CAB91E4C24FB002F4493 /* PhotoDetailDragViewController.swift in Sources */,
 				A10477521E4D6DC300F2C3C3 /* LoginCoordinator.swift in Sources */,
 				A1E9CABF1E4C254F002F4493 /* PhotoWallCoordinator.swift in Sources */,
+				D0BA667B1E52350B00C4F18F /* MBFloatScrollButton.swift in Sources */,
 				A1E6B82B1E4D167100445895 /* PhotoDetailDragModel.swift in Sources */,
+				D0BA667C1E52350B00C4F18F /* FilterItemView.swift in Sources */,
 				A1E9CAB41E4C24A4002F4493 /* SwipeResultDirection.swift in Sources */,
 				A1E9CAB01E4C248F002F4493 /* KolodaViewAnimatior.swift in Sources */,
 				A1E9CAAE1E4C2487002F4493 /* KolodaView.swift in Sources */,
@@ -476,6 +499,7 @@
 				A1E9CAB71E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift in Sources */,
 				A1E9CAA01E4C23D0002F4493 /* AppCoordinator.swift in Sources */,
 				A1E9CABD1E4C250E002F4493 /* CustomKolodaView.swift in Sources */,
+				D0BA667D1E52350B00C4F18F /* FilterType.swift in Sources */,
 				A1E9CAA61E4C2426002F4493 /* Coordinator.swift in Sources */,
 				A1E6B82E1E4D184900445895 /* Photo.swift in Sources */,
 				A1E9CAC31E4C2564002F4493 /* PhotoWallModel.swift in Sources */,
