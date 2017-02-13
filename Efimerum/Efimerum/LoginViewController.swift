@@ -45,6 +45,18 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    lazy var loginCancelButton: UIButton = {
+       let button = UIButton(type: UIButtonType.system)
+        button.backgroundColor = UIColor(r: 216, g: 67, b: 21)
+        button.setTitle("Cancel", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        
+        button.addTarget(self, action: #selector(handleLoginCancel), for: .touchUpInside)
+        return button
+    }()
+    
     let nameTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Name"
@@ -113,11 +125,13 @@ class LoginViewController: UIViewController {
         view.addSubview(loginRegisterButton)
         view.addSubview(profileImageView)
         view.addSubview(loginRegisterSegmentedControl)
+        view.addSubview(loginCancelButton)
         
         setupInputsContainerView()
         setupLoginRegisterButton()
         setupProfileImageView()
         setupLoginRegisterSegmentedControl()
+        setupLoginCancelButton()
         
     }
 
@@ -200,6 +214,15 @@ extension LoginViewController {
         loginRegisterButton.topAnchor.constraint(equalTo: inputsContainerView.bottomAnchor, constant: 12).isActive = true
         loginRegisterButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         loginRegisterButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    }
+    
+    func setupLoginCancelButton() {
+        // need x,y, width, heigth constraint
+        loginCancelButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loginCancelButton.topAnchor.constraint(equalTo: loginRegisterButton.bottomAnchor, constant: 12).isActive = true
+        loginCancelButton.widthAnchor.constraint(equalTo: loginRegisterButton.widthAnchor).isActive = true
+        loginCancelButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
     }
 }
 

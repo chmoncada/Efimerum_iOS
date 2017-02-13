@@ -24,6 +24,10 @@ extension LoginViewController {
         present(picker, animated: true, completion: nil)
     }
     
+    func handleLoginCancel() {
+        self.didFinish()
+    }
+    
     func handleLoginRegister() {
         if loginRegisterSegmentedControl.selectedSegmentIndex == 0 {
             handleLogin()
