@@ -41,6 +41,7 @@
 		D0BA667C1E52350B00C4F18F /* FilterItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA66791E52350A00C4F18F /* FilterItemView.swift */; };
 		D0BA667D1E52350B00C4F18F /* FilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA667A1E52350B00C4F18F /* FilterType.swift */; };
 		D0BA667F1E523E2D00C4F18F /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = D0BA667E1E523E2D00C4F18F /* plus.png */; };
+		D0BA66821E53846100C4F18F /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA66811E53846100C4F18F /* ApiClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		D0BA66791E52350A00C4F18F /* FilterItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterItemView.swift; sourceTree = "<group>"; };
 		D0BA667A1E52350B00C4F18F /* FilterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterType.swift; sourceTree = "<group>"; };
 		D0BA667E1E523E2D00C4F18F /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
+		D0BA66811E53846100C4F18F /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +245,7 @@
 		D04B0D2A1E3D2BB5008E4777 /* Efimerum */ = {
 			isa = PBXGroup;
 			children = (
+				D0BA66801E53842C00C4F18F /* API */,
 				D0BA66771E52308300C4F18F /* MBFloatButtonScroll */,
 				A1E9CA9E1E4C23B5002F4493 /* Bootstrap */,
 				A1E9CAA11E4C23E7002F4493 /* Photo Wall */,
@@ -276,6 +279,14 @@
 				D0BA667A1E52350B00C4F18F /* FilterType.swift */,
 			);
 			name = MBFloatButtonScroll;
+			sourceTree = "<group>";
+		};
+		D0BA66801E53842C00C4F18F /* API */ = {
+			isa = PBXGroup;
+			children = (
+				D0BA66811E53846100C4F18F /* ApiClient.swift */,
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -505,6 +516,7 @@
 				A1E9CAC31E4C2564002F4493 /* PhotoWallModel.swift in Sources */,
 				A1E9CAC11E4C2559002F4493 /* PhotoWallViewController.swift in Sources */,
 				A1B259061E50AF13009B187B /* LoginViewController+handlers.swift in Sources */,
+				D0BA66821E53846100C4F18F /* ApiClient.swift in Sources */,
 				D04B0D2C1E3D2BB5008E4777 /* AppDelegate.swift in Sources */,
 				A1E9CAAC1E4C247D002F4493 /* KolodaCardStorage.swift in Sources */,
 				A1E9CAAA1E4C2473002F4493 /* DraggableCardView.swift in Sources */,
