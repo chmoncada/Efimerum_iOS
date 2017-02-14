@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         FIRApp.configure()
+        
+        if let user = FIRAuth.auth()?.currentUser {
+            if user.isAnonymous {
+                print("tengo usuario anonimo: \(user.uid)")
+            } else {
+                print("estoy autentficados con email y apssword")
+            }
+        } else {
+            print("me logeare anonimo")
+            FIRAuth.auth()?.signInAnonymously(completion: { (user, error) in
+                print("Cree un usuario anonimo: \(user?.isAnonymous) y su uid es: \(user?.uid)")
+            })
+        }
+        
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         

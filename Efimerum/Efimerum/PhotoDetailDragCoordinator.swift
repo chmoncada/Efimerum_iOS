@@ -39,11 +39,7 @@ final class PhotoDetailDragCoordinator: Coordinator {
             strongSelf.add(child: coordinator)
             
             coordinator.start()
-            // Check if the user is logged in
             
-            // if not, set the LoginCoordinator and start
-            
-            // if yes, push the like in the firebase
             
         }
         

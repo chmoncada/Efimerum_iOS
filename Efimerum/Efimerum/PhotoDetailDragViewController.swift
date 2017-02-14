@@ -116,12 +116,12 @@ extension PhotoDetailDragViewController: KolodaViewDelegate {
             print("No me gusto, paso a la siguiente")
         case .right:
             print("Me gusto, darle like a la foto")
+            
+            
             // user is not logged in
-            if FIRAuth.auth()?.currentUser?.uid == nil {
+            if FIRAuth.auth()?.currentUser?.uid == nil || (FIRAuth.auth()?.currentUser?.isAnonymous)!{
                 needAuthLogin()
-            } else {
-                print("Ya estoy logueado")
-            }
+            } 
             
         default:
             print("No pasa nada")
