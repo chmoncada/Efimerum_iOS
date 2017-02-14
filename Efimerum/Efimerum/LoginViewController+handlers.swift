@@ -64,40 +64,59 @@ extension LoginViewController {
         
         HUD.show(.progress)
         
-        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+        if let _ = FIRAuth.auth()?.currentUser?.isAnonymous {
+            let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: password)
             
-            if error != nil {
-                HUD.flash(.label(error?.localizedDescription), delay: 1)
-                return
-            }
+            FIRAuth.auth()?.currentUser?.link(with: credential, completion: { (user, error) in
+                
+                self.registerUserIntoFirebase(user, withName: name, email: email, error: error)
+                
+            })
+        } else {
             
-            guard let uid = user?.uid else {
-                return
-            }
-
-            // Success
-            let imageName = NSUUID().uuidString
-            let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName).jpg")
-            
-            if let profileImage = self.profileImageView.image, let uploadData = UIImageJPEGRepresentation(profileImage, 0.1) {
-                storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
-                    
-                    if error != nil {
-                        HUD.flash(.label(error?.localizedDescription), delay: 1)
-                        return
-                    }
-                    
-                    if let profileImageURL = metadata?.downloadURL()?.absoluteString {
-                        let values = ["name": name, "email": email, "profileImageURL": profileImageURL]
-                        
-                        self.registerUserIntoDatabaseWithUID(uid, values: values)
-                    }
-                    
-                })
-            }
-            
-        })
+            FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+                
+                self.registerUserIntoFirebase(user, withName: name, email: email, error: error)
+                
+            })
+        }
         
+        
+        
+    }
+    
+    private func registerUserIntoFirebase(_ user: FIRUser?, withName name: String, email: String, error: Error?) {
+        
+        if error != nil {
+            HUD.flash(.label(error?.localizedDescription), delay: 1)
+            return
+        }
+        
+        guard let uid = user?.uid else {
+            return
+        }
+        
+        // Success
+        let imageName = NSUUID().uuidString
+        let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName).jpg")
+        
+        if let profileImage = self.profileImageView.image, let uploadData = UIImageJPEGRepresentation(profileImage, 0.1) {
+            storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+                
+                if error != nil {
+                    HUD.flash(.label(error?.localizedDescription), delay: 1)
+                    return
+                }
+                
+                if let profileImageURL = metadata?.downloadURL()?.absoluteString {
+                    let values = ["name": name, "email": email, "profileImageURL": profileImageURL]
+                    
+                    self.registerUserIntoDatabaseWithUID(uid, values: values)
+                }
+                
+            })
+        }
+
     }
     
     private func registerUserIntoDatabaseWithUID(_ uid: String, values: [String: Any]) {
