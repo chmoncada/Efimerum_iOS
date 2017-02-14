@@ -11,7 +11,7 @@ import GreedoLayout
 import Photos
 import FirebaseAuth
 
-private let reuseIdentifier =  "PhotoWalletCell"
+private let reuseIdentifier =  "PhotoWallCell"
 
 class PhotoWallViewController: UIViewController {
 
@@ -60,9 +60,7 @@ class PhotoWallViewController: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         
         // Register the collection view cell
-        // TODO: make it entirely in code
-        let nib = UINib(nibName: "PhotoWallCollectionViewCell", bundle: nil)
-        self.collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView.register(PhotoWallCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         // Add the collectionView to the view
         self.view.addSubview(collectionView)
@@ -79,6 +77,7 @@ class PhotoWallViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        //collectionView.register(PhotoWallCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,7 +98,7 @@ extension PhotoWallViewController: UICollectionViewDataSource  {
         
         let asset = self.model?.photo(at: indexPath.item)
         
-        if let photoCell = cell as? PhotoWallCollectionViewCell {
+        if let photoCell = cell as? PhotoWallCell {
             
             photoCell.backgroundColor = UIColor.clear
             
