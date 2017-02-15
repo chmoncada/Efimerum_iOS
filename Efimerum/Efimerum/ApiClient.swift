@@ -12,10 +12,10 @@ import enum Result.Result
 
 class ApiClient {
     
-    public static let baseURL: String = "http://colourlovers.com/api"
+    public static let baseURL: String = "https://efimerum-48618.appspot.com/api/v1"
     
     static let manager: SessionManager = {
-        let serverTrustPolicies: [String: ServerTrustPolicy] = ["81.93.214.105": .disableEvaluation]
+        let serverTrustPolicies: [String: ServerTrustPolicy] = ["efimerum-48618.appspot.com": .disableEvaluation]
         
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
@@ -29,20 +29,22 @@ class ApiClient {
                                         serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies))
     }()
     
+    static let headers = ["Content-type": "application/x-www-form-urlencoded"]
+    
     public enum Endpoints {
         
-        case photos(String)
+        case photos
         case likes(String)
         case photo(String)
-        case report(String)
+//        case report(String)
         
         public var method: Alamofire.HTTPMethod {
             switch self {
             case .photos,
                  .likes:
                 return .get
-            case .photo,
-                 .report:
+            case .photo://,
+//                 .report:
                 return .post
             }
         }
@@ -55,47 +57,59 @@ class ApiClient {
                 return baseURL + "/likes"
             case .photo:
                 return baseURL + "/photo"
-            case .report:
-                return baseURL + "/report"
+//            case .report:
+//                return baseURL + "/report"
             }
         }
         
         public var parameters: [String : AnyObject] {
-            var parameters = ["format":"json"]
+            var parameters = [String : AnyObject]()
             switch self {
-            case .photos(let keywords):
-                parameters["keywords"] = keywords
+            case .photos:
                 break
-            case .likes(let keywords):
-                parameters["keywords"] = keywords
+            case .likes:
                 break
-            case .photo(let keywords):
-                parameters["keywords"] = keywords
+            case .photo:
                 break
-            case .report(let keywords):
-                parameters["keywords"] = keywords
-                break
+//            case .report(let keywords):
+//                parameters["keywords"] = keywords
+//                break
             }
             return parameters as [String : AnyObject]
         }
     }
     
-    public static func request(endpoint: ApiClient.Endpoints, completionHandler: @escaping (Result<AnyObject, NSError>) -> Void) -> Request {
+    public static func request(endpoint: ApiClient.Endpoints, completionHandler: @escaping (Result<EfimerumResponse, ApiError>) -> Void) -> Request {
             
         let request = ApiClient.manager.request(endpoint.path,
                                                 method: endpoint.method,
                                                 parameters: endpoint.parameters,
                                                 encoding: URLEncoding.default,
-                                                headers: nil).responseJSON { response in
+                                                headers: headers).responseJSON { response in
                                                     
-                                                    if (response.result.error) != nil {
-                                                
+                                                    if let json = response.result.value as? [String: AnyObject] {
+                                                        
+                                                        guard let apiResponse = EfimerumResponse(json: json) else {
+                                                            completionHandler(.failure(.parserError))
+                                                            return
+                                                        }
+                                                        
+                                                        if apiResponse.success {
+                                                            completionHandler(Result.success(apiResponse))
+                                                        } else {
+                                                            completionHandler(Result.failure(ApiError.serverError(message: apiResponse.error!)))
+                                                        }
+         
                                                     } else {
-                    
+                                                        completionHandler(Result.failure(ApiError.unknownError))
                                                     }
             
         }
         return request
     }
 }
+
+
+
+
     

@@ -7,7 +7,8 @@ target 'Efimerum' do
 
   # Pods for Efimerum
   source 'https://github.com/CocoaPods/Specs.git'
-  
+
+  pod 'Gloss'
   pod 'Alamofire'
   pod 'Result'	
   pod 'Hero'

@@ -29,6 +29,7 @@ PODS:
   - FirebaseStorage (1.0.3):
     - FirebaseAnalytics (~> 3.3)
     - GoogleNetworkingUtilities (~> 1.2)
+  - Gloss (1.2.1)
   - GoogleInterchangeUtilities (1.2.1):
     - GoogleSymbolUtilities (~> 1.0)
   - GoogleNetworkingUtilities (1.2.2):
@@ -51,6 +52,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - Gloss
   - GreedoLayout
   - Hero
   - PKHUD (~> 4.0)
@@ -65,6 +67,7 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 59bea2e7dfd81b3b8b2f8e396caf1a52c2ced6f7
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
   FirebaseStorage: 3992817bf405f5c1a4f8349678d22724cd0ef509
+  Gloss: 9ab33b8ede01e4232571d43a6bf9259b85d1de69
   GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
   GoogleNetworkingUtilities: 3edd3a8161347494f2da60ea0deddc8a472d94cb
   GoogleParsingUtilities: d265e86f84c1ab595f6ca5172b22a7a10ce99e1f
@@ -76,6 +79,6 @@ SPEC CHECKSUMS:
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
 
-PODFILE CHECKSUM: ae3ff5e006dd9bb2287df41adf6ca6dbc78a1044
+PODFILE CHECKSUM: 8553e28195c1a4086c50fbe654a870799a995956
 
 COCOAPODS: 1.2.0
