@@ -34,7 +34,7 @@ class PhotoWallViewController: UIViewController {
     var model: PhotoWallModelType?
     
     
-    init(model: PhotoWallModelType) {
+    init(model: PhotoWallModelType = PhotoWallAssetsModel()) {
         
         super.init(nibName: nil, bundle: nil)
         
@@ -77,7 +77,6 @@ class PhotoWallViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        //collectionView.register(PhotoWallCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,7 +95,7 @@ extension PhotoWallViewController: UICollectionViewDataSource  {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         
-        let asset = self.model?.photo(at: indexPath.item)
+        let asset = self.model?.photoImage(at: indexPath.item)
         
         if let photoCell = cell as? PhotoWallCell {
             
@@ -140,7 +139,7 @@ extension PhotoWallViewController: GreedoCollectionViewLayoutDataSource {
     
     func greedoCollectionViewLayout(_ layout: GreedoCollectionViewLayout!, originalImageSizeAt indexPath: IndexPath!) -> CGSize {
         if (indexPath.item < self.model!.numberOfPhotos) {
-            let asset = (self.model?.photo(at: indexPath.item))!
+            let asset = (self.model?.photoImage(at: indexPath.item))!
             return CGSize(width: asset.size.width, height: asset.size.height)
         }
         
