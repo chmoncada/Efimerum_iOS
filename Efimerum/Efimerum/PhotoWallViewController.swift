@@ -11,7 +11,7 @@ import GreedoLayout
 import Photos
 import FirebaseAuth
 
-private let reuseIdentifier =  "PhotoWalletCell"
+private let reuseIdentifier =  "PhotoWallCell"
 
 class PhotoWallViewController: UIViewController {
 
@@ -34,7 +34,7 @@ class PhotoWallViewController: UIViewController {
     var model: PhotoWallModelType?
     
     
-    init(model: PhotoWallModelType) {
+    init(model: PhotoWallModelType = PhotoWallAssetsModel()) {
         
         super.init(nibName: nil, bundle: nil)
         
@@ -60,9 +60,7 @@ class PhotoWallViewController: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         
         // Register the collection view cell
-        // TODO: make it entirely in code
-        let nib = UINib(nibName: "PhotoWallCollectionViewCell", bundle: nil)
-        self.collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView.register(PhotoWallCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         // Add the collectionView to the view
         self.view.addSubview(collectionView)
@@ -97,9 +95,9 @@ extension PhotoWallViewController: UICollectionViewDataSource  {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         
-        let asset = self.model?.photo(at: indexPath.item)
+        let asset = self.model?.photoImage(at: indexPath.item)
         
-        if let photoCell = cell as? PhotoWallCollectionViewCell {
+        if let photoCell = cell as? PhotoWallCell {
             
             photoCell.backgroundColor = UIColor.clear
             
@@ -141,7 +139,7 @@ extension PhotoWallViewController: GreedoCollectionViewLayoutDataSource {
     
     func greedoCollectionViewLayout(_ layout: GreedoCollectionViewLayout!, originalImageSizeAt indexPath: IndexPath!) -> CGSize {
         if (indexPath.item < self.model!.numberOfPhotos) {
-            let asset = (self.model?.photo(at: indexPath.item))!
+            let asset = (self.model?.photoImage(at: indexPath.item))!
             return CGSize(width: asset.size.width, height: asset.size.height)
         }
         
