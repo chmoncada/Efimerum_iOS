@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.3.0)
   - Firebase/Analytics (3.5.2):
     - FirebaseAnalytics (~> 3.3)
   - Firebase/Auth (3.5.2):
@@ -28,6 +29,7 @@ PODS:
   - FirebaseStorage (1.0.3):
     - FirebaseAnalytics (~> 3.3)
     - GoogleNetworkingUtilities (~> 1.2)
+  - Gloss (1.2.1)
   - GoogleInterchangeUtilities (1.2.1):
     - GoogleSymbolUtilities (~> 1.0)
   - GoogleNetworkingUtilities (1.2.2):
@@ -47,30 +49,36 @@ PODS:
   - Realm/Headers (2.4.2)
   - RealmSwift (2.4.2):
     - Realm (= 2.4.2)
+  - Result (3.1.0)
   - RxCocoa (3.2.0):
     - RxSwift (~> 3.1)
   - RxSwift (3.2.0)
 
 DEPENDENCIES:
+  - Alamofire
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - Gloss
   - GreedoLayout
   - Hero
   - PKHUD (~> 4.0)
   - pop (~> 1.0)
   - RealmSwift
+  - Result
   - RxCocoa (~> 3.0)
   - RxSwift (~> 3.0)
 
 SPEC CHECKSUMS:
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   Firebase: 94e63112efcad75226c0356a8f3032397b8547c9
   FirebaseAnalytics: d968d4d5f6aeb795cd64144337bcd233e530efc6
   FirebaseAuth: 26fd291c3b552fc9658420b867520d5ae080421c
   FirebaseDatabase: 59bea2e7dfd81b3b8b2f8e396caf1a52c2ced6f7
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
   FirebaseStorage: 3992817bf405f5c1a4f8349678d22724cd0ef509
+  Gloss: 9ab33b8ede01e4232571d43a6bf9259b85d1de69
   GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
   GoogleNetworkingUtilities: 3edd3a8161347494f2da60ea0deddc8a472d94cb
   GoogleParsingUtilities: d265e86f84c1ab595f6ca5172b22a7a10ce99e1f
@@ -82,9 +90,10 @@ SPEC CHECKSUMS:
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   Realm: d27b758e12d62a3371879a065d4c40aa212c5a54
   RealmSwift: 9556c0fe0f0cfecacfb755ae9e68ff379fc6bead
+  Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
   RxCocoa: ccdf43101a70407097a29082f648ba1676075b30
   RxSwift: 46574f70d416b7923c237195939cc488a7fbf3a0
 
-PODFILE CHECKSUM: a4a6759874a48f070cc0ee96c44abe6e4292b877
+PODFILE CHECKSUM: 143db76f84935286bb3a3713585d51f9e9d7279f
 
 COCOAPODS: 1.2.0

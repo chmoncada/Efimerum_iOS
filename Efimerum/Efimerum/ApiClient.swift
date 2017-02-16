@@ -52,7 +52,7 @@ class ApiClient {
         public var path: String {
             switch self {
             case .photos:
-                return baseURL + "/photos"
+                return baseURL + "/photos?uid=PRUEBA"
             case .likes:
                 return baseURL + "/likes"
             case .photo:

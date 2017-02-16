@@ -20,9 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         
         
-        let _ = ApiClient.request(endpoint: .photos) { (result) in
-            print(result)
-        }
+//        let _ = ApiClient.request(endpoint: .photos) { (result) in
+//            print(result)
+//        }
+        
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         
@@ -41,6 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
 
         } else {
+            
+            
             coordinator = AppCoordinator(window: window)
             coordinator?.start()
         }
