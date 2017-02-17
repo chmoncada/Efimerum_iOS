@@ -8,6 +8,8 @@
 
 import Foundation
 import Alamofire
+import Firebase
+
 import enum Result.Result
 
 class ApiClient {
@@ -31,19 +33,23 @@ class ApiClient {
     
     static let headers = ["Content-type": "application/x-www-form-urlencoded"]
     
+    fileprivate func getToken() -> String {
+        return FIRInstanceID.instanceID().token()!
+    }
+    
     public enum Endpoints {
         
         case photos
-        case likes(String)
-        case photo(String)
+        case likes(photoKey: String, latitude: Double, longitude: Double)
+        case photo
 //        case report(String)
         
         public var method: Alamofire.HTTPMethod {
             switch self {
-            case .photos,
-                 .likes:
+            case .photos:
                 return .get
-            case .photo://,
+            case .photo,
+                 .likes:
 //                 .report:
                 return .post
             }
@@ -62,20 +68,22 @@ class ApiClient {
             }
         }
         
-        public var parameters: [String : AnyObject] {
-            var parameters = [String : AnyObject]()
+        public var parameters: [String : String] {
             switch self {
             case .photos:
-                break
-            case .likes:
-                break
+                return [String : String]()
+            case let .likes(photoKey: p, latitude: lat, longitude: lon):
+                return [
+                    "photoKey": p,
+                    "latitude": "\(lat)",
+                    "longitude": "\(lon)"
+                    ]
             case .photo:
-                break
+                return [String : String]()
 //            case .report(let keywords):
 //                parameters["keywords"] = keywords
 //                break
             }
-            return parameters as [String : AnyObject]
         }
     }
     

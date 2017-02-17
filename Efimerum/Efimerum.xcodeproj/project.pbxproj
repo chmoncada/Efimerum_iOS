@@ -45,6 +45,7 @@
 		D0BA66821E53846100C4F18F /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA66811E53846100C4F18F /* ApiClient.swift */; };
 		D0BA66841E54C54400C4F18F /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA66831E54C54400C4F18F /* ApiError.swift */; };
 		D0BA668A1E54CA8D00C4F18F /* EfimerumResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA66891E54CA8D00C4F18F /* EfimerumResponse.swift */; };
+		D0BA668F1E57969300C4F18F /* PhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA668E1E57969300C4F18F /* PhotoResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		D0BA66811E53846100C4F18F /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		D0BA66831E54C54400C4F18F /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		D0BA66891E54CA8D00C4F18F /* EfimerumResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EfimerumResponse.swift; sourceTree = "<group>"; };
+		D0BA668E1E57969300C4F18F /* PhotoResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +296,7 @@
 				D0BA66811E53846100C4F18F /* ApiClient.swift */,
 				D0BA66831E54C54400C4F18F /* ApiError.swift */,
 				D0BA66891E54CA8D00C4F18F /* EfimerumResponse.swift */,
+				D0BA668E1E57969300C4F18F /* PhotoResponse.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				A1B712BC1E53BB9900C21046 /* PhotoContainer.swift in Sources */,
 				A1E9CAB71E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift in Sources */,
 				A1E9CAA01E4C23D0002F4493 /* AppCoordinator.swift in Sources */,
+				D0BA668F1E57969300C4F18F /* PhotoResponse.swift in Sources */,
 				A1E9CABD1E4C250E002F4493 /* CustomKolodaView.swift in Sources */,
 				D0BA667D1E52350B00C4F18F /* FilterType.swift in Sources */,
 				A1E9CAA61E4C2426002F4493 /* Coordinator.swift in Sources */,
