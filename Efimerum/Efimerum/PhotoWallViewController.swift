@@ -10,6 +10,7 @@ import UIKit
 import GreedoLayout
 import Photos
 import FirebaseAuth
+import FirebaseDatabase
 
 private let reuseIdentifier =  "PhotoWallCell"
 
@@ -67,6 +68,7 @@ class PhotoWallViewController: UIViewController {
         
         // set floatButtons
         setupFloatButtons(scroll: collectionView)
+        
         
     }
     

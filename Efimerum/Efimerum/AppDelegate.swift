@@ -10,6 +10,9 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
+import FirebaseDatabase
+import RxSwift
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -23,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let _ = ApiClient.request(endpoint: .photos) { (result) in
 //            print(result)
 //        }
-        
+    
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         
@@ -43,6 +46,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         } else {
             
+//            let currentUser = FIRAuth.auth()?.currentUser
+//            currentUser?.getTokenForcingRefresh(true) {idToken, error in
+//                if let error = error {
+//                    // Handle error
+//                    return;
+//                }
+//                
+//                print(idToken)
+//            }
             
             coordinator = AppCoordinator(window: window)
             coordinator?.start()
@@ -51,6 +63,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    internal func load() -> Observable<FIRDataSnapshot> {
+        //let container = self.container
+        
+        let firebaseQuery = FIRDatabase.database().reference().child("photos").queryOrderedByKey()
+        
+        return firebaseQuery.rx_observe(.childAdded)
 
+        
+    }
+    
+    
 }
 
