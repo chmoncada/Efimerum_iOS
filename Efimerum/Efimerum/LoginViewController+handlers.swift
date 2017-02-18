@@ -20,12 +20,11 @@ extension LoginViewController {
         picker.delegate = self
         picker.allowsEditing = true
         
-        
         present(picker, animated: true, completion: nil)
     }
     
     func handleLoginCancel() {
-        self.didFinish()
+        self.didFinish(false)
     }
     
     func handleLoginRegister() {
@@ -51,7 +50,7 @@ extension LoginViewController {
             }
             
             HUD.flash(.success, delay: 1.0)
-            self.didFinish()
+            self.didFinish(true)
         })
     }
     
@@ -128,7 +127,7 @@ extension LoginViewController {
                 return
             }
             HUD.flash(.success, delay: 1.0)
-            self.didFinish()
+            self.didFinish(true)
             
         })
     }

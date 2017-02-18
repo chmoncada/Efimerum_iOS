@@ -38,6 +38,10 @@ final class PhotoDetailDragCoordinator: Coordinator {
             let coordinator = LoginCoordinator(navigationController: navigationController)
             strongSelf.add(child: coordinator)
             
+            coordinator.action = {
+                print("DEBERIA DARLE LIKE A ESA FOTO")
+            }
+            
             coordinator.start()
             
             

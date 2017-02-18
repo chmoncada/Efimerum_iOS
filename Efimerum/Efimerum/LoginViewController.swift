@@ -13,7 +13,7 @@ import FirebaseDatabase
 
 class LoginViewController: UIViewController {
     
-    var didFinish: () -> Void = {}
+    var didFinish: (_ success: Bool) -> Void = {_ in }
     
     var tempImage = UIImage()
     

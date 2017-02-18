@@ -13,20 +13,27 @@ final class LoginCoordinator: Coordinator {
     private unowned let navigationController: UINavigationController
     private let viewController: LoginViewController
     
+    var action: () -> Void = {}
+    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.viewController = LoginViewController()
         
         super.init()
         
-        viewController.didFinish = { [weak self] in
+        viewController.didFinish = { [weak self] success in
             guard let `self` = self else {
                 return
+            }
+            
+            if success {
+                self.action()
             }
             
             // This will remove the coordinator from its parent
             self.navigationController.dismiss(animated: true, completion: nil
             )
+            
             self.didFinish()
         }
         
@@ -45,30 +52,5 @@ final class LoginCoordinator: Coordinator {
 }
 
 
-//private unowned let navigationController: UINavigationController
-//private let viewController: LoginViewController
-//
-//init(navigationController: UINavigationController) {
-//    self.navigationController = navigationController
-//    self.viewController = LoginViewController()
-//    
-//    super.init()
-//    
-//    viewController.didFinish = { [weak self] in
-//        guard let `self` = self else {
-//            return
-//        }
-//        
-//        // This will remove the coordinator from its parent
-//        self.didFinish()
-//    }
-//    
-//    
-//}
-//
-//override func start() {
-//    navigationController.definesPresentationContext = true
-//    navigationController.pushViewController(viewController, animated: true)
-//}
 
 
