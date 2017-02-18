@@ -190,12 +190,96 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
     
     func didTap(button: MBFloatScrollButton) {
         print("boton pulsado")
+        
+        takePicture()
     }
     
     func didTap(filter: FilterType) {
         print(filter.getText())
     }
 }
+
+extension PhotoWallViewController :UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func takePicture() {
+        
+        let imagePicker = UIImagePickerController()
+        
+        if UIImagePickerController.isCameraDeviceAvailable(.front) || UIImagePickerController.isCameraDeviceAvailable(.rear)  {
+            
+            imagePicker.sourceType = .camera
+        } else {
+            imagePicker.sourceType = .photoLibrary
+        }
+        
+        imagePicker.delegate = self
+        
+        self.present(imagePicker, animated: true) { }
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let imageData = UIImageJPEGRepresentation(image, 0.5)
+        let data = UIImagePNGRepresentation(image)
+        
+        picker.dismiss(animated: true) { 
+   
+        }
+        
+        let currentUser = FIRAuth.auth()?.currentUser
+        currentUser?.getTokenForcingRefresh(true) {idToken, error in
+            if let error = error {
+                // Handle error
+                return;
+            }
+            
+            // Send token to your backend via HTTPS
+            // ...
+            
+            print("TOKEN: \(idToken)")
+            
+            ApiClient.upload(data: data!, endpoint: .photos(token: idToken!, latitude: 41.375395, longitude: 2.170624), completionHandler: { (result) in
+                
+                
+                print(result)
+                
+            })
+            
+        }
+        
+        
+        
+    }
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

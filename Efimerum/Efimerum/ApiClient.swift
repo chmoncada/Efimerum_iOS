@@ -39,16 +39,16 @@ class ApiClient {
     
     public enum Endpoints {
         
-        case photos
-        case likes(photoKey: String, latitude: Double, longitude: Double)
+        case likes
+        case photos(token: String, latitude: Double, longitude: Double)
         case photo
 //        case report(String)
         
         public var method: Alamofire.HTTPMethod {
             switch self {
-            case .photos:
+            case .photo:
                 return .get
-            case .photo,
+            case .photos,
                  .likes:
 //                 .report:
                 return .post
@@ -58,7 +58,7 @@ class ApiClient {
         public var path: String {
             switch self {
             case .photos:
-                return baseURL + "/photos?uid=PRUEBA"
+                return baseURL + "/photos"
             case .likes:
                 return baseURL + "/likes"
             case .photo:
@@ -70,11 +70,11 @@ class ApiClient {
         
         public var parameters: [String : String] {
             switch self {
-            case .photos:
+            case .likes:
                 return [String : String]()
-            case let .likes(photoKey: p, latitude: lat, longitude: lon):
+            case let .photos(token: t, latitude: lat, longitude: lon):
                 return [
-                    "photoKey": p,
+                    "idToken": t,
                     "latitude": "\(lat)",
                     "longitude": "\(lon)"
                     ]
@@ -115,9 +115,35 @@ class ApiClient {
         }
         return request
     }
+    
+    
+    public static func upload(data: Data, endpoint: ApiClient.Endpoints, completionHandler: @escaping (Result<EfimerumResponse, ApiError>) -> Void) {
+        
+        ApiClient.manager.upload(multipartFormData: { (multipartFormData) in
+            
+            let parameters = endpoint.parameters
+            for (key, value) in parameters {
+                multipartFormData.append(value.data(using: .utf8)!, withName: key)
+            }
+            multipartFormData.append(data, withName: "user", fileName: "user.png", mimeType: "image/png")
+            
+            
+        }, to: endpoint.path) { (encodingResult) in
+            
+            switch encodingResult {
+            case .success(let upload, _, _):
+                upload.responseJSON { response in
+                    debugPrint(response)
+                }
+            case .failure(let encodingError):
+                print(encodingError)
+            }
+            
+        }
+    }
 }
 
 
 
 
-    
+
