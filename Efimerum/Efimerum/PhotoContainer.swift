@@ -22,6 +22,9 @@ public protocol PhotoContainerType {
 
     /// Deletes the volume with a given identifier
     func delete(photoWithIdentifier: Int) -> Observable<Void>
+    
+    /// Deletes all photos in the container
+    func deleteAll() -> Observable<Void>
 
     /// Determines if the container contains a volume with a given identifier
     func contains(photoWithIdentifier: Int) -> Bool
@@ -85,15 +88,6 @@ extension PhotoContainer: PhotoContainerType {
         
         return Observable.create { observer in
             
-            //            self.container.loadPersistentStores { _, error in
-            //                if let error = error {
-            //                    observer.onError(error)
-            //                } else {
-            //                    observer.onNext()
-            //                    observer.onCompleted()
-            //                }
-            //            }
-            
             return Disposables.create()
         }
     }
@@ -117,6 +111,14 @@ extension PhotoContainer: PhotoContainerType {
                 container.delete(result!)
             }
         }
+    }
+    
+    public func deleteAll() -> Observable<Void> {
+        return performBackgroundTask({ (container) in
+            try container.write {
+                container.deleteAll()
+            }
+        })
     }
     
     private func performBackgroundTask(_ task: @escaping (Realm) throws -> Void) -> Observable<Void> {

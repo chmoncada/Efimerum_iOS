@@ -15,7 +15,7 @@ final class PhotoWallCoordinator: Coordinator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.viewController = PhotoWallViewController(model: PhotoWallAssetsModel())
+        self.viewController = PhotoWallViewController()
         
         super.init()
         

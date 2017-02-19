@@ -31,22 +31,18 @@ protocol PhotoWallModelType: class {
     
     func photoImage(at position: Int) -> UIImage
     
-    func load(nextPage trigger: Observable<Void>) -> Observable<Void>
+    func loadPhotos()
 }
 
 // TEST CLASS USING DEVICE CAROUSEL
 final class PhotoWallAssetsModel: PhotoWallModelType  {
     
-    internal func load(nextPage trigger: Observable<Void>) -> Observable<Void> {
+    internal func loadPhotos() {
+        
         //let container = self.container
         
-        let firebaseQuery = FIRDatabase.database().reference().child("photos").queryOrderedByKey()
+        //let firebaseQuery = FIRDatabase.database().reference().child("photos").queryOrderedByKey()
         
-        return firebaseQuery.rx_observe(.childChanged)
-            .map({ snapshot in
-                print(snapshot)
-                
-            })
     }
 
     
@@ -94,25 +90,30 @@ final class PhotoWallAssetsModel: PhotoWallModelType  {
         
         //TEST
         var ref: FIRDatabaseReference!
+        var photos: [Photo] = []
+        let container: PhotoContainerType = PhotoContainer.instance
         
         ref = FIRDatabase.database().reference()
         
-        //        ref.child("photos").observe(.childAdded, with: { (snapshot) in
-        //            print(snapshot.value)
-        //        })
         
-        //        ref.child("photos").queryOrdered(byChild: "numOfLikes").queryLimited(toLast: 3).observe(.value) { (snap) in
-        //            print("ORDENAMIENTO: \(snap.value)")
-        //        }
+        let observable = ref.child("photos").rx_observe(.childAdded)
+
+        container.deleteAll().subscribe().addDisposableTo(DisposeBag())
         
-//        ref.child("photos").queryOrdered(byChild: "numOfLikes").queryLimited(toLast: 3).observe(.value) { (snap) in
-//            print(snap.value)
-//        }
-        
-        let observable = ref.child("photos").queryOrdered(byChild: "numOfLikes").queryLimited(toLast: 3).rx_observe(.value)
-        
-        let _ = observable.subscribe(onNext: { (snap) in
-            print(snap.value)
+        let _ = observable.observeOn(MainScheduler.instance)
+            .subscribe(onNext: { (snap) in
+            
+            if let dictionary = snap.value as? [String: Any] {
+                if let photo = PhotoResponse(json: dictionary) {
+                    let key = snap.key
+                    let photoToSave = Photo(identifier: key, photoResponse: photo)
+                    photos.append(photoToSave)
+                    let observable: Observable<Void>
+                    observable = container.save(photos: [photoToSave])
+                    observable.subscribe().addDisposableTo(DisposeBag())
+                }
+            }
+            
         })
         
 
@@ -132,9 +133,6 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
         return image
     }
 
-    func load(nextPage trigger: Observable<Void>) -> Observable<Void> {
-        return doLoad(page: 1, nextPage: trigger)
-    }
     
     func photo(at position: Int) -> Photo {
         return results.photo(at: position)
@@ -148,13 +146,13 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
     }
     
     private let results: PhotoResultsType
-    private let client: ApiClient
+    //private let client: ApiClient
     private let container: PhotoContainerType
     private let disposeBag = DisposeBag()
     
-    init(client: ApiClient, labelQuery: String, container: PhotoContainerType = PhotoContainer.instance) {
+    init(labelQuery: String = "", container: PhotoContainerType = PhotoContainer.instance) {
         self.labelQuery = labelQuery
-        self.client = client
+        //self.client = client
         self.container = container
 
         container.load()
@@ -162,44 +160,50 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
             .addDisposableTo(disposeBag)
         
         results = container.all()
+        
         self.results.didUpdate = { [weak self] in
             self?.didUpdate()
         }
+        
+        loadPhotos()
     }
     
-    private func doLoad(page current: Int, nextPage trigger: Observable<Void>) -> Observable<Void> {
+    func loadPhotos()  {
         
         let container = self.container
         
-        let firebaseQuery = FIRDatabase.database().reference().child("photos").queryOrderedByKey()
+        var ref: FIRDatabaseReference!
+        var photos: [Photo] = []
         
-        return firebaseQuery.rx_observe(.childChanged)
-            .map({ snapshot in
-                print(snapshot)
+        ref = FIRDatabase.database().reference()
+        
+        let observable = ref.child("photos").rx_observe(.childAdded)
+        
+        container.deleteAll().subscribe().addDisposableTo(DisposeBag())
+        
+        let _ = observable.observeOn(MainScheduler.instance)
+            .subscribe(onNext: { (snap) in
+                
+                if let dictionary = snap.value as? [String: Any] {
+                    if let photo = PhotoResponse(json: dictionary) {
+                        let key = snap.key
+                        let photoToSave = Photo(identifier: key, photoResponse: photo)
+                        photos.append(photoToSave)
+                        let observable: Observable<Void>
+                        observable = container.save(photos: [photoToSave])
+                        observable.subscribe().addDisposableTo(DisposeBag())
+                    }
+                }
                 
             })
         
-        
-        
-//        return client.searchResults(forQuery: labelQuery, page: current)
-//            .observeOn(MainScheduler.instance)
-//            .flatMap { photos in
-//                return container.save(photos: photos)
-//            }
-//            .flatMap { [unowned self] _ in
-//                return Observable.concat([
-//                    Observable.just(current),
-//                    Observable.never().takeUntil(trigger),
-//                    self.doLoad(page: (current + 1), nextPage: trigger)
-//                    ])
-//        }
     }
     
 }
 
 extension PhotoContainer {
     
-    static let instance = PhotoContainer(name: "Comics")
+    static let instance = PhotoContainer(name: "Photos")
     
 }
 

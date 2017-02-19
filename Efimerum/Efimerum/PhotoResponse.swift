@@ -13,11 +13,11 @@ struct PhotoResponse :Decodable {
     
     let creationDate :Double
     let expirationDate :Double
-    let latitude :String?
-    let longitude :String?
+    let latitude :Float?
+    let longitude :Float?
     let md5 :String
     let numOfLikes :Double
-    let numOfViews :Double
+    //let numOfViews :Double
     let owner :String
     let randomString :String
     let sha1 :String
@@ -42,9 +42,9 @@ struct PhotoResponse :Decodable {
         guard let numOfLikes: Double = "numOfLikes" <~~ json else {
             return nil
         }
-        guard let numOfViews: Double = "numOfViews" <~~ json else {
-            return nil
-        }
+//        guard let numOfViews: Double = "numOfViews" <~~ json else {
+//            return nil
+//        }
         guard let owner: String = "owner" <~~ json else {
             return nil
         }
@@ -73,7 +73,7 @@ struct PhotoResponse :Decodable {
         self.longitude = "longitude" <~~ json
         self.md5 = md5
         self.numOfLikes = numOfLikes
-        self.numOfViews = numOfViews
+        //self.numOfViews = numOfViews
         self.owner = owner
         self.randomString = randomString
         self.sha1 = sha1

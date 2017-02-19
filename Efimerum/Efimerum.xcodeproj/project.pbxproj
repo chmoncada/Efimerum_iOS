@@ -162,6 +162,14 @@
 			name = "Firebase Client";
 			sourceTree = "<group>";
 		};
+		A19CEF4A1E59E3CB00C23B1E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A1E6B82D1E4D184900445895 /* Photo.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		A1B712BA1E53BB6A00C21046 /* PhotoContainer */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,8 +194,8 @@
 			children = (
 				A1E9CABE1E4C254F002F4493 /* PhotoWallCoordinator.swift */,
 				A1E9CAC01E4C2559002F4493 /* PhotoWallViewController.swift */,
-				A1E9CAC51E4C258A002F4493 /* PhotoWallCell.swift */,
 				A1E9CAC21E4C2564002F4493 /* PhotoWallModel.swift */,
+				A1E9CAC51E4C258A002F4493 /* PhotoWallCell.swift */,
 			);
 			name = "Photo Wall";
 			sourceTree = "<group>";
@@ -196,7 +204,6 @@
 			isa = PBXGroup;
 			children = (
 				A1E9CAA51E4C2426002F4493 /* Coordinator.swift */,
-				A1E6B82D1E4D184900445895 /* Photo.swift */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -266,6 +273,7 @@
 		D04B0D2A1E3D2BB5008E4777 /* Efimerum */ = {
 			isa = PBXGroup;
 			children = (
+				A19CEF4A1E59E3CB00C23B1E /* Models */,
 				A12F46FA1E56615900EBD98C /* Firebase Client */,
 				D0BA66801E53842C00C4F18F /* API */,
 				D0BA66771E52308300C4F18F /* MBFloatButtonScroll */,
