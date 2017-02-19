@@ -57,8 +57,8 @@ class ApiClient {
         
         public var path: String {
             switch self {
-            case .photos:
-                return baseURL + "/photos"
+            case .photos(token: let t, latitude: let lat, longitude: let lon):
+                return baseURL + "/photos?idToken=\(t)&latitude=\(lat)&longitude=\(lon)"
             case .likes:
                 return baseURL + "/likes"
             case .photo:
@@ -72,12 +72,8 @@ class ApiClient {
             switch self {
             case .likes:
                 return [String : String]()
-            case let .photos(token: t, latitude: lat, longitude: lon):
-                return [
-                    "idToken": t,
-                    "latitude": "\(lat)",
-                    "longitude": "\(lon)"
-                    ]
+            case .photos:
+                return [String : String]()
             case .photo:
                 return [String : String]()
 //            case .report(let keywords):
@@ -121,13 +117,8 @@ class ApiClient {
         
         ApiClient.manager.upload(multipartFormData: { (multipartFormData) in
             
-            let parameters = endpoint.parameters
-            for (key, value) in parameters {
-                multipartFormData.append(value.data(using: .utf8)!, withName: key)
-            }
-            multipartFormData.append(data, withName: "user", fileName: "user.png", mimeType: "image/png")
-            
-            
+            multipartFormData.append(data, withName: "photoImg", fileName: "photo.png", mimeType: "image/png")
+    
         }, to: endpoint.path) { (encodingResult) in
             
             switch encodingResult {
