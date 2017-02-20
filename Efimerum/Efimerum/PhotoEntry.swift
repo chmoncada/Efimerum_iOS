@@ -14,23 +14,28 @@ class PhotoEntry: Object {
    
     dynamic var identifier = ""
     
-    dynamic var index: Int = 0
+    dynamic var index = ""
     dynamic var authorID: String = ""
-    dynamic var creationDate = Date()
-    dynamic var expirationDate = Date()
+    dynamic var creationDate: Double = 0
+    dynamic var expirationDate: Double = 0
     
     dynamic var latitude: Float = 0
     dynamic var longitude: Float = 0
     
-    dynamic var numOfLikes:Int = 0
+    dynamic var numOfLikes:Double = 0
     
-    dynamic var imageWidth: Float = 0
-    dynamic var imageHeight: Float = 0
+    dynamic var imageWidth: Double = 0
+    dynamic var imageHeight: Double = 0
     dynamic var imageURLString: String = ""
     
-    dynamic var thumbnailWidth: Float = 0
-    dynamic var thumbnailHeight: Float = 0
+    dynamic var thumbnailWidth: Double = 0
+    dynamic var thumbnailHeight: Double = 0
     dynamic var thumbnailURLString: String = ""
+    
+    dynamic var md5: String = ""
+    dynamic var randomString: String = ""
+    dynamic var sha1: String = ""
+    dynamic var sha256: String = ""
     
     let labels_EN = List<Tags>()
     let labels_ES = List<Tags>()
@@ -60,8 +65,12 @@ extension PhotoEntry {
         imageHeight = photo.imageHeight
         imageURLString = photo.imageURL.absoluteString
         thumbnailHeight = photo.thumbnailHeight
-        thumbnailWidth = photo.thumbnailHeight
+        thumbnailWidth = photo.thumbnailWidth
         thumbnailURLString = photo.thumbnailURL.absoluteString
+        md5 = photo.md5
+        randomString = photo.randomString
+        sha1 = photo.sha1
+        sha256 = photo.sha256
         
         for tag in photo.tags {
             let myTag = Tags()

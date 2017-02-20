@@ -22,6 +22,7 @@ target 'Efimerum' do
   pod 'RealmSwift'
   pod 'RxSwift', '~> 3.0'
   pod 'RxCocoa', '~> 3.0'
+  pod 'Kingfisher', '~> 3.0'
 
   target 'EfimerumTests' do
     inherit! :search_paths

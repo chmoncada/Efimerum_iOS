@@ -22,12 +22,19 @@ public protocol PhotoContainerType {
 
     /// Deletes the volume with a given identifier
     func delete(photoWithIdentifier: Int) -> Observable<Void>
+    
+    /// Deletes all photos in the container
+    func deleteAll() -> Observable<Void>
 
     /// Determines if the container contains a volume with a given identifier
     func contains(photoWithIdentifier: Int) -> Bool
 
     /// Returns all the volumes in the container
     func all() -> PhotoResultsType
+    
+    /// Returns all the volumes in the container using some randomKey to sort them
+    func allRandom(randomKey: String) -> PhotoResultsType
+    
 }
 
 final public class PhotoContainer {
@@ -68,6 +75,11 @@ extension PhotoContainer: PhotoContainerType {
         
     }
     
+    public func allRandom(randomKey: String) -> PhotoResultsType {
+        
+        return PhotoResults(container: container, randomKey: randomKey)
+    }
+    
     public func contains(photoWithIdentifier: Int) -> Bool {
         
         let predicate = NSPredicate(format: "index == %d", photoWithIdentifier)
@@ -84,15 +96,6 @@ extension PhotoContainer: PhotoContainerType {
     public func load() -> Observable<Void> {
         
         return Observable.create { observer in
-            
-            //            self.container.loadPersistentStores { _, error in
-            //                if let error = error {
-            //                    observer.onError(error)
-            //                } else {
-            //                    observer.onNext()
-            //                    observer.onCompleted()
-            //                }
-            //            }
             
             return Disposables.create()
         }
@@ -119,6 +122,14 @@ extension PhotoContainer: PhotoContainerType {
         }
     }
     
+    public func deleteAll() -> Observable<Void> {
+        return performBackgroundTask({ (container) in
+            try container.write {
+                container.deleteAll()
+            }
+        })
+    }
+    
     private func performBackgroundTask(_ task: @escaping (Realm) throws -> Void) -> Observable<Void> {
         
         return Observable.create { observer in
@@ -134,5 +145,11 @@ extension PhotoContainer: PhotoContainerType {
             return Disposables.create()
         }
     }
+    
+}
+
+extension PhotoContainer {
+    
+    static let instance = PhotoContainer(name: "Photos")
     
 }

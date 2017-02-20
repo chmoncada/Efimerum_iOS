@@ -54,6 +54,15 @@ internal final class PhotoResults: PhotoResultsType {
         }
     }
     
+    init(container: Realm, randomKey: String) {
+        
+        results = container.objects(PhotoEntry.self).sorted(byKeyPath: randomKey)
+        
+        token = container.addNotificationBlock { [weak self] _, _ in
+            self?.didUpdate()
+        }
+    }
+    
     deinit {
         token.stop()
     }

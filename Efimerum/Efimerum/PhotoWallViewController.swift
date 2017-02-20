@@ -11,6 +11,7 @@ import GreedoLayout
 import Photos
 import FirebaseAuth
 import FirebaseDatabase
+import Kingfisher
 
 private let reuseIdentifier =  "PhotoWallCell"
 
@@ -35,7 +36,7 @@ class PhotoWallViewController: UIViewController {
     var model: PhotoWallModelType?
     
     
-    init(model: PhotoWallModelType = PhotoWallAssetsModel()) {
+    init(model: PhotoWallModelType = PhotoWallFirebaseModel()) {
         
         super.init(nibName: nil, bundle: nil)
         
@@ -69,6 +70,8 @@ class PhotoWallViewController: UIViewController {
         // set floatButtons
         setupFloatButtons(scroll: collectionView)
         
+        // setup bindings
+        setupBindings()
         
     }
     
@@ -86,6 +89,16 @@ class PhotoWallViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
+    private func setupBindings() {
+        // Reload our table view when a new page is loaded
+        model?.didUpdate = { [weak self] in
+            
+            self?.collectionView.collectionViewLayout.invalidateLayout()
+            self?.collectionView.reloadData()
+        }
+        
+    }
+    
 
 }
 
@@ -97,13 +110,20 @@ extension PhotoWallViewController: UICollectionViewDataSource  {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         
-        let asset = self.model?.photoImage(at: indexPath.item)
+        let photo = self.model?.photo(at: indexPath.item)
+        
+        //let asset = self.model?.photoImage(at: indexPath.item)
+        
         
         if let photoCell = cell as? PhotoWallCell {
             
             photoCell.backgroundColor = UIColor.clear
             
-            photoCell.photoView.image = asset
+            if let url = photo?.thumbnailURL {
+                photoCell.photoView.kf.indicatorType = .activity
+                photoCell.photoView.kf.setImage(with: url)
+            }
+            
             
         }
         
@@ -141,8 +161,10 @@ extension PhotoWallViewController: GreedoCollectionViewLayoutDataSource {
     
     func greedoCollectionViewLayout(_ layout: GreedoCollectionViewLayout!, originalImageSizeAt indexPath: IndexPath!) -> CGSize {
         if (indexPath.item < self.model!.numberOfPhotos) {
-            let asset = (self.model?.photoImage(at: indexPath.item))!
-            return CGSize(width: asset.size.width, height: asset.size.height)
+            //let asset = (self.model?.photoImage(at: indexPath.item))!
+            if let asset = self.model?.photo(at: indexPath.item) {
+                return CGSize(width: asset.thumbnailWidth , height: asset.thumbnailHeight)
+            }
         }
         
         return CGSize(width: 0.1, height: 0.1)
