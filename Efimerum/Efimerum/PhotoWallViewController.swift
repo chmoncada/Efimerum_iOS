@@ -243,7 +243,8 @@ extension PhotoWallViewController :UIImagePickerControllerDelegate, UINavigation
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let imageData = UIImageJPEGRepresentation(image, 0.5)
+        let fixedImage = image.fixOrientation()
+        let imageData = UIImageJPEGRepresentation(fixedImage, 0.5)
 //        let data = UIImagePNGRepresentation(image)
         
         picker.dismiss(animated: true) { 
