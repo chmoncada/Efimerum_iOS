@@ -229,7 +229,7 @@ extension PhotoWallViewController :UIImagePickerControllerDelegate, UINavigation
         
         if UIImagePickerController.isCameraDeviceAvailable(.front) || UIImagePickerController.isCameraDeviceAvailable(.rear)  {
             
-            imagePicker.sourceType = .camera
+            imagePicker.sourceType = .photoLibrary
         } else {
             imagePicker.sourceType = .photoLibrary
         }
@@ -244,32 +244,37 @@ extension PhotoWallViewController :UIImagePickerControllerDelegate, UINavigation
         
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         let imageData = UIImageJPEGRepresentation(image, 0.5)
-        let data = UIImagePNGRepresentation(image)
+//        let data = UIImagePNGRepresentation(image)
         
         picker.dismiss(animated: true) { 
    
         }
         
-        let currentUser = FIRAuth.auth()?.currentUser
-        currentUser?.getTokenForcingRefresh(true) {idToken, error in
-            if let error = error {
-                // Handle error
-                return;
+        FIRAuth.auth()?.signIn(withEmail: "mibarbou@gmail.com", password: "123456", completion: { (user, error) in
+            
+            let currentUser = FIRAuth.auth()?.currentUser
+            currentUser?.getTokenForcingRefresh(true) {idToken, error in
+                if let error = error {
+                    // Handle error
+                    print(error)
+                    return;
+                }
+                
+                // Send token to your backend via HTTPS
+                // ...
+                
+                print("TOKEN: \(idToken)")
+                
+                ApiClient.upload(data: imageData!, endpoint: .photos(token: idToken!, latitude: 41.375395, longitude: 2.170624), completionHandler: { (result) in
+                    
+                    print(result)
+                    
+                })
+                
             }
-            
-            // Send token to your backend via HTTPS
-            // ...
-            
-            print("TOKEN: \(idToken)")
-            
-            ApiClient.upload(data: data!, endpoint: .photos(token: idToken!, latitude: 41.375395, longitude: 2.170624), completionHandler: { (result) in
-                
-                
-                print(result)
-                
-            })
-            
-        }
+        })
+        
+        
         
         
         

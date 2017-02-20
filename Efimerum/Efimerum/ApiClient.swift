@@ -117,7 +117,7 @@ class ApiClient {
         
         ApiClient.manager.upload(multipartFormData: { (multipartFormData) in
             
-            multipartFormData.append(data, withName: "photoImg", fileName: "photo.png", mimeType: "image/png")
+            multipartFormData.append(data, withName: "photoImg", fileName: "photo.jpeg", mimeType: "image/jpeg")
     
         }, to: endpoint.path) { (encodingResult) in
             
@@ -125,9 +125,23 @@ class ApiClient {
             case .success(let upload, _, _):
                 upload.responseJSON { response in
                     debugPrint(response)
+                    if let json = response.result.value as? [String: AnyObject] {
+                        guard let apiResponse = EfimerumResponse(json: json) else {
+                            completionHandler(.failure(.parserError))
+                            return
+                        }
+                        
+                        if apiResponse.success {
+                            completionHandler(Result.success(apiResponse))
+                        } else {
+                            completionHandler(Result.failure(ApiError.serverError(message: apiResponse.error!)))
+                        }
+                    }
+                    
                 }
             case .failure(let encodingError):
                 print(encodingError)
+                completionHandler(Result.failure(ApiError.unknownError))
             }
             
         }
