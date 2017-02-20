@@ -19,6 +19,7 @@ private let kolodaAlphaValueSemiTransparent: CGFloat = 0.0
 class PhotoDetailDragViewController: UIViewController {
 
     var model: PhotoDetailDragModelType?
+    var startIndex: Int = 0
     
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
@@ -26,11 +27,12 @@ class PhotoDetailDragViewController: UIViewController {
     
     var needAuthLogin: () -> Void = {}
     
-    init(model: PhotoDetailDragModelType) {
+    init(model: PhotoDetailDragModelType, startIndex: Int) {
         
         super.init(nibName: nil, bundle: nil)
         
         self.model = model
+        self.startIndex = startIndex
         
     }
     
