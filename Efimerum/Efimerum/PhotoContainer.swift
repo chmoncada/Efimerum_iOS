@@ -31,6 +31,10 @@ public protocol PhotoContainerType {
 
     /// Returns all the volumes in the container
     func all() -> PhotoResultsType
+    
+    /// Returns all the volumes in the container using some randomKey to sort them
+    func allRandom(randomKey: String) -> PhotoResultsType
+    
 }
 
 final public class PhotoContainer {
@@ -69,6 +73,11 @@ extension PhotoContainer: PhotoContainerType {
         
         return PhotoResults(container: container)
         
+    }
+    
+    public func allRandom(randomKey: String) -> PhotoResultsType {
+        
+        return PhotoResults(container: container, randomKey: randomKey)
     }
     
     public func contains(photoWithIdentifier: Int) -> Bool {
@@ -136,5 +145,11 @@ extension PhotoContainer: PhotoContainerType {
             return Disposables.create()
         }
     }
+    
+}
+
+extension PhotoContainer {
+    
+    static let instance = PhotoContainer(name: "Photos")
     
 }

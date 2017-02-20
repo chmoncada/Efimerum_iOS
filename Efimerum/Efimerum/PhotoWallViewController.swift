@@ -11,6 +11,7 @@ import GreedoLayout
 import Photos
 import FirebaseAuth
 import FirebaseDatabase
+import Kingfisher
 
 private let reuseIdentifier =  "PhotoWallCell"
 
@@ -111,13 +112,18 @@ extension PhotoWallViewController: UICollectionViewDataSource  {
         
         let photo = self.model?.photo(at: indexPath.item)
         
-        let asset = self.model?.photoImage(at: indexPath.item)
+        //let asset = self.model?.photoImage(at: indexPath.item)
+        
         
         if let photoCell = cell as? PhotoWallCell {
             
-            photoCell.backgroundColor = UIColor.red
+            photoCell.backgroundColor = UIColor.clear
             
-            photoCell.photoView.image = asset
+            if let url = photo?.thumbnailURL {
+                photoCell.photoView.kf.indicatorType = .activity
+                photoCell.photoView.kf.setImage(with: url)
+            }
+            
             
         }
         

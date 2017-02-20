@@ -32,6 +32,11 @@ class PhotoEntry: Object {
     dynamic var thumbnailHeight: Double = 0
     dynamic var thumbnailURLString: String = ""
     
+    dynamic var md5: String = ""
+    dynamic var randomString: String = ""
+    dynamic var sha1: String = ""
+    dynamic var sha256: String = ""
+    
     let labels_EN = List<Tags>()
     let labels_ES = List<Tags>()
     
@@ -62,6 +67,10 @@ extension PhotoEntry {
         thumbnailHeight = photo.thumbnailHeight
         thumbnailWidth = photo.thumbnailWidth
         thumbnailURLString = photo.thumbnailURL.absoluteString
+        md5 = photo.md5
+        randomString = photo.randomString
+        sha1 = photo.sha1
+        sha256 = photo.sha256
         
         for tag in photo.tags {
             let myTag = Tags()

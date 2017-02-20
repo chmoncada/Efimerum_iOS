@@ -11,6 +11,7 @@
 		A10477521E4D6DC300F2C3C3 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10477511E4D6DC300F2C3C3 /* LoginCoordinator.swift */; };
 		A12F46FC1E56616E00EBD98C /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F46FB1E56616E00EBD98C /* Client.swift */; };
 		A12F47071E579D4B00EBD98C /* FirebaseDatabase+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F47061E579D4B00EBD98C /* FirebaseDatabase+RX.swift */; };
+		A19CEF4C1E5A6F2A00C23B1E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19CEF4B1E5A6F2A00C23B1E /* Utils.swift */; };
 		A1B259061E50AF13009B187B /* LoginViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B259051E50AF13009B187B /* LoginViewController+handlers.swift */; };
 		A1B712BC1E53BB9900C21046 /* PhotoContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B712BB1E53BB9900C21046 /* PhotoContainer.swift */; };
 		A1B712BE1E53BFA100C21046 /* PhotoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B712BD1E53BFA100C21046 /* PhotoEntry.swift */; };
@@ -69,6 +70,7 @@
 		A10477511E4D6DC300F2C3C3 /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		A12F46FB1E56616E00EBD98C /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		A12F47061E579D4B00EBD98C /* FirebaseDatabase+RX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FirebaseDatabase+RX.swift"; sourceTree = "<group>"; };
+		A19CEF4B1E5A6F2A00C23B1E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		A1B259051E50AF13009B187B /* LoginViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginViewController+handlers.swift"; sourceTree = "<group>"; };
 		A1B712BB1E53BB9900C21046 /* PhotoContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoContainer.swift; sourceTree = "<group>"; };
 		A1B712BD1E53BFA100C21046 /* PhotoEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoEntry.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				A1E9CAA51E4C2426002F4493 /* Coordinator.swift */,
+				A19CEF4B1E5A6F2A00C23B1E /* Utils.swift */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				A1E6B82B1E4D167100445895 /* PhotoDetailDragModel.swift in Sources */,
 				D0BA667C1E52350B00C4F18F /* FilterItemView.swift in Sources */,
 				A1E9CAB41E4C24A4002F4493 /* SwipeResultDirection.swift in Sources */,
+				A19CEF4C1E5A6F2A00C23B1E /* Utils.swift in Sources */,
 				A1B712BE1E53BFA100C21046 /* PhotoEntry.swift in Sources */,
 				A1E9CAB01E4C248F002F4493 /* KolodaViewAnimatior.swift in Sources */,
 				A1E9CAAE1E4C2487002F4493 /* KolodaView.swift in Sources */,

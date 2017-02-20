@@ -33,6 +33,12 @@ public struct Photo {
     /// number of Likes
     let numOfLikes: Double
     
+    /// random keys
+    let md5: String
+    let randomString: String
+    let sha1: String
+    let sha256: String
+    
     let imageWidth: Double
     let imageHeight: Double
     let imageURL: URL
@@ -44,7 +50,7 @@ public struct Photo {
     /// photo Tags?
     let tags: Array<String>
     
-    init(identifier: String, index: String, creationDate: Double, expirationDate: Double, authorID: String, longitude: Float, latitude: Float, numOfLikes: Double, imageWidth: Double, imageHeight: Double, imageURL: URL, thumbnailWidth: Double, thumbnailHeight: Double, thumbnailURL: URL, tags: Array<String>) {
+    init(identifier: String, index: String, creationDate: Double, expirationDate: Double, authorID: String, longitude: Float, latitude: Float, numOfLikes: Double, imageWidth: Double, imageHeight: Double, imageURL: URL, thumbnailWidth: Double, thumbnailHeight: Double, thumbnailURL: URL, tags: Array<String>, md5: String, randomString: String, sha1: String, sha256: String) {
         self.identifier = identifier
         self.index = index
         self.creationDate = creationDate
@@ -59,6 +65,11 @@ public struct Photo {
         self.thumbnailWidth = thumbnailWidth
         self.thumbnailHeight = thumbnailHeight
         self.thumbnailURL = thumbnailURL
+        
+        self.md5 = md5
+        self.randomString = randomString
+        self.sha1 = sha1
+        self.sha256 = sha256
         
         self.tags = tags
     }
@@ -83,6 +94,10 @@ extension Photo {
         self.thumbnailWidth = entry.thumbnailWidth
         self.thumbnailHeight = entry.thumbnailHeight
         self.thumbnailURL = entry.stringToURL(entry.thumbnailURLString)!
+        self.md5 = entry.md5
+        self.randomString = entry.randomString
+        self.sha1 = entry.sha1
+        self.sha256 = entry.sha256
         
         var tags: [String] = []
         for tag in entry.labels_ES {
@@ -106,6 +121,10 @@ extension Photo {
         self.thumbnailWidth = photoResponse.thumbnailData.width
         self.thumbnailHeight = photoResponse.thumbnailData.height
         self.thumbnailURL = photoResponse.thumbnailData.url
+        self.md5 = photoResponse.md5
+        self.randomString = photoResponse.randomString
+        self.sha1 = photoResponse.sha1
+        self.sha256 = photoResponse.sha256
         
         var tags: [String] = []
         self.tags = tags
