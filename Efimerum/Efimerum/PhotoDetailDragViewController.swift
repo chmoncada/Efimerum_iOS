@@ -135,12 +135,13 @@ extension PhotoDetailDragViewController: KolodaViewDelegate {
 extension PhotoDetailDragViewController: KolodaViewDataSource {
     
     func kolodaNumberOfCards(_ koloda:KolodaView) -> Int {
-        return model!.numberOfPhotos
+        return model!.numberOfPhotos - startIndex
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         
-        let photo = model?.photo(at: index)
+        
+        let photo = model?.photo(at: startIndex + index)
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: (photo?.imageWidth)!, height: (photo?.imageHeight)!))
         
         if let url = photo?.imageURL {
