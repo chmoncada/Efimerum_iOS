@@ -11,7 +11,7 @@ import UIKit
 class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
 
     var hideWhileScrolling = true
-    let isFloatActionMenu : Bool
+    var isFloatActionMenu : Bool = false
     let scrollView :UIScrollView
     var maskBackgroundView :UIControl?
     var delegate :MBFloatScrollButtonDelegate?
@@ -42,10 +42,51 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
 
     }
     
+    init(buttonType: FloatButtonType, on scrollView: UIScrollView, for parentView: UIView) {
+        self.scrollView = scrollView
+        previousOffset = self.scrollView.contentOffset.y
+        super.init(frame: CGRect.zero)
+        
+        setButton(buttonType: buttonType, parentView: parentView)
+        
+    }
+    
     
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    fileprivate func setButton(buttonType: FloatButtonType, parentView: UIView) {
+        
+        setupButton()
+        
+        switch buttonType {
+        case .camera:
+            self.frame = CGRect(x: scrollView.bounds.size.width/2 - 36,
+                          y: scrollView.bounds.size.height - 72 - 20,
+                          width: 72,
+                          height: 72)
+            self.image = UIImage(named: "btnCamera")!
+        case .orderBy:
+            self.frame = CGRect(x: scrollView.bounds.origin.x + 20,
+                          y: scrollView.bounds.size.height - 56 - 20,
+                          width: 56,
+                          height: 56)
+            self.image = UIImage(named: "btnFilter")!
+            setMenuButton()
+            isFloatActionMenu = true
+        case .search:
+            break
+        case .settings:
+            self.frame = CGRect(x: scrollView.bounds.size.width - 56 - 20,
+                   y: scrollView.bounds.size.height - 56 - 20,
+                   width: 56,
+                   height: 56)
+            self.image = UIImage(named: "btnSearch")!
+        }
+        
+        parentView.addSubview(self)
     }
     
     
@@ -59,7 +100,6 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         self.backgroundColor = .clear
         self.isUserInteractionEnabled = true
         self.contentMode = .scaleAspectFit
-        self.image = self.image
         self.layer.cornerRadius = self.bounds.height / 2
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowRadius = 5.0
@@ -228,3 +268,6 @@ protocol MBFloatScrollButtonDelegate :class {
     
     func didTap(filter: FilterType)
 }
+
+
+
