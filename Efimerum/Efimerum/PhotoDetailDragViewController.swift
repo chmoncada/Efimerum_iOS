@@ -18,7 +18,7 @@ private let kolodaAlphaValueSemiTransparent: CGFloat = 0.0
 
 class PhotoDetailDragViewController: UIViewController {
 
-    var model: PhotoDetailDragModelType?
+    var model: PhotoWallModelType?
     var startIndex: Int = 0
     
     @IBOutlet weak var kolodaView: CustomKolodaView!
@@ -27,7 +27,7 @@ class PhotoDetailDragViewController: UIViewController {
     
     var needAuthLogin: () -> Void = {}
     
-    init(model: PhotoDetailDragModelType, startIndex: Int) {
+    init(model: PhotoWallModelType, startIndex: Int) {
         
         super.init(nibName: nil, bundle: nil)
         
@@ -140,9 +140,13 @@ extension PhotoDetailDragViewController: KolodaViewDataSource {
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         
-        let image = model?.photo(at: index)
+        let photo = model?.photo(at: index)
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: (photo?.imageWidth)!, height: (photo?.imageHeight)!))
         
-        let imageView = UIImageView(image: image)
+        if let url = photo?.imageURL {
+            imageView.kf.indicatorType = .activity
+            imageView.kf.setImage(with: url)
+        }
         
         return imageView
     }

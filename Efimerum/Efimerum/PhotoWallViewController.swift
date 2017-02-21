@@ -22,7 +22,7 @@ class PhotoWallViewController: UIViewController {
     
     // Called when the user selects a photo in the grid
     // TODO: We need to pass some data to the other view (hint: the arrays of photos and the index of the selected)
-    var didSelectPhoto: (Int) -> Void = { _ in }
+    var didSelectPhoto: (PhotoWallModelType, Int) -> Void = { _ in }
     
     // Set the customLayout as lazy property
     lazy var collectionViewSizeCalculator: GreedoCollectionViewLayout = {
@@ -88,9 +88,8 @@ class PhotoWallViewController: UIViewController {
     }
     
     private func setupBindings() {
-        // Reload our table view when a new page is loaded
+        // Reload our table view when the model changes
         model?.didUpdate = { [weak self] in
-            
             self?.collectionView.reloadData()
             self?.collectionView.collectionViewLayout.invalidateLayout()
             self?.collectionViewSizeCalculator.clearCache()
@@ -140,7 +139,7 @@ extension PhotoWallViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        didSelectPhoto(indexPath.item)
+        didSelectPhoto(self.model!, indexPath.item)
         
     }
 }

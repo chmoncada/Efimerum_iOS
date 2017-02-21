@@ -19,13 +19,12 @@ final class PhotoWallCoordinator: Coordinator {
         
         super.init()
         
-        viewController.didSelectPhoto = { [weak self] startIndex in
+        viewController.didSelectPhoto = { [weak self] model, startIndex in
             guard let strongSelf = self else {
                 return
             }
 
-            let coordinator = PhotoDetailDragCoordinator(navigationController: navigationController, startIndex: startIndex)
-            
+            let coordinator = PhotoDetailDragCoordinator(navigationController: navigationController, model: model, startIndex: startIndex)
             
             strongSelf.add(child: coordinator)
             

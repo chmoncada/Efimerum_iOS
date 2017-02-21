@@ -12,13 +12,15 @@ final class PhotoDetailDragCoordinator: Coordinator {
     
     private unowned let navigationController: UINavigationController
     private let viewController: PhotoDetailDragViewController
+    private let model : PhotoWallModelType
     
     var startIndex: Int = 0
     
-    init(navigationController: UINavigationController, startIndex: Int) {
+    init(navigationController: UINavigationController, model: PhotoWallModelType, startIndex: Int) {
         self.navigationController = navigationController
         self.startIndex = startIndex
-        self.viewController = PhotoDetailDragViewController(model: PhotoAssetsModel(), startIndex: startIndex)
+        self.model = model
+        self.viewController = PhotoDetailDragViewController(model: model, startIndex: startIndex)
         
         super.init()
         
