@@ -32,9 +32,7 @@ class PhotoWallViewController: UIViewController {
         return lazyLayout!
     }()
     
-    //var assetFetchResults: PHFetchResult<PHAsset>?
     var model: PhotoWallModelType?
-    
     
     init(model: PhotoWallModelType = PhotoWallFirebaseModel()) {
         
@@ -93,8 +91,9 @@ class PhotoWallViewController: UIViewController {
         // Reload our table view when a new page is loaded
         model?.didUpdate = { [weak self] in
             
-            self?.collectionView.collectionViewLayout.invalidateLayout()
             self?.collectionView.reloadData()
+            self?.collectionView.collectionViewLayout.invalidateLayout()
+            self?.collectionViewSizeCalculator.clearCache()
         }
         
     }
@@ -161,7 +160,6 @@ extension PhotoWallViewController: GreedoCollectionViewLayoutDataSource {
     
     func greedoCollectionViewLayout(_ layout: GreedoCollectionViewLayout!, originalImageSizeAt indexPath: IndexPath!) -> CGSize {
         if (indexPath.item < self.model!.numberOfPhotos) {
-            //let asset = (self.model?.photoImage(at: indexPath.item))!
             if let asset = self.model?.photo(at: indexPath.item) {
                 return CGSize(width: asset.thumbnailWidth , height: asset.thumbnailHeight)
             }
@@ -274,10 +272,6 @@ extension PhotoWallViewController :UIImagePickerControllerDelegate, UINavigation
                 
             }
         })
-        
-        
-        
-        
         
     }
     
