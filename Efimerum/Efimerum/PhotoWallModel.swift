@@ -87,28 +87,31 @@ extension PhotoWallFirebaseModel {
         ref = FIRDatabase.database().reference()
         
         // First query random using some random order
-        let observable = ref.child("photos").rx_observe(.childAdded)
+        let observable2 = ref.child("photos").rx_observeSingleEvent(of: .value)
         
         container.deleteAll().subscribe().addDisposableTo(DisposeBag())
         
-        let _ = observable.observeOn(MainScheduler.instance)
+        let _ = observable2.observeOn(MainScheduler.instance)
             .subscribe(onNext: { (snap) in
-                
-                if let dictionary = snap.value as? [String: Any] {
-                    if let photo = PhotoResponse(json: dictionary) {
-                        let key = snap.key
-                        let photoToSave = Photo(identifier: key, photoResponse: photo)
-                        photos.append(photoToSave)
-                        let observable: Observable<Void>
-                        observable = container.save(photos: [photoToSave])
-                        observable.subscribe().addDisposableTo(DisposeBag())
+                if snap.exists() {
+                    for child in snap.children {
+                        let photoSnap = child as! FIRDataSnapshot
+                        if let dictionary = photoSnap.value as? [String: Any] {
+                            if let photo = PhotoResponse(json: dictionary) {
+                                let key = photoSnap.key
+                                let photoToSave = Photo(identifier: key, photoResponse: photo)
+                                photos.append(photoToSave)
+                                
+                            }
+                        }
                     }
+                    let observable: Observable<Void>
+                    observable = container.save(photos: photos)
+                    observable.subscribe().addDisposableTo(DisposeBag())
                 }
-                
             })
+        
     }
-    
-    
     
 }
 
