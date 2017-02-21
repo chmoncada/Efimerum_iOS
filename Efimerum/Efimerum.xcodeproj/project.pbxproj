@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C2D1FAF8E1FD096BDC8ED27 /* Pods_EfimerumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398AC87E508AB1563F87D297 /* Pods_EfimerumTests.framework */; };
 		A10477521E4D6DC300F2C3C3 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10477511E4D6DC300F2C3C3 /* LoginCoordinator.swift */; };
+		A127899C1E5BE2ED007EE2F0 /* UIImage+Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127899B1E5BE2ED007EE2F0 /* UIImage+Rotation.swift */; };
 		A12F46FC1E56616E00EBD98C /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F46FB1E56616E00EBD98C /* Client.swift */; };
 		A12F47071E579D4B00EBD98C /* FirebaseDatabase+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F47061E579D4B00EBD98C /* FirebaseDatabase+RX.swift */; };
 		A19CEF4C1E5A6F2A00C23B1E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19CEF4B1E5A6F2A00C23B1E /* Utils.swift */; };
@@ -68,6 +69,7 @@
 		398AC87E508AB1563F87D297 /* Pods_EfimerumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EfimerumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D1975ABD99428D75EBB75D /* Pods-EfimerumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EfimerumTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EfimerumTests/Pods-EfimerumTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A10477511E4D6DC300F2C3C3 /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		A127899B1E5BE2ED007EE2F0 /* UIImage+Rotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Rotation.swift"; sourceTree = "<group>"; };
 		A12F46FB1E56616E00EBD98C /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		A12F47061E579D4B00EBD98C /* FirebaseDatabase+RX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FirebaseDatabase+RX.swift"; sourceTree = "<group>"; };
 		A19CEF4B1E5A6F2A00C23B1E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 		A1E9CAA21E4C23FA002F4493 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				A127899B1E5BE2ED007EE2F0 /* UIImage+Rotation.swift */,
 				A1E9CAA51E4C2426002F4493 /* Coordinator.swift */,
 				A19CEF4B1E5A6F2A00C23B1E /* Utils.swift */,
 			);
@@ -564,6 +567,7 @@
 				A1E9CAAC1E4C247D002F4493 /* KolodaCardStorage.swift in Sources */,
 				A1E9CAAA1E4C2473002F4493 /* DraggableCardView.swift in Sources */,
 				A1E9CAB21E4C2499002F4493 /* OverlayView.swift in Sources */,
+				A127899C1E5BE2ED007EE2F0 /* UIImage+Rotation.swift in Sources */,
 				A12F47071E579D4B00EBD98C /* FirebaseDatabase+RX.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
