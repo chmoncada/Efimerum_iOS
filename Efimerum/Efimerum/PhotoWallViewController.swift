@@ -173,14 +173,17 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
     
     func setupFloatButtons(scroll: UIScrollView){
         
-        let rightButton = MBFloatScrollButton(buttonType: .settings, on: scroll, for: self.view)
-        rightButton.delegate = self
+        let settingsButton = MBFloatScrollButton(buttonType: .settings, on: scroll, for: self.view)
+        settingsButton.delegate = self
         
-        let leftButton = MBFloatScrollButton(buttonType: .orderBy, on: scroll, for: self.view)
-        leftButton.delegate = self
+        let orderByButton = MBFloatScrollButton(buttonType: .orderBy, on: scroll, for: self.view)
+        orderByButton.delegate = self
 
-        let centerButton = MBFloatScrollButton(buttonType: .camera, on: scroll, for: self.view)
-        centerButton.delegate = self
+        let cameraButton = MBFloatScrollButton(buttonType: .camera, on: scroll, for: self.view)
+        cameraButton.delegate = self
+        
+        let searchButton = MBFloatScrollButton(buttonType: .search, on: scroll, for: self.view)
+        searchButton.delegate = self
     }
     
     func didTap(button: MBFloatScrollButton) {
