@@ -85,13 +85,15 @@ class PhotoWallViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         // Hides the navigation bar
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+
     }
     
     private func setupBindings() {
-        // Reload our table view when the model changes
+        // Reload our collection view when the model changes
         model?.didUpdate = { [weak self] in
-            self?.collectionView.reloadData()
+            
             self?.collectionView.collectionViewLayout.invalidateLayout()
+            self?.collectionView.reloadData()
             self?.collectionViewSizeCalculator.clearCache()
         }
         

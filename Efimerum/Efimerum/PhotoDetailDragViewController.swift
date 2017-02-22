@@ -9,6 +9,8 @@
 import UIKit
 import pop
 import FirebaseAuth
+import RxSwift
+
 
 private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
@@ -20,6 +22,8 @@ class PhotoDetailDragViewController: UIViewController {
 
     var model: PhotoWallModelType?
     var startIndex: Int = 0
+    
+    var indexesToDelete: [String] = []
     
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
@@ -65,6 +69,15 @@ class PhotoDetailDragViewController: UIViewController {
     
     @IBAction func dismissView(_ sender: Any) {
         
+        if indexesToDelete.count > 0 {
+            let container = PhotoContainer.instance
+            let observable: Observable<Void>
+            observable = container.delete(photosWithIdentifiers: indexesToDelete)
+            observable.subscribe().addDisposableTo(DisposeBag())
+        } else {
+            print("NO HAY NADA QUE BORRAR")
+        }
+        
         let _ = navigationController?.popViewController(animated: false)
     
     }
@@ -84,8 +97,7 @@ extension PhotoDetailDragViewController: KolodaViewDelegate {
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
         print("se me acabaron las cartas")
-        kolodaView.resetCurrentCardIndex()
-        
+        //kolodaView.resetCurrentCardIndex()
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
@@ -116,9 +128,13 @@ extension PhotoDetailDragViewController: KolodaViewDelegate {
         switch direction {
         case .left:
             print("No me gusto, paso a la siguiente")
+            
+            let photo = model?.photo(at: startIndex + index)
+            let identifier = photo!.identifier
+            indexesToDelete.append(identifier)
+            
         case .right:
             print("Me gusto, darle like a la foto")
-            
             
             // user is not logged in
             if FIRAuth.auth()?.currentUser?.uid == nil || (FIRAuth.auth()?.currentUser?.isAnonymous)!{
@@ -139,7 +155,6 @@ extension PhotoDetailDragViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        
         
         let photo = model?.photo(at: startIndex + index)
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: (photo?.imageWidth)!, height: (photo?.imageHeight)!))

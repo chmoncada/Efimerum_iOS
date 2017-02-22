@@ -19,9 +19,11 @@ public protocol PhotoContainerType {
 
     /// Saves an array of volumes in the container
     func save(photos: [Photo]) -> Observable<Void>
+    
+    func delete(photosWithIdentifiers: [String]) -> Observable<Void>
 
     /// Deletes the volume with a given identifier
-    func delete(photoWithIdentifier: Int) -> Observable<Void>
+    func delete(photoWithIdentifier: String) -> Observable<Void>
     
     /// Deletes all photos in the container
     func deleteAll() -> Observable<Void>
@@ -112,10 +114,26 @@ extension PhotoContainer: PhotoContainerType {
         }
     }
     
-    public func delete(photoWithIdentifier: Int) -> Observable<Void> {
+    public func delete(photosWithIdentifiers: [String]) -> Observable<Void> {
+        return performBackgroundTask { container in
+            var photosToDelete: [PhotoEntry] = []
+            for each in photosWithIdentifiers {
+                let predicate = NSPredicate(format: "identifier == %@", each)
+                if let result = container.objects(PhotoEntry.self).filter(predicate).first {
+                    photosToDelete.append(result)
+                }
+            }
+            try container.write {
+                container.delete(photosToDelete)
+            }
+        }
+
+    }
+    
+    public func delete(photoWithIdentifier: String) -> Observable<Void> {
         return performBackgroundTask { container in
             try container.write {
-                let predicate = NSPredicate(format: "index == %d", photoWithIdentifier)
+                let predicate = NSPredicate(format: "identifier == %@", photoWithIdentifier)
                 let result = container.objects(PhotoEntry.self).filter(predicate).first
                 container.delete(result!)
             }

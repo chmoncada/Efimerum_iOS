@@ -18,7 +18,6 @@
 		A1B712BE1E53BFA100C21046 /* PhotoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B712BD1E53BFA100C21046 /* PhotoEntry.swift */; };
 		A1B712C01E53BFB000C21046 /* PhotoResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B712BF1E53BFB000C21046 /* PhotoResults.swift */; };
 		A1DE9A011E4E17330059CABB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE9A001E4E17330059CABB /* LoginViewController.swift */; };
-		A1E6B82B1E4D167100445895 /* PhotoDetailDragModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E6B82A1E4D167100445895 /* PhotoDetailDragModel.swift */; };
 		A1E6B82E1E4D184900445895 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E6B82D1E4D184900445895 /* Photo.swift */; };
 		A1E9CAA01E4C23D0002F4493 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CA9F1E4C23D0002F4493 /* AppCoordinator.swift */; };
 		A1E9CAA61E4C2426002F4493 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAA51E4C2426002F4493 /* Coordinator.swift */; };
@@ -78,7 +77,6 @@
 		A1B712BD1E53BFA100C21046 /* PhotoEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoEntry.swift; sourceTree = "<group>"; };
 		A1B712BF1E53BFB000C21046 /* PhotoResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoResults.swift; sourceTree = "<group>"; };
 		A1DE9A001E4E17330059CABB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		A1E6B82A1E4D167100445895 /* PhotoDetailDragModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailDragModel.swift; sourceTree = "<group>"; };
 		A1E6B82D1E4D184900445895 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		A1E9CA9F1E4C23D0002F4493 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		A1E9CAA51E4C2426002F4493 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -241,7 +239,6 @@
 				A1E9CAB61E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift */,
 				A1E9CAB81E4C24FB002F4493 /* PhotoDetailDragViewController.swift */,
 				A1E9CABA1E4C2503002F4493 /* PhotoDetailDragViewController.xib */,
-				A1E6B82A1E4D167100445895 /* PhotoDetailDragModel.swift */,
 				A1E9CABC1E4C250E002F4493 /* CustomKolodaView.swift */,
 			);
 			name = "Photo Detail Drag";
@@ -540,7 +537,6 @@
 				A10477521E4D6DC300F2C3C3 /* LoginCoordinator.swift in Sources */,
 				A1E9CABF1E4C254F002F4493 /* PhotoWallCoordinator.swift in Sources */,
 				D0BA667B1E52350B00C4F18F /* MBFloatScrollButton.swift in Sources */,
-				A1E6B82B1E4D167100445895 /* PhotoDetailDragModel.swift in Sources */,
 				D0BA667C1E52350B00C4F18F /* FilterItemView.swift in Sources */,
 				A1E9CAB41E4C24A4002F4493 /* SwipeResultDirection.swift in Sources */,
 				A19CEF4C1E5A6F2A00C23B1E /* Utils.swift in Sources */,
