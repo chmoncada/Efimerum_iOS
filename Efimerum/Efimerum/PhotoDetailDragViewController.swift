@@ -25,7 +25,39 @@ class PhotoDetailDragViewController: UIViewController {
     
     var indexesToDelete: [String] = []
     
-    @IBOutlet weak var kolodaView: CustomKolodaView!
+    //@IBOutlet weak var kolodaView: CustomKolodaView!
+    
+    var kolodaView: CustomKolodaView = {
+        let view = CustomKolodaView()
+        //view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    let closeButton: UIButton = {
+       
+        let button = UIButton(type: UIButtonType.custom)
+        let image = UIImage(named: "cancel")
+        button.setImage(image, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+        return button
+        
+    }()
+    
+    //TEMPORAL BUTTON
+    let logoutButton: UIButton = {
+        
+        let button = UIButton(type: UIButtonType.system)
+        button.setTitle("Logout", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
+        
+        button.addTarget(self, action: #selector(firebaseLogout), for: .touchUpInside)
+        return button
+        
+    }()
     
     var didFinish: () -> Void = {}
     
@@ -49,11 +81,21 @@ class PhotoDetailDragViewController: UIViewController {
 
         view.backgroundColor = UIColor.black
         
+        kolodaView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        view.addSubview(kolodaView)
+        
+        view.addSubview(closeButton)
+        setupCloseButton()
+        
+        //TEMPORARY BUTTON
+        view.addSubview(logoutButton)
+        setupLogoutButton()
+        
         kolodaView.dataSource = self
         kolodaView.delegate = self
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
-        
+
         self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         
     }
@@ -67,7 +109,7 @@ class PhotoDetailDragViewController: UIViewController {
     }
     
     
-    @IBAction func dismissView(_ sender: Any) {
+    func dismissView() {
         
         if indexesToDelete.count > 0 {
             let container = PhotoContainer.instance
@@ -82,7 +124,23 @@ class PhotoDetailDragViewController: UIViewController {
     
     }
     
-    @IBAction func firebaseLogout(_ sender: Any) {
+    func setupCloseButton() {
+        closeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30).isActive = true
+        closeButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
+        closeButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        closeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+    }
+    
+    // TEMPORAL FUNC
+    
+    func setupLogoutButton() {
+        logoutButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30).isActive = true
+        logoutButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
+        logoutButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        logoutButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+    }
+    
+    func firebaseLogout() {
         
         do {
             try FIRAuth.auth()?.signOut()

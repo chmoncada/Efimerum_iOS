@@ -29,7 +29,6 @@
 		A1E9CAB41E4C24A4002F4493 /* SwipeResultDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAB31E4C24A4002F4493 /* SwipeResultDirection.swift */; };
 		A1E9CAB71E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAB61E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift */; };
 		A1E9CAB91E4C24FB002F4493 /* PhotoDetailDragViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAB81E4C24FB002F4493 /* PhotoDetailDragViewController.swift */; };
-		A1E9CABB1E4C2503002F4493 /* PhotoDetailDragViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1E9CABA1E4C2503002F4493 /* PhotoDetailDragViewController.xib */; };
 		A1E9CABD1E4C250E002F4493 /* CustomKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CABC1E4C250E002F4493 /* CustomKolodaView.swift */; };
 		A1E9CABF1E4C254F002F4493 /* PhotoWallCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CABE1E4C254F002F4493 /* PhotoWallCoordinator.swift */; };
 		A1E9CAC11E4C2559002F4493 /* PhotoWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAC01E4C2559002F4493 /* PhotoWallViewController.swift */; };
@@ -88,7 +87,6 @@
 		A1E9CAB31E4C24A4002F4493 /* SwipeResultDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeResultDirection.swift; sourceTree = "<group>"; };
 		A1E9CAB61E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailDragCoordinator.swift; sourceTree = "<group>"; };
 		A1E9CAB81E4C24FB002F4493 /* PhotoDetailDragViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailDragViewController.swift; sourceTree = "<group>"; };
-		A1E9CABA1E4C2503002F4493 /* PhotoDetailDragViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoDetailDragViewController.xib; sourceTree = "<group>"; };
 		A1E9CABC1E4C250E002F4493 /* CustomKolodaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomKolodaView.swift; sourceTree = "<group>"; };
 		A1E9CABE1E4C254F002F4493 /* PhotoWallCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallCoordinator.swift; sourceTree = "<group>"; };
 		A1E9CAC01E4C2559002F4493 /* PhotoWallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallViewController.swift; sourceTree = "<group>"; };
@@ -238,7 +236,6 @@
 			children = (
 				A1E9CAB61E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift */,
 				A1E9CAB81E4C24FB002F4493 /* PhotoDetailDragViewController.swift */,
-				A1E9CABA1E4C2503002F4493 /* PhotoDetailDragViewController.xib */,
 				A1E9CABC1E4C250E002F4493 /* CustomKolodaView.swift */,
 			);
 			name = "Photo Detail Drag";
@@ -416,7 +413,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1E9CABB1E4C2503002F4493 /* PhotoDetailDragViewController.xib in Resources */,
 				D04B0D2E1E3D2BB5008E4777 /* Assets.xcassets in Resources */,
 				D04B0D311E3D2BB5008E4777 /* LaunchScreen.storyboard in Resources */,
 				D01635511E40F5D6008ADC0E /* GoogleService-Info.plist in Resources */,
