@@ -39,7 +39,7 @@ class ApiClient {
     
     public enum Endpoints {
         
-        case likes
+        case likes(token: String, photoKey: String, latitude: Double, longitude: Double)
         case photos(token: String, latitude: Double, longitude: Double)
         case photo
 //        case report(String)
@@ -59,8 +59,8 @@ class ApiClient {
             switch self {
             case .photos(token: let t, latitude: let lat, longitude: let lon):
                 return baseURL + "/photos?idToken=\(t)&latitude=\(lat)&longitude=\(lon)"
-            case .likes:
-                return baseURL + "/likes"
+            case .likes(token: let t, photoKey: let k, latitude: let lat, longitude: let lon):
+                return baseURL + "/likes?idToken=\(t)&photoKey=\(k)&latitude=\(lat)&longitude=\(lon)"
             case .photo:
                 return baseURL + "/photo"
 //            case .report:
@@ -68,7 +68,7 @@ class ApiClient {
             }
         }
         
-        public var parameters: [String : String] {
+        public var parameters: [String : Any] {
             switch self {
             case .likes:
                 return [String : String]()

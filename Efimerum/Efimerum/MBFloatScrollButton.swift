@@ -82,7 +82,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
                                 width: 200,
                                 height: 40)
                 self.layer.cornerRadius = self.bounds.size.height/2
-                self.backgroundColor = .green
+                self.backgroundColor = .white
             hideWhileScrolling = false
             setupSearchTextField()
             break
@@ -145,7 +145,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
                            width: self.bounds.size.width - 20,
                            height: self.bounds.size.height - 8)
         let searchTextField = UITextField(frame: frame)
-        searchTextField.backgroundColor = .blue
+        searchTextField.backgroundColor = .white
         searchTextField.placeholder = "Search"
         self.addSubview(searchTextField)
     

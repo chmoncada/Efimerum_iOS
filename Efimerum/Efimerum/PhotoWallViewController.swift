@@ -247,7 +247,7 @@ extension PhotoWallViewController :UIImagePickerControllerDelegate, UINavigation
                 ApiClient.upload(data: imageData!, endpoint: .photos(token: idToken!, latitude: 41.375395, longitude: 2.170624), completionHandler: { (result) in
                     
                     print(result)
-                    
+         
                 })
                 
             }
