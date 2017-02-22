@@ -15,7 +15,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     let scrollView :UIScrollView
     var maskBackgroundView :UIControl?
     var delegate :MBFloatScrollButtonDelegate?
-    
+    var isHideDirectionUp = false
     var isShowingMenu = false
     
     private var filterItem1 : FilterItemView!
@@ -77,6 +77,14 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
             setMenuButton()
             isFloatActionMenu = true
         case .search:
+            self.frame = CGRect(x: scrollView.bounds.size.width/2 - 100,
+                                y: scrollView.bounds.origin.y + 20,
+                                width: 200,
+                                height: 40)
+                self.layer.cornerRadius = self.bounds.size.height/2
+                self.backgroundColor = .green
+            hideWhileScrolling = false
+            setupSearchTextField()
             break
         case .settings:
             self.frame = CGRect(x: scrollView.bounds.size.width - 56 - 20,
@@ -126,6 +134,21 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         } else {
             delegate?.didTap(button: self)
         }
+    }
+    
+    //MARK: - Search textField
+    
+    fileprivate func setupSearchTextField() {
+        
+        let frame = CGRect(x: self.bounds.origin.x + 10,
+                           y: self.bounds.origin.y + 4,
+                           width: self.bounds.size.width - 20,
+                           height: self.bounds.size.height - 8)
+        let searchTextField = UITextField(frame: frame)
+        searchTextField.backgroundColor = .blue
+        searchTextField.placeholder = "Search"
+        self.addSubview(searchTextField)
+    
     }
     
     //MARK: - Scroll
