@@ -40,6 +40,7 @@
 		D04B0D2E1E3D2BB5008E4777 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D04B0D2D1E3D2BB5008E4777 /* Assets.xcassets */; };
 		D04B0D311E3D2BB5008E4777 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D04B0D2F1E3D2BB5008E4777 /* LaunchScreen.storyboard */; };
 		D04B0D3C1E3D2BB5008E4777 /* EfimerumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B0D3B1E3D2BB5008E4777 /* EfimerumTests.swift */; };
+		D0A0151E1E5CB8D500EF1EBF /* FloatButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A0151D1E5CB8D500EF1EBF /* FloatButtonType.swift */; };
 		D0BA667B1E52350B00C4F18F /* MBFloatScrollButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA66781E52350A00C4F18F /* MBFloatScrollButton.swift */; };
 		D0BA667C1E52350B00C4F18F /* FilterItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA66791E52350A00C4F18F /* FilterItemView.swift */; };
 		D0BA667D1E52350B00C4F18F /* FilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA667A1E52350B00C4F18F /* FilterType.swift */; };
@@ -102,6 +103,7 @@
 		D04B0D371E3D2BB5008E4777 /* EfimerumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EfimerumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D04B0D3B1E3D2BB5008E4777 /* EfimerumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EfimerumTests.swift; sourceTree = "<group>"; };
 		D04B0D3D1E3D2BB5008E4777 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0A0151D1E5CB8D500EF1EBF /* FloatButtonType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatButtonType.swift; sourceTree = "<group>"; };
 		D0BA66781E52350A00C4F18F /* MBFloatScrollButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBFloatScrollButton.swift; sourceTree = "<group>"; };
 		D0BA66791E52350A00C4F18F /* FilterItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterItemView.swift; sourceTree = "<group>"; };
 		D0BA667A1E52350B00C4F18F /* FilterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterType.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				D0BA66781E52350A00C4F18F /* MBFloatScrollButton.swift */,
 				D0BA66791E52350A00C4F18F /* FilterItemView.swift */,
 				D0BA667A1E52350B00C4F18F /* FilterType.swift */,
+				D0A0151D1E5CB8D500EF1EBF /* FloatButtonType.swift */,
 			);
 			name = MBFloatButtonScroll;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				A19CEF4C1E5A6F2A00C23B1E /* Utils.swift in Sources */,
 				A1B712BE1E53BFA100C21046 /* PhotoEntry.swift in Sources */,
 				A1E9CAB01E4C248F002F4493 /* KolodaViewAnimatior.swift in Sources */,
+				D0A0151E1E5CB8D500EF1EBF /* FloatButtonType.swift in Sources */,
 				A1E9CAAE1E4C2487002F4493 /* KolodaView.swift in Sources */,
 				A1B712BC1E53BB9900C21046 /* PhotoContainer.swift in Sources */,
 				A1E9CAB71E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift in Sources */,

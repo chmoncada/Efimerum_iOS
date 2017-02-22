@@ -175,38 +175,17 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
     
     func setupFloatButtons(scroll: UIScrollView){
         
-        let frameRight = CGRect(x: scroll.bounds.size.width - 56 - 20,
-                                y: scroll.bounds.size.height - 56 - 20,
-                                width: 56,
-                                height: 56)
+        let settingsButton = MBFloatScrollButton(buttonType: .settings, on: scroll, for: self.view)
+        settingsButton.delegate = self
         
-        let rightButton = MBFloatScrollButton(frame: frameRight, with: UIImage(named: "btnSearch")!, on: scroll, hasFloatAction: false)
+        let orderByButton = MBFloatScrollButton(buttonType: .orderBy, on: scroll, for: self.view)
+        orderByButton.delegate = self
+
+        let cameraButton = MBFloatScrollButton(buttonType: .camera, on: scroll, for: self.view)
+        cameraButton.delegate = self
         
-        rightButton.hideWhileScrolling = true
-        rightButton.delegate = self
-        self.view.addSubview(rightButton)
-        
-        let frameLeft = CGRect(x: scroll.bounds.origin.x + 20,
-                               y: scroll.bounds.size.height - 56 - 20,
-                               width: 56,
-                               height: 56)
-        
-        let leftButton = MBFloatScrollButton(frame: frameLeft, with: UIImage(named: "btnFilter")!, on: scroll, hasFloatAction: true)
-        leftButton.hideWhileScrolling = true
-        leftButton.delegate = self
-        self.view.addSubview(leftButton)
-        
-        
-        let frameCenter = CGRect(x: scroll.bounds.size.width/2 - 36,
-                                 y: scroll.bounds.size.height - 72 - 20,
-                                 width: 72,
-                                 height: 72)
-        
-        let centerButton = MBFloatScrollButton(frame: frameCenter, with: UIImage(named: "btnCamera")!, on: scroll, hasFloatAction: false)
-        
-        centerButton.hideWhileScrolling = true
-        centerButton.delegate = self
-        self.view.addSubview(centerButton)
+        let searchButton = MBFloatScrollButton(buttonType: .search, on: scroll, for: self.view)
+        searchButton.delegate = self
     }
     
     func didTap(button: MBFloatScrollButton) {
@@ -268,7 +247,7 @@ extension PhotoWallViewController :UIImagePickerControllerDelegate, UINavigation
                 ApiClient.upload(data: imageData!, endpoint: .photos(token: idToken!, latitude: 41.375395, longitude: 2.170624), completionHandler: { (result) in
                     
                     print(result)
-                    
+         
                 })
                 
             }
