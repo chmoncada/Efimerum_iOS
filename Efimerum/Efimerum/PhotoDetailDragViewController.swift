@@ -9,7 +9,7 @@
 import UIKit
 import pop
 import FirebaseAuth
-import RxSwift
+//import RxSwift
 
 
 private let frameAnimationSpringBounciness: CGFloat = 9
@@ -17,20 +17,22 @@ private let frameAnimationSpringSpeed: CGFloat = 16
 private let kolodaCountOfVisibleCards = 1
 private let kolodaAlphaValueSemiTransparent: CGFloat = 0.0
 
+protocol PhotoDetailDragViewControllerOutput {
+    func deletePhotosOfIndexes( _ indexes: [String])
+    func logout()
+}
 
 class PhotoDetailDragViewController: UIViewController {
 
+    var output: PhotoDetailDragViewControllerOutput!
+    
     var model: PhotoWallModelType?
     var startIndex: Int = 0
     
     var indexesToDelete: [String] = []
     
-    //@IBOutlet weak var kolodaView: CustomKolodaView!
-    
     var kolodaView: CustomKolodaView = {
         let view = CustomKolodaView()
-        //view.translatesAutoresizingMaskIntoConstraints = false
-        
         return view
     }()
     
@@ -60,16 +62,13 @@ class PhotoDetailDragViewController: UIViewController {
     }()
     
     var didFinish: () -> Void = {}
-    
     var needAuthLogin: () -> Void = {}
     
     init(model: PhotoWallModelType, startIndex: Int) {
-        
         super.init(nibName: nil, bundle: nil)
-        
         self.model = model
         self.startIndex = startIndex
-        
+   
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -96,6 +95,8 @@ class PhotoDetailDragViewController: UIViewController {
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
 
+        PhotoDetailDragConfigurator.instance.configure(viewController: self)
+        
         self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         
     }
@@ -107,21 +108,14 @@ class PhotoDetailDragViewController: UIViewController {
             didFinish()
         }
     }
-    
-    
+
     func dismissView() {
         
         if indexesToDelete.count > 0 {
-            let container = PhotoContainer.instance
-            let observable: Observable<Void>
-            observable = container.delete(photosWithIdentifiers: indexesToDelete)
-            observable.subscribe().addDisposableTo(DisposeBag())
-        } else {
-            print("NO HAY NADA QUE BORRAR")
+            output.deletePhotosOfIndexes(indexesToDelete)
         }
         
         let _ = navigationController?.popViewController(animated: false)
-    
     }
     
     func setupCloseButton() {
@@ -142,11 +136,7 @@ class PhotoDetailDragViewController: UIViewController {
     
     func firebaseLogout() {
         
-        do {
-            try FIRAuth.auth()?.signOut()
-        } catch let logoutError {
-            print(logoutError)
-        }
+        output.logout()
         
     }
 }
@@ -155,7 +145,6 @@ extension PhotoDetailDragViewController: KolodaViewDelegate {
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
         print("se me acabaron las cartas")
-        //kolodaView.resetCurrentCardIndex()
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {

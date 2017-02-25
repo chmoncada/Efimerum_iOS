@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
+        //FirebaseManager().setupLoginListener()
+        
         
 //        let _ = ApiClient.request(endpoint: .photos) { (result) in
 //            print(result)
