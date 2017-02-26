@@ -70,8 +70,7 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
     func photo(at position: Int) -> Photo {
         return results.photo(at: position)
     }
-
-    
+ 
 }
 
 // MARK: Util Methods
@@ -114,96 +113,3 @@ extension PhotoWallFirebaseModel {
     }
     
 }
-
-
-
-
-
-// TEST CLASS USING DEVICE CAROUSEL
-//final class PhotoWallAssetsModel: PhotoWallModelType  {
-//    
-//    internal func loadPhotos() {
-//        
-//        //let container = self.container
-//        
-//        //let firebaseQuery = FIRDatabase.database().reference().child("photos").queryOrderedByKey()
-//        
-//    }
-//    
-//    
-//    var labelQuery: String = ""
-//    
-//    var didLoad: () -> Void = {}
-//    
-//    internal func photo(at position: Int) -> Photo {
-//        return PhotoContainer.instance.all().photo(at: position)
-//    }
-//    
-//    
-//    var didUpdate: () -> Void = {}
-//    
-//    var numberOfPhotos: Int {
-//        
-//        return allElementsFromLibrary().count
-//        
-//    }
-//    
-//    public func photoImage(at position: Int) -> UIImage {
-//        
-//        let asset = results[position]
-//        var image = UIImage()
-//        
-//        let options = PHImageRequestOptions()
-//        options.resizeMode = .fast
-//        options.deliveryMode = .opportunistic
-//        options.version = .current
-//        options.isSynchronous = true
-//        
-//        PHCachingImageManager.default().requestImageData(for: asset,
-//                                                         options: options) { (result, data, orientation, info) in
-//                                                            image = UIImage(data: result!)!
-//        }
-//        
-//        return image
-//        
-//    }
-//    
-//    private let results: PHFetchResult<PHAsset>
-//    
-//    init(results: PHFetchResult<PHAsset> = allElementsFromLibrary()) {
-//        self.results = results
-//        
-//        //TEST
-//        var ref: FIRDatabaseReference!
-//        var photos: [Photo] = []
-//        let container: PhotoContainerType = PhotoContainer.instance
-//        
-//        ref = FIRDatabase.database().reference()
-//        
-//        
-//        let observable = ref.child("photos").rx_observe(.childAdded)
-//        
-//        container.deleteAll().subscribe().addDisposableTo(DisposeBag())
-//        
-//        let _ = observable.observeOn(MainScheduler.instance)
-//            .subscribe(onNext: { (snap) in
-//                
-//                if let dictionary = snap.value as? [String: Any] {
-//                    if let photo = PhotoResponse(json: dictionary) {
-//                        let key = snap.key
-//                        let photoToSave = Photo(identifier: key, photoResponse: photo)
-//                        photos.append(photoToSave)
-//                        let observable: Observable<Void>
-//                        observable = container.save(photos: [photoToSave])
-//                        observable.subscribe().addDisposableTo(DisposeBag())
-//                    }
-//                }
-//                
-//            })
-//        
-//        
-//        
-//    }
-//    
-//}
-

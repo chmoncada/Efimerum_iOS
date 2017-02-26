@@ -10,9 +10,11 @@
 		0C2D1FAF8E1FD096BDC8ED27 /* Pods_EfimerumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398AC87E508AB1563F87D297 /* Pods_EfimerumTests.framework */; };
 		A10477521E4D6DC300F2C3C3 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10477511E4D6DC300F2C3C3 /* LoginCoordinator.swift */; };
 		A127899C1E5BE2ED007EE2F0 /* UIImage+Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127899B1E5BE2ED007EE2F0 /* UIImage+Rotation.swift */; };
-		A12F46FC1E56616E00EBD98C /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F46FB1E56616E00EBD98C /* Client.swift */; };
 		A12F47071E579D4B00EBD98C /* FirebaseDatabase+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F47061E579D4B00EBD98C /* FirebaseDatabase+RX.swift */; };
 		A19CEF4C1E5A6F2A00C23B1E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19CEF4B1E5A6F2A00C23B1E /* Utils.swift */; };
+		A1A350FA1E607B1100100C56 /* FirebaseAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A350F91E607B1100100C56 /* FirebaseAuthenticationManager.swift */; };
+		A1A350FC1E61D42D00100C56 /* PhotoDetailDragInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A350FB1E61D42D00100C56 /* PhotoDetailDragInteractor.swift */; };
+		A1A350FE1E61DB0800100C56 /* PhotoDetailDragConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A350FD1E61DB0800100C56 /* PhotoDetailDragConfigurator.swift */; };
 		A1B259061E50AF13009B187B /* LoginViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B259051E50AF13009B187B /* LoginViewController+handlers.swift */; };
 		A1B712BC1E53BB9900C21046 /* PhotoContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B712BB1E53BB9900C21046 /* PhotoContainer.swift */; };
 		A1B712BE1E53BFA100C21046 /* PhotoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B712BD1E53BFA100C21046 /* PhotoEntry.swift */; };
@@ -69,9 +71,11 @@
 		55D1975ABD99428D75EBB75D /* Pods-EfimerumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EfimerumTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EfimerumTests/Pods-EfimerumTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A10477511E4D6DC300F2C3C3 /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		A127899B1E5BE2ED007EE2F0 /* UIImage+Rotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Rotation.swift"; sourceTree = "<group>"; };
-		A12F46FB1E56616E00EBD98C /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		A12F47061E579D4B00EBD98C /* FirebaseDatabase+RX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FirebaseDatabase+RX.swift"; sourceTree = "<group>"; };
 		A19CEF4B1E5A6F2A00C23B1E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		A1A350F91E607B1100100C56 /* FirebaseAuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationManager.swift; sourceTree = "<group>"; };
+		A1A350FB1E61D42D00100C56 /* PhotoDetailDragInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailDragInteractor.swift; sourceTree = "<group>"; };
+		A1A350FD1E61DB0800100C56 /* PhotoDetailDragConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailDragConfigurator.swift; sourceTree = "<group>"; };
 		A1B259051E50AF13009B187B /* LoginViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginViewController+handlers.swift"; sourceTree = "<group>"; };
 		A1B712BB1E53BB9900C21046 /* PhotoContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoContainer.swift; sourceTree = "<group>"; };
 		A1B712BD1E53BFA100C21046 /* PhotoEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoEntry.swift; sourceTree = "<group>"; };
@@ -155,21 +159,31 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
-		A12F46FA1E56615900EBD98C /* Firebase Client */ = {
+		A12F46FA1E56615900EBD98C /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				A12F46FB1E56616E00EBD98C /* Client.swift */,
-				A12F47061E579D4B00EBD98C /* FirebaseDatabase+RX.swift */,
+				A1A350F91E607B1100100C56 /* FirebaseAuthenticationManager.swift */,
 			);
-			name = "Firebase Client";
+			name = Managers;
 			sourceTree = "<group>";
 		};
 		A19CEF4A1E59E3CB00C23B1E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A1B712BA1E53BB6A00C21046 /* PhotoContainer */,
 				A1E6B82D1E4D184900445895 /* Photo.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		A1A350F81E60748E00100C56 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				A1E9CAA11E4C23E7002F4493 /* Photo Wall */,
+				A1E9CAB51E4C24C4002F4493 /* Photo Detail Drag */,
+				A10477501E4D6D9E00F2C3C3 /* Login */,
+			);
+			name = Scenes;
 			sourceTree = "<group>";
 		};
 		A1B712BA1E53BB6A00C21046 /* PhotoContainer */ = {
@@ -205,6 +219,7 @@
 		A1E9CAA21E4C23FA002F4493 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				A12F47061E579D4B00EBD98C /* FirebaseDatabase+RX.swift */,
 				A127899B1E5BE2ED007EE2F0 /* UIImage+Rotation.swift */,
 				A1E9CAA51E4C2426002F4493 /* Coordinator.swift */,
 				A19CEF4B1E5A6F2A00C23B1E /* Utils.swift */,
@@ -238,6 +253,8 @@
 			children = (
 				A1E9CAB61E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift */,
 				A1E9CAB81E4C24FB002F4493 /* PhotoDetailDragViewController.swift */,
+				A1A350FD1E61DB0800100C56 /* PhotoDetailDragConfigurator.swift */,
+				A1A350FB1E61D42D00100C56 /* PhotoDetailDragInteractor.swift */,
 				A1E9CABC1E4C250E002F4493 /* CustomKolodaView.swift */,
 			);
 			name = "Photo Detail Drag";
@@ -275,16 +292,13 @@
 		D04B0D2A1E3D2BB5008E4777 /* Efimerum */ = {
 			isa = PBXGroup;
 			children = (
+				A12F46FA1E56615900EBD98C /* Managers */,
 				A19CEF4A1E59E3CB00C23B1E /* Models */,
-				A12F46FA1E56615900EBD98C /* Firebase Client */,
+				A1A350F81E60748E00100C56 /* Scenes */,
 				D0BA66801E53842C00C4F18F /* API */,
 				D0BA66771E52308300C4F18F /* MBFloatButtonScroll */,
 				A1E9CA9E1E4C23B5002F4493 /* Bootstrap */,
-				A1E9CAA11E4C23E7002F4493 /* Photo Wall */,
-				A1E9CAB51E4C24C4002F4493 /* Photo Detail Drag */,
-				A10477501E4D6D9E00F2C3C3 /* Login */,
 				A1E9CAA71E4C243C002F4493 /* FrameWorks */,
-				A1B712BA1E53BB6A00C21046 /* PhotoContainer */,
 				A1E9CAA21E4C23FA002F4493 /* Others */,
 				D04B0D2F1E3D2BB5008E4777 /* LaunchScreen.storyboard */,
 				D04B0D2D1E3D2BB5008E4777 /* Assets.xcassets */,
@@ -534,6 +548,8 @@
 				A1E9CAC61E4C258A002F4493 /* PhotoWallCell.swift in Sources */,
 				A1E9CAB91E4C24FB002F4493 /* PhotoDetailDragViewController.swift in Sources */,
 				A10477521E4D6DC300F2C3C3 /* LoginCoordinator.swift in Sources */,
+				A1A350FC1E61D42D00100C56 /* PhotoDetailDragInteractor.swift in Sources */,
+				A1A350FE1E61DB0800100C56 /* PhotoDetailDragConfigurator.swift in Sources */,
 				A1E9CABF1E4C254F002F4493 /* PhotoWallCoordinator.swift in Sources */,
 				D0BA667B1E52350B00C4F18F /* MBFloatScrollButton.swift in Sources */,
 				D0BA667C1E52350B00C4F18F /* FilterItemView.swift in Sources */,
@@ -541,6 +557,7 @@
 				A19CEF4C1E5A6F2A00C23B1E /* Utils.swift in Sources */,
 				A1B712BE1E53BFA100C21046 /* PhotoEntry.swift in Sources */,
 				A1E9CAB01E4C248F002F4493 /* KolodaViewAnimatior.swift in Sources */,
+				A1A350FA1E607B1100100C56 /* FirebaseAuthenticationManager.swift in Sources */,
 				D0A0151E1E5CB8D500EF1EBF /* FloatButtonType.swift in Sources */,
 				A1E9CAAE1E4C2487002F4493 /* KolodaView.swift in Sources */,
 				A1B712BC1E53BB9900C21046 /* PhotoContainer.swift in Sources */,
@@ -559,7 +576,6 @@
 				D04B0D2C1E3D2BB5008E4777 /* AppDelegate.swift in Sources */,
 				D0BA66841E54C54400C4F18F /* ApiError.swift in Sources */,
 				D0BA668A1E54CA8D00C4F18F /* EfimerumResponse.swift in Sources */,
-				A12F46FC1E56616E00EBD98C /* Client.swift in Sources */,
 				A1E9CAAC1E4C247D002F4493 /* KolodaCardStorage.swift in Sources */,
 				A1E9CAAA1E4C2473002F4493 /* DraggableCardView.swift in Sources */,
 				A1E9CAB21E4C2499002F4493 /* OverlayView.swift in Sources */,

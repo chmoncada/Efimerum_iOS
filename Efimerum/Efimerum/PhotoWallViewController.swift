@@ -15,8 +15,8 @@ import Kingfisher
 
 private let reuseIdentifier =  "PhotoWallCell"
 
-class PhotoWallViewController: UIViewController {
 
+class PhotoWallViewController: UIViewController {
     
     var collectionView: UICollectionView!
     
@@ -79,13 +79,11 @@ class PhotoWallViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
     }
     
     override func viewWillAppear(_ animated: Bool) {
         // Hides the navigation bar
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
-
     }
     
     private func setupBindings() {
@@ -98,8 +96,6 @@ class PhotoWallViewController: UIViewController {
         }
         
     }
-    
-
 }
 
 // MARK: UICollectionViewDataSource
@@ -112,9 +108,6 @@ extension PhotoWallViewController: UICollectionViewDataSource  {
         
         let photo = self.model?.photo(at: indexPath.item)
         
-        //let asset = self.model?.photoImage(at: indexPath.item)
-        
-        
         if let photoCell = cell as? PhotoWallCell {
             
             photoCell.backgroundColor = UIColor.clear
@@ -123,7 +116,6 @@ extension PhotoWallViewController: UICollectionViewDataSource  {
                 photoCell.photoView.kf.indicatorType = .activity
                 photoCell.photoView.kf.setImage(with: url)
             }
-            
             
         }
         
@@ -140,9 +132,7 @@ extension PhotoWallViewController: UICollectionViewDataSource  {
 extension PhotoWallViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         didSelectPhoto(self.model!, indexPath.item)
-        
     }
 }
 
@@ -165,7 +155,6 @@ extension PhotoWallViewController: GreedoCollectionViewLayoutDataSource {
                 return CGSize(width: asset.thumbnailWidth , height: asset.thumbnailHeight)
             }
         }
-        
         return CGSize(width: 0.1, height: 0.1)
     }
 }
@@ -190,7 +179,6 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
     
     func didTap(button: MBFloatScrollButton) {
         print("boton pulsado")
-        
         takePicture()
     }
     
