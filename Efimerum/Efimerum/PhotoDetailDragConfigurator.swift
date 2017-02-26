@@ -9,7 +9,6 @@
 import UIKit
 
 extension PhotoDetailDragInteractor: PhotoDetailDragViewControllerOutput {}
-
 extension PhotoDetailDragInteractor : FireBaseManagerLogoutOutput {}
 
 class PhotoDetailDragConfigurator {

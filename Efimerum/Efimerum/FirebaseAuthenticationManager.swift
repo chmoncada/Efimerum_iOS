@@ -74,8 +74,11 @@ extension FirebaseAuthenticationManager: AuthenticationManagerType {
     func loginAnonymous() {
         
         FIRAuth.auth()?.signInAnonymously(completion: { (user, error) in
-            print("logeado anonimo con exito")
             self.output.userLoginAnonymous(success: true)
         })
+    }
+    
+    func isNotAuthenticated() -> Bool {
+        return FIRAuth.auth()?.currentUser?.uid == nil || (FIRAuth.auth()?.currentUser?.isAnonymous)!
     }
 }

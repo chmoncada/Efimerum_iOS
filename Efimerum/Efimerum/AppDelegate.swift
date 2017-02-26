@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
-        //FirebaseManager().setupLoginListener()
+        FirebaseAuthenticationManager.Instance().setupLoginListener()
         
         
 //        let _ = ApiClient.request(endpoint: .photos) { (result) in
