@@ -118,7 +118,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //view.backgroundColor = UIColor(colorLiteralRed: 61/266, green: 91/255, blue: 151/255, alpha: 1)
         view.backgroundColor = UIColor(r: 255, g: 87, b: 34)
         
         view.addSubview(inputsContainerView)

@@ -7,39 +7,43 @@
 //
 
 import Foundation
-import RxSwift
 
 protocol PhotoDetailDragInteractorInput {
     func deletePhotosOfIndexes( _ indexes: [String])
     func logout()
-    func loginAnonymous()
+    func isNotAuthenticated() -> Bool
+    func likeToPhotoWithIdentifier(_ identifier: String)
 }
 
 class PhotoDetailDragInteractor: PhotoDetailDragInteractorInput {
     
-    var authManager: FirebaseAuthenticationManager = {
-        let manager = FirebaseAuthenticationManager.Instance()
-        manager.setupLoginListener()
+    internal func likeToPhotoWithIdentifier(_ identifier: String) {
+        print("FUNCIONALIDAD DE LIKE PHOTO: \(identifier)")
+    }
+
+
+    lazy var authManager: FirebaseAuthenticationManager = {
+        let manager = FirebaseAuthenticationManager.instance
         return manager
     }()
     
     internal func deletePhotosOfIndexes(_ indexes: [String]) {
-        let container = PhotoContainer.instance
-        let observable: Observable<Void>
-        observable = container.delete(photosWithIdentifiers: indexes)
-        observable.subscribe().addDisposableTo(DisposeBag())
+        RxSwiftManager.deletePhotosOfIndexes(indexes)
     }
 
     func logout() {
         authManager.logout()
     }
     
+    func isNotAuthenticated() -> Bool {
+        return authManager.isNotAuthenticated()
+    }
+
     func loginAnonymous() {
         authManager.loginAnonymous()
     }
 
     func userDidLogout(success: Bool) {
-        print("el usuario se deslogeo del Firebase: \(success)")
         if success {
             loginAnonymous()
         }

@@ -8,28 +8,31 @@
 
 import UIKit
 import pop
-import FirebaseAuth
-//import RxSwift
-
 
 private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
-private let kolodaCountOfVisibleCards = 1
-private let kolodaAlphaValueSemiTransparent: CGFloat = 0.0
 
 protocol PhotoDetailDragViewControllerOutput: class {
     func deletePhotosOfIndexes( _ indexes: [String])
     func logout()
+    func isNotAuthenticated() -> Bool
+    func likeToPhotoWithIdentifier(_ identifier: String)
+
 }
 
 class PhotoDetailDragViewController: UIViewController {
 
     weak var output: PhotoDetailDragViewControllerOutput!
     
-    var model: PhotoWallModelType?
-    var startIndex: Int = 0
+    // MARK: Properties
     
+    var model: PhotoWallModelType?
+    var didFinish: () -> Void = {}
+    var needAuthLogin: (String) -> Void = { _ in }
+    var startIndex: Int = 0
     var indexesToDelete: [String] = []
+    
+    // MARK: UI Components
     
     var kolodaView: CustomKolodaView = {
         let view = CustomKolodaView()
@@ -43,7 +46,7 @@ class PhotoDetailDragViewController: UIViewController {
         button.setImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         
-        button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleDismissView), for: .touchUpInside)
         return button
         
     }()
@@ -56,14 +59,12 @@ class PhotoDetailDragViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
         
-        button.addTarget(self, action: #selector(firebaseLogout), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
         return button
         
     }()
     
-    var didFinish: () -> Void = {}
-    var needAuthLogin: () -> Void = {}
-    
+    // MARK: init
     init(model: PhotoWallModelType, startIndex: Int) {
         super.init(nibName: nil, bundle: nil)
         self.model = model
@@ -75,12 +76,13 @@ class PhotoDetailDragViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.black
         
-        kolodaView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        setupKolodaView()
         view.addSubview(kolodaView)
         
         view.addSubview(closeButton)
@@ -90,11 +92,6 @@ class PhotoDetailDragViewController: UIViewController {
         view.addSubview(logoutButton)
         setupLogoutButton()
         
-        kolodaView.dataSource = self
-        kolodaView.delegate = self
-        kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
-        kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
-
         PhotoDetailDragConfigurator.instance.configure(viewController: self)
         
         self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
@@ -108,36 +105,11 @@ class PhotoDetailDragViewController: UIViewController {
             didFinish()
         }
     }
-
-    func dismissView() {
-        
-        if indexesToDelete.count > 0 {
-            output.deletePhotosOfIndexes(indexesToDelete)
-        }
-        
-        let _ = navigationController?.popViewController(animated: false)
-    }
-    
-    func setupCloseButton() {
-        closeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30).isActive = true
-        closeButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
-        closeButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        closeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-    }
-    
-    // TEMPORAL FUNC
-    
-    func setupLogoutButton() {
-        logoutButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30).isActive = true
-        logoutButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
-        logoutButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        logoutButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-    }
-    
-    func firebaseLogout() {
-        output.logout()
-    }
+ 
 }
+
+
+// MARK: KolodaViewDelegate protocol
 
 extension PhotoDetailDragViewController: KolodaViewDelegate {
     
@@ -170,28 +142,22 @@ extension PhotoDetailDragViewController: KolodaViewDelegate {
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
         
+        let photo = model?.photo(at: startIndex + index)
+        let identifier = photo!.identifier
+        
         switch direction {
         case .left:
-            print("No me gusto, paso a la siguiente")
-            
-            let photo = model?.photo(at: startIndex + index)
-            let identifier = photo!.identifier
             indexesToDelete.append(identifier)
-            
         case .right:
-            print("Me gusto, darle like a la foto")
-            
-            // user is not logged in
-            if FIRAuth.auth()?.currentUser?.uid == nil || (FIRAuth.auth()?.currentUser?.isAnonymous)!{
-                needAuthLogin()
-            } 
-            
+            handleLikePhotoWithIdentifier(identifier)
         default:
             print("No pasa nada")
         }
     }
     
 }
+
+// MARK: KolodaViewDataSource protocol
 
 extension PhotoDetailDragViewController: KolodaViewDataSource {
     

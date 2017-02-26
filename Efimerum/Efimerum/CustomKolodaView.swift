@@ -28,7 +28,6 @@ class CustomKolodaView: KolodaView {
         
             return frame
        
-        
     }
 
 }

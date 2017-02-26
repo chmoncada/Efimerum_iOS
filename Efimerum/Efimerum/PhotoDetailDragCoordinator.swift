@@ -33,7 +33,7 @@ final class PhotoDetailDragCoordinator: Coordinator {
             self.didFinish()
         }
         
-        viewController.needAuthLogin = { [weak self] in
+        viewController.needAuthLogin = { [weak self] identifier in
             guard let strongSelf = self else {
                 return
             }
@@ -42,7 +42,7 @@ final class PhotoDetailDragCoordinator: Coordinator {
             strongSelf.add(child: coordinator)
             
             coordinator.action = {
-                print("DEBERIA DARLE LIKE A ESA FOTO")
+                strongSelf.viewController.output.likeToPhotoWithIdentifier(identifier)
             }
             coordinator.start()
         }

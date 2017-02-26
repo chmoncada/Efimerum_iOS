@@ -15,6 +15,9 @@
 		A1A350FA1E607B1100100C56 /* FirebaseAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A350F91E607B1100100C56 /* FirebaseAuthenticationManager.swift */; };
 		A1A350FC1E61D42D00100C56 /* PhotoDetailDragInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A350FB1E61D42D00100C56 /* PhotoDetailDragInteractor.swift */; };
 		A1A350FE1E61DB0800100C56 /* PhotoDetailDragConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A350FD1E61DB0800100C56 /* PhotoDetailDragConfigurator.swift */; };
+		A1A351001E63487800100C56 /* PhotoDetailDragViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A350FF1E63487800100C56 /* PhotoDetailDragViewController+handlers.swift */; };
+		A1A351021E63500E00100C56 /* PhotoDetailDragViewController+setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A351011E63500E00100C56 /* PhotoDetailDragViewController+setup.swift */; };
+		A1A351041E63798300100C56 /* RxSwiftManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A351031E63798300100C56 /* RxSwiftManager.swift */; };
 		A1B259061E50AF13009B187B /* LoginViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B259051E50AF13009B187B /* LoginViewController+handlers.swift */; };
 		A1B712BC1E53BB9900C21046 /* PhotoContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B712BB1E53BB9900C21046 /* PhotoContainer.swift */; };
 		A1B712BE1E53BFA100C21046 /* PhotoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B712BD1E53BFA100C21046 /* PhotoEntry.swift */; };
@@ -76,6 +79,9 @@
 		A1A350F91E607B1100100C56 /* FirebaseAuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationManager.swift; sourceTree = "<group>"; };
 		A1A350FB1E61D42D00100C56 /* PhotoDetailDragInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailDragInteractor.swift; sourceTree = "<group>"; };
 		A1A350FD1E61DB0800100C56 /* PhotoDetailDragConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailDragConfigurator.swift; sourceTree = "<group>"; };
+		A1A350FF1E63487800100C56 /* PhotoDetailDragViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoDetailDragViewController+handlers.swift"; sourceTree = "<group>"; };
+		A1A351011E63500E00100C56 /* PhotoDetailDragViewController+setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoDetailDragViewController+setup.swift"; sourceTree = "<group>"; };
+		A1A351031E63798300100C56 /* RxSwiftManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxSwiftManager.swift; sourceTree = "<group>"; };
 		A1B259051E50AF13009B187B /* LoginViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginViewController+handlers.swift"; sourceTree = "<group>"; };
 		A1B712BB1E53BB9900C21046 /* PhotoContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoContainer.swift; sourceTree = "<group>"; };
 		A1B712BD1E53BFA100C21046 /* PhotoEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoEntry.swift; sourceTree = "<group>"; };
@@ -163,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				A1A350F91E607B1100100C56 /* FirebaseAuthenticationManager.swift */,
+				A1A351031E63798300100C56 /* RxSwiftManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -253,6 +260,8 @@
 			children = (
 				A1E9CAB61E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift */,
 				A1E9CAB81E4C24FB002F4493 /* PhotoDetailDragViewController.swift */,
+				A1A351011E63500E00100C56 /* PhotoDetailDragViewController+setup.swift */,
+				A1A350FF1E63487800100C56 /* PhotoDetailDragViewController+handlers.swift */,
 				A1A350FD1E61DB0800100C56 /* PhotoDetailDragConfigurator.swift */,
 				A1A350FB1E61D42D00100C56 /* PhotoDetailDragInteractor.swift */,
 				A1E9CABC1E4C250E002F4493 /* CustomKolodaView.swift */,
@@ -561,12 +570,15 @@
 				D0A0151E1E5CB8D500EF1EBF /* FloatButtonType.swift in Sources */,
 				A1E9CAAE1E4C2487002F4493 /* KolodaView.swift in Sources */,
 				A1B712BC1E53BB9900C21046 /* PhotoContainer.swift in Sources */,
+				A1A351041E63798300100C56 /* RxSwiftManager.swift in Sources */,
 				A1E9CAB71E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift in Sources */,
 				A1E9CAA01E4C23D0002F4493 /* AppCoordinator.swift in Sources */,
+				A1A351021E63500E00100C56 /* PhotoDetailDragViewController+setup.swift in Sources */,
 				D0BA668F1E57969300C4F18F /* PhotoResponse.swift in Sources */,
 				A1E9CABD1E4C250E002F4493 /* CustomKolodaView.swift in Sources */,
 				D0BA667D1E52350B00C4F18F /* FilterType.swift in Sources */,
 				A1E9CAA61E4C2426002F4493 /* Coordinator.swift in Sources */,
+				A1A351001E63487800100C56 /* PhotoDetailDragViewController+handlers.swift in Sources */,
 				A1E6B82E1E4D184900445895 /* Photo.swift in Sources */,
 				A1E9CAC31E4C2564002F4493 /* PhotoWallModel.swift in Sources */,
 				A1B712C01E53BFB000C21046 /* PhotoResults.swift in Sources */,
