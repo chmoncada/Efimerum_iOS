@@ -12,12 +12,13 @@ import RxSwift
 protocol PhotoDetailDragInteractorInput {
     func deletePhotosOfIndexes( _ indexes: [String])
     func logout()
+    func loginAnonymous()
 }
 
 class PhotoDetailDragInteractor: PhotoDetailDragInteractorInput {
     
-    var manager: FirebaseManager = {
-        let manager = FirebaseManager.Instance()
+    var authManager: FirebaseAuthenticationManager = {
+        let manager = FirebaseAuthenticationManager.Instance()
         manager.setupLoginListener()
         return manager
     }()
@@ -29,15 +30,23 @@ class PhotoDetailDragInteractor: PhotoDetailDragInteractorInput {
         observable.subscribe().addDisposableTo(DisposeBag())
     }
 
-    
     func logout() {
-        
-        manager.output = self
-        manager.logout()
+        authManager.logout()
+    }
+    
+    func loginAnonymous() {
+        authManager.loginAnonymous()
     }
 
     func userDidLogout(success: Bool) {
         print("el usuario se deslogeo del Firebase: \(success)")
+        if success {
+            loginAnonymous()
+        }
+    }
+    
+    func userLoginAnonymous(success: Bool) {
+        print("el usuario se logeo anonimo: \(success)")
     }
     
 }

@@ -26,6 +26,8 @@ class PhotoDetailDragConfigurator {
         
         let interactor = PhotoDetailDragInteractor()
         
+        interactor.authManager.output = interactor
+        
         viewController.output = interactor
 
     }

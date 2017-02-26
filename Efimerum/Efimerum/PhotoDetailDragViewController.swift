@@ -17,14 +17,14 @@ private let frameAnimationSpringSpeed: CGFloat = 16
 private let kolodaCountOfVisibleCards = 1
 private let kolodaAlphaValueSemiTransparent: CGFloat = 0.0
 
-protocol PhotoDetailDragViewControllerOutput {
+protocol PhotoDetailDragViewControllerOutput: class {
     func deletePhotosOfIndexes( _ indexes: [String])
     func logout()
 }
 
 class PhotoDetailDragViewController: UIViewController {
 
-    var output: PhotoDetailDragViewControllerOutput!
+    weak var output: PhotoDetailDragViewControllerOutput!
     
     var model: PhotoWallModelType?
     var startIndex: Int = 0
@@ -135,9 +135,7 @@ class PhotoDetailDragViewController: UIViewController {
     }
     
     func firebaseLogout() {
-        
         output.logout()
-        
     }
 }
 

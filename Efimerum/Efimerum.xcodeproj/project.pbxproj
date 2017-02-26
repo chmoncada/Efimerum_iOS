@@ -12,7 +12,7 @@
 		A127899C1E5BE2ED007EE2F0 /* UIImage+Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127899B1E5BE2ED007EE2F0 /* UIImage+Rotation.swift */; };
 		A12F47071E579D4B00EBD98C /* FirebaseDatabase+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F47061E579D4B00EBD98C /* FirebaseDatabase+RX.swift */; };
 		A19CEF4C1E5A6F2A00C23B1E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19CEF4B1E5A6F2A00C23B1E /* Utils.swift */; };
-		A1A350FA1E607B1100100C56 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A350F91E607B1100100C56 /* FirebaseManager.swift */; };
+		A1A350FA1E607B1100100C56 /* FirebaseAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A350F91E607B1100100C56 /* FirebaseAuthenticationManager.swift */; };
 		A1A350FC1E61D42D00100C56 /* PhotoDetailDragInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A350FB1E61D42D00100C56 /* PhotoDetailDragInteractor.swift */; };
 		A1A350FE1E61DB0800100C56 /* PhotoDetailDragConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A350FD1E61DB0800100C56 /* PhotoDetailDragConfigurator.swift */; };
 		A1B259061E50AF13009B187B /* LoginViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B259051E50AF13009B187B /* LoginViewController+handlers.swift */; };
@@ -73,7 +73,7 @@
 		A127899B1E5BE2ED007EE2F0 /* UIImage+Rotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Rotation.swift"; sourceTree = "<group>"; };
 		A12F47061E579D4B00EBD98C /* FirebaseDatabase+RX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FirebaseDatabase+RX.swift"; sourceTree = "<group>"; };
 		A19CEF4B1E5A6F2A00C23B1E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		A1A350F91E607B1100100C56 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		A1A350F91E607B1100100C56 /* FirebaseAuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationManager.swift; sourceTree = "<group>"; };
 		A1A350FB1E61D42D00100C56 /* PhotoDetailDragInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailDragInteractor.swift; sourceTree = "<group>"; };
 		A1A350FD1E61DB0800100C56 /* PhotoDetailDragConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailDragConfigurator.swift; sourceTree = "<group>"; };
 		A1B259051E50AF13009B187B /* LoginViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginViewController+handlers.swift"; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 		A12F46FA1E56615900EBD98C /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				A1A350F91E607B1100100C56 /* FirebaseManager.swift */,
+				A1A350F91E607B1100100C56 /* FirebaseAuthenticationManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -557,7 +557,7 @@
 				A19CEF4C1E5A6F2A00C23B1E /* Utils.swift in Sources */,
 				A1B712BE1E53BFA100C21046 /* PhotoEntry.swift in Sources */,
 				A1E9CAB01E4C248F002F4493 /* KolodaViewAnimatior.swift in Sources */,
-				A1A350FA1E607B1100100C56 /* FirebaseManager.swift in Sources */,
+				A1A350FA1E607B1100100C56 /* FirebaseAuthenticationManager.swift in Sources */,
 				D0A0151E1E5CB8D500EF1EBF /* FloatButtonType.swift in Sources */,
 				A1E9CAAE1E4C2487002F4493 /* KolodaView.swift in Sources */,
 				A1B712BC1E53BB9900C21046 /* PhotoContainer.swift in Sources */,
