@@ -177,9 +177,14 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
         searchButton.delegate = self
     }
     
-    func didTap(button: MBFloatScrollButton) {
+    func didTapOnCamera(button: MBFloatScrollButton) {
         print("boton pulsado")
         takePicture()
+    }
+    
+    func didTapOnSettings(button: MBFloatScrollButton) {
+        
+        print("Go To settings")
     }
     
     func didTap(filter: FilterType) {

@@ -18,6 +18,8 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     var isHideDirectionUp = false
     var isShowingMenu = false
     
+    let floatButtonType :FloatButtonType
+    
     private var filterItem1 : FilterItemView!
     private var filterItem2 : FilterItemView!
     private var filterItem3 : FilterItemView!
@@ -25,10 +27,12 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     
     
     var previousOffset :CGFloat = 0.0
+    var originalPosY :CGFloat = 0.0
     
     init(frame: CGRect, with image: UIImage, on scrollView: UIScrollView, hasFloatAction floatAction: Bool) {
         self.scrollView = scrollView
         self.isFloatActionMenu = floatAction
+        self.floatButtonType = .camera
         previousOffset = self.scrollView.contentOffset.y
         
         super.init(frame: frame)
@@ -44,6 +48,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     
     init(buttonType: FloatButtonType, on scrollView: UIScrollView, for parentView: UIView) {
         self.scrollView = scrollView
+        self.floatButtonType = buttonType
         previousOffset = self.scrollView.contentOffset.y
         super.init(frame: CGRect.zero)
         
@@ -68,6 +73,8 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
                           width: 72,
                           height: 72)
             self.image = UIImage(named: "btnCamera")!
+            let tap = UITapGestureRecognizer(target: self, action: #selector(MBFloatScrollButton.tapButtonActionCamera))
+            self.addGestureRecognizer(tap)
         case .orderBy:
             self.frame = CGRect(x: scrollView.bounds.origin.x + 20,
                           y: scrollView.bounds.size.height - 56 - 20,
@@ -75,6 +82,8 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
                           height: 56)
             self.image = UIImage(named: "btnFilter")!
             setMenuButton()
+            let tap = UITapGestureRecognizer(target: self, action: #selector(MBFloatScrollButton.tapButtonActionFilter))
+            self.addGestureRecognizer(tap)
             isFloatActionMenu = true
         case .search:
             self.frame = CGRect(x: scrollView.bounds.size.width/2 - 100,
@@ -83,7 +92,6 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
                                 height: 40)
                 self.layer.cornerRadius = self.bounds.size.height/2
                 self.backgroundColor = .white
-            hideWhileScrolling = false
             setupSearchTextField()
             break
         case .settings:
@@ -92,8 +100,10 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
                    width: 56,
                    height: 56)
             self.image = UIImage(named: "btnSearch")!
+            let tap = UITapGestureRecognizer(target: self, action: #selector(MBFloatScrollButton.tapButtonActionSettings))
+            self.addGestureRecognizer(tap)
         }
-        
+        originalPosY = self.center.y
         parentView.addSubview(self)
     }
     
@@ -113,8 +123,6 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         self.layer.shadowRadius = 5.0
         self.layer.shadowOffset = CGSize(width: -10.0, height: -10.0)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(MBFloatScrollButton.tapButtonAction))
-        self.addGestureRecognizer(tap)
      
         if hideWhileScrolling {
             scrollView.addObserver(self, forKeyPath: "contentOffset", options: .new, context: nil)
@@ -123,16 +131,24 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     }
 
     
-    func tapButtonAction()  {
+    func tapButtonActionCamera() {
         
-        if isFloatActionMenu {
-            if isShowingMenu {
-                dismissMenu()
-            } else {
-                showMenu()
-            }
+        delegate?.didTapOnCamera(button: self)
+    }
+    
+    
+    func tapButtonActionSettings() {
+        
+        delegate?.didTapOnSettings(button: self)
+    }
+    
+    
+    func tapButtonActionFilter() {
+        
+        if isShowingMenu {
+            dismissMenu()
         } else {
-            delegate?.didTap(button: self)
+            showMenu()
         }
     }
     
@@ -166,12 +182,17 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
             if !shouldShow {
                 
                 UIView.animate(withDuration: 0.5, animations: {
-                    self.transform = CGAffineTransform(translationX: 0, y: self.frame.origin.y)
+                    
+                    if self.floatButtonType == .search {
+                        self.center.y = self.originalPosY - 200.0
+                    } else {
+                        self.center.y = self.originalPosY + 200.0
+                    }
                 })
             } else {
                 
                 UIView.animate(withDuration: 0.25, animations: {
-                    self.transform = .identity
+                    self.center.y = self.originalPosY
                 })
             }
         }
@@ -287,7 +308,9 @@ extension MBFloatScrollButton : FilterItemViewDelegate {
 
 protocol MBFloatScrollButtonDelegate :class {
     
-    func didTap(button: MBFloatScrollButton)
+    func didTapOnCamera(button: MBFloatScrollButton)
+    
+    func didTapOnSettings(button: MBFloatScrollButton)
     
     func didTap(filter: FilterType)
 }
