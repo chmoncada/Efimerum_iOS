@@ -27,8 +27,8 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     private var filterItem3 : FilterItemView!
     private var filterItem4 : FilterItemView!
     
-    var orderBubbleView :UIView?
-    var searchBubbleView :UIView?
+    var orderBubbleView :BubbleView?
+    var searchBubbleView :BubbleView?
     
     
     var previousOffset :CGFloat = 0.0
@@ -300,29 +300,31 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         }
     }
     
-    func addOrderSelectedView() {
-        
-        let frame = CGRect(x: self.parentView.bounds.origin.x + 20,
-                           y: self.parentView.bounds.origin.y + 100,
-                           width: 100,
-                           height: 30)
-        
-        orderBubbleView = UIView(frame: frame)
-        orderBubbleView?.backgroundColor = .white
+    func addOrderSelectedView(text: String) {
+
+        orderBubbleView = BubbleView(text: text)
+        orderBubbleView?.frame = CGRect(x: self.parentView.bounds.origin.x + 60,
+                                        y: self.parentView.bounds.origin.y + 80,
+                                        width: orderBubbleView!.bounds.size.width,
+                                        height: orderBubbleView!.bounds.size.height)
+        orderBubbleView?.deletegate = self
         self.parentView.addSubview(orderBubbleView!)
+        self.bringSubview(toFront: orderBubbleView!)
         
     }
     
-    func addSearchSelectedView() {
+    func addSearchSelectedView(text: String) {
+
+        searchBubbleView = BubbleView(text: text)
+        searchBubbleView?.frame = CGRect(x: self.parentView.bounds.origin.x + 200,
+                                        y: self.parentView.bounds.origin.y + 80,
+                                        width: searchBubbleView!.bounds.size.width,
+                                        height: searchBubbleView!.bounds.size.height)
         
-        let frame = CGRect(x: self.parentView.bounds.origin.x + 20,
-                           y: self.parentView.bounds.origin.y + 100,
-                           width: 100,
-                           height: 30)
-        
-        searchBubbleView = UIView(frame: frame)
         searchBubbleView?.backgroundColor = .white
+        searchBubbleView?.deletegate = self
         self.parentView.addSubview(searchBubbleView!)
+        
         
     }
 
@@ -340,7 +342,7 @@ extension MBFloatScrollButton :UITextFieldDelegate {
         if let text = textField.text {
             delegate?.didTapOnSearchDone(text: text)
             textField.text = nil
-            addSearchSelectedView()
+            addSearchSelectedView(text: text)
         }
         
         return true
@@ -357,8 +359,17 @@ extension MBFloatScrollButton : FilterItemViewDelegate {
         self.orderBubbleView = nil
         
         if filter.filterType != .random {
-            addOrderSelectedView()
+            
+            let text = filter.filterType.getText()
+            addOrderSelectedView(text: text)
         }
+    }
+}
+
+extension MBFloatScrollButton :BubbleViewDelegate {
+    
+    func didTapDismissView(view: BubbleView) {
+        view.removeFromSuperview()
     }
 }
 

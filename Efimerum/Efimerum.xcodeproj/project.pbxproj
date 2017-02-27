@@ -41,6 +41,7 @@
 		A1E9CAC61E4C258A002F4493 /* PhotoWallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAC51E4C258A002F4493 /* PhotoWallCell.swift */; };
 		B55305C277B45378805B2DF0 /* Pods_Efimerum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF573619DAAF686EA3943A9 /* Pods_Efimerum.framework */; };
 		D01635511E40F5D6008ADC0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D01635501E40F5D6008ADC0E /* GoogleService-Info.plist */; };
+		D01E3C151E64A50800736F20 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E3C141E64A50800736F20 /* BubbleView.swift */; };
 		D04B0D2C1E3D2BB5008E4777 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B0D2B1E3D2BB5008E4777 /* AppDelegate.swift */; };
 		D04B0D2E1E3D2BB5008E4777 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D04B0D2D1E3D2BB5008E4777 /* Assets.xcassets */; };
 		D04B0D311E3D2BB5008E4777 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D04B0D2F1E3D2BB5008E4777 /* LaunchScreen.storyboard */; };
@@ -105,6 +106,7 @@
 		A1E9CAC51E4C258A002F4493 /* PhotoWallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallCell.swift; sourceTree = "<group>"; };
 		C46CD46925E841A53F082941 /* Pods-Efimerum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Efimerum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Efimerum/Pods-Efimerum.debug.xcconfig"; sourceTree = "<group>"; };
 		D01635501E40F5D6008ADC0E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D01E3C141E64A50800736F20 /* BubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		D04B0D281E3D2BB5008E4777 /* Efimerum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Efimerum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D04B0D2B1E3D2BB5008E4777 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D04B0D2D1E3D2BB5008E4777 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 				D0BA66791E52350A00C4F18F /* FilterItemView.swift */,
 				D0BA667A1E52350B00C4F18F /* FilterType.swift */,
 				D0A0151D1E5CB8D500EF1EBF /* FloatButtonType.swift */,
+				D01E3C141E64A50800736F20 /* BubbleView.swift */,
 			);
 			name = MBFloatButtonScroll;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 				A1E9CAB21E4C2499002F4493 /* OverlayView.swift in Sources */,
 				A127899C1E5BE2ED007EE2F0 /* UIImage+Rotation.swift in Sources */,
 				A12F47071E579D4B00EBD98C /* FirebaseDatabase+RX.swift in Sources */,
+				D01E3C151E64A50800736F20 /* BubbleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
