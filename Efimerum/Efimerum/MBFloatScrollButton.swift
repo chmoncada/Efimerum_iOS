@@ -18,6 +18,8 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     var isHideDirectionUp = false
     var isShowingMenu = false
     
+    let parentView :UIView
+    
     let floatButtonType :FloatButtonType
     
     private var filterItem1 : FilterItemView!
@@ -25,29 +27,17 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     private var filterItem3 : FilterItemView!
     private var filterItem4 : FilterItemView!
     
+    var orderBubbleView :UIView?
+    var searchBubbleView :UIView?
+    
     
     var previousOffset :CGFloat = 0.0
     var originalPosY :CGFloat = 0.0
     
-    init(frame: CGRect, with image: UIImage, on scrollView: UIScrollView, hasFloatAction floatAction: Bool) {
-        self.scrollView = scrollView
-        self.isFloatActionMenu = floatAction
-        self.floatButtonType = .camera
-        previousOffset = self.scrollView.contentOffset.y
-        
-        super.init(frame: frame)
-        self.image = image
-        
-        setupButton()
-        
-        if floatAction {
-            setMenuButton()
-        }
-
-    }
-    
+ 
     init(buttonType: FloatButtonType, on scrollView: UIScrollView, for parentView: UIView) {
         self.scrollView = scrollView
+        self.parentView = parentView
         self.floatButtonType = buttonType
         previousOffset = self.scrollView.contentOffset.y
         super.init(frame: CGRect.zero)
@@ -174,6 +164,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
                            width: self.bounds.size.width - 20,
                            height: self.bounds.size.height - 8)
         let searchTextField = UITextField(frame: frame)
+        searchTextField.delegate = self
         searchTextField.backgroundColor = .white
         searchTextField.placeholder = "Search"
         self.addSubview(searchTextField)
@@ -308,13 +299,66 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
             self.filterItem4 = nil
         }
     }
+    
+    func addOrderSelectedView() {
+        
+        let frame = CGRect(x: self.parentView.bounds.origin.x + 20,
+                           y: self.parentView.bounds.origin.y + 100,
+                           width: 100,
+                           height: 30)
+        
+        orderBubbleView = UIView(frame: frame)
+        orderBubbleView?.backgroundColor = .white
+        self.parentView.addSubview(orderBubbleView!)
+        
+    }
+    
+    func addSearchSelectedView() {
+        
+        let frame = CGRect(x: self.parentView.bounds.origin.x + 20,
+                           y: self.parentView.bounds.origin.y + 100,
+                           width: 100,
+                           height: 30)
+        
+        searchBubbleView = UIView(frame: frame)
+        searchBubbleView?.backgroundColor = .white
+        self.parentView.addSubview(searchBubbleView!)
+        
+    }
 
+}
+
+extension MBFloatScrollButton :UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if let text = textField.text {
+            delegate?.didTapOnSearchDone(text: text)
+            textField.text = nil
+            addSearchSelectedView()
+        }
+        
+        return true
+    }
+    
 }
 
 extension MBFloatScrollButton : FilterItemViewDelegate {
     func didTap(filter: FilterItemView) {
         self.dismissMenu()
         delegate?.didTap(filter: filter.filterType)
+        
+        self.orderBubbleView?.removeFromSuperview()
+        self.orderBubbleView = nil
+        
+        if filter.filterType != .random {
+            addOrderSelectedView()
+        }
     }
 }
 
@@ -326,6 +370,10 @@ protocol MBFloatScrollButtonDelegate :class {
     func didTapOnSettings(button: MBFloatScrollButton)
     
     func didTap(filter: FilterType)
+    
+    func didTypeSearch(text: String)
+    
+    func didTapOnSearchDone(text: String)
 }
 
 
