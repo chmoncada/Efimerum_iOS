@@ -44,6 +44,7 @@ final class PhotoDetailDragCoordinator: Coordinator {
             coordinator.action = {
                 strongSelf.viewController.output.likeToPhotoWithIdentifier(identifier)
             }
+            
             coordinator.start()
         }
     }

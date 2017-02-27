@@ -17,10 +17,16 @@ protocol PhotoDetailDragInteractorInput {
 
 class PhotoDetailDragInteractor: PhotoDetailDragInteractorInput {
     
-    internal func likeToPhotoWithIdentifier(_ identifier: String) {
-        print("FUNCIONALIDAD DE LIKE PHOTO: \(identifier)")
+    func likeToPhotoWithIdentifier(_ identifier: String) {
+        
+        authManager.getTokenForUser() { token in
+            if let idToken = token {
+                let _ = ApiClient.request(endpoint: .likes(token: idToken, photoKey: identifier, latitude: 41.375, longitude: 2.1706), completionHandler: { (result) in
+                    print(result)
+                })
+            }
+        }
     }
-
 
     lazy var authManager: FirebaseAuthenticationManager = {
         let manager = FirebaseAuthenticationManager.instance

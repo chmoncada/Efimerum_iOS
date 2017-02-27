@@ -24,12 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseAuthenticationManager.Instance().setupLoginListener()
         
-        
-//        let _ = ApiClient.request(endpoint: .photos) { (result) in
-//            print(result)
-//        }
-    
-        
         let window = UIWindow(frame: UIScreen.main.bounds)
         
         if (FIRAuth.auth()?.currentUser) == nil {
@@ -66,13 +60,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     internal func load() -> Observable<FIRDataSnapshot> {
-        //let container = self.container
         
         let firebaseQuery = FIRDatabase.database().reference().child("photos").queryOrderedByKey()
         
         return firebaseQuery.rx_observe(.childAdded)
 
-        
     }
     
     

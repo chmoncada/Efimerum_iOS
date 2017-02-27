@@ -118,7 +118,10 @@ extension PhotoDetailDragViewController: KolodaViewDelegate {
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
-        print("me seleccionaron")
+        // TODO: ERASE IT
+//        let photo = model?.photo(at: startIndex + index)
+//        let identifier = photo!.identifier
+//        print("me seleccionaron: \(identifier)")
     }
     
     func kolodaShouldApplyAppearAnimation(_ koloda: KolodaView) -> Bool {
@@ -150,6 +153,7 @@ extension PhotoDetailDragViewController: KolodaViewDelegate {
             indexesToDelete.append(identifier)
         case .right:
             handleLikePhotoWithIdentifier(identifier)
+            indexesToDelete.append(identifier)
         default:
             print("No pasa nada")
         }

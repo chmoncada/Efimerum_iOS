@@ -81,4 +81,20 @@ extension FirebaseAuthenticationManager: AuthenticationManagerType {
     func isNotAuthenticated() -> Bool {
         return FIRAuth.auth()?.currentUser?.uid == nil || (FIRAuth.auth()?.currentUser?.isAnonymous)!
     }
+    
+    func getTokenForUser(completion: @escaping (_ token: String?) -> Void) {
+        let currentUser = FIRAuth.auth()?.currentUser
+        currentUser?.getTokenForcingRefresh(true) {idToken, error in
+            if let error = error {
+                // Handle error
+                print(error)
+                completion(nil)
+                return;
+            }
+            
+           completion(idToken)
+            
+        }
+
+    }
 }
