@@ -31,6 +31,19 @@ final class PhotoWallCoordinator: Coordinator {
             coordinator.start()
             
         }
+        
+        viewController.goToSettings = { [weak self]  in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            let coordinator = SettingsCoordinator(navigationController: navigationController)
+            
+            strongSelf.add(child: coordinator)
+            
+            coordinator.start()
+            
+        }
     }
     
     override func start() {

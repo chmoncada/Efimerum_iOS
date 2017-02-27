@@ -11,6 +11,8 @@
 		A10477521E4D6DC300F2C3C3 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10477511E4D6DC300F2C3C3 /* LoginCoordinator.swift */; };
 		A127899C1E5BE2ED007EE2F0 /* UIImage+Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127899B1E5BE2ED007EE2F0 /* UIImage+Rotation.swift */; };
 		A12F47071E579D4B00EBD98C /* FirebaseDatabase+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F47061E579D4B00EBD98C /* FirebaseDatabase+RX.swift */; };
+		A17386F01E646AD0009903ED /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17386EF1E646AD0009903ED /* SettingsViewController.swift */; };
+		A17386F21E646AE8009903ED /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17386F11E646AE8009903ED /* SettingsCoordinator.swift */; };
 		A19CEF4C1E5A6F2A00C23B1E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19CEF4B1E5A6F2A00C23B1E /* Utils.swift */; };
 		A1A350FA1E607B1100100C56 /* FirebaseAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A350F91E607B1100100C56 /* FirebaseAuthenticationManager.swift */; };
 		A1A350FC1E61D42D00100C56 /* PhotoDetailDragInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A350FB1E61D42D00100C56 /* PhotoDetailDragInteractor.swift */; };
@@ -75,6 +77,8 @@
 		A10477511E4D6DC300F2C3C3 /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		A127899B1E5BE2ED007EE2F0 /* UIImage+Rotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Rotation.swift"; sourceTree = "<group>"; };
 		A12F47061E579D4B00EBD98C /* FirebaseDatabase+RX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FirebaseDatabase+RX.swift"; sourceTree = "<group>"; };
+		A17386EF1E646AD0009903ED /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		A17386F11E646AE8009903ED /* SettingsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		A19CEF4B1E5A6F2A00C23B1E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		A1A350F91E607B1100100C56 /* FirebaseAuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationManager.swift; sourceTree = "<group>"; };
 		A1A350FB1E61D42D00100C56 /* PhotoDetailDragInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailDragInteractor.swift; sourceTree = "<group>"; };
@@ -174,6 +178,15 @@
 			name = Managers;
 			sourceTree = "<group>";
 		};
+		A17386EE1E646AB7009903ED /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A17386F11E646AE8009903ED /* SettingsCoordinator.swift */,
+				A17386EF1E646AD0009903ED /* SettingsViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		A19CEF4A1E59E3CB00C23B1E /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +199,7 @@
 		A1A350F81E60748E00100C56 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				A17386EE1E646AB7009903ED /* Settings */,
 				A1E9CAA11E4C23E7002F4493 /* Photo Wall */,
 				A1E9CAB51E4C24C4002F4493 /* Photo Detail Drag */,
 				A10477501E4D6D9E00F2C3C3 /* Login */,
@@ -560,6 +574,7 @@
 				A1A350FC1E61D42D00100C56 /* PhotoDetailDragInteractor.swift in Sources */,
 				A1A350FE1E61DB0800100C56 /* PhotoDetailDragConfigurator.swift in Sources */,
 				A1E9CABF1E4C254F002F4493 /* PhotoWallCoordinator.swift in Sources */,
+				A17386F01E646AD0009903ED /* SettingsViewController.swift in Sources */,
 				D0BA667B1E52350B00C4F18F /* MBFloatScrollButton.swift in Sources */,
 				D0BA667C1E52350B00C4F18F /* FilterItemView.swift in Sources */,
 				A1E9CAB41E4C24A4002F4493 /* SwipeResultDirection.swift in Sources */,
@@ -577,6 +592,7 @@
 				D0BA668F1E57969300C4F18F /* PhotoResponse.swift in Sources */,
 				A1E9CABD1E4C250E002F4493 /* CustomKolodaView.swift in Sources */,
 				D0BA667D1E52350B00C4F18F /* FilterType.swift in Sources */,
+				A17386F21E646AE8009903ED /* SettingsCoordinator.swift in Sources */,
 				A1E9CAA61E4C2426002F4493 /* Coordinator.swift in Sources */,
 				A1A351001E63487800100C56 /* PhotoDetailDragViewController+handlers.swift in Sources */,
 				A1E6B82E1E4D184900445895 /* Photo.swift in Sources */,
