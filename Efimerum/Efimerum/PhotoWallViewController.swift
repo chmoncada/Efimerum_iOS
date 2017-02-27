@@ -23,6 +23,7 @@ class PhotoWallViewController: UIViewController {
     // Called when the user selects a photo in the grid
     // TODO: We need to pass some data to the other view (hint: the arrays of photos and the index of the selected)
     var didSelectPhoto: (PhotoWallModelType, Int) -> Void = { _ in }
+    var goToSettings: () -> Void = {}
     
     // Set the customLayout as lazy property
     lazy var collectionViewSizeCalculator: GreedoCollectionViewLayout = {
@@ -186,8 +187,8 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
     }
     
     func didTapOnSettings(button: MBFloatScrollButton) {
-        
         print("Go To settings")
+        goToSettings()
     }
     
     func didTap(filter: FilterType) {
