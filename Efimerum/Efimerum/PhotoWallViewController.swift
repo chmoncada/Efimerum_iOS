@@ -175,6 +175,9 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
         
         let searchButton = MBFloatScrollButton(buttonType: .search, on: scroll, for: self.view)
         searchButton.delegate = self
+        
+        let logoButton = MBFloatScrollButton(buttonType: .logo, on: scroll, for: self.view)
+        logoButton.delegate = self
     }
     
     func didTapOnCamera(button: MBFloatScrollButton) {

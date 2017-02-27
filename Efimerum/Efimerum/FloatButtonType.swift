@@ -16,6 +16,7 @@ enum FloatButtonType {
     case search
     case orderBy
     case settings
+    case logo
     
     
 }

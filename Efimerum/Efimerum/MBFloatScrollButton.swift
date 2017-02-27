@@ -66,42 +66,55 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         
         setupButton()
         
+        let size1 = scrollView.bounds.size.width / 10
+        let size2 = scrollView.bounds.size.width / 5
+        let size3 = scrollView.bounds.size.width - 40 - size1 * 2  - 20
+        
         switch buttonType {
         case .camera:
-            self.frame = CGRect(x: scrollView.bounds.size.width/2 - 36,
-                          y: scrollView.bounds.size.height - 72 - 20,
-                          width: 72,
-                          height: 72)
+            self.frame = CGRect(x: scrollView.bounds.size.width/2 - size2/2,
+                          y: scrollView.bounds.size.height - size2 - 20,
+                          width: size2,
+                          height: size2)
             self.image = UIImage(named: "btnCamera")!
             let tap = UITapGestureRecognizer(target: self, action: #selector(MBFloatScrollButton.tapButtonActionCamera))
             self.addGestureRecognizer(tap)
         case .orderBy:
             self.frame = CGRect(x: scrollView.bounds.origin.x + 20,
-                          y: scrollView.bounds.size.height - 56 - 20,
-                          width: 56,
-                          height: 56)
+                          y: scrollView.bounds.size.height - size1 - 20,
+                          width: size1,
+                          height: size1)
             self.image = UIImage(named: "btnFilter")!
             setMenuButton()
             let tap = UITapGestureRecognizer(target: self, action: #selector(MBFloatScrollButton.tapButtonActionFilter))
             self.addGestureRecognizer(tap)
             isFloatActionMenu = true
         case .search:
-            self.frame = CGRect(x: scrollView.bounds.size.width/2 - 100,
-                                y: scrollView.bounds.origin.y + 20,
-                                width: 200,
-                                height: 40)
+            self.frame = CGRect(x: scrollView.bounds.size.width/2 - size3/2,
+                                y: scrollView.bounds.origin.y + 30,
+                                width: size3,
+                                height: size1)
                 self.layer.cornerRadius = self.bounds.size.height/2
                 self.backgroundColor = .white
             setupSearchTextField()
             break
         case .settings:
-            self.frame = CGRect(x: scrollView.bounds.size.width - 56 - 20,
-                   y: scrollView.bounds.size.height - 56 - 20,
-                   width: 56,
-                   height: 56)
-            self.image = UIImage(named: "btnSearch")!
+            
+            self.frame = CGRect(x: scrollView.bounds.size.width - size1 - 20,
+                   y: scrollView.bounds.size.height - size1 - 20,
+                   width: size1,
+                   height: size1)
+            self.image = UIImage(named: "btnSettings")!
             let tap = UITapGestureRecognizer(target: self, action: #selector(MBFloatScrollButton.tapButtonActionSettings))
             self.addGestureRecognizer(tap)
+        case .logo:
+            
+            self.frame = CGRect(x: scrollView.bounds.origin.x + 20,
+                                y: scrollView.bounds.origin.y + 30,
+                                width: size1,
+                                height: size1)
+            self.image = UIImage(named: "flame")!
+            hideWhileScrolling = false
         }
         originalPosY = self.center.y
         parentView.addSubview(self)
@@ -121,8 +134,8 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         self.layer.cornerRadius = self.bounds.height / 2
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowRadius = 5.0
-        self.layer.shadowOffset = CGSize(width: -10.0, height: -10.0)
-        
+        self.layer.shadowOffset = CGSize(width: 2, height: 2)
+        self.layer.shadowOpacity = 0.5
      
         if hideWhileScrolling {
             scrollView.addObserver(self, forKeyPath: "contentOffset", options: .new, context: nil)
