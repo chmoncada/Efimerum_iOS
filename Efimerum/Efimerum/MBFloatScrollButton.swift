@@ -186,7 +186,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
             if !shouldShow {
                 
                 UIView.animate(withDuration: 0.5, animations: {
-                    
+                    self.orderBubbleView?.alpha = 0.0
                     if self.floatButtonType == .search {
                         self.center.y = self.originalPosY - 200.0
                     } else {
@@ -197,6 +197,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
                 
                 UIView.animate(withDuration: 0.25, animations: {
                     self.center.y = self.originalPosY
+                    self.orderBubbleView?.alpha = 1.0
                 })
             }
         }
@@ -309,8 +310,6 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
                                         height: orderBubbleView!.bounds.size.height)
         orderBubbleView?.deletegate = self
         self.parentView.addSubview(orderBubbleView!)
-        self.bringSubview(toFront: orderBubbleView!)
-        
     }
     
     func addSearchSelectedView(text: String) {
