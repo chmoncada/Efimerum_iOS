@@ -193,6 +193,14 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
     func didTap(filter: FilterType) {
         print(filter.getText())
     }
+    
+    func didTypeSearch(text: String) {
+        
+    }
+    
+    func didTapOnSearchDone(text: String) {
+        
+    }
 }
 
 extension PhotoWallViewController :UIImagePickerControllerDelegate, UINavigationControllerDelegate {
