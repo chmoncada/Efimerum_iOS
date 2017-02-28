@@ -167,6 +167,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         searchTextField.delegate = self
         searchTextField.backgroundColor = .white
         searchTextField.placeholder = "Search"
+        searchTextField.addTarget(self, action: #selector(MBFloatScrollButton.textFieldDidChange(_:)), for: .editingChanged)
         self.addSubview(searchTextField)
     
     }
@@ -187,6 +188,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
                 
                 UIView.animate(withDuration: 0.5, animations: {
                     self.orderBubbleView?.alpha = 0.0
+                    self.searchBubbleView?.alpha = 0.0
                     if self.floatButtonType == .search {
                         self.center.y = self.originalPosY - 200.0
                     } else {
@@ -198,6 +200,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
                 UIView.animate(withDuration: 0.25, animations: {
                     self.center.y = self.originalPosY
                     self.orderBubbleView?.alpha = 1.0
+                    self.searchBubbleView?.alpha = 1.0
                 })
             }
         }
@@ -337,6 +340,13 @@ extension MBFloatScrollButton :UITextFieldDelegate {
         return true
     }
     
+    func textFieldDidChange(_ textField: UITextField) {
+        
+        if let text = textField.text {
+            delegate?.didTypeSearchChanged(text: text)
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if let text = textField.text {
@@ -387,9 +397,10 @@ protocol MBFloatScrollButtonDelegate :class {
     
     func didTap(filter: FilterType)
     
-    func didTypeSearch(text: String)
+    func didTypeSearchChanged(text: String)
     
     func didTapOnSearchDone(text: String)
+    
 }
 
 
