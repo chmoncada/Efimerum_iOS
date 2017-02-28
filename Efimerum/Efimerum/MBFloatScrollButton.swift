@@ -303,6 +303,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     
     func addOrderSelectedView(text: String) {
 
+        orderBubbleView?.removeFromSuperview()
         orderBubbleView = BubbleView(text: text)
         orderBubbleView?.frame = CGRect(x: self.parentView.bounds.origin.x + 60,
                                         y: self.parentView.bounds.origin.y + 80,
@@ -313,7 +314,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     }
     
     func addSearchSelectedView(text: String) {
-
+        searchBubbleView?.removeFromSuperview()
         searchBubbleView = BubbleView(text: text)
         searchBubbleView?.frame = CGRect(x: self.parentView.bounds.origin.x + 200,
                                         y: self.parentView.bounds.origin.y + 80,
@@ -339,11 +340,16 @@ extension MBFloatScrollButton :UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if let text = textField.text {
-            delegate?.didTapOnSearchDone(text: text)
-            textField.text = nil
-            addSearchSelectedView(text: text)
+            
+            if text != "" {
+                delegate?.didTapOnSearchDone(text: text)
+                textField.text = nil
+                addSearchSelectedView(text: text)
+            }
+            
         }
         
+        self.parentView.endEditing(true)
         return true
     }
     
