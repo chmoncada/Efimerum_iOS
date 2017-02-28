@@ -95,6 +95,12 @@ extension FirebaseAuthenticationManager: AuthenticationManagerType {
            completion(idToken)
             
         }
-
+    }
+    
+    func getUserUID(completion: (_ uid: String?) -> Void) {
+        
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        
+        completion(uid)
     }
 }
