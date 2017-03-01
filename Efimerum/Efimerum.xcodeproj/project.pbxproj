@@ -46,6 +46,7 @@
 		A1E9CAC11E4C2559002F4493 /* PhotoWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAC01E4C2559002F4493 /* PhotoWallViewController.swift */; };
 		A1E9CAC31E4C2564002F4493 /* PhotoWallModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAC21E4C2564002F4493 /* PhotoWallModel.swift */; };
 		A1E9CAC61E4C258A002F4493 /* PhotoWallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAC51E4C258A002F4493 /* PhotoWallCell.swift */; };
+		ADBC62DB1E66EC1700FD6B4F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC62DA1E66EC1700FD6B4F /* LocationManager.swift */; };
 		B55305C277B45378805B2DF0 /* Pods_Efimerum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF573619DAAF686EA3943A9 /* Pods_Efimerum.framework */; };
 		D01635511E40F5D6008ADC0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D01635501E40F5D6008ADC0E /* GoogleService-Info.plist */; };
 		D01E3C151E64A50800736F20 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E3C141E64A50800736F20 /* BubbleView.swift */; };
@@ -118,6 +119,7 @@
 		A1E9CAC01E4C2559002F4493 /* PhotoWallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallViewController.swift; sourceTree = "<group>"; };
 		A1E9CAC21E4C2564002F4493 /* PhotoWallModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallModel.swift; sourceTree = "<group>"; };
 		A1E9CAC51E4C258A002F4493 /* PhotoWallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallCell.swift; sourceTree = "<group>"; };
+		ADBC62DA1E66EC1700FD6B4F /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C46CD46925E841A53F082941 /* Pods-Efimerum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Efimerum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Efimerum/Pods-Efimerum.debug.xcconfig"; sourceTree = "<group>"; };
 		D01635501E40F5D6008ADC0E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D01E3C141E64A50800736F20 /* BubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				A1A350F91E607B1100100C56 /* FirebaseAuthenticationManager.swift */,
 				A17386F71E651A14009903ED /* FirebaseDatabaseManager.swift */,
 				A1A351031E63798300100C56 /* RxSwiftManager.swift */,
+				ADBC62DA1E66EC1700FD6B4F /* LocationManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 				A17386F21E646AE8009903ED /* SettingsCoordinator.swift in Sources */,
 				A1E9CAA61E4C2426002F4493 /* Coordinator.swift in Sources */,
 				A1A351001E63487800100C56 /* PhotoDetailDragViewController+handlers.swift in Sources */,
+				ADBC62DB1E66EC1700FD6B4F /* LocationManager.swift in Sources */,
 				A1E6B82E1E4D184900445895 /* Photo.swift in Sources */,
 				A1E9CAC31E4C2564002F4493 /* PhotoWallModel.swift in Sources */,
 				A1B712C01E53BFB000C21046 /* PhotoResults.swift in Sources */,
