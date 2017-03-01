@@ -43,7 +43,13 @@ class FirebaseAuthenticationManager {
                 }
             } else {
                 print("alguien se deslogeo del servicio, deberias logearte anonimo")
-                self.output.userDidLogout(success: true)
+                if self.output != nil {
+                    self.output.userDidLogout(success: true)
+                } else {
+                    print("primera vez corriendo la app")
+                }
+                    
+                
             }
             
         })

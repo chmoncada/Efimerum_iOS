@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>704115223030-h18d4p66n5uo7gns10t2cn52f84jhkne.apps.googleusercontent.com</string>
+	<string>704115223030-be0utt44qiidcvtnqrrts6ip4ffd9bfp.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.704115223030-h18d4p66n5uo7gns10t2cn52f84jhkne</string>
+	<string>com.googleusercontent.apps.704115223030-be0utt44qiidcvtnqrrts6ip4ffd9bfp</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDAhoeVJTS9osMXCuT99tdi4CA71NCiPM8</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.efimerum.Efimerum</string>
+	<string>com.charlesmoncada.Efimerum</string>
 	<key>PROJECT_ID</key>
 	<string>efimerum-48618</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:704115223030:ios:0cd0f4dbd1190547</string>
+	<string>1:704115223030:ios:27135128831b62fd</string>
 	<key>DATABASE_URL</key>
 	<string>https://efimerum-48618.firebaseio.com</string>
 </dict>

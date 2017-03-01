@@ -41,17 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
 
         } else {
-            
-//            let currentUser = FIRAuth.auth()?.currentUser
-//            currentUser?.getTokenForcingRefresh(true) {idToken, error in
-//                if let error = error {
-//                    // Handle error
-//                    return;
-//                }
-//                
-//                print(idToken)
-//            }
-            
+                        
             coordinator = AppCoordinator(window: window)
             coordinator?.start()
         }
