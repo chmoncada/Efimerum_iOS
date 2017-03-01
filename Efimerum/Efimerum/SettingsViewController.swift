@@ -66,6 +66,15 @@ class SettingsViewController: UIViewController {
         return tf
     }()
     
+    lazy var photoSegmentedControl: UISegmentedControl = {
+        let sc = UISegmentedControl(items: ["My Photos", "My Likes"])
+        sc.translatesAutoresizingMaskIntoConstraints = false
+        sc.tintColor = UIColor.white
+        sc.selectedSegmentIndex = 0
+        //sc.addTarget(self, action: #selector(handleLoginRegisterChange), for: .valueChanged)
+        return sc
+    }()
+    
     lazy var model: PhotoWallModelType = {
         let model = PhotoWallFirebaseModel(name: "UserPhotos")
         return model
@@ -101,13 +110,16 @@ class SettingsViewController: UIViewController {
         view.addSubview(emailLabel)
         setupEmailLabel()
         
+        view.addSubview(photoSegmentedControl)
+        setupPhotoSegmentedControl()
+        
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 1
         layout.minimumLineSpacing = 1
         layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
         
         // Set the collection view
-        let frame = CGRect(x: 0, y: 250, width: self.view.bounds.width, height: self.view.bounds.height - 250)
+        let frame = CGRect(x: 0, y: 266, width: self.view.bounds.width, height: self.view.bounds.height - 266)
         collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -135,6 +147,15 @@ class SettingsViewController: UIViewController {
         
         output.getDataFromUser()
         
+        
+    }
+    
+    func setupPhotoSegmentedControl() {
+        //need x, y, width, heigth contraint
+        photoSegmentedControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        photoSegmentedControl.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 10).isActive = true
+        photoSegmentedControl.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        photoSegmentedControl.heightAnchor.constraint(equalToConstant: 36).isActive = true
         
     }
     
@@ -166,19 +187,6 @@ class SettingsViewController: UIViewController {
         emailLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
     }
     
-    func setupCollectionView() {
-        collectionView.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 10).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        collectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        
-        collectionView.dataSource = self
-        //collectionView.delegate = self
-        
-        collectionView.backgroundColor = .red
-        
-        
-    }
     
     private func setupBindings() {
         // Reload our collection view when the model changes

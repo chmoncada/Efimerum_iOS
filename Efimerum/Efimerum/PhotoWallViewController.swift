@@ -52,7 +52,7 @@ class PhotoWallViewController: UIViewController {
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundColor = UIColor.black
         
         // Settings of Custom layout
         self.collectionViewSizeCalculator.rowMaximumHeight = self.collectionView.bounds.height / 3
