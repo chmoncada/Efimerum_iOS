@@ -7,7 +7,31 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
 class FirebaseDatabaseManager {
+    
+    private init() {}
+    
+    public static func Instance() -> FirebaseDatabaseManager {
+        return instance
+    }
+    
+    static let instance: FirebaseDatabaseManager = FirebaseDatabaseManager()
+    
+    func getUserDataForUserWithUID(_ uid: String, completion: @escaping (_ name: String?, _ email: String?, _ imageURL: URL?) -> Void) {
+        
+        let ref = FIRDatabase.database().reference()
+        ref.child("users").child(uid).observeSingleEvent(of: .value, with: { (snap) in
+            if let dictionary = snap.value as? [String: Any] {
+                let name = dictionary["name"] as! String
+                let email = dictionary["email"] as! String
+                let imageURLString = dictionary["profileImageURL"] as! String
+                let imageURL = URL(string: imageURLString)
+                
+                completion(name, email, imageURL)
+            }
+        })
+    }
     
 }

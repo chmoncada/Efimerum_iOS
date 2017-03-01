@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GreedoLayout
 import Kingfisher
 
 protocol SettingsViewControllerOutput {
@@ -18,6 +19,7 @@ protocol SettingsViewControllerInput {
     func bindViewWithName(_ name: String, email: String, imageURL: URL?)
 }
 
+private let reuseIdentifier =  "PhotoWallCell"
 
 class SettingsViewController: UIViewController {
 
@@ -64,7 +66,23 @@ class SettingsViewController: UIViewController {
         return tf
     }()
     
+    lazy var model: PhotoWallModelType = {
+        let model = PhotoWallFirebaseModel(name: "UserPhotos")
+        return model
+    }()
+    
+    lazy var collectionViewSizeCalculator: GreedoCollectionViewLayout = {
+        let lazyLayout = GreedoCollectionViewLayout(collectionView: self.collectionView)
+        lazyLayout?.dataSource = self
+        
+        return lazyLayout!
+    }()
+    
+    var collectionView: UICollectionView!
+    
     var output: SettingsViewControllerOutput!
+    
+    var didSelectPhoto: (PhotoWallModelType, Int) -> Void = { _ in }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +101,35 @@ class SettingsViewController: UIViewController {
         view.addSubview(emailLabel)
         setupEmailLabel()
         
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 1
+        layout.minimumLineSpacing = 1
+        layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        
+        // Set the collection view
+        let frame = CGRect(x: 0, y: 250, width: self.view.bounds.width, height: self.view.bounds.height - 250)
+        collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.backgroundColor = UIColor.white
+        
+        // Settings of Custom layout
+        self.collectionViewSizeCalculator.rowMaximumHeight = 50
+        self.collectionViewSizeCalculator.fixedHeight = false
+        self.automaticallyAdjustsScrollViewInsets = false
+        
+        // Register the collection view cell
+        self.collectionView.register(PhotoWallCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        view.addSubview(collectionView)
+        //setupCollectionView()
+        
+        // Settings of Custom layout
+        self.collectionViewSizeCalculator.rowMaximumHeight = self.collectionView.bounds.height / 3
+        self.collectionViewSizeCalculator.fixedHeight = false
+        self.automaticallyAdjustsScrollViewInsets = false
+        
+        setupBindings()
         
         SettingsConfigurator.instance.configure(viewController: self)
         
@@ -93,7 +140,7 @@ class SettingsViewController: UIViewController {
     
     func setupProfileImage() {
         profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileImageView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 30).isActive = true
+        profileImageView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 10).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
@@ -119,6 +166,31 @@ class SettingsViewController: UIViewController {
         emailLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
     }
     
+    func setupCollectionView() {
+        collectionView.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 10).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        collectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        collectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        
+        collectionView.dataSource = self
+        //collectionView.delegate = self
+        
+        collectionView.backgroundColor = .red
+        
+        
+    }
+    
+    private func setupBindings() {
+        // Reload our collection view when the model changes
+        model.didUpdate = { [weak self] in
+            
+            self?.collectionView.collectionViewLayout.invalidateLayout()
+            self?.collectionView.reloadData()
+            self?.collectionViewSizeCalculator.clearCache()
+        }
+        
+    }
+    
     func handleDismissView() {
         
         let _ = navigationController?.popViewController(animated: false)
@@ -138,3 +210,62 @@ extension SettingsViewController: SettingsViewControllerInput {
     
 }
 
+// MARK: UICollectionViewDataSource
+
+extension SettingsViewController: UICollectionViewDataSource  {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        
+        let photo = self.model.photo(at: indexPath.item)
+        
+        if let photoCell = cell as? PhotoWallCell {
+            
+            photoCell.backgroundColor = UIColor.clear
+            
+            let url = photo.thumbnailURL
+                photoCell.photoView.kf.indicatorType = .activity
+                photoCell.photoView.kf.setImage(with: url)
+            
+            
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.model.numberOfPhotos
+    }
+}
+
+// MARK: UICollectionViewDelegate
+
+extension SettingsViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        didSelectPhoto(self.model, indexPath.item)
+    }
+}
+
+// MARK: UICollectionViewDelegateFlowLayout
+
+extension SettingsViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return self.collectionViewSizeCalculator.sizeForPhoto(at: indexPath)
+    }
+}
+
+// MARK: GreedoCollectionViewLayoutDataSource
+
+extension SettingsViewController: GreedoCollectionViewLayoutDataSource {
+    
+    func greedoCollectionViewLayout(_ layout: GreedoCollectionViewLayout!, originalImageSizeAt indexPath: IndexPath!) -> CGSize {
+        if (indexPath.item < self.model.numberOfPhotos) {
+            let asset = self.model.photo(at: indexPath.item)
+            return CGSize(width: asset.thumbnailWidth , height: asset.thumbnailHeight)
+        }
+        return CGSize(width: 0.1, height: 0.1)
+    }
+}

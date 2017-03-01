@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import FirebaseDatabase
 
 protocol SettingsInteractorInput {
     
@@ -25,23 +24,21 @@ class SettingsInteractor: SettingsInteractorInput {
         return manager
     }()
     
+    lazy var databaseManager: FirebaseDatabaseManager = {
+        let manager = FirebaseDatabaseManager.instance
+        return manager
+    }()
+    
     var output: SettingsInteractorOutput!
     
     func getDataFromUser() {
         authManager.getUserUID { (uid) in
             if let uid = uid {
-                let ref = FIRDatabase.database().reference()
-                ref.child("users").child(uid).observeSingleEvent(of: .value, with: { (snap) in
-                    if let dictionary = snap.value as? [String: Any] {
-                        let name = dictionary["name"] as! String
-                        let email = dictionary["email"] as! String
-                        let imageURLString = dictionary["profileImageURL"] as! String
-                        let imageURL = URL(string: imageURLString)
-                        
+                databaseManager.getUserDataForUserWithUID(uid) { name, email, imageURL in
+                    if let name = name, let email = email, let imageURL = imageURL {
                         self.output.bindViewWithName(name, email: email, imageURL: imageURL)
-                        
                     }
-                })
+                }
             }
         }
     }

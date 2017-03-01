@@ -187,7 +187,6 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
     }
     
     func didTapOnSettings(button: MBFloatScrollButton) {
-        print("Go To settings")
         goToSettings()
     }
     
