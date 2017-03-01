@@ -35,6 +35,8 @@ class PhotoWallViewController: UIViewController {
     
     var model: PhotoWallModelType?
     
+    var userLocationManager :UserLocationManager?
+    
     init(model: PhotoWallModelType = PhotoWallFirebaseModel()) {
         
         super.init(nibName: nil, bundle: nil)
@@ -207,6 +209,8 @@ extension PhotoWallViewController :UIImagePickerControllerDelegate, UINavigation
     
     func takePicture() {
         
+        userLocationManager = UserLocationManager()
+        
         let imagePicker = UIImagePickerController()
         
         if UIImagePickerController.isCameraDeviceAvailable(.front) || UIImagePickerController.isCameraDeviceAvailable(.rear)  {
@@ -240,6 +244,16 @@ extension PhotoWallViewController :UIImagePickerControllerDelegate, UINavigation
                 print(error)
                 return;
             }
+            
+            let location = self.userLocationManager?.currentLocation
+            
+            if let latitude = location?.coordinate.latitude,
+                let longitude = location?.coordinate.longitude {
+                
+                print("latitude: \(latitude) - longitude: \(longitude)")
+            }
+            self.userLocationManager?.locationManager.stopUpdatingLocation()
+            
 
             ApiClient.upload(data: imageData!, endpoint: .photos(token: idToken!, latitude: 41.375395, longitude: 2.170624), completionHandler: { (result) in
                 

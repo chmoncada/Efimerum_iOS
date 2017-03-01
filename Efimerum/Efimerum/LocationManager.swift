@@ -10,20 +10,20 @@ import Foundation
 import MapKit
 
 
-protocol LocationManagerProtocol : class {
+protocol UserLocationManagerProtocol : class {
     
-    func locationDidUpdateToLocation(location: CLLocation, manager: LocationManager)
+    func locationDidUpdateToLocation(location: CLLocation, manager: UserLocationManager)
     
 }
 
 
-class LocationManager : NSObject, CLLocationManagerDelegate {
+class UserLocationManager : NSObject, CLLocationManagerDelegate {
     
-    private var locationManager = CLLocationManager()
+    var locationManager = CLLocationManager()
     
     var currentLocation :CLLocation?
     
-    var delegate : LocationManagerProtocol?
+    var delegate : UserLocationManagerProtocol?
     
     override init() {
         super.init()
@@ -31,19 +31,22 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         self.locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
-        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
         
     }
     
     //MARK: - CLLocationManagerDelegate
-    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
-        currentLocation = newLocation
-       
+  
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        currentLocation = locations.last
+ 
+        //print("latitude: \(currentLocation?.coordinate.latitude) - longitude: \(currentLocation?.coordinate.longitude)")
+        
         DispatchQueue.main.async {
             self.delegate?.locationDidUpdateToLocation(location: self.currentLocation!, manager: self)
         }
-       
     }
     
 }
