@@ -10,6 +10,7 @@ import UIKit
 import Photos
 import RxSwift
 import FirebaseDatabase
+import FirebaseAuth
 
 // MARK: PhotoWallModelType protocol
 protocol PhotoWallModelType: class {
@@ -34,28 +35,55 @@ protocol PhotoWallModelType: class {
 final class PhotoWallFirebaseModel: PhotoWallModelType {
     
     // MARK: Properties
-    fileprivate let results: PhotoResultsType
+    fileprivate var results: PhotoResultsType
     fileprivate let container: PhotoContainerType
     private let disposeBag = DisposeBag()
     
     // MARK: Init method
-    init(labelQuery: String = "", container: PhotoContainerType = PhotoContainer.instance) {
-        
-        self.labelQuery = labelQuery
-        //self.client = client
+    
+    init(labelQuery: String, container: PhotoContainerType, results: PhotoResultsType) {
         self.container = container
+        self.results = results
+        self.labelQuery = labelQuery
+    }
+    
+    convenience init(labelQuery: String = "", container: PhotoContainerType = PhotoContainer.instance) {
+        
+        let data = container.allRandom(randomKey: getRandomKey())
+        
+        self.init(labelQuery: labelQuery, container: container, results: data)
         
         container.load()
             .subscribe()
             .addDisposableTo(disposeBag)
         
-        results = container.allRandom(randomKey: getRandomKey())
         
         self.results.didUpdate = { [weak self] in
             self?.didUpdate()
         }
         
-        loadPhotos()
+        loadAllPhotos()
+    }
+    
+    convenience init(name: String) {
+        
+        let container = PhotoContainer(name: name)
+        
+        let data = container.all()
+        
+        self.init(labelQuery: "", container: container, results: data)
+        
+        container.load()
+            .subscribe()
+            .addDisposableTo(disposeBag)
+        
+        
+        self.results.didUpdate = { [weak self] in
+            self?.didUpdate()
+        }
+        
+        loadUserPhotos()
+        
     }
     
     // MARK: PhotoWallModelType protocol implementation
@@ -76,7 +104,7 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
 // MARK: Util Methods
 extension PhotoWallFirebaseModel {
     
-    func loadPhotos()  {
+    func loadAllPhotos()  {
         
         let container = self.container
         
@@ -87,6 +115,44 @@ extension PhotoWallFirebaseModel {
         
         // First query random using some random order
         let observable2 = ref.child("photos").rx_observeSingleEvent(of: .value)
+        
+        container.deleteAll().subscribe().addDisposableTo(DisposeBag())
+        
+        let _ = observable2.observeOn(MainScheduler.instance)
+            .subscribe(onNext: { (snap) in
+                if snap.exists() {
+                    for child in snap.children {
+                        let photoSnap = child as! FIRDataSnapshot
+                        if let dictionary = photoSnap.value as? [String: Any] {
+                            if let photo = PhotoResponse(json: dictionary) {
+                                let key = photoSnap.key
+                                let photoToSave = Photo(identifier: key, photoResponse: photo)
+                                photos.append(photoToSave)
+                                
+                            }
+                        }
+                    }
+                    let observable: Observable<Void>
+                    observable = container.save(photos: photos)
+                    observable.subscribe().addDisposableTo(DisposeBag())
+                }
+            })
+        
+    }
+    
+    func loadUserPhotos()  {
+        
+        let container = self.container
+        
+        var ref: FIRDatabaseReference!
+        var photos: [Photo] = []
+        
+        ref = FIRDatabase.database().reference()
+        
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        
+        // First query random using some random order
+        let observable2 = ref.child("photosPostedByUser").child(uid!).rx_observeSingleEvent(of: .value)
         
         container.deleteAll().subscribe().addDisposableTo(DisposeBag())
         
