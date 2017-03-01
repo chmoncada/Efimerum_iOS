@@ -8,23 +8,23 @@
 
 import Foundation
 
-extension SettingsInteractor: SettingsViewControllerOutput {}
+extension ProfileInteractor: ProfileViewControllerOutput {}
 
-extension SettingsViewController : SettingsInteractorOutput {}
+extension ProfileViewController : ProfileInteractorOutput {}
 
-class SettingsConfigurator {
+class ProfileConfigurator {
     
     private init() {}
     
-    public static func Instance() -> SettingsConfigurator {
+    public static func Instance() -> ProfileConfigurator {
         return instance
     }
     
-    static let instance: SettingsConfigurator = SettingsConfigurator()
+    static let instance: ProfileConfigurator = ProfileConfigurator()
     
-    func configure(viewController: SettingsViewController) {
+    func configure(viewController: ProfileViewController) {
         
-        let interactor = SettingsInteractor()
+        let interactor = ProfileInteractor()
         
         //interactor.authManager.output = interactor
         

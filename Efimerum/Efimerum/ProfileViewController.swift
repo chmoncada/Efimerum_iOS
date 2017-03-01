@@ -10,18 +10,18 @@ import UIKit
 import GreedoLayout
 import Kingfisher
 
-protocol SettingsViewControllerOutput {
+protocol ProfileViewControllerOutput {
     
     func getDataFromUser()
 }
 
-protocol SettingsViewControllerInput {
+protocol ProfileViewControllerInput {
     func bindViewWithName(_ name: String, email: String, imageURL: URL?)
 }
 
 private let reuseIdentifier =  "PhotoWallCell"
 
-class SettingsViewController: UIViewController {
+class ProfileViewController: UIViewController {
 
     lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -38,6 +38,18 @@ class SettingsViewController: UIViewController {
         
         let button = UIButton(type: UIButtonType.custom)
         let image = UIImage(named: "cancel")
+        button.setImage(image, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.addTarget(self, action: #selector(handleDismissView), for: .touchUpInside)
+        return button
+        
+    }()
+    
+    let settingsButton: UIButton = {
+        
+        let button = UIButton(type: UIButtonType.custom)
+        let image = UIImage(named: "settings")
         button.setImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -89,7 +101,7 @@ class SettingsViewController: UIViewController {
     
     var collectionView: UICollectionView!
     
-    var output: SettingsViewControllerOutput!
+    var output: ProfileViewControllerOutput!
     
     var didSelectPhoto: (PhotoWallModelType, Int) -> Void = { _ in }
     
@@ -100,6 +112,9 @@ class SettingsViewController: UIViewController {
         
         view.addSubview(closeButton)
         setupCloseButton()
+        
+        view.addSubview(settingsButton)
+        setupSettingsButton()
         
         view.addSubview(profileImageView)
         setupProfileImage()
@@ -119,7 +134,7 @@ class SettingsViewController: UIViewController {
         layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
         
         // Set the collection view
-        let frame = CGRect(x: 0, y: 266, width: self.view.bounds.width, height: self.view.bounds.height - 266)
+        let frame = CGRect(x: 0, y: 260, width: self.view.bounds.width, height: self.view.bounds.height - 260)
         collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -143,7 +158,7 @@ class SettingsViewController: UIViewController {
         
         setupBindings()
         
-        SettingsConfigurator.instance.configure(viewController: self)
+        ProfileConfigurator.instance.configure(viewController: self)
         
         output.getDataFromUser()
         
@@ -154,8 +169,8 @@ class SettingsViewController: UIViewController {
         //need x, y, width, heigth contraint
         photoSegmentedControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         photoSegmentedControl.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 10).isActive = true
-        photoSegmentedControl.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        photoSegmentedControl.heightAnchor.constraint(equalToConstant: 36).isActive = true
+        photoSegmentedControl.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -20).isActive = true
+        photoSegmentedControl.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
     }
     
@@ -171,6 +186,13 @@ class SettingsViewController: UIViewController {
         closeButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
         closeButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         closeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+    }
+    
+    func setupSettingsButton() {
+        settingsButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30).isActive = true
+        settingsButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
+        settingsButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        settingsButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
     func setupNameLabel() {
@@ -206,7 +228,7 @@ class SettingsViewController: UIViewController {
     
 }
 
-extension SettingsViewController: SettingsViewControllerInput {
+extension ProfileViewController: ProfileViewControllerInput {
     
     func bindViewWithName(_ name: String, email: String, imageURL: URL?) {
         
@@ -220,7 +242,7 @@ extension SettingsViewController: SettingsViewControllerInput {
 
 // MARK: UICollectionViewDataSource
 
-extension SettingsViewController: UICollectionViewDataSource  {
+extension ProfileViewController: UICollectionViewDataSource  {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -249,7 +271,7 @@ extension SettingsViewController: UICollectionViewDataSource  {
 
 // MARK: UICollectionViewDelegate
 
-extension SettingsViewController: UICollectionViewDelegate {
+extension ProfileViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         didSelectPhoto(self.model, indexPath.item)
@@ -258,7 +280,7 @@ extension SettingsViewController: UICollectionViewDelegate {
 
 // MARK: UICollectionViewDelegateFlowLayout
 
-extension SettingsViewController: UICollectionViewDelegateFlowLayout {
+extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return self.collectionViewSizeCalculator.sizeForPhoto(at: indexPath)
@@ -267,7 +289,7 @@ extension SettingsViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: GreedoCollectionViewLayoutDataSource
 
-extension SettingsViewController: GreedoCollectionViewLayoutDataSource {
+extension ProfileViewController: GreedoCollectionViewLayoutDataSource {
     
     func greedoCollectionViewLayout(_ layout: GreedoCollectionViewLayout!, originalImageSizeAt indexPath: IndexPath!) -> CGSize {
         if (indexPath.item < self.model.numberOfPhotos) {

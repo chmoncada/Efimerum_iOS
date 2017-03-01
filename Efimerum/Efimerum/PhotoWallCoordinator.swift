@@ -32,12 +32,12 @@ final class PhotoWallCoordinator: Coordinator {
             
         }
         
-        viewController.goToSettings = { [weak self]  in
+        viewController.goToProfile = { [weak self]  in
             guard let strongSelf = self else {
                 return
             }
             
-            let coordinator = SettingsCoordinator(navigationController: navigationController)
+            let coordinator = ProfileCoordinator(navigationController: navigationController)
             
             strongSelf.add(child: coordinator)
             

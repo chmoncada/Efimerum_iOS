@@ -8,16 +8,16 @@
 
 import Foundation
 
-protocol SettingsInteractorInput {
+protocol ProfileInteractorInput {
     
     func getDataFromUser()
 }
 
-protocol SettingsInteractorOutput {
+protocol ProfileInteractorOutput {
     func bindViewWithName(_ name: String, email: String, imageURL: URL?)
 }
 
-class SettingsInteractor: SettingsInteractorInput {
+class ProfileInteractor: ProfileInteractorInput {
     
     lazy var authManager: FirebaseAuthenticationManager = {
         let manager = FirebaseAuthenticationManager.instance
@@ -29,7 +29,7 @@ class SettingsInteractor: SettingsInteractorInput {
         return manager
     }()
     
-    var output: SettingsInteractorOutput!
+    var output: ProfileInteractorOutput!
     
     func getDataFromUser() {
         authManager.getUserUID { (uid) in

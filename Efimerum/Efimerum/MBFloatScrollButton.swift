@@ -81,21 +81,21 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
             isFloatActionMenu = true
         case .search:
             self.frame = CGRect(x: scrollView.bounds.size.width/2 - size3/2,
-                                y: scrollView.bounds.origin.y + 30,
+                                y: scrollView.bounds.origin.y + 30 + size1/4,
                                 width: size3,
-                                height: size1)
+                                height: size1 / 2)
                 self.layer.cornerRadius = self.bounds.size.height/2
                 self.backgroundColor = .white
             setupSearchTextField()
             break
-        case .settings:
+        case .profile:
             
             self.frame = CGRect(x: scrollView.bounds.size.width - size1 - 20,
                    y: scrollView.bounds.size.height - size1 - 20,
                    width: size1,
                    height: size1)
-            self.image = UIImage(named: "btnSettings")!
-            let tap = UITapGestureRecognizer(target: self, action: #selector(MBFloatScrollButton.tapButtonActionSettings))
+            self.image = UIImage(named: "btnProfile")!
+            let tap = UITapGestureRecognizer(target: self, action: #selector(MBFloatScrollButton.tapButtonActionProfile))
             self.addGestureRecognizer(tap)
         case .logo:
             
@@ -140,9 +140,9 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     }
     
     
-    func tapButtonActionSettings() {
+    func tapButtonActionProfile() {
         
-        delegate?.didTapOnSettings(button: self)
+        delegate?.didTapOnProfile(button: self)
     }
     
     
@@ -160,13 +160,14 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     fileprivate func setupSearchTextField() {
         
         let frame = CGRect(x: self.bounds.origin.x + 10,
-                           y: self.bounds.origin.y + 4,
+                           y: self.bounds.origin.y + 2,
                            width: self.bounds.size.width - 20,
-                           height: self.bounds.size.height - 8)
+                           height: self.bounds.size.height - 4)
         let searchTextField = UITextField(frame: frame)
         searchTextField.delegate = self
         searchTextField.backgroundColor = .white
-        searchTextField.placeholder = "Search"
+        searchTextField.font = UIFont.systemFont(ofSize: 14)
+        searchTextField.placeholder = "Search tags..."
         searchTextField.addTarget(self, action: #selector(MBFloatScrollButton.textFieldDidChange(_:)), for: .editingChanged)
         self.addSubview(searchTextField)
     
@@ -393,7 +394,7 @@ protocol MBFloatScrollButtonDelegate :class {
     
     func didTapOnCamera(button: MBFloatScrollButton)
     
-    func didTapOnSettings(button: MBFloatScrollButton)
+    func didTapOnProfile(button: MBFloatScrollButton)
     
     func didTap(filter: FilterType)
     

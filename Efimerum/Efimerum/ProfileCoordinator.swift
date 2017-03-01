@@ -8,14 +8,14 @@
 
 import UIKit
 
-final class SettingsCoordinator: Coordinator {
+final class ProfileCoordinator: Coordinator {
     
     private unowned let navigationController: UINavigationController
-    private let viewController: SettingsViewController
+    private let viewController: ProfileViewController
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.viewController = SettingsViewController()
+        self.viewController = ProfileViewController()
         
         super.init()
         

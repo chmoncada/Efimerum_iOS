@@ -15,7 +15,7 @@ enum FloatButtonType {
     case camera
     case search
     case orderBy
-    case settings
+    case profile
     case logo
     
     
