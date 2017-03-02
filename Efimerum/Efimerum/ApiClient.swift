@@ -57,10 +57,10 @@ class ApiClient {
         
         public var path: String {
             switch self {
-            case .photos(token: let t, latitude: let lat, longitude: let lon):
-                return baseURL + "/photos?idToken=\(t)&latitude=\(lat)&longitude=\(lon)"
-            case .likes(token: let t, photoKey: let k, latitude: let lat, longitude: let lon):
-                return baseURL + "/likes?idToken=\(t)&photoKey=\(k)&latitude=\(lat)&longitude=\(lon)"
+            case .photos:
+                return baseURL + "/photos"
+            case .likes:
+                return baseURL + "/likes"
             case .photo:
                 return baseURL + "/photo"
 //            case .report:
@@ -68,12 +68,21 @@ class ApiClient {
             }
         }
         
-        public var parameters: [String : Any] {
+        public var parameters: [String : String] {
             switch self {
-            case .likes:
-                return [String : String]()
-            case .photos:
-                return [String : String]()
+            case let .likes(token: t, photoKey: p, latitude: lat, longitude: lon):
+                return [
+                    "idToken": t,
+                    "photoKey": p,
+                    "latitude": "\(lat)",
+                    "longitude": "\(lon)"
+                    ]
+            case let .photos(token: t, latitude: lat, longitude: lon):
+                return [
+                    "idToken": t,
+                    "latitude": "\(lat)",
+                    "longitude": "\(lon)"
+                ]
             case .photo:
                 return [String : String]()
 //            case .report(let keywords):
@@ -117,6 +126,10 @@ class ApiClient {
         
         ApiClient.manager.upload(multipartFormData: { (multipartFormData) in
             
+            let parameters = endpoint.parameters
+            for (key, value) in parameters {
+                multipartFormData.append(value.data(using: .utf8)!, withName: key)
+            }
             multipartFormData.append(data, withName: "photoImg", fileName: "photo.jpeg", mimeType: "image/jpeg")
     
         }, to: endpoint.path) { (encodingResult) in
