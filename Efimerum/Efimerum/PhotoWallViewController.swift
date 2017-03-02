@@ -20,7 +20,6 @@ class PhotoWallViewController: UIViewController {
     var collectionView: UICollectionView!
     
     // Called when the user selects a photo in the grid
-    // TODO: We need to pass some data to the other view (hint: the arrays of photos and the index of the selected)
     var didSelectPhoto: (PhotoWallModelType, Int) -> Void = { _ in }
     var goToProfile: () -> Void = {}
     
@@ -30,6 +29,11 @@ class PhotoWallViewController: UIViewController {
         lazyLayout?.dataSource = self
         
         return lazyLayout!
+    }()
+    
+    let layout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        return layout
     }()
     
     var model: PhotoWallModelType?
@@ -44,10 +48,8 @@ class PhotoWallViewController: UIViewController {
         self.model = model
         
         // The custom layout use a Flow Layout in the barebones
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumInteritemSpacing = 1
-        layout.minimumLineSpacing = 1
-        layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        setupLayout()
+        
         
         // Set the collection view
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
@@ -88,16 +90,7 @@ class PhotoWallViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
-    private func setupBindings() {
-        // Reload our collection view when the model changes
-        model?.didUpdate = { [weak self] in
-            
-            self?.collectionView.collectionViewLayout.invalidateLayout()
-            self?.collectionView.reloadData()
-            self?.collectionViewSizeCalculator.clearCache()
-        }
-        
-    }
+    
 }
 
 // MARK: UICollectionViewDataSource
@@ -157,26 +150,7 @@ extension PhotoWallViewController: GreedoCollectionViewLayoutDataSource {
 
 extension PhotoWallViewController :MBFloatScrollButtonDelegate {
     
-    func setupFloatButtons(scroll: UIScrollView){
-        
-        let settingsButton = MBFloatScrollButton(buttonType: .profile, on: scroll, for: self.view)
-        settingsButton.delegate = self
-        
-        let orderByButton = MBFloatScrollButton(buttonType: .orderBy, on: scroll, for: self.view)
-        orderByButton.delegate = self
-
-        let cameraButton = MBFloatScrollButton(buttonType: .camera, on: scroll, for: self.view)
-        cameraButton.delegate = self
-        
-        let searchButton = MBFloatScrollButton(buttonType: .search, on: scroll, for: self.view)
-        searchButton.delegate = self
-        
-        let logoButton = MBFloatScrollButton(buttonType: .logo, on: scroll, for: self.view)
-        logoButton.delegate = self
-    }
-    
     func didTapOnCamera(button: MBFloatScrollButton) {
-        print("boton pulsado")
         takePicture()
     }
     

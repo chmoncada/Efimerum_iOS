@@ -72,6 +72,19 @@ class PhotoWallCell: UICollectionViewCell {
             self.photoView.kf.setImage(with: url)
         }
         
+        if let number = photo?.numOfLikes {
+            self.likesTextView.text = formatLikes(number: number)
+        }
+        
+    }
+    
+    private func formatLikes(number: Double) -> String {
+        if number < 1000 {
+            return String(format: "%.0f", number)
+        } else {
+            let likes = String(format: "%.1f", number / 1000)
+            return likes + "k"
+        }
     }
     
     private func setupViews() {

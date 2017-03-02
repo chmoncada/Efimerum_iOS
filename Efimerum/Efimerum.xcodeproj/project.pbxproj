@@ -18,6 +18,7 @@
 		A1690B231E67A3940099AFA6 /* SinglePhotoDetailViewController+setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1690B221E67A3940099AFA6 /* SinglePhotoDetailViewController+setup.swift */; };
 		A1690B251E67A4290099AFA6 /* SInglePhotoDetailViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1690B241E67A4290099AFA6 /* SInglePhotoDetailViewController+handlers.swift */; };
 		A1690B271E67A45E0099AFA6 /* SinglePhotoDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1690B261E67A45E0099AFA6 /* SinglePhotoDetailCoordinator.swift */; };
+		A1690B291E67BB870099AFA6 /* PhotoWallViewController+setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1690B281E67BB870099AFA6 /* PhotoWallViewController+setup.swift */; };
 		A17386F01E646AD0009903ED /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17386EF1E646AD0009903ED /* ProfileViewController.swift */; };
 		A17386F21E646AE8009903ED /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17386F11E646AE8009903ED /* ProfileCoordinator.swift */; };
 		A17386F51E65177C009903ED /* DataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17386F41E65177C009903ED /* DataRepository.swift */; };
@@ -97,6 +98,7 @@
 		A1690B221E67A3940099AFA6 /* SinglePhotoDetailViewController+setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SinglePhotoDetailViewController+setup.swift"; sourceTree = "<group>"; };
 		A1690B241E67A4290099AFA6 /* SInglePhotoDetailViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SInglePhotoDetailViewController+handlers.swift"; sourceTree = "<group>"; };
 		A1690B261E67A45E0099AFA6 /* SinglePhotoDetailCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePhotoDetailCoordinator.swift; sourceTree = "<group>"; };
+		A1690B281E67BB870099AFA6 /* PhotoWallViewController+setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoWallViewController+setup.swift"; sourceTree = "<group>"; };
 		A17386EF1E646AD0009903ED /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A17386F11E646AE8009903ED /* ProfileCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		A17386F41E65177C009903ED /* DataRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataRepository.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 			children = (
 				A1E9CABE1E4C254F002F4493 /* PhotoWallCoordinator.swift */,
 				A1E9CAC01E4C2559002F4493 /* PhotoWallViewController.swift */,
+				A1690B281E67BB870099AFA6 /* PhotoWallViewController+setup.swift */,
 				A1E9CAC21E4C2564002F4493 /* PhotoWallModel.swift */,
 				A1E9CAC51E4C258A002F4493 /* PhotoWallCell.swift */,
 			);
@@ -669,6 +672,7 @@
 				A1E9CAA61E4C2426002F4493 /* Coordinator.swift in Sources */,
 				A1A351001E63487800100C56 /* PhotoDetailDragViewController+handlers.swift in Sources */,
 				ADBC62DB1E66EC1700FD6B4F /* LocationManager.swift in Sources */,
+				A1690B291E67BB870099AFA6 /* PhotoWallViewController+setup.swift in Sources */,
 				A1E6B82E1E4D184900445895 /* Photo.swift in Sources */,
 				A1E9CAC31E4C2564002F4493 /* PhotoWallModel.swift in Sources */,
 				A1B712C01E53BFB000C21046 /* PhotoResults.swift in Sources */,

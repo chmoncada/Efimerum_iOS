@@ -1,0 +1,49 @@
+//
+//  PhotoWallViewController+setup.swift
+//  Efimerum
+//
+//  Created by Charles Moncada on 01/03/17.
+//  Copyright © 2017 mibarbou. All rights reserved.
+//
+
+import UIKit
+
+extension PhotoWallViewController {
+    
+    func setupBindings() {
+        // Reload our collection view when the model changes
+        model?.didUpdate = { [weak self] in
+            
+            self?.collectionView.collectionViewLayout.invalidateLayout()
+            self?.collectionView.reloadData()
+            self?.collectionViewSizeCalculator.clearCache()
+        }
+        
+    }
+    
+    func setupFloatButtons(scroll: UIScrollView){
+        
+        let settingsButton = MBFloatScrollButton(buttonType: .profile, on: scroll, for: self.view)
+        settingsButton.delegate = self
+        
+        let orderByButton = MBFloatScrollButton(buttonType: .orderBy, on: scroll, for: self.view)
+        orderByButton.delegate = self
+        
+        let cameraButton = MBFloatScrollButton(buttonType: .camera, on: scroll, for: self.view)
+        cameraButton.delegate = self
+        
+        let searchButton = MBFloatScrollButton(buttonType: .search, on: scroll, for: self.view)
+        searchButton.delegate = self
+        
+        let logoButton = MBFloatScrollButton(buttonType: .logo, on: scroll, for: self.view)
+        logoButton.delegate = self
+    }
+    
+    func setupLayout() {
+        
+        self.layout.minimumInteritemSpacing = 1
+        self.layout.minimumLineSpacing = 1
+        self.layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
+    }
+    
+}

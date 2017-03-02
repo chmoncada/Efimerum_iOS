@@ -162,7 +162,7 @@ class ProfileViewController: UIViewController {
         
     }
     
-    private func setupBindings() {
+    func setupBindings() {
         // Reload our collection view when the model changes
         model.didUpdate = { [weak self] in
             

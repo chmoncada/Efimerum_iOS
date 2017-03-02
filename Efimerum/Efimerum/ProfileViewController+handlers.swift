@@ -25,13 +25,7 @@ extension ProfileViewController {
             
         }
         
-        model.didUpdate = { [weak self] in
-            
-            self?.collectionView.collectionViewLayout.invalidateLayout()
-            self?.collectionView.reloadData()
-            self?.collectionViewSizeCalculator.clearCache()
-        }
-        
+        setupBindings()
     }
     
 }
