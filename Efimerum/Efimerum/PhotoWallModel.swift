@@ -82,7 +82,12 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
             self?.didUpdate()
         }
         
-        loadUserPhotos()
+        if name == "UserPhotos" {
+            loadUserPhotos()
+        } else if name == "LikesPhotos" {
+            loadLikesPhotos()
+        }
+        
         
     }
     
@@ -153,6 +158,44 @@ extension PhotoWallFirebaseModel {
         
         // First query random using some random order
         let observable2 = ref.child("photosPostedByUser").child(uid!).rx_observeSingleEvent(of: .value)
+        
+        container.deleteAll().subscribe().addDisposableTo(DisposeBag())
+        
+        let _ = observable2.observeOn(MainScheduler.instance)
+            .subscribe(onNext: { (snap) in
+                if snap.exists() {
+                    for child in snap.children {
+                        let photoSnap = child as! FIRDataSnapshot
+                        if let dictionary = photoSnap.value as? [String: Any] {
+                            if let photo = PhotoResponse(json: dictionary) {
+                                let key = photoSnap.key
+                                let photoToSave = Photo(identifier: key, photoResponse: photo)
+                                photos.append(photoToSave)
+                                
+                            }
+                        }
+                    }
+                    let observable: Observable<Void>
+                    observable = container.save(photos: photos)
+                    observable.subscribe().addDisposableTo(DisposeBag())
+                }
+            })
+        
+    }
+    
+    func loadLikesPhotos()  {
+        
+        let container = self.container
+        
+        var ref: FIRDatabaseReference!
+        var photos: [Photo] = []
+        
+        ref = FIRDatabase.database().reference()
+        
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        
+        // First query random using some random order
+        let observable2 = ref.child("photosLikedByUser").child(uid!).rx_observeSingleEvent(of: .value)
         
         container.deleteAll().subscribe().addDisposableTo(DisposeBag())
         

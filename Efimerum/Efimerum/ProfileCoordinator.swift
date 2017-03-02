@@ -19,6 +19,18 @@ final class ProfileCoordinator: Coordinator {
         
         super.init()
         
+        viewController.didSelectPhoto = { [weak self] photo in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            let coordinator = SinglePhotoDetailCoordinator(navigationController: navigationController, photo: photo)
+            
+            strongSelf.add(child: coordinator)
+            
+            coordinator.start()
+            
+        }
         
     }
     

@@ -107,7 +107,7 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
         self.contentView = view
         
         // Configure view and corner of layout
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = UIColor.black
         self.layer.cornerRadius = 20
         self.layer.masksToBounds = true
         

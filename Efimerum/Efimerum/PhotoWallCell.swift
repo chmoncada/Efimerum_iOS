@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PhotoWallCell: UICollectionViewCell {
  
@@ -15,8 +16,6 @@ class PhotoWallCell: UICollectionViewCell {
        
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        //imageView.contentMode = .scaleAspectFill
-        
         return imageView
         
     }()
@@ -64,7 +63,18 @@ class PhotoWallCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupViews() {
+    func setupWithPhoto(_ photo: Photo?) {
+        
+        self.backgroundColor = UIColor.clear
+        
+        if let url = photo?.thumbnailURL {
+            self.photoView.kf.indicatorType = .activity
+            self.photoView.kf.setImage(with: url)
+        }
+        
+    }
+    
+    private func setupViews() {
         addSubview(photoView)
         setupPhotoView()
         
@@ -84,7 +94,7 @@ class PhotoWallCell: UICollectionViewCell {
         
     }
     
-    func setupPhotoView() {
+    private func setupPhotoView() {
         //need x, y, width, heigth contraint
         photoView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         photoView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
@@ -92,7 +102,7 @@ class PhotoWallCell: UICollectionViewCell {
         
     }
     
-    func setupLikesView() {
+    private func setupLikesView() {
         //need x, y, width, heigth contraint
         likesView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
         likesView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 5).isActive = true
@@ -100,7 +110,7 @@ class PhotoWallCell: UICollectionViewCell {
         likesView.heightAnchor.constraint(equalToConstant: 10).isActive = true
     }
     
-    func setupOpaqueView() {
+    private func setupOpaqueView() {
         opaqueView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         opaqueView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         opaqueView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
@@ -108,14 +118,14 @@ class PhotoWallCell: UICollectionViewCell {
         
     }
     
-    func setupLikesTextView() {
+    private func setupLikesTextView() {
         likesTextView.leftAnchor.constraint(equalTo: likesView.rightAnchor).isActive = true
         likesTextView.bottomAnchor.constraint(equalTo: likesView.bottomAnchor).isActive = true
         likesTextView.heightAnchor.constraint(equalToConstant: 10).isActive = true
         likesTextView.widthAnchor.constraint(equalToConstant: 45).isActive = true
     }
  
-    func setupTimeIconView() {
+    private func setupTimeIconView() {
         timeIconView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -5).isActive = true
         timeIconView.bottomAnchor.constraint(equalTo: likesView.bottomAnchor).isActive = true
         timeIconView.heightAnchor.constraint(equalTo: likesView.heightAnchor).isActive = true

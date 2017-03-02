@@ -12,6 +12,12 @@
 		A1106CB51E670CCB0032B06B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1106CB41E670CCB0032B06B /* GoogleService-Info.plist */; };
 		A127899C1E5BE2ED007EE2F0 /* UIImage+Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127899B1E5BE2ED007EE2F0 /* UIImage+Rotation.swift */; };
 		A12F47071E579D4B00EBD98C /* FirebaseDatabase+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F47061E579D4B00EBD98C /* FirebaseDatabase+RX.swift */; };
+		A1690B1C1E6789A80099AFA6 /* ProfileViewController+setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1690B1B1E6789A80099AFA6 /* ProfileViewController+setup.swift */; };
+		A1690B1E1E678C000099AFA6 /* ProfileViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1690B1D1E678C000099AFA6 /* ProfileViewController+handlers.swift */; };
+		A1690B211E67A3560099AFA6 /* SinglePhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1690B201E67A3560099AFA6 /* SinglePhotoDetailViewController.swift */; };
+		A1690B231E67A3940099AFA6 /* SinglePhotoDetailViewController+setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1690B221E67A3940099AFA6 /* SinglePhotoDetailViewController+setup.swift */; };
+		A1690B251E67A4290099AFA6 /* SInglePhotoDetailViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1690B241E67A4290099AFA6 /* SInglePhotoDetailViewController+handlers.swift */; };
+		A1690B271E67A45E0099AFA6 /* SinglePhotoDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1690B261E67A45E0099AFA6 /* SinglePhotoDetailCoordinator.swift */; };
 		A17386F01E646AD0009903ED /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17386EF1E646AD0009903ED /* ProfileViewController.swift */; };
 		A17386F21E646AE8009903ED /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17386F11E646AE8009903ED /* ProfileCoordinator.swift */; };
 		A17386F51E65177C009903ED /* DataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17386F41E65177C009903ED /* DataRepository.swift */; };
@@ -30,7 +36,6 @@
 		A1B712BE1E53BFA100C21046 /* PhotoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B712BD1E53BFA100C21046 /* PhotoEntry.swift */; };
 		A1B712C01E53BFB000C21046 /* PhotoResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B712BF1E53BFB000C21046 /* PhotoResults.swift */; };
 		A1DE9A011E4E17330059CABB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE9A001E4E17330059CABB /* LoginViewController.swift */; };
-		A1E2A8811E66682E007A4554 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E2A8801E66682E007A4554 /* SettingsViewModel.swift */; };
 		A1E6B82E1E4D184900445895 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E6B82D1E4D184900445895 /* Photo.swift */; };
 		A1E9CAA01E4C23D0002F4493 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CA9F1E4C23D0002F4493 /* AppCoordinator.swift */; };
 		A1E9CAA61E4C2426002F4493 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAA51E4C2426002F4493 /* Coordinator.swift */; };
@@ -86,6 +91,12 @@
 		A1106CB41E670CCB0032B06B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A127899B1E5BE2ED007EE2F0 /* UIImage+Rotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Rotation.swift"; sourceTree = "<group>"; };
 		A12F47061E579D4B00EBD98C /* FirebaseDatabase+RX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FirebaseDatabase+RX.swift"; sourceTree = "<group>"; };
+		A1690B1B1E6789A80099AFA6 /* ProfileViewController+setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+setup.swift"; sourceTree = "<group>"; };
+		A1690B1D1E678C000099AFA6 /* ProfileViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+handlers.swift"; sourceTree = "<group>"; };
+		A1690B201E67A3560099AFA6 /* SinglePhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePhotoDetailViewController.swift; sourceTree = "<group>"; };
+		A1690B221E67A3940099AFA6 /* SinglePhotoDetailViewController+setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SinglePhotoDetailViewController+setup.swift"; sourceTree = "<group>"; };
+		A1690B241E67A4290099AFA6 /* SInglePhotoDetailViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SInglePhotoDetailViewController+handlers.swift"; sourceTree = "<group>"; };
+		A1690B261E67A45E0099AFA6 /* SinglePhotoDetailCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePhotoDetailCoordinator.swift; sourceTree = "<group>"; };
 		A17386EF1E646AD0009903ED /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A17386F11E646AE8009903ED /* ProfileCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		A17386F41E65177C009903ED /* DataRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataRepository.swift; sourceTree = "<group>"; };
@@ -104,7 +115,6 @@
 		A1B712BD1E53BFA100C21046 /* PhotoEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoEntry.swift; sourceTree = "<group>"; };
 		A1B712BF1E53BFB000C21046 /* PhotoResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoResults.swift; sourceTree = "<group>"; };
 		A1DE9A001E4E17330059CABB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		A1E2A8801E66682E007A4554 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		A1E6B82D1E4D184900445895 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		A1E9CA9F1E4C23D0002F4493 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		A1E9CAA51E4C2426002F4493 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -195,16 +205,28 @@
 			name = Managers;
 			sourceTree = "<group>";
 		};
-		A17386EE1E646AB7009903ED /* Settings */ = {
+		A1690B1F1E67A3290099AFA6 /* Single Photo Detail */ = {
+			isa = PBXGroup;
+			children = (
+				A1690B261E67A45E0099AFA6 /* SinglePhotoDetailCoordinator.swift */,
+				A1690B201E67A3560099AFA6 /* SinglePhotoDetailViewController.swift */,
+				A1690B241E67A4290099AFA6 /* SInglePhotoDetailViewController+handlers.swift */,
+				A1690B221E67A3940099AFA6 /* SinglePhotoDetailViewController+setup.swift */,
+			);
+			name = "Single Photo Detail";
+			sourceTree = "<group>";
+		};
+		A17386EE1E646AB7009903ED /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				A17386F11E646AE8009903ED /* ProfileCoordinator.swift */,
 				A17386FB1E651E25009903ED /* ProfileConfigurator.swift */,
 				A17386EF1E646AD0009903ED /* ProfileViewController.swift */,
+				A1690B1B1E6789A80099AFA6 /* ProfileViewController+setup.swift */,
+				A1690B1D1E678C000099AFA6 /* ProfileViewController+handlers.swift */,
 				A17386F91E651B7C009903ED /* ProfileInteractor.swift */,
-				A1E2A8801E66682E007A4554 /* SettingsViewModel.swift */,
 			);
-			name = Settings;
+			name = Profile;
 			sourceTree = "<group>";
 		};
 		A17386F31E651768009903ED /* Repository */ = {
@@ -235,7 +257,8 @@
 			isa = PBXGroup;
 			children = (
 				A17386F61E651797009903ED /* Common */,
-				A17386EE1E646AB7009903ED /* Settings */,
+				A1690B1F1E67A3290099AFA6 /* Single Photo Detail */,
+				A17386EE1E646AB7009903ED /* Profile */,
 				A1E9CAA11E4C23E7002F4493 /* Photo Wall */,
 				A1E9CAB51E4C24C4002F4493 /* Photo Detail Drag */,
 				A10477501E4D6D9E00F2C3C3 /* Login */,
@@ -631,6 +654,9 @@
 				D0A0151E1E5CB8D500EF1EBF /* FloatButtonType.swift in Sources */,
 				A1E9CAAE1E4C2487002F4493 /* KolodaView.swift in Sources */,
 				A1B712BC1E53BB9900C21046 /* PhotoContainer.swift in Sources */,
+				A1690B251E67A4290099AFA6 /* SInglePhotoDetailViewController+handlers.swift in Sources */,
+				A1690B211E67A3560099AFA6 /* SinglePhotoDetailViewController.swift in Sources */,
+				A1690B1C1E6789A80099AFA6 /* ProfileViewController+setup.swift in Sources */,
 				A1A351041E63798300100C56 /* RxSwiftManager.swift in Sources */,
 				A17386FA1E651B7C009903ED /* ProfileInteractor.swift in Sources */,
 				A1E9CAB71E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift in Sources */,
@@ -647,19 +673,21 @@
 				A1E9CAC31E4C2564002F4493 /* PhotoWallModel.swift in Sources */,
 				A1B712C01E53BFB000C21046 /* PhotoResults.swift in Sources */,
 				A1E9CAC11E4C2559002F4493 /* PhotoWallViewController.swift in Sources */,
+				A1690B1E1E678C000099AFA6 /* ProfileViewController+handlers.swift in Sources */,
 				A1B259061E50AF13009B187B /* LoginViewController+handlers.swift in Sources */,
 				D0BA66821E53846100C4F18F /* ApiClient.swift in Sources */,
 				D04B0D2C1E3D2BB5008E4777 /* AppDelegate.swift in Sources */,
 				D0BA66841E54C54400C4F18F /* ApiError.swift in Sources */,
 				A17386FC1E651E25009903ED /* ProfileConfigurator.swift in Sources */,
+				A1690B231E67A3940099AFA6 /* SinglePhotoDetailViewController+setup.swift in Sources */,
 				D0BA668A1E54CA8D00C4F18F /* EfimerumResponse.swift in Sources */,
 				A1E9CAAC1E4C247D002F4493 /* KolodaCardStorage.swift in Sources */,
 				A1E9CAAA1E4C2473002F4493 /* DraggableCardView.swift in Sources */,
+				A1690B271E67A45E0099AFA6 /* SinglePhotoDetailCoordinator.swift in Sources */,
 				A1E9CAB21E4C2499002F4493 /* OverlayView.swift in Sources */,
 				A127899C1E5BE2ED007EE2F0 /* UIImage+Rotation.swift in Sources */,
 				A12F47071E579D4B00EBD98C /* FirebaseDatabase+RX.swift in Sources */,
 				D01E3C151E64A50800736F20 /* BubbleView.swift in Sources */,
-				A1E2A8811E66682E007A4554 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

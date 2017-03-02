@@ -30,7 +30,6 @@ class ProfileViewController: UIViewController {
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 50
         imageView.layer.masksToBounds = true
-        
         return imageView
     }()
     
@@ -40,7 +39,6 @@ class ProfileViewController: UIViewController {
         let image = UIImage(named: "cancel")
         button.setImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        
         button.addTarget(self, action: #selector(handleDismissView), for: .touchUpInside)
         return button
         
@@ -83,7 +81,7 @@ class ProfileViewController: UIViewController {
         sc.translatesAutoresizingMaskIntoConstraints = false
         sc.tintColor = UIColor.white
         sc.selectedSegmentIndex = 0
-        //sc.addTarget(self, action: #selector(handleLoginRegisterChange), for: .valueChanged)
+        sc.addTarget(self, action: #selector(handleCollectionChange(sender:)), for: .valueChanged)
         return sc
     }()
     
@@ -103,7 +101,7 @@ class ProfileViewController: UIViewController {
     
     var output: ProfileViewControllerOutput!
     
-    var didSelectPhoto: (PhotoWallModelType, Int) -> Void = { _ in }
+    var didSelectPhoto: (Photo) -> Void = { _ in }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -138,7 +136,7 @@ class ProfileViewController: UIViewController {
         collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundView = UIImageView(image: UIImage(named: "wallpaper"))
         
         // Settings of Custom layout
         self.collectionViewSizeCalculator.rowMaximumHeight = 50
@@ -149,7 +147,6 @@ class ProfileViewController: UIViewController {
         self.collectionView.register(PhotoWallCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         view.addSubview(collectionView)
-        //setupCollectionView()
         
         // Settings of Custom layout
         self.collectionViewSizeCalculator.rowMaximumHeight = self.collectionView.bounds.height / 3
@@ -165,51 +162,6 @@ class ProfileViewController: UIViewController {
         
     }
     
-    func setupPhotoSegmentedControl() {
-        //need x, y, width, heigth contraint
-        photoSegmentedControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        photoSegmentedControl.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 10).isActive = true
-        photoSegmentedControl.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -20).isActive = true
-        photoSegmentedControl.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        
-    }
-    
-    func setupProfileImage() {
-        profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileImageView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 10).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-    }
-    
-    func setupCloseButton() {
-        closeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30).isActive = true
-        closeButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
-        closeButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        closeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-    }
-    
-    func setupSettingsButton() {
-        settingsButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30).isActive = true
-        settingsButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
-        settingsButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        settingsButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-    }
-    
-    func setupNameLabel() {
-        nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 10).isActive = true
-        nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        nameLabel.widthAnchor.constraint(equalToConstant: self.view.bounds.width - 40).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-    }
-    
-    func setupEmailLabel() {
-        emailLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
-        emailLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        emailLabel.widthAnchor.constraint(equalToConstant: self.view.bounds.width - 40).isActive = true
-        emailLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
-    }
-    
-    
     private func setupBindings() {
         // Reload our collection view when the model changes
         model.didUpdate = { [weak self] in
@@ -219,11 +171,6 @@ class ProfileViewController: UIViewController {
             self?.collectionViewSizeCalculator.clearCache()
         }
         
-    }
-    
-    func handleDismissView() {
-        
-        let _ = navigationController?.popViewController(animated: false)
     }
     
 }
@@ -251,14 +198,7 @@ extension ProfileViewController: UICollectionViewDataSource  {
         let photo = self.model.photo(at: indexPath.item)
         
         if let photoCell = cell as? PhotoWallCell {
-            
-            photoCell.backgroundColor = UIColor.clear
-            
-            let url = photo.thumbnailURL
-                photoCell.photoView.kf.indicatorType = .activity
-                photoCell.photoView.kf.setImage(with: url)
-            
-            
+            photoCell.setupWithPhoto(photo)
         }
         
         return cell
@@ -274,7 +214,7 @@ extension ProfileViewController: UICollectionViewDataSource  {
 extension ProfileViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        didSelectPhoto(self.model, indexPath.item)
+        didSelectPhoto(self.model.photo(at: indexPath.item))
     }
 }
 

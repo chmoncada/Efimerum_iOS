@@ -19,14 +19,23 @@ class CustomKolodaView: KolodaView {
 
     override func frameForCard(at index: Int) -> CGRect {
 
-            //let topOffset: CGFloat = defaultTopOffset
-            let xOffset: CGFloat = defaultHorizontalOffset
-            let width = (self.frame).width - 2 * defaultHorizontalOffset
-            let height = width * defaultHeightRatio
-            let yOffset: CGFloat = (self.frame.height - height) / 2
-            let frame = CGRect(x: xOffset, y: yOffset, width: width, height: height)
+//            //let topOffset: CGFloat = defaultTopOffset
+//            let xOffset: CGFloat = defaultHorizontalOffset
+//            let width = (self.frame).width - 2 * defaultHorizontalOffset
+//            let height = width * defaultHeightRatio
+//            let yOffset: CGFloat = (self.frame.height - height) / 2
+//            let frame = CGRect(x: xOffset, y: yOffset, width: width, height: height)
+//        
+//            return frame
         
-            return frame
+        //let topOffset: CGFloat = defaultTopOffset
+        let xOffset: CGFloat = defaultHorizontalOffset
+        let width = (self.frame).width - 2 * defaultHorizontalOffset
+        let height = self.frame.height - 2 * defaultHorizontalOffset
+        //let yOffset: CGFloat = (self.frame.height - height) / 2
+        let frame = CGRect(x: xOffset, y: xOffset, width: width, height: height)
+        
+        return frame
        
     }
 

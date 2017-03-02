@@ -26,8 +26,6 @@ class ProfileConfigurator {
         
         let interactor = ProfileInteractor()
         
-        //interactor.authManager.output = interactor
-        
         viewController.output = interactor
         
         interactor.output = viewController
