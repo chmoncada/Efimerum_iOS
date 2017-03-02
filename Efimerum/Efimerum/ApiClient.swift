@@ -14,7 +14,7 @@ import enum Result.Result
 
 class ApiClient {
     
-    public static let baseURL: String = "https://efimerum-48618.appspot.com/api/v1"
+    fileprivate static let baseURL: String = "https://efimerum-48618.appspot.com/api/v1"
     
     static let manager: SessionManager = {
         let serverTrustPolicies: [String: ServerTrustPolicy] = ["efimerum-48618.appspot.com": .disableEvaluation]
@@ -37,14 +37,14 @@ class ApiClient {
         return FIRInstanceID.instanceID().token()!
     }
     
-    public enum Endpoints {
+    fileprivate enum Endpoints {
         
-        case likes(token: String, photoKey: String, latitude: Double, longitude: Double)
-        case photos(token: String, latitude: Double, longitude: Double)
+        case likes(token: String, photoKey: String, latitude: Double?, longitude: Double?)
+        case photos(token: String, latitude: Double?, longitude: Double?)
         case photo
 //        case report(String)
         
-        public var method: Alamofire.HTTPMethod {
+        fileprivate var method: Alamofire.HTTPMethod {
             switch self {
             case .photo:
                 return .get
@@ -55,7 +55,7 @@ class ApiClient {
             }
         }
         
-        public var path: String {
+        fileprivate var path: String {
             switch self {
             case .photos:
                 return baseURL + "/photos"
@@ -68,21 +68,37 @@ class ApiClient {
             }
         }
         
-        public var parameters: [String : String] {
+        fileprivate var parameters: [String : String] {
             switch self {
             case let .likes(token: t, photoKey: p, latitude: lat, longitude: lon):
-                return [
-                    "idToken": t,
-                    "photoKey": p,
-                    "latitude": "\(lat)",
-                    "longitude": "\(lon)"
-                    ]
+                
+                if let lat = lat,
+                    let lon = lon {
+                    return [
+                        "idToken": t,
+                        "photoKey": p,
+                        "latitude": "\(lat)",
+                        "longitude": "\(lon)"
+                        ]
+                } else {
+                    return [
+                        "idToken": t,
+                        "photoKey": p
+                        ]
+                }
             case let .photos(token: t, latitude: lat, longitude: lon):
-                return [
-                    "idToken": t,
-                    "latitude": "\(lat)",
-                    "longitude": "\(lon)"
-                ]
+                if let lat = lat,
+                    let lon = lon {
+                    return [
+                        "idToken": t,
+                        "latitude": "\(lat)",
+                        "longitude": "\(lon)"
+                    ]
+                } else {
+                    return [
+                        "idToken": t
+                        ]
+                }
             case .photo:
                 return [String : String]()
 //            case .report(let keywords):
@@ -92,7 +108,7 @@ class ApiClient {
         }
     }
     
-    public static func request(endpoint: ApiClient.Endpoints, completionHandler: @escaping (Result<EfimerumResponse, ApiError>) -> Void) -> Request {
+    fileprivate static func request(endpoint: ApiClient.Endpoints, completionHandler: @escaping (Result<EfimerumResponse, ApiError>) -> Void) -> Request {
             
         let request = ApiClient.manager.request(endpoint.path,
                                                 method: endpoint.method,
@@ -122,7 +138,7 @@ class ApiClient {
     }
     
     
-    public static func upload(data: Data, endpoint: ApiClient.Endpoints, completionHandler: @escaping (Result<EfimerumResponse, ApiError>) -> Void) {
+    fileprivate static func upload(data: Data, endpoint: ApiClient.Endpoints, completionHandler: @escaping (Result<EfimerumResponse, ApiError>) -> Void) {
         
         ApiClient.manager.upload(multipartFormData: { (multipartFormData) in
             
@@ -160,6 +176,47 @@ class ApiClient {
         }
     }
 }
+
+
+//MARK: Public methods
+
+extension ApiClient {
+    
+    public static func postPhoto(photoData: Data, token t: String, latitude lat: Double?, longitude lon: Double?, completion: @escaping (Result<EfimerumResponse, ApiError>) -> Void) {
+        
+        self.upload(data: photoData, endpoint: .photos(token: t, latitude: lat, longitude: lon)) { (result) in
+            
+            completion(result)
+        }
+    }
+    
+    
+    public static func likePhoto(token t: String, photoKey k: String, latitude lat: Double?, longitude lon: Double?, completion: @escaping (Result<EfimerumResponse, ApiError>) -> Void) {
+        
+        let _ = self.request(endpoint: .likes(token: t, photoKey: k, latitude: lat, longitude: lon)) { (result) in
+            
+            completion(result)
+        }
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

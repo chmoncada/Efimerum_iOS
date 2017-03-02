@@ -196,7 +196,7 @@ extension PhotoWallViewController :UIImagePickerControllerDelegate, UINavigation
         
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         let fixedImage = image.fixOrientation()
-        let imageData = UIImageJPEGRepresentation(fixedImage, 0.5)
+        let imageData = UIImageJPEGRepresentation(fixedImage, 0.5)!
         //        let data = UIImagePNGRepresentation(image)
         
         picker.dismiss(animated: true) {
@@ -206,26 +206,31 @@ extension PhotoWallViewController :UIImagePickerControllerDelegate, UINavigation
         let currentUser = FIRAuth.auth()?.currentUser
         currentUser?.getTokenForcingRefresh(true) {idToken, error in
             if let error = error {
-                // Handle error
                 print(error)
                 return;
             }
             
-            let location = self.userLocationManager?.currentLocation
+            guard let token = idToken else {
+                return
+            }
             
-            if let latitude = location?.coordinate.latitude,
-                let longitude = location?.coordinate.longitude {
+            let location = self.userLocationManager?.currentLocation
+            var latitude :Double?
+            var longitude :Double?
+            
+            if let lat = location?.coordinate.latitude,
+                let lon = location?.coordinate.longitude {
                 
-                print("latitude: \(latitude) - longitude: \(longitude)")
+                print("latitude: \(lat) - longitude: \(lon)")
+                latitude = Double(lat)
+                longitude = Double(lon)
             }
             self.userLocationManager?.locationManager.stopUpdatingLocation()
             
-
-            ApiClient.upload(data: imageData!, endpoint: .photos(token: idToken!, latitude: 41.375395, longitude: 2.170624), completionHandler: { (result) in
-                
+            ApiClient.postPhoto(photoData: imageData, token: token, latitude: latitude, longitude: longitude, completion: { (result) in
                 print(result)
-                
             })
+            
         }
     }
     

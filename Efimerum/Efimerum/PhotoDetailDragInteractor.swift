@@ -21,9 +21,11 @@ class PhotoDetailDragInteractor: PhotoDetailDragInteractorInput {
         
         authManager.getTokenForUser() { token in
             if let idToken = token {
-                let _ = ApiClient.request(endpoint: .likes(token: idToken, photoKey: identifier, latitude: 41.375, longitude: 2.1706), completionHandler: { (result) in
+                
+                ApiClient.likePhoto(token: idToken, photoKey: identifier, latitude: 41.375, longitude: 2.1706, completion: { (result) in
                     print(result)
                 })
+                
             }
         }
     }
