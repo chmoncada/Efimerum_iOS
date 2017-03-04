@@ -26,6 +26,13 @@ class SinglePhotoDetailViewController: UIViewController {
         return cv
     }()
     
+    let screenView: UIView = {
+        let sv = UIView(frame: CGRect.zero)
+        sv.backgroundColor = .black
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        return sv
+    }()
+    
     var photo: Photo?
     
     init(photo: Photo) {
@@ -40,13 +47,24 @@ class SinglePhotoDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(screenView)
+        setupScreenView()
+        
         view.addSubview(closeButton)
         setupCloseButton()
         
         view.addSubview(contentView)
         setupContentView()
         
-        print(photo?.imageURL)
+        
+        // create an instance of UITapGestureRecognizer and tell it to run
+        // an action we'll call "handleTap:"
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        // allow for user interaction
+        view.isUserInteractionEnabled = true
+        // add tap as a gestureRecognizer to tapView
+        view.addGestureRecognizer(tap)
+        
     }
     
 }

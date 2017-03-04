@@ -17,6 +17,12 @@ protocol PhotoDetailDragInteractorInput {
 
 class PhotoDetailDragInteractor: PhotoDetailDragInteractorInput {
     
+    lazy var authManager: FirebaseAuthenticationManager = {
+        let manager = FirebaseAuthenticationManager.instance
+        return manager
+    }()
+
+    
     func likeToPhotoWithIdentifier(_ identifier: String) {
         
         authManager.getTokenForUser() { token in
@@ -30,10 +36,6 @@ class PhotoDetailDragInteractor: PhotoDetailDragInteractorInput {
         }
     }
 
-    lazy var authManager: FirebaseAuthenticationManager = {
-        let manager = FirebaseAuthenticationManager.instance
-        return manager
-    }()
     
     internal func deletePhotosOfIndexes(_ indexes: [String]) {
         RxSwiftManager.deletePhotosOfIndexes(indexes)

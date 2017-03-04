@@ -15,5 +15,7 @@ extension SinglePhotoDetailViewController {
         let _ = navigationController?.popViewController(animated: false)
     }
 
-    
+    func handleTap() {
+        closeButton.isHidden = !closeButton.isHidden
+    }
 }

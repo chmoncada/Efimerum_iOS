@@ -20,6 +20,7 @@ extension PhotoDetailDragViewController {
         closeButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
         closeButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         closeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        closeButton.isHidden = true
     }
     
     // TEMPORAL FUNC
@@ -29,6 +30,7 @@ extension PhotoDetailDragViewController {
         logoutButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
         logoutButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         logoutButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        logoutButton.isHidden = true
     }
     
     func setupKolodaView() {

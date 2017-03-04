@@ -33,4 +33,11 @@ extension PhotoDetailDragViewController {
         
     }
     
+    func handleTouch() {
+        
+        closeButton.isHidden = !closeButton.isHidden
+        logoutButton.isHidden = !logoutButton.isHidden
+    }
+    
+    
 }
