@@ -32,6 +32,10 @@
 		A1A351001E63487800100C56 /* PhotoDetailDragViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A350FF1E63487800100C56 /* PhotoDetailDragViewController+handlers.swift */; };
 		A1A351021E63500E00100C56 /* PhotoDetailDragViewController+setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A351011E63500E00100C56 /* PhotoDetailDragViewController+setup.swift */; };
 		A1A351041E63798300100C56 /* RxSwiftManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A351031E63798300100C56 /* RxSwiftManager.swift */; };
+		A1B022FE1E69D86300F41B5A /* LoginViewController+setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B022FD1E69D86300F41B5A /* LoginViewController+setup.swift */; };
+		A1B023001E69D92900F41B5A /* AuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B022FF1E69D92900F41B5A /* AuthInteractor.swift */; };
+		A1B023021E69DE2500F41B5A /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B023011E69DE2500F41B5A /* LoginInteractor.swift */; };
+		A1B023041E69DFC800F41B5A /* LoginConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B023031E69DFC800F41B5A /* LoginConfigurator.swift */; };
 		A1B259061E50AF13009B187B /* LoginViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B259051E50AF13009B187B /* LoginViewController+handlers.swift */; };
 		A1B712BC1E53BB9900C21046 /* PhotoContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B712BB1E53BB9900C21046 /* PhotoContainer.swift */; };
 		A1B712BE1E53BFA100C21046 /* PhotoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B712BD1E53BFA100C21046 /* PhotoEntry.swift */; };
@@ -112,6 +116,10 @@
 		A1A350FF1E63487800100C56 /* PhotoDetailDragViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoDetailDragViewController+handlers.swift"; sourceTree = "<group>"; };
 		A1A351011E63500E00100C56 /* PhotoDetailDragViewController+setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoDetailDragViewController+setup.swift"; sourceTree = "<group>"; };
 		A1A351031E63798300100C56 /* RxSwiftManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxSwiftManager.swift; sourceTree = "<group>"; };
+		A1B022FD1E69D86300F41B5A /* LoginViewController+setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginViewController+setup.swift"; sourceTree = "<group>"; };
+		A1B022FF1E69D92900F41B5A /* AuthInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthInteractor.swift; sourceTree = "<group>"; };
+		A1B023011E69DE2500F41B5A /* LoginInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		A1B023031E69DFC800F41B5A /* LoginConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginConfigurator.swift; sourceTree = "<group>"; };
 		A1B259051E50AF13009B187B /* LoginViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginViewController+handlers.swift"; sourceTree = "<group>"; };
 		A1B712BB1E53BB9900C21046 /* PhotoContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoContainer.swift; sourceTree = "<group>"; };
 		A1B712BD1E53BFA100C21046 /* PhotoEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoEntry.swift; sourceTree = "<group>"; };
@@ -190,8 +198,11 @@
 			isa = PBXGroup;
 			children = (
 				A10477511E4D6DC300F2C3C3 /* LoginCoordinator.swift */,
+				A1B023031E69DFC800F41B5A /* LoginConfigurator.swift */,
 				A1DE9A001E4E17330059CABB /* LoginViewController.swift */,
+				A1B022FD1E69D86300F41B5A /* LoginViewController+setup.swift */,
 				A1B259051E50AF13009B187B /* LoginViewController+handlers.swift */,
+				A1B023011E69DE2500F41B5A /* LoginInteractor.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -242,6 +253,7 @@
 		A17386F61E651797009903ED /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A1B022FF1E69D92900F41B5A /* AuthInteractor.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -335,10 +347,10 @@
 			isa = PBXGroup;
 			children = (
 				A1E9CAB61E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift */,
+				A1A350FD1E61DB0800100C56 /* PhotoDetailDragConfigurator.swift */,
 				A1E9CAB81E4C24FB002F4493 /* PhotoDetailDragViewController.swift */,
 				A1A351011E63500E00100C56 /* PhotoDetailDragViewController+setup.swift */,
 				A1A350FF1E63487800100C56 /* PhotoDetailDragViewController+handlers.swift */,
-				A1A350FD1E61DB0800100C56 /* PhotoDetailDragConfigurator.swift */,
 				A1A350FB1E61D42D00100C56 /* PhotoDetailDragInteractor.swift */,
 				A1E9CABC1E4C250E002F4493 /* CustomKolodaView.swift */,
 			);
@@ -663,11 +675,14 @@
 				A1A351041E63798300100C56 /* RxSwiftManager.swift in Sources */,
 				A17386FA1E651B7C009903ED /* ProfileInteractor.swift in Sources */,
 				A1E9CAB71E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift in Sources */,
+				A1B023001E69D92900F41B5A /* AuthInteractor.swift in Sources */,
+				A1B023041E69DFC800F41B5A /* LoginConfigurator.swift in Sources */,
 				A1E9CAA01E4C23D0002F4493 /* AppCoordinator.swift in Sources */,
 				A1A351021E63500E00100C56 /* PhotoDetailDragViewController+setup.swift in Sources */,
 				D0BA668F1E57969300C4F18F /* PhotoResponse.swift in Sources */,
 				A1E9CABD1E4C250E002F4493 /* CustomKolodaView.swift in Sources */,
 				D0BA667D1E52350B00C4F18F /* FilterType.swift in Sources */,
+				A1B023021E69DE2500F41B5A /* LoginInteractor.swift in Sources */,
 				A17386F21E646AE8009903ED /* ProfileCoordinator.swift in Sources */,
 				A1E9CAA61E4C2426002F4493 /* Coordinator.swift in Sources */,
 				A1A351001E63487800100C56 /* PhotoDetailDragViewController+handlers.swift in Sources */,
@@ -683,6 +698,7 @@
 				D04B0D2C1E3D2BB5008E4777 /* AppDelegate.swift in Sources */,
 				D0BA66841E54C54400C4F18F /* ApiError.swift in Sources */,
 				A17386FC1E651E25009903ED /* ProfileConfigurator.swift in Sources */,
+				A1B022FE1E69D86300F41B5A /* LoginViewController+setup.swift in Sources */,
 				A1690B231E67A3940099AFA6 /* SinglePhotoDetailViewController+setup.swift in Sources */,
 				D0BA668A1E54CA8D00C4F18F /* EfimerumResponse.swift in Sources */,
 				A1E9CAAC1E4C247D002F4493 /* KolodaCardStorage.swift in Sources */,

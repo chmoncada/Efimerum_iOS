@@ -243,37 +243,3 @@ extension PhotoWallViewController :UIImagePickerControllerDelegate, UINavigation
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

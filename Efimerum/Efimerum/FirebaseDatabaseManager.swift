@@ -34,4 +34,18 @@ class FirebaseDatabaseManager {
         })
     }
     
+    func registerUserIntoDatabaseWithUID(_ uid: String, values: [String: Any],completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
+        let ref = FIRDatabase.database().reference()
+        
+        ref.child("users").child(uid).updateChildValues(values, withCompletionBlock: { (err, ref) in
+            if err != nil {
+                completion(false, err)
+                return
+            }
+            
+            completion(true, nil)
+            
+        })
+    }
+    
 }

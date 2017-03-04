@@ -7,130 +7,9 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
-import FirebaseStorage
 import PKHUD
 
 extension LoginViewController {
-    
-    func handleSelectProfileImageView() {
-        let picker = UIImagePickerController()
-        
-        picker.delegate = self
-        picker.allowsEditing = true
-        
-        present(picker, animated: true, completion: nil)
-    }
-    
-    func handleLoginCancel() {
-        self.didFinish(false)
-    }
-    
-    func handleLoginRegister() {
-        if loginRegisterSegmentedControl.selectedSegmentIndex == 0 {
-            handleLogin()
-        } else {
-            handleRegister()
-        }
-    }
-    
-    func handleLogin() {
-        guard let email = emailTextField.text, let password = passwordTextField.text else {
-            print("Form is not Valid")
-            return
-        }
-        
-        HUD.show(.label("Autenticando Usuario..."))
-        
-        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
-            if error != nil {
-                HUD.flash(.label(error?.localizedDescription), delay: 1)
-                return
-            }
-            
-            HUD.flash(.success, delay: 1.0)
-            self.didFinish(true)
-        })
-    }
-    
-    func handleRegister() {
-        
-        guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text else {
-            print("Form is not Valid")
-            return
-        }
-        
-        HUD.show(.progress)
-        
-        if let _ = FIRAuth.auth()?.currentUser?.isAnonymous {
-            let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: password)
-            
-            FIRAuth.auth()?.currentUser?.link(with: credential, completion: { (user, error) in
-                
-                self.registerUserIntoFirebase(user, withName: name, email: email, error: error)
-                
-            })
-        } else {
-            
-            FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
-                
-                self.registerUserIntoFirebase(user, withName: name, email: email, error: error)
-                
-            })
-        }
-        
-        
-        
-    }
-    
-    private func registerUserIntoFirebase(_ user: FIRUser?, withName name: String, email: String, error: Error?) {
-        
-        if error != nil {
-            HUD.flash(.label(error?.localizedDescription), delay: 1)
-            return
-        }
-        
-        guard let uid = user?.uid else {
-            return
-        }
-        
-        // Success
-        let imageName = NSUUID().uuidString
-        let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName).jpg")
-        
-        if let profileImage = self.profileImageView.image, let uploadData = UIImageJPEGRepresentation(profileImage, 0.1) {
-            storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
-                
-                if error != nil {
-                    HUD.flash(.label(error?.localizedDescription), delay: 1)
-                    return
-                }
-                
-                if let profileImageURL = metadata?.downloadURL()?.absoluteString {
-                    let values = ["name": name, "email": email, "profileImageURL": profileImageURL]
-                    
-                    self.registerUserIntoDatabaseWithUID(uid, values: values)
-                }
-                
-            })
-        }
-
-    }
-    
-    private func registerUserIntoDatabaseWithUID(_ uid: String, values: [String: Any]) {
-        let ref = FIRDatabase.database().reference()
-        
-        ref.child("users").child(uid).updateChildValues(values, withCompletionBlock: { (err, ref) in
-            if err != nil {
-                HUD.flash(.label(err?.localizedDescription), delay: 1)
-                return
-            }
-            HUD.flash(.success, delay: 1.0)
-            self.didFinish(true)
-            
-        })
-    }
     
     func handleLoginRegisterChange() {
         let title = loginRegisterSegmentedControl.titleForSegment(at: loginRegisterSegmentedControl.selectedSegmentIndex)
@@ -144,8 +23,10 @@ extension LoginViewController {
         if loginRegisterSegmentedControl.selectedSegmentIndex == 0 {
             tempImage = profileImageView.image!
             profileImageView.image = UIImage(named: "flame")
+            forgetCredentialsButton.isHidden = false
         } else {
             profileImageView.image = tempImage
+            forgetCredentialsButton.isHidden = true
         }
         
         // change height of inputContainerView
@@ -168,8 +49,72 @@ extension LoginViewController {
         passwordTextFieldHeightAnchor?.isActive = true
         
     }
-
+    
+    func handleSelectProfileImageView() {
+        let picker = UIImagePickerController()
+        
+        picker.delegate = self
+        picker.allowsEditing = true
+        
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func handleLoginCancel() {
+        self.didFinish(false)
+    }
+    
+    func handleForgotCredentials() {
+        output.sendPasswordReset(self)
+    }
+    
+    func handleLoginRegister() {
+        if loginRegisterSegmentedControl.selectedSegmentIndex == 0 {
+            handleLogin()
+        } else {
+            handleRegister()
+        }
+    }
+    
+    func handleLogin() {
+        
+        guard let email = emailTextField.text, let password = passwordTextField.text else {
+            HUD.show(.label("The fields cannot be empty"))
+            HUD.hide(afterDelay: 1)
+            return
+        }
+        
+        if email == "" || password == "" {
+            HUD.show(.label("The fields cannot be empty"))
+            HUD.hide(afterDelay: 1)
+            return
+        }
+        
+        HUD.show(.label("Login user..."))
+        
+        output.login(withEmail: email, password: password, inViewController: self) { sucess in
+            
+           self.didFinish(sucess)
+            
+        }
+        
+    }
+    
+    func handleRegister() {
+        
+        guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text else {
+            print("Form is not Valid")
+            return
+        }
+        
+        HUD.show(.progress)
+        
+        output.register(withEmail: email, password: password, name: name, image: self.profileImageView.image) { success in
+             self.didFinish(success)
+        }
+    }
 }
+
+
 
 // MARK: UIImagePickerControllerDelegate
 extension LoginViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

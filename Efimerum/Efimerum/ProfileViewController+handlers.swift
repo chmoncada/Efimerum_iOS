@@ -25,6 +25,10 @@ extension ProfileViewController {
             
         }
         
+        self.collectionView.collectionViewLayout.invalidateLayout()
+        self.collectionView.reloadData()
+        self.collectionViewSizeCalculator.clearCache()
+        
         setupBindings()
     }
     
