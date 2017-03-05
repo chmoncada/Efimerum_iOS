@@ -164,6 +164,7 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
     
     func didTypeSearchChanged(text: String) {
         print("text being tap to search: \(text)")
+        
     }
     
     func didTapOnSearchDone(text: String) {

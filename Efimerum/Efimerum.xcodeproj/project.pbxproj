@@ -73,6 +73,9 @@
 		D0BA66841E54C54400C4F18F /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA66831E54C54400C4F18F /* ApiError.swift */; };
 		D0BA668A1E54CA8D00C4F18F /* EfimerumResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA66891E54CA8D00C4F18F /* EfimerumResponse.swift */; };
 		D0BA668F1E57969300C4F18F /* PhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA668E1E57969300C4F18F /* PhotoResponse.swift */; };
+		D0F18A021E6C9C14007A4177 /* TagsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F18A011E6C9C14007A4177 /* TagsTableView.swift */; };
+		D0F18A051E6C9F17007A4177 /* TagsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F18A031E6C9F17007A4177 /* TagsCell.swift */; };
+		D0F18A061E6C9F17007A4177 /* TagsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F18A041E6C9F17007A4177 /* TagsCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +164,9 @@
 		D0BA66831E54C54400C4F18F /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		D0BA66891E54CA8D00C4F18F /* EfimerumResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EfimerumResponse.swift; sourceTree = "<group>"; };
 		D0BA668E1E57969300C4F18F /* PhotoResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoResponse.swift; sourceTree = "<group>"; };
+		D0F18A011E6C9C14007A4177 /* TagsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsTableView.swift; sourceTree = "<group>"; };
+		D0F18A031E6C9F17007A4177 /* TagsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCell.swift; sourceTree = "<group>"; };
+		D0F18A041E6C9F17007A4177 /* TagsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,6 +431,9 @@
 				D0BA667A1E52350B00C4F18F /* FilterType.swift */,
 				D0A0151D1E5CB8D500EF1EBF /* FloatButtonType.swift */,
 				D01E3C141E64A50800736F20 /* BubbleView.swift */,
+				D0F18A011E6C9C14007A4177 /* TagsTableView.swift */,
+				D0F18A031E6C9F17007A4177 /* TagsCell.swift */,
+				D0F18A041E6C9F17007A4177 /* TagsCell.xib */,
 			);
 			name = MBFloatButtonScroll;
 			sourceTree = "<group>";
@@ -539,6 +548,7 @@
 				A1106CB51E670CCB0032B06B /* GoogleService-Info.plist in Resources */,
 				D04B0D311E3D2BB5008E4777 /* LaunchScreen.storyboard in Resources */,
 				D0BA667F1E523E2D00C4F18F /* plus.png in Resources */,
+				D0F18A061E6C9F17007A4177 /* TagsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,12 +701,14 @@
 				A1E6B82E1E4D184900445895 /* Photo.swift in Sources */,
 				A1E9CAC31E4C2564002F4493 /* PhotoWallModel.swift in Sources */,
 				A1B712C01E53BFB000C21046 /* PhotoResults.swift in Sources */,
+				D0F18A051E6C9F17007A4177 /* TagsCell.swift in Sources */,
 				A1E9CAC11E4C2559002F4493 /* PhotoWallViewController.swift in Sources */,
 				A1690B1E1E678C000099AFA6 /* ProfileViewController+handlers.swift in Sources */,
 				A1B259061E50AF13009B187B /* LoginViewController+handlers.swift in Sources */,
 				D0BA66821E53846100C4F18F /* ApiClient.swift in Sources */,
 				D04B0D2C1E3D2BB5008E4777 /* AppDelegate.swift in Sources */,
 				D0BA66841E54C54400C4F18F /* ApiError.swift in Sources */,
+				D0F18A021E6C9C14007A4177 /* TagsTableView.swift in Sources */,
 				A17386FC1E651E25009903ED /* ProfileConfigurator.swift in Sources */,
 				A1B022FE1E69D86300F41B5A /* LoginViewController+setup.swift in Sources */,
 				A1690B231E67A3940099AFA6 /* SinglePhotoDetailViewController+setup.swift in Sources */,

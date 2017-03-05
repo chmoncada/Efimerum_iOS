@@ -83,7 +83,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
             self.frame = CGRect(x: scrollView.bounds.size.width/2 - size3/2,
                                 y: scrollView.bounds.origin.y + 30 + size1/4,
                                 width: size3,
-                                height: size1 / 2)
+                                height: 30)
                 self.layer.cornerRadius = self.bounds.size.height/2
                 self.backgroundColor = .white
             setupSearchTextField()
@@ -170,6 +170,13 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         searchTextField.placeholder = "Search tags..."
         searchTextField.addTarget(self, action: #selector(MBFloatScrollButton.textFieldDidChange(_:)), for: .editingChanged)
         self.addSubview(searchTextField)
+        
+        let tagsView = TagsTableView(model: ["uno", "dos", "tres", "cuatro"], on: searchTextField)
+        tagsView.frame = CGRect(x: self.parentView.bounds.width/2 - searchTextField.bounds.size.width/2,
+                                y: self.parentView.frame.origin.y + 80,
+                                width: searchTextField.bounds.size.width,
+                                height: 300)
+        self.parentView.addSubview(tagsView)
     
     }
     
