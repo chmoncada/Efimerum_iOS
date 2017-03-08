@@ -17,12 +17,15 @@ public protocol PhotoContainerType {
     /// Loads the corresponding store for the container
     func load() -> Observable<Void>
 
-    /// Saves an array of volumes in the container
+    /// Saves an array of photos in the container
     func save(photos: [Photo]) -> Observable<Void>
+    
+    /// Update an array of photos in the container
+    func edit(photos: [Photo]) -> Observable<Void>
     
     func delete(photosWithIdentifiers: [String]) -> Observable<Void>
 
-    /// Deletes the volume with a given identifier
+    /// Deletes the photo with a given identifier
     func delete(photoWithIdentifier: String) -> Observable<Void>
     
     /// Deletes all photos in the container
@@ -116,6 +119,17 @@ extension PhotoContainer: PhotoContainerType {
                 for photo in photos {
                     let photoEntry = PhotoEntry(photo: photo)
                     container.add(photoEntry)
+                }
+            }
+        }
+    }
+    
+    public func edit(photos: [Photo]) -> Observable<Void> {
+        return performBackgroundTask { container in
+            try container.write {
+                for photo in photos {
+                    let photoEntry = PhotoEntry(photo: photo)
+                    container.add(photoEntry, update: true)
                 }
             }
         }

@@ -13,7 +13,6 @@ extension PhotoWallViewController {
     func handleTakePhoto() {
         
         if self.authInteractor.isNotAuthenticated() {
-            print("me apretaron a ver si funciona esto en la vista photowall")
             needAuthLogin()
         } else {
             takePicture()
@@ -26,10 +25,10 @@ extension PhotoWallViewController {
         switch filter {
         case "Most Liked":
             print("ordenar por likes")
-            //model = PhotoWallFirebaseModel(name: "LikesPhotos")
             model = PhotoWallFirebaseModel(sortedKey: "numOfLikes")
         case "About to die":
             print("ordenar por vida")
+            model = PhotoWallFirebaseModel()
         default:
             print(filter)
         }
