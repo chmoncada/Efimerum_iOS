@@ -8,14 +8,11 @@
 
 import UIKit
 import GreedoLayout
-import Photos
-import FirebaseAuth
-import FirebaseDatabase
 
 private let reuseIdentifier =  "PhotoWallCell"
 
-protocol PhotoWallViewControllerAuthOutput: class {
-    func isNotAuthenticated() -> Bool
+protocol PhotoWallViewControllerOutput {
+    func postPhotoWithImageData(_ imageData: Data, withLocationManager userlocationManager: UserLocationManager?)
 }
 
 class PhotoWallViewController: UIViewController {
@@ -27,7 +24,7 @@ class PhotoWallViewController: UIViewController {
     var goToProfile: () -> Void = {}
     var needAuthLogin: () -> Void = {}
     
-    weak var authOutput: PhotoWallViewControllerAuthOutput!
+    var output: PhotoWallViewControllerOutput!
     
     // Set the customLayout as lazy property
     lazy var collectionViewSizeCalculator: GreedoCollectionViewLayout = {
@@ -94,7 +91,7 @@ class PhotoWallViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //PhotoWallConfigurator.instance.configure(viewController: self)
+        PhotoWallConfigurator.instance.configure(viewController: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -215,39 +212,9 @@ extension PhotoWallViewController :UIImagePickerControllerDelegate, UINavigation
             
         }
         
-        let currentUser = FIRAuth.auth()?.currentUser
-        currentUser?.getTokenForcingRefresh(true) {idToken, error in
-            if let error = error {
-                print(error)
-                return;
-            }
-            
-            guard let token = idToken else {
-                return
-            }
-            
-            let location = self.userLocationManager?.currentLocation
-            var latitude :Double?
-            var longitude :Double?
-            
-            if let lat = location?.coordinate.latitude,
-                let lon = location?.coordinate.longitude {
-                
-                print("latitude: \(lat) - longitude: \(lon)")
-                latitude = Double(lat)
-                longitude = Double(lon)
-            }
-            self.userLocationManager?.locationManager.stopUpdatingLocation()
-            
-            ApiClient.postPhoto(photoData: imageData, token: token, latitude: latitude, longitude: longitude, completion: { (result) in
-                print(result)
-            })
-            
-        }
+        output.postPhotoWithImageData(imageData, withLocationManager: userLocationManager)
     }
-    
-    
-    
+
 }
 
 

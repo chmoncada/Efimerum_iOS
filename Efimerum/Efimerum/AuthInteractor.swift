@@ -19,10 +19,6 @@ class AuthInteractor: AuthInteractorInput {
         return manager
     }()
     
-    func isNotAuthenticated() -> Bool {
-        return authManager.isNotAuthenticated()
-    }
-    
     private init() {}
     
     public static func Instance() -> AuthInteractor {
@@ -30,5 +26,9 @@ class AuthInteractor: AuthInteractorInput {
     }
     
     static let instance: AuthInteractor = AuthInteractor()
+    
+    func isNotAuthenticated() -> Bool {
+        return authManager.isNotAuthenticated()
+    }
     
 }

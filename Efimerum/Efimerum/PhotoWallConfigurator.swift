@@ -8,7 +8,8 @@
 
 import UIKit
 
-extension AuthInteractor : PhotoWallViewControllerAuthOutput {}
+//extension AuthInteractor : PhotoWallViewControllerAuthOutput {}
+extension PhotoWallInteractor: PhotoWallViewControllerOutput {}
 
 class PhotoWallConfigurator {
     private init() {}
@@ -21,11 +22,11 @@ class PhotoWallConfigurator {
     
     func configure(viewController: PhotoWallViewController) {
         
-        //let authInteractor = AuthInteractor()
+        let interactor = PhotoWallInteractor()
         
         //interactor.authManager.output = interactor
         
-        //viewController.authOutput = authInteractor
+        viewController.output = interactor
         
     }
 }
