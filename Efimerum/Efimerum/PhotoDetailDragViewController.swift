@@ -24,6 +24,11 @@ class PhotoDetailDragViewController: UIViewController {
 
     weak var output: PhotoDetailDragViewControllerOutput!
     
+    lazy var authInteractor: AuthInteractor = {
+        let interactor = AuthInteractor.instance
+        return interactor
+    }()
+    
     // MARK: Properties
     
     var model: PhotoWallModelType?
@@ -114,7 +119,7 @@ class PhotoDetailDragViewController: UIViewController {
 extension PhotoDetailDragViewController: KolodaViewDelegate {
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
-        print("se me acabaron las cartas")
+        handleDismissView()
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {

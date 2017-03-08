@@ -44,6 +44,22 @@ final class PhotoWallCoordinator: Coordinator {
             coordinator.start()
             
         }
+        
+        viewController.needAuthLogin = { [weak self] in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            let coordinator = LoginCoordinator(navigationController: navigationController)
+            strongSelf.add(child: coordinator)
+            
+            coordinator.action = {
+                print("termine de logearme ahora toma la foto")
+                strongSelf.viewController.takePicture()
+            }
+            
+            coordinator.start()
+        }
     }
     
     override func start() {

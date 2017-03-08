@@ -91,9 +91,11 @@ extension LoginViewController {
         
         HUD.show(.label("Login user..."))
         
-        output.login(withEmail: email, password: password, inViewController: self) { sucess in
+        output.login(withEmail: email, password: password, inViewController: self) { success in
             
-           self.didFinish(sucess)
+            if success {
+               self.didFinish(success)
+            }
             
         }
         
@@ -109,7 +111,9 @@ extension LoginViewController {
         HUD.show(.progress)
         
         output.register(withEmail: email, password: password, name: name, image: self.profileImageView.image) { success in
-             self.didFinish(success)
+            if success {
+                self.didFinish(success)
+            }
         }
     }
 }

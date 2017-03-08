@@ -59,6 +59,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         let size1 = scrollView.bounds.size.width / 10
         let size2 = scrollView.bounds.size.width / 5
         let size3 = scrollView.bounds.size.width - 40 - size1 * 2  - 20
+        let size4 = size1 * 2 / 3
         
         switch buttonType {
         case .camera:
@@ -81,9 +82,9 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
             isFloatActionMenu = true
         case .search:
             self.frame = CGRect(x: scrollView.bounds.size.width/2 - size3/2,
-                                y: scrollView.bounds.origin.y + 30 + size1/4,
+                                y: scrollView.bounds.origin.y + 30 + (size1 - size4) / 2,
                                 width: size3,
-                                height: size1 / 2)
+                                height: size4)
                 self.layer.cornerRadius = self.bounds.size.height/2
                 self.backgroundColor = .white
             setupSearchTextField()
