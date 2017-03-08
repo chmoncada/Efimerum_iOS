@@ -1,18 +1,18 @@
 //
-//  AuthInteractor.swift
+//  PhotoWallInteractor.swift
 //  Efimerum
 //
-//  Created by Charles Moncada on 03/03/17.
+//  Created by Charles Moncada on 07/03/17.
 //  Copyright © 2017 mibarbou. All rights reserved.
 //
 
 import Foundation
 
-protocol AuthInteractorInput {
+protocol PhotoWallInteractorInput {
     func isNotAuthenticated() -> Bool
 }
 
-class AuthInteractor: AuthInteractorInput {
+class PhotoWallInteractor: PhotoWallInteractorInput {
     
     lazy var authManager: FirebaseAuthenticationManager = {
         let manager = FirebaseAuthenticationManager.instance
@@ -22,13 +22,4 @@ class AuthInteractor: AuthInteractorInput {
     func isNotAuthenticated() -> Bool {
         return authManager.isNotAuthenticated()
     }
-    
-    private init() {}
-    
-    public static func Instance() -> AuthInteractor {
-        return instance
-    }
-    
-    static let instance: AuthInteractor = AuthInteractor()
-    
 }

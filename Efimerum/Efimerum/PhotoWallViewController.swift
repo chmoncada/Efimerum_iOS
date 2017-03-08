@@ -14,6 +14,9 @@ import FirebaseDatabase
 
 private let reuseIdentifier =  "PhotoWallCell"
 
+protocol PhotoWallViewControllerAuthOutput: class {
+    func isNotAuthenticated() -> Bool
+}
 
 class PhotoWallViewController: UIViewController {
     
@@ -22,6 +25,9 @@ class PhotoWallViewController: UIViewController {
     // Called when the user selects a photo in the grid
     var didSelectPhoto: (PhotoWallModelType, Int) -> Void = { _ in }
     var goToProfile: () -> Void = {}
+    var needAuthLogin: () -> Void = {}
+    
+    weak var authOutput: PhotoWallViewControllerAuthOutput!
     
     // Set the customLayout as lazy property
     lazy var collectionViewSizeCalculator: GreedoCollectionViewLayout = {
@@ -29,6 +35,11 @@ class PhotoWallViewController: UIViewController {
         lazyLayout?.dataSource = self
         
         return lazyLayout!
+    }()
+    
+    lazy var authInteractor: AuthInteractor = {
+        let interactor = AuthInteractor.instance
+        return interactor
     }()
     
     let layout: UICollectionViewFlowLayout = {
@@ -83,6 +94,7 @@ class PhotoWallViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //PhotoWallConfigurator.instance.configure(viewController: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -151,7 +163,7 @@ extension PhotoWallViewController: GreedoCollectionViewLayoutDataSource {
 extension PhotoWallViewController :MBFloatScrollButtonDelegate {
     
     func didTapOnCamera(button: MBFloatScrollButton) {
-        takePicture()
+        handleTakePhoto()
     }
     
     func didTapOnProfile(button: MBFloatScrollButton) {
