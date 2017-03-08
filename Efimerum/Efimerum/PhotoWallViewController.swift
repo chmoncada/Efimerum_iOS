@@ -157,29 +157,6 @@ extension PhotoWallViewController: GreedoCollectionViewLayoutDataSource {
 }
 
 
-extension PhotoWallViewController :MBFloatScrollButtonDelegate {
-    
-    func didTapOnCamera(button: MBFloatScrollButton) {
-        handleTakePhoto()
-    }
-    
-    func didTapOnProfile(button: MBFloatScrollButton) {
-        goToProfile()
-    }
-    
-    func didTap(filter: FilterType) {
-        print(filter.getText())
-    }
-    
-    func didTypeSearchChanged(text: String) {
-        print("text being tap to search: \(text)")
-    }
-    
-    func didTapOnSearchDone(text: String) {
-         print("text for the search by tag: \(text)")
-    }
-}
-
 extension PhotoWallViewController :UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func takePicture() {

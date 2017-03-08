@@ -65,6 +65,24 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
         loadAllPhotos()
     }
     
+    convenience init(sortedKey: String , container: PhotoContainerType = PhotoContainer.instance) {
+        
+        let data = container.sortedBy(sortedKey: sortedKey)
+        
+        self.init(labelQuery: sortedKey, container: container, results: data)
+        
+        container.load()
+            .subscribe()
+            .addDisposableTo(disposeBag)
+        
+        
+        self.results.didUpdate = { [weak self] in
+            self?.didUpdate()
+        }
+        
+        //loadAllPhotos()
+    }
+    
     convenience init(name: String) {
         
         let container = PhotoContainer(name: name)

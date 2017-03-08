@@ -63,6 +63,15 @@ internal final class PhotoResults: PhotoResultsType {
         }
     }
     
+    init(container: Realm, sortedKey: String) {
+        
+        results = container.objects(PhotoEntry.self).sorted(byKeyPath: sortedKey, ascending: false)
+        
+        token = container.addNotificationBlock { [weak self] _, _ in
+            self?.didUpdate()
+        }
+    }
+    
     deinit {
         token.stop()
     }

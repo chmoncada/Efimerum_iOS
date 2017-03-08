@@ -15,7 +15,6 @@ private let frameAnimationSpringSpeed: CGFloat = 16
 protocol PhotoDetailDragViewControllerOutput: class {
     func deletePhotosOfIndexes( _ indexes: [String])
     func logout()
-    func isNotAuthenticated() -> Bool
     func likeToPhotoWithIdentifier(_ identifier: String)
 
 }

@@ -21,4 +21,48 @@ extension PhotoWallViewController {
         
     }
     
+    func handleFilter(_ filter: String) {
+        
+        switch filter {
+        case "Most Liked":
+            print("ordenar por likes")
+            //model = PhotoWallFirebaseModel(name: "LikesPhotos")
+            model = PhotoWallFirebaseModel(sortedKey: "numOfLikes")
+        case "About to die":
+            print("ordenar por vida")
+        default:
+            print(filter)
+        }
+        
+        self.collectionView.collectionViewLayout.invalidateLayout()
+        self.collectionView.reloadData()
+        self.collectionViewSizeCalculator.clearCache()
+        
+        setupBindings()
+        
+    }
+    
+}
+
+extension PhotoWallViewController :MBFloatScrollButtonDelegate {
+    
+    func didTapOnCamera(button: MBFloatScrollButton) {
+        handleTakePhoto()
+    }
+    
+    func didTapOnProfile(button: MBFloatScrollButton) {
+        goToProfile()
+    }
+    
+    func didTap(filter: FilterType) {
+        handleFilter(filter.getText())
+    }
+    
+    func didTypeSearchChanged(text: String) {
+        print("text being tap to search: \(text)")
+    }
+    
+    func didTapOnSearchDone(text: String) {
+        print("text for the search by tag: \(text)")
+    }
 }
