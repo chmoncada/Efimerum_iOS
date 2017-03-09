@@ -59,6 +59,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         let size1 = scrollView.bounds.size.width / 10
         let size2 = scrollView.bounds.size.width / 5
         let size3 = scrollView.bounds.size.width - 40 - size1 * 2  - 20
+        let size4 = size1 * 2 / 3
         
         switch buttonType {
         case .camera:
@@ -81,9 +82,9 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
             isFloatActionMenu = true
         case .search:
             self.frame = CGRect(x: scrollView.bounds.size.width/2 - size3/2,
-                                y: scrollView.bounds.origin.y + 30 + size1/4,
+                                y: scrollView.bounds.origin.y + 30 + (size1 - size4) / 2,
                                 width: size3,
-                                height: 30)
+                                height: size4)
                 self.layer.cornerRadius = self.bounds.size.height/2
                 self.backgroundColor = .white
             setupSearchTextField()
@@ -171,12 +172,12 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         searchTextField.addTarget(self, action: #selector(MBFloatScrollButton.textFieldDidChange(_:)), for: .editingChanged)
         self.addSubview(searchTextField)
         
-        let tagsView = TagsTableView(model: ["uno", "dos", "tres", "cuatro"], on: searchTextField)
-        tagsView.frame = CGRect(x: self.parentView.bounds.width/2 - searchTextField.bounds.size.width/2,
-                                y: self.parentView.frame.origin.y + 80,
-                                width: searchTextField.bounds.size.width,
-                                height: 300)
-        self.parentView.addSubview(tagsView)
+//        let tagsView = TagsTableView(model: ["uno", "dos", "tres", "cuatro"], on: searchTextField)
+//        tagsView.frame = CGRect(x: self.parentView.bounds.width/2 - searchTextField.bounds.size.width/2,
+//                                y: self.parentView.frame.origin.y + 80,
+//                                width: searchTextField.bounds.size.width,
+//                                height: 300)
+//        self.parentView.addSubview(tagsView)
     
     }
     
@@ -392,7 +393,13 @@ extension MBFloatScrollButton : FilterItemViewDelegate {
 extension MBFloatScrollButton :BubbleViewDelegate {
     
     func didTapDismissView(view: BubbleView) {
+        if view == self.orderBubbleView {
+            delegate?.didTap(filter: .random)
+        } else if view == self.searchBubbleView {
+            delegate?.didTapOnSearchDone(text: "")
+        }
         view.removeFromSuperview()
+        
     }
 }
 

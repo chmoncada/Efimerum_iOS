@@ -25,7 +25,7 @@ extension PhotoDetailDragViewController {
     
     func handleLikePhotoWithIdentifier(_ identifier: String) {
         
-        if output.isNotAuthenticated() {
+        if self.authInteractor.isNotAuthenticated() {
             needAuthLogin(identifier)
         } else {
             output.likeToPhotoWithIdentifier(identifier)

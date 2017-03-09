@@ -17,12 +17,15 @@ public protocol PhotoContainerType {
     /// Loads the corresponding store for the container
     func load() -> Observable<Void>
 
-    /// Saves an array of volumes in the container
+    /// Saves an array of photos in the container
     func save(photos: [Photo]) -> Observable<Void>
+    
+    /// Update an array of photos in the container
+    func edit(photos: [Photo]) -> Observable<Void>
     
     func delete(photosWithIdentifiers: [String]) -> Observable<Void>
 
-    /// Deletes the volume with a given identifier
+    /// Deletes the photo with a given identifier
     func delete(photoWithIdentifier: String) -> Observable<Void>
     
     /// Deletes all photos in the container
@@ -36,6 +39,9 @@ public protocol PhotoContainerType {
     
     /// Returns all the volumes in the container using some randomKey to sort them
     func allRandom(randomKey: String) -> PhotoResultsType
+    
+    /// Returns all the volumes in the container using some sortedKey to sort them
+    func sortedBy(sortedKey: String) -> PhotoResultsType
     
 }
 
@@ -82,6 +88,10 @@ extension PhotoContainer: PhotoContainerType {
         return PhotoResults(container: container, randomKey: randomKey)
     }
     
+    public func sortedBy(sortedKey: String) -> PhotoResultsType {
+        return PhotoResults(container: container, sortedKey: sortedKey)
+    }
+    
     public func contains(photoWithIdentifier: Int) -> Bool {
         
         let predicate = NSPredicate(format: "index == %d", photoWithIdentifier)
@@ -109,6 +119,17 @@ extension PhotoContainer: PhotoContainerType {
                 for photo in photos {
                     let photoEntry = PhotoEntry(photo: photo)
                     container.add(photoEntry)
+                }
+            }
+        }
+    }
+    
+    public func edit(photos: [Photo]) -> Observable<Void> {
+        return performBackgroundTask { container in
+            try container.write {
+                for photo in photos {
+                    let photoEntry = PhotoEntry(photo: photo)
+                    container.add(photoEntry, update: true)
                 }
             }
         }

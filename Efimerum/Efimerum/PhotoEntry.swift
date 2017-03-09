@@ -45,7 +45,9 @@ class PhotoEntry: Object {
         return url.flatMap { URL(string: $0)}
     }
 
-    
+    override static func primaryKey() -> String? {
+        return "identifier"
+    }
     
 }
 

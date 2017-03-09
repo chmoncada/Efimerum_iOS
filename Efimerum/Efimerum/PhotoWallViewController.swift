@@ -8,12 +8,12 @@
 
 import UIKit
 import GreedoLayout
-import Photos
-import FirebaseAuth
-import FirebaseDatabase
 
 private let reuseIdentifier =  "PhotoWallCell"
 
+protocol PhotoWallViewControllerOutput {
+    func postPhotoWithImageData(_ imageData: Data, withLocationManager userlocationManager: UserLocationManager?)
+}
 
 class PhotoWallViewController: UIViewController {
     
@@ -22,6 +22,10 @@ class PhotoWallViewController: UIViewController {
     // Called when the user selects a photo in the grid
     var didSelectPhoto: (PhotoWallModelType, Int) -> Void = { _ in }
     var goToProfile: () -> Void = {}
+    var needAuthLogin: () -> Void = {}
+    var selectedTag: String = ""
+    
+    var output: PhotoWallViewControllerOutput!
     
     // Set the customLayout as lazy property
     lazy var collectionViewSizeCalculator: GreedoCollectionViewLayout = {
@@ -29,6 +33,11 @@ class PhotoWallViewController: UIViewController {
         lazyLayout?.dataSource = self
         
         return lazyLayout!
+    }()
+    
+    lazy var authInteractor: AuthInteractor = {
+        let interactor = AuthInteractor.instance
+        return interactor
     }()
     
     let layout: UICollectionViewFlowLayout = {
@@ -83,6 +92,7 @@ class PhotoWallViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        PhotoWallConfigurator.instance.configure(viewController: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -148,30 +158,6 @@ extension PhotoWallViewController: GreedoCollectionViewLayoutDataSource {
 }
 
 
-extension PhotoWallViewController :MBFloatScrollButtonDelegate {
-    
-    func didTapOnCamera(button: MBFloatScrollButton) {
-        takePicture()
-    }
-    
-    func didTapOnProfile(button: MBFloatScrollButton) {
-        goToProfile()
-    }
-    
-    func didTap(filter: FilterType) {
-        print(filter.getText())
-    }
-    
-    func didTypeSearchChanged(text: String) {
-        print("text being tap to search: \(text)")
-        
-    }
-    
-    func didTapOnSearchDone(text: String) {
-         print("text for the search by tag: \(text)")
-    }
-}
-
 extension PhotoWallViewController :UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func takePicture() {
@@ -204,39 +190,9 @@ extension PhotoWallViewController :UIImagePickerControllerDelegate, UINavigation
             
         }
         
-        let currentUser = FIRAuth.auth()?.currentUser
-        currentUser?.getTokenForcingRefresh(true) {idToken, error in
-            if let error = error {
-                print(error)
-                return;
-            }
-            
-            guard let token = idToken else {
-                return
-            }
-            
-            let location = self.userLocationManager?.currentLocation
-            var latitude :Double?
-            var longitude :Double?
-            
-            if let lat = location?.coordinate.latitude,
-                let lon = location?.coordinate.longitude {
-                
-                print("latitude: \(lat) - longitude: \(lon)")
-                latitude = Double(lat)
-                longitude = Double(lon)
-            }
-            self.userLocationManager?.locationManager.stopUpdatingLocation()
-            
-            ApiClient.postPhoto(photoData: imageData, token: token, latitude: latitude, longitude: longitude, completion: { (result) in
-                print(result)
-            })
-            
-        }
+        output.postPhotoWithImageData(imageData, withLocationManager: userLocationManager)
     }
-    
-    
-    
+
 }
 
 

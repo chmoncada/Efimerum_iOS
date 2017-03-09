@@ -15,7 +15,6 @@ private let frameAnimationSpringSpeed: CGFloat = 16
 protocol PhotoDetailDragViewControllerOutput: class {
     func deletePhotosOfIndexes( _ indexes: [String])
     func logout()
-    func isNotAuthenticated() -> Bool
     func likeToPhotoWithIdentifier(_ identifier: String)
 
 }
@@ -23,6 +22,11 @@ protocol PhotoDetailDragViewControllerOutput: class {
 class PhotoDetailDragViewController: UIViewController {
 
     weak var output: PhotoDetailDragViewControllerOutput!
+    
+    lazy var authInteractor: AuthInteractor = {
+        let interactor = AuthInteractor.instance
+        return interactor
+    }()
     
     // MARK: Properties
     
@@ -114,7 +118,7 @@ class PhotoDetailDragViewController: UIViewController {
 extension PhotoDetailDragViewController: KolodaViewDelegate {
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
-        print("se me acabaron las cartas")
+        handleDismissView()
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {

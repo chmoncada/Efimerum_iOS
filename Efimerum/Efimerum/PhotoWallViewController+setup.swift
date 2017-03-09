@@ -14,9 +14,7 @@ extension PhotoWallViewController {
         // Reload our collection view when the model changes
         model?.didUpdate = { [weak self] in
             
-            self?.collectionView.collectionViewLayout.invalidateLayout()
-            self?.collectionView.reloadData()
-            self?.collectionViewSizeCalculator.clearCache()
+            self?.reloadGrid()
         }
         
     }

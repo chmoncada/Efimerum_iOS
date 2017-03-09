@@ -9,6 +9,9 @@
 import Foundation
 import FirebaseDatabase
 
+import RxSwift
+import Realm
+
 class FirebaseDatabaseManager {
     
     private init() {}
@@ -47,5 +50,47 @@ class FirebaseDatabaseManager {
             
         })
     }
+    
+    func setupObservables(observable: Observable<FIRDataSnapshot>, modifyObservable: Observable<FIRDataSnapshot>, inContainer container: PhotoContainerType) {
+        
+        var photos: [Photo] = []
+        var photosToEdit: [Photo] = []
+        
+        let _ = observable.observeOn(MainScheduler.instance)
+            .subscribe(onNext: { (snap) in
+                if snap.exists() {
+                    for child in snap.children {
+                        let photoSnap = child as! FIRDataSnapshot
+                        if let dictionary = photoSnap.value as? [String: Any] {
+                            if let photo = PhotoResponse(json: dictionary) {
+                                let key = photoSnap.key
+                                let photoToSave = Photo(identifier: key, photoResponse: photo)
+                                photos.append(photoToSave)
+                                
+                            }
+                        }
+                    }
+                    let observable2: Observable<Void>
+                    observable2 = container.save(photos: photos)
+                    observable2.subscribe().addDisposableTo(DisposeBag())
+                }
+            })
+        
+        let _ = modifyObservable.observeOn(MainScheduler.instance)
+            .subscribe(onNext: { (snap) in
+                if snap.exists() {
+                    let dict = snap.value as? [String: Any]
+                    let photo = PhotoResponse(json: dict!)
+                    let key = snap.key
+                    let photoToEdit = Photo(identifier: key, photoResponse: photo!)
+                    photosToEdit.append(photoToEdit)
+                }
+                let observable3: Observable<Void>
+                observable3 = container.edit(photos: photosToEdit)
+                observable3.subscribe().addDisposableTo(DisposeBag())
+                
+            })
+    }
+
     
 }
