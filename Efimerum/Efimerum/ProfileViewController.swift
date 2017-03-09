@@ -153,11 +153,11 @@ class ProfileViewController: UIViewController {
         self.collectionViewSizeCalculator.fixedHeight = false
         self.automaticallyAdjustsScrollViewInsets = false
         
-        setupBindings()
-        
         ProfileConfigurator.instance.configure(viewController: self)
         
         output.getDataFromUser()
+        
+        setupBindings()
         
         
     }

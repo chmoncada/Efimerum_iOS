@@ -32,4 +32,15 @@ extension FIRDatabaseQuery {
         }
     }
     
+    func rx_observeEvent(of eventType: FIRDataEventType) -> Observable<FIRDataSnapshot> {
+        return Observable.create { observer in
+            self.observe(eventType, with: { (snapshot) in
+                observer.onNext(snapshot)
+                observer.onCompleted()
+            }, withCancel: observer.onError)
+            
+            return Disposables.create()
+        }
+    }
+    
 }

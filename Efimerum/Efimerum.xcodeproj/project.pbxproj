@@ -257,6 +257,7 @@
 		A19CEF4A1E59E3CB00C23B1E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A1E9CAC21E4C2564002F4493 /* PhotoWallModel.swift */,
 				A1B712BA1E53BB6A00C21046 /* PhotoContainer */,
 				A1E6B82D1E4D184900445895 /* Photo.swift */,
 			);
@@ -303,7 +304,6 @@
 				A1E9CAC01E4C2559002F4493 /* PhotoWallViewController.swift */,
 				A1690B281E67BB870099AFA6 /* PhotoWallViewController+setup.swift */,
 				A1239C1D1E6F74F100DFDFA7 /* PhotoWallViewController+handlers.swift */,
-				A1E9CAC21E4C2564002F4493 /* PhotoWallModel.swift */,
 				A1E9CAC51E4C258A002F4493 /* PhotoWallCell.swift */,
 				A1239C1F1E6F75D700DFDFA7 /* PhotoWallInteractor.swift */,
 			);
