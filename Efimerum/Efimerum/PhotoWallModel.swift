@@ -39,6 +39,11 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
     fileprivate let container: PhotoContainerType
     private let disposeBag = DisposeBag()
     
+    lazy var databaseManager: FirebaseDatabaseManager = {
+        let manager = FirebaseDatabaseManager.instance
+        return manager
+    }()
+    
     // MARK: Init method
     
     init(labelQuery: String, container: PhotoContainerType, results: PhotoResultsType) {
@@ -62,7 +67,8 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
             self?.didUpdate()
         }
         
-        loadAllPhotos()
+        loadPhotosWithTag(labelQuery)
+        
     }
     
     convenience init(sortedKey: String , container: PhotoContainerType = PhotoContainer.instance) {
@@ -80,7 +86,6 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
             self?.didUpdate()
         }
         
-        //loadAllPhotos()
     }
     
     convenience init(name: String) {
@@ -127,166 +132,52 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
 // MARK: Util Methods
 extension PhotoWallFirebaseModel {
     
-    func loadAllPhotos()  {
+    func loadPhotosWithTag(_ tag: String)  {
         
-        let container = self.container
+        let ref = FIRDatabase.database().reference()
         
-        var ref: FIRDatabaseReference!
-        var photos: [Photo] = []
-        var photosToEdit: [Photo] = []
+        var observable: Observable<FIRDataSnapshot>
+        var modifyObservable: Observable<FIRDataSnapshot>
         
-        ref = FIRDatabase.database().reference()
+        if tag == "" {
+            observable = ref.child("photos").rx_observeSingleEvent(of: .value)
+            modifyObservable = ref.child("photos").rx_observe(.childChanged)
+        } else {
+            observable = ref.child("photosByLabel").child("EN").child(labelQuery.lowercased()).rx_observeSingleEvent(of: .value)
+            modifyObservable = ref.child("photosByLabel").child("EN").child(labelQuery.lowercased()).rx_observe(.childChanged)
+        }
         
-        // First query random using some random order
-        let observable = ref.child("photos").rx_observeSingleEvent(of: .value)
-        let modifyObservable = ref.child("photos").rx_observe(.childChanged)
+        self.container.deleteAll().subscribe().addDisposableTo(DisposeBag())
         
-        container.deleteAll().subscribe().addDisposableTo(DisposeBag())
-        
-        let _ = observable.observeOn(MainScheduler.instance)
-            .subscribe(onNext: { (snap) in
-                if snap.exists() {
-                    for child in snap.children {
-                        let photoSnap = child as! FIRDataSnapshot
-                        if let dictionary = photoSnap.value as? [String: Any] {
-                            if let photo = PhotoResponse(json: dictionary) {
-                                let key = photoSnap.key
-                                let photoToSave = Photo(identifier: key, photoResponse: photo)
-                                photos.append(photoToSave)
-                                
-                            }
-                        }
-                    }
-                    let observable2: Observable<Void>
-                    observable2 = container.save(photos: photos)
-                    observable2.subscribe().addDisposableTo(DisposeBag())
-                }
-            })
-        
-        let _ = modifyObservable.observeOn(MainScheduler.instance)
-            .subscribe(onNext: { (snap) in
-                if snap.exists() {
-                    let dict = snap.value as? [String: Any]
-                    let photo = PhotoResponse(json: dict!)
-                    let key = snap.key
-                    let photoToEdit = Photo(identifier: key, photoResponse: photo!)
-                    photosToEdit.append(photoToEdit)       
-                }
-                let observable3: Observable<Void>
-                observable3 = container.edit(photos: photosToEdit)
-                observable3.subscribe().addDisposableTo(DisposeBag())
-                
-            })
-        
+        databaseManager.setupObservables(observable: observable, modifyObservable: modifyObservable, inContainer: self.container)
     }
     
     func loadUserPhotos()  {
         
-        let container = self.container
-        
-        var ref: FIRDatabaseReference!
-        var photos: [Photo] = []
-        var photosToEdit: [Photo] = []
-        
-        ref = FIRDatabase.database().reference()
+        let ref = FIRDatabase.database().reference()
         
         let uid = FIRAuth.auth()?.currentUser?.uid
         
         let observable = ref.child("photosPostedByUser").child(uid!).rx_observeSingleEvent(of: .value)
         let modifyObservable = ref.child("photosPostedByUser").child(uid!).rx_observe(.childChanged)
         
-        container.deleteAll().subscribe().addDisposableTo(DisposeBag())
+        self.container.deleteAll().subscribe().addDisposableTo(DisposeBag())
         
-        let _ = observable.observeOn(MainScheduler.instance)
-            .subscribe(onNext: { (snap) in
-                if snap.exists() {
-                    for child in snap.children {
-                        let photoSnap = child as! FIRDataSnapshot
-                        if let dictionary = photoSnap.value as? [String: Any] {
-                            if let photo = PhotoResponse(json: dictionary) {
-                                let key = photoSnap.key
-                                let photoToSave = Photo(identifier: key, photoResponse: photo)
-                                photos.append(photoToSave)
-                                
-                            }
-                        }
-                    }
-                    let observable2: Observable<Void>
-                    observable2 = container.save(photos: photos)
-                    observable2.subscribe().addDisposableTo(DisposeBag())
-                }
-            })
-        
-        let _ = modifyObservable.observeOn(MainScheduler.instance)
-            .subscribe(onNext: { (snap) in
-                if snap.exists() {
-                    let dict = snap.value as? [String: Any]
-                    let photo = PhotoResponse(json: dict!)
-                    let key = snap.key
-                    let photoToEdit = Photo(identifier: key, photoResponse: photo!)
-                    photosToEdit.append(photoToEdit)   
-                }
-                let observable3: Observable<Void>
-                observable3 = container.edit(photos: photosToEdit)
-                observable3.subscribe().addDisposableTo(DisposeBag())
-                
-            })
+        databaseManager.setupObservables(observable: observable, modifyObservable: modifyObservable, inContainer: self.container)
         
     }
     
     func loadLikesPhotos()  {
         
-        let container = self.container
-        
-        var ref: FIRDatabaseReference!
-        var photos: [Photo] = []
-        var photosToEdit: [Photo] = []
-        
-        ref = FIRDatabase.database().reference()
+        let ref = FIRDatabase.database().reference()
         
         let uid = FIRAuth.auth()?.currentUser?.uid
         
         let observable = ref.child("photosLikedByUser").child(uid!).rx_observeSingleEvent(of: .value)
         let modifyObservable = ref.child("photosLikedByUser").child(uid!).rx_observe(.childChanged)
         
-        container.deleteAll().subscribe().addDisposableTo(DisposeBag())
+        self.container.deleteAll().subscribe().addDisposableTo(DisposeBag())
         
-        let _ = observable.observeOn(MainScheduler.instance)
-            .subscribe(onNext: { (snap) in
-                if snap.exists() {
-                    for child in snap.children {
-                        let photoSnap = child as! FIRDataSnapshot
-                        if let dictionary = photoSnap.value as? [String: Any] {
-                            if let photo = PhotoResponse(json: dictionary) {
-                                let key = photoSnap.key
-                                let photoToSave = Photo(identifier: key, photoResponse: photo)
-                                photos.append(photoToSave)
-                                
-                            }
-                        }
-                    }
-                    let observable2: Observable<Void>
-                    observable2 = container.save(photos: photos)
-                    observable2.subscribe().addDisposableTo(DisposeBag())
-                }
-            })
-        
-        let _ = modifyObservable.observeOn(MainScheduler.instance)
-            .subscribe(onNext: { (snap) in
-                if snap.exists() {
-                    print(snap)
-                    let dict = snap.value as? [String: Any]
-                    let photo = PhotoResponse(json: dict!)
-                    let key = snap.key
-                    let photoToEdit = Photo(identifier: key, photoResponse: photo!)
-                    photosToEdit.append(photoToEdit)
-                }
-                let observable3: Observable<Void>
-                observable3 = container.edit(photos: photosToEdit)
-                observable3.subscribe().addDisposableTo(DisposeBag())
-                
-            })
-        
+        databaseManager.setupObservables(observable: observable, modifyObservable: modifyObservable, inContainer: self.container)
     }
-    
 }

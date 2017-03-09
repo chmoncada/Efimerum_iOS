@@ -23,6 +23,7 @@ class PhotoWallViewController: UIViewController {
     var didSelectPhoto: (PhotoWallModelType, Int) -> Void = { _ in }
     var goToProfile: () -> Void = {}
     var needAuthLogin: () -> Void = {}
+    var selectedTag: String = ""
     
     var output: PhotoWallViewControllerOutput!
     

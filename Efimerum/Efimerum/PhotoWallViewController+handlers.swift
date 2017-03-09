@@ -20,7 +20,11 @@ extension PhotoWallViewController {
         
     }
     
-    func handleFilter(_ filter: String) {
+    func handleModelFilter(_ filter: String) {
+        
+        if model?.labelQuery == "" {
+            print("no tengo query")
+        }
         
         switch filter {
         case "Most Liked":
@@ -33,12 +37,23 @@ extension PhotoWallViewController {
             print(filter)
         }
         
+        reloadGrid()
+        
+    }
+    
+    func handleTagSelection(_ text: String) {
+        
+        model = PhotoWallFirebaseModel(labelQuery: text)
+        
+        reloadGrid()
+        
+    }
+    
+    func reloadGrid() {
         self.collectionView.collectionViewLayout.invalidateLayout()
         self.collectionView.reloadData()
         self.collectionViewSizeCalculator.clearCache()
-        
         setupBindings()
-        
     }
     
 }
@@ -54,7 +69,7 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
     }
     
     func didTap(filter: FilterType) {
-        handleFilter(filter.getText())
+        handleModelFilter(filter.getText())
     }
     
     func didTypeSearchChanged(text: String) {
@@ -62,6 +77,7 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
     }
     
     func didTapOnSearchDone(text: String) {
-        print("text for the search by tag: \(text)")
+        selectedTag = text
+        handleTagSelection(selectedTag)
     }
 }
