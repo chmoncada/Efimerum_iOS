@@ -20,31 +20,16 @@ extension PhotoWallViewController {
         
     }
     
-    func handleModelFilter(_ filter: String) {
+    func handleModelFilter(_ filter: FilterType) {
         
-        if model?.labelQuery == "" {
-            print("no tengo query")
-        }
-        
-        switch filter {
-        case "Most Liked":
-            print("ordenar por likes")
-            model = PhotoWallFirebaseModel(sortedKey: "numOfLikes")
-        case "About to die":
-            print("ordenar por vida")
-            model = PhotoWallFirebaseModel()
-        default:
-            print(filter)
-        }
-        
+        model = PhotoWallFirebaseModel(labelQuery: selectedTag, sortedBy: filter)
         reloadGrid()
         
     }
     
     func handleTagSelection(_ text: String) {
         
-        model = PhotoWallFirebaseModel(labelQuery: text)
-        
+        model = PhotoWallFirebaseModel(labelQuery: text, sortedBy: selectedFilter)
         reloadGrid()
         
     }
@@ -69,7 +54,8 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
     }
     
     func didTap(filter: FilterType) {
-        handleModelFilter(filter.getText())
+        selectedFilter = filter
+        handleModelFilter(filter)
     }
     
     func didTypeSearchChanged(text: String) {

@@ -126,7 +126,7 @@ extension Photo {
         self.sha1 = photoResponse.sha1
         self.sha256 = photoResponse.sha256
         
-        var tags: [String] = []
+        let tags: [String] = []
         self.tags = tags
     }
     

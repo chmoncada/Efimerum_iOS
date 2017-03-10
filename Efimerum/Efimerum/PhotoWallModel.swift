@@ -52,10 +52,23 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
         self.labelQuery = labelQuery
     }
     
-    convenience init(labelQuery: String = "", container: PhotoContainerType = PhotoContainer.instance) {
+    convenience init(labelQuery: String = "", sortedBy sortedKey: FilterType = .random, container: PhotoContainerType = PhotoContainer.instance) {
         
-        let data = container.allRandom(randomKey: getRandomKey())
+        var data: PhotoResultsType
         
+        switch sortedKey {
+        case .mostVoted:
+            data = container.sortedBy(sortedKey: "numOfLikes", ascending: false)
+        case .lessLife:
+            data = container.sortedBy(sortedKey: "expirationDate", ascending: true)
+        case .mostLife:
+            data = container.sortedBy(sortedKey: "expirationDate", ascending: false)
+        case .nearest:
+            data = container.all()
+        case .random:
+            data = container.allRandom(randomKey: getRandomKey())
+        }
+
         self.init(labelQuery: labelQuery, container: container, results: data)
         
         container.load()
@@ -67,26 +80,26 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
             self?.didUpdate()
         }
         
-        loadPhotosWithTag(labelQuery)
+        loadPhotos(withTag: labelQuery, sortedBy: sortedKey)
         
     }
     
-    convenience init(sortedKey: String , container: PhotoContainerType = PhotoContainer.instance) {
-        
-        let data = container.sortedBy(sortedKey: sortedKey)
-        
-        self.init(labelQuery: sortedKey, container: container, results: data)
-        
-        container.load()
-            .subscribe()
-            .addDisposableTo(disposeBag)
-        
-        
-        self.results.didUpdate = { [weak self] in
-            self?.didUpdate()
-        }
-        
-    }
+//    convenience init(sortedKey: String, container: PhotoContainerType = PhotoContainer.instance) {
+//        
+//        let data = container.sortedBy(sortedKey: sortedKey)
+//        
+//        self.init(labelQuery: sortedKey, container: container, results: data)
+//        
+//        container.load()
+//            .subscribe()
+//            .addDisposableTo(disposeBag)
+//        
+//        
+//        self.results.didUpdate = { [weak self] in
+//            self?.didUpdate()
+//        }
+//        
+//    }
     
     convenience init(name: String) {
         
@@ -132,24 +145,41 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
 // MARK: Util Methods
 extension PhotoWallFirebaseModel {
     
-    func loadPhotosWithTag(_ tag: String)  {
+    func loadPhotos(withTag tag: String = "", sortedBy filter: FilterType = .random ) {
         
         let ref = FIRDatabase.database().reference()
+        
+        var rootRef: FIRDatabaseReference
+        
+        var totalRef : FIRDatabaseQuery
         
         var observable: Observable<FIRDataSnapshot>
         var modifyObservable: Observable<FIRDataSnapshot>
         
         if tag == "" {
-            observable = ref.child("photos").rx_observeSingleEvent(of: .value)
-            modifyObservable = ref.child("photos").rx_observe(.childChanged)
+            rootRef = ref.child("photos")
         } else {
-            observable = ref.child("photosByLabel").child("EN").child(labelQuery.lowercased()).rx_observeSingleEvent(of: .value)
-            modifyObservable = ref.child("photosByLabel").child("EN").child(labelQuery.lowercased()).rx_observe(.childChanged)
+            rootRef = ref.child("photosByLabel").child("EN").child(labelQuery.lowercased())
         }
+        
+        switch filter {
+        case .mostVoted:
+            totalRef = rootRef.queryOrdered(byChild: "numOfLikes")
+        case .lessLife, .mostLife:
+            totalRef = rootRef.queryOrdered(byChild: "expirationDate")
+        case .nearest:
+            totalRef = rootRef
+        case .random:
+            totalRef = rootRef
+        }
+
+        observable = totalRef.rx_observeSingleEvent(of: .value)
+        modifyObservable = totalRef.rx_observe(.childChanged)
         
         self.container.deleteAll().subscribe().addDisposableTo(DisposeBag())
         
         databaseManager.setupObservables(observable: observable, modifyObservable: modifyObservable, inContainer: self.container)
+        
     }
     
     func loadUserPhotos()  {

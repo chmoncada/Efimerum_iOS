@@ -24,6 +24,7 @@ class PhotoWallViewController: UIViewController {
     var goToProfile: () -> Void = {}
     var needAuthLogin: () -> Void = {}
     var selectedTag: String = ""
+    var selectedFilter: FilterType = .random
     
     var output: PhotoWallViewControllerOutput!
     

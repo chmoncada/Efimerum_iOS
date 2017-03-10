@@ -71,6 +71,7 @@ class FirebaseDatabaseManager {
                         }
                     }
                     let observable2: Observable<Void>
+                    //photos = photos.reversed()
                     observable2 = container.save(photos: photos)
                     observable2.subscribe().addDisposableTo(DisposeBag())
                 }
