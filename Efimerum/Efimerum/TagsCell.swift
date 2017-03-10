@@ -19,7 +19,6 @@ class TagsCell: UITableViewCell {
         // Initialization code
         
         self.frameView.layer.cornerRadius = self.frameView.bounds.size.height / 2
-        self.frameView.layer.masksToBounds = true
         
     }
 

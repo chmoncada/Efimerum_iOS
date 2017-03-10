@@ -27,6 +27,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     private var filterItem3 : FilterItemView!
     private var filterItem4 : FilterItemView!
     
+    var searchTextField :UITextField?
     var orderBubbleView :BubbleView?
     var searchBubbleView :BubbleView?
     
@@ -166,13 +167,13 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
                            y: self.bounds.origin.y + 2,
                            width: self.bounds.size.width - 20,
                            height: self.bounds.size.height - 4)
-        let searchTextField = UITextField(frame: frame)
-        searchTextField.delegate = self
-        searchTextField.backgroundColor = .white
-        searchTextField.font = UIFont.systemFont(ofSize: 14)
-        searchTextField.placeholder = "Search tags..."
-        searchTextField.addTarget(self, action: #selector(MBFloatScrollButton.textFieldDidChange(_:)), for: .editingChanged)
-        self.addSubview(searchTextField)
+        searchTextField = UITextField(frame: frame)
+        searchTextField?.delegate = self
+        searchTextField?.backgroundColor = .white
+        searchTextField?.font = UIFont.systemFont(ofSize: 14)
+        searchTextField?.placeholder = "Search tags..."
+        searchTextField?.addTarget(self, action: #selector(MBFloatScrollButton.textFieldDidChange(_:)), for: .editingChanged)
+        self.addSubview(searchTextField!)
     }
     
     //MARK: - Scroll
@@ -338,10 +339,11 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     
             self.tagsView = TagsTableView(model: model, on: searchTextField)
             self.tagsView?.frame = CGRect(x: self.parentView.bounds.width/2 - searchTextField.bounds.size.width/2,
-                                    y: self.parentView.frame.origin.y + 80,
+                                    y: self.parentView.frame.origin.y + 100,
                                     width: searchTextField.bounds.size.width,
                                     height: 300)
             self.parentView.addSubview(tagsView!)
+            self.tagsView?.tagDelegate = self
             self.tagsView?.isHidden = false
             
         } else {
@@ -366,7 +368,7 @@ extension MBFloatScrollButton :UITextFieldDelegate {
         if let text = textField.text {
             
             delegate?.didTypeSearchChanged(text: text)
-            addTagSearchView(searchTextField: textField, tagsResults: ["perro", "gato", "conejo"])
+            addTagSearchView(searchTextField: textField, tagsResults: ["dog", "cat", "bunny"])
         }
     }
     
@@ -415,6 +417,17 @@ extension MBFloatScrollButton :BubbleViewDelegate {
         }
         view.removeFromSuperview()
         
+    }
+}
+
+extension MBFloatScrollButton :TagsTableViewDelegate {
+    
+    func didTapOn(tag: String) {
+        delegate?.didTapOnSearchDone(text: tag)
+        self.searchTextField?.text = nil
+        addSearchSelectedView(text: tag)
+        self.parentView.endEditing(true)
+        self.tagsView?.isHidden = true
     }
 }
 

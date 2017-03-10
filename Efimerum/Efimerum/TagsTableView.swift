@@ -13,14 +13,17 @@ class TagsTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     var model :[String]
     var searchView :UIView
     
+    weak var tagDelegate :TagsTableViewDelegate?
     
     init(model: [String], on view: UIView) {
         
         self.model = model
         self.searchView = view
-  
-        
+ 
         super.init(frame: CGRect.zero, style: .plain)
+        
+        self.delegate = self
+        self.dataSource = self
         
         let nib = UINib(nibName: "TagsCell", bundle: nil)
         self.register(nib, forCellReuseIdentifier: "TagsCell")
@@ -30,8 +33,6 @@ class TagsTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         
         self.rowHeight = 50.0
         
-        self.delegate = self
-        self.dataSource = self
                 
     }
     
@@ -53,11 +54,23 @@ class TagsTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TagsCell") as! TagsCell
-        
+        cell.selectionStyle = .none
         cell.tagNameLabel.text = model[indexPath.row]
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedTag = model[indexPath.row]
+        tagDelegate?.didTapOn(tag: selectedTag)
+    }
 
 }
+
+protocol TagsTableViewDelegate :class {
+    
+    func didTapOn(tag: String)
+}
+
+
+
