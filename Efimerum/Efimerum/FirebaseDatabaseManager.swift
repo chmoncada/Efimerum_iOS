@@ -51,7 +51,7 @@ class FirebaseDatabaseManager {
         })
     }
     
-    func setupObservables(observable: Observable<FIRDataSnapshot>, modifyObservable: Observable<FIRDataSnapshot>, inContainer container: PhotoContainerType) {
+    func setupObservables(observable: Observable<FIRDataSnapshot>, modifyObservable: Observable<FIRDataSnapshot>, inContainer container: PhotoContainerType) -> Disposable {
         
         var photos: [Photo] = []
         var photosToEdit: [Photo] = []
@@ -77,7 +77,7 @@ class FirebaseDatabaseManager {
                 }
             })
         
-        let _ = modifyObservable.observeOn(MainScheduler.instance)
+        let disposable = modifyObservable.observeOn(MainScheduler.instance)
             .subscribe(onNext: { (snap) in
                 if snap.exists() {
                     let dict = snap.value as? [String: Any]
@@ -91,6 +91,8 @@ class FirebaseDatabaseManager {
                 observable3.subscribe().addDisposableTo(DisposeBag())
                 
             })
+        
+        return disposable
     }
 
     
