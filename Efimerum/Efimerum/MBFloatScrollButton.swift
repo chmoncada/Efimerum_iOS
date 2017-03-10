@@ -30,6 +30,8 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     var orderBubbleView :BubbleView?
     var searchBubbleView :BubbleView?
     
+    var tagsView :TagsTableView?
+ 
     
     var previousOffset :CGFloat = 0.0
     var originalPosY :CGFloat = 0.0
@@ -171,14 +173,6 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         searchTextField.placeholder = "Search tags..."
         searchTextField.addTarget(self, action: #selector(MBFloatScrollButton.textFieldDidChange(_:)), for: .editingChanged)
         self.addSubview(searchTextField)
-        
-//        let tagsView = TagsTableView(model: ["uno", "dos", "tres", "cuatro"], on: searchTextField)
-//        tagsView.frame = CGRect(x: self.parentView.bounds.width/2 - searchTextField.bounds.size.width/2,
-//                                y: self.parentView.frame.origin.y + 80,
-//                                width: searchTextField.bounds.size.width,
-//                                height: 300)
-//        self.parentView.addSubview(tagsView)
-    
     }
     
     //MARK: - Scroll
@@ -336,8 +330,26 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         searchBubbleView?.backgroundColor = .white
         searchBubbleView?.deletegate = self
         self.parentView.addSubview(searchBubbleView!)
+    }
+    
+    func addTagSearchView(searchTextField: UITextField, tagsResults model: [String]) {
         
-        
+        if self.tagsView == nil {
+    
+            self.tagsView = TagsTableView(model: model, on: searchTextField)
+            self.tagsView?.frame = CGRect(x: self.parentView.bounds.width/2 - searchTextField.bounds.size.width/2,
+                                    y: self.parentView.frame.origin.y + 80,
+                                    width: searchTextField.bounds.size.width,
+                                    height: 300)
+            self.parentView.addSubview(tagsView!)
+            self.tagsView?.isHidden = false
+            
+        } else {
+            
+            self.tagsView?.model = model
+            self.tagsView?.reloadData()
+            self.tagsView?.isHidden = false
+        }
     }
 
 }
@@ -352,7 +364,9 @@ extension MBFloatScrollButton :UITextFieldDelegate {
     func textFieldDidChange(_ textField: UITextField) {
         
         if let text = textField.text {
+            
             delegate?.didTypeSearchChanged(text: text)
+            addTagSearchView(searchTextField: textField, tagsResults: ["perro", "gato", "conejo"])
         }
     }
     
@@ -369,6 +383,7 @@ extension MBFloatScrollButton :UITextFieldDelegate {
         }
         
         self.parentView.endEditing(true)
+        self.tagsView?.isHidden = true
         return true
     }
     
