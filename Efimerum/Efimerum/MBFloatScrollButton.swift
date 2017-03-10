@@ -312,7 +312,15 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
 
         orderBubbleView?.removeFromSuperview()
         orderBubbleView = BubbleView(text: text)
-        orderBubbleView?.frame = CGRect(x: self.parentView.bounds.origin.x + 60,
+        
+        var posX :CGFloat
+        if let tagBubble = searchBubbleView {
+            posX = tagBubble.frame.origin.x + tagBubble.bounds.size.width + 10
+        } else {
+            posX = self.parentView.bounds.origin.x + 200
+        }
+        
+        orderBubbleView?.frame = CGRect(x: posX,
                                         y: self.parentView.bounds.origin.y + 80,
                                         width: orderBubbleView!.bounds.size.width,
                                         height: orderBubbleView!.bounds.size.height)
@@ -323,13 +331,23 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     func addSearchSelectedView(text: String) {
         searchBubbleView?.removeFromSuperview()
         searchBubbleView = BubbleView(text: text)
-        searchBubbleView?.frame = CGRect(x: self.parentView.bounds.origin.x + 200,
+        searchBubbleView?.frame = CGRect(x: self.parentView.bounds.origin.x + 20,
                                         y: self.parentView.bounds.origin.y + 80,
                                         width: searchBubbleView!.bounds.size.width,
                                         height: searchBubbleView!.bounds.size.height)
         
         searchBubbleView?.backgroundColor = .white
         searchBubbleView?.deletegate = self
+        
+        if let _ = orderBubbleView {
+            let orderPosX = orderBubbleView!.frame.origin.x
+            let searchRightPos = searchBubbleView!.frame.size.width
+            
+            if orderPosX - searchRightPos <= -10 {
+                orderBubbleView?.frame.origin.x += abs(orderPosX - searchRightPos)
+            }
+        }
+        
         self.parentView.addSubview(searchBubbleView!)
     }
     
