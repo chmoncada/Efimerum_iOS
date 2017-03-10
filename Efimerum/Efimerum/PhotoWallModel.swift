@@ -37,7 +37,7 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
     // MARK: Properties
     fileprivate var results: PhotoResultsType
     fileprivate let container: PhotoContainerType
-    private let disposeBag = DisposeBag()
+    fileprivate var disposeBag = DisposeBag()
     
     lazy var databaseManager: FirebaseDatabaseManager = {
         let manager = FirebaseDatabaseManager.instance
@@ -178,7 +178,7 @@ extension PhotoWallFirebaseModel {
         
         self.container.deleteAll().subscribe().addDisposableTo(DisposeBag())
         
-        databaseManager.setupObservables(observable: observable, modifyObservable: modifyObservable, inContainer: self.container)
+        databaseManager.setupObservables(observable: observable, modifyObservable: modifyObservable, inContainer: self.container).addDisposableTo(disposeBag)
         
     }
     
@@ -193,7 +193,7 @@ extension PhotoWallFirebaseModel {
         
         self.container.deleteAll().subscribe().addDisposableTo(DisposeBag())
         
-        databaseManager.setupObservables(observable: observable, modifyObservable: modifyObservable, inContainer: self.container)
+        databaseManager.setupObservables(observable: observable, modifyObservable: modifyObservable, inContainer: self.container).addDisposableTo(disposeBag)
         
     }
     
@@ -208,6 +208,6 @@ extension PhotoWallFirebaseModel {
         
         self.container.deleteAll().subscribe().addDisposableTo(DisposeBag())
         
-        databaseManager.setupObservables(observable: observable, modifyObservable: modifyObservable, inContainer: self.container)
+        databaseManager.setupObservables(observable: observable, modifyObservable: modifyObservable, inContainer: self.container).addDisposableTo(disposeBag)
     }
 }
