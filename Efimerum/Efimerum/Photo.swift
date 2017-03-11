@@ -112,8 +112,6 @@ extension Photo {
         self.creationDate = photoResponse.creationDate
         self.expirationDate = photoResponse.expirationDate
         self.authorID = photoResponse.owner
-        self.longitude = 0
-        self.latitude = 0
         self.numOfLikes = photoResponse.numOfLikes
         self.imageWidth = photoResponse.imageData.width
         self.imageHeight = photoResponse.imageData.height
@@ -125,6 +123,14 @@ extension Photo {
         self.randomString = photoResponse.randomString
         self.sha1 = photoResponse.sha1
         self.sha256 = photoResponse.sha256
+        
+        if let latitude = photoResponse.latitude, let longitude = photoResponse.longitude {
+            self.latitude = latitude
+            self.longitude = longitude
+        } else {
+            self.latitude = 0
+            self.longitude = 0
+        }
         
         let tags: [String] = []
         self.tags = tags

@@ -11,6 +11,7 @@ import Photos
 import RxSwift
 import FirebaseDatabase
 import FirebaseAuth
+import GeoFire
 
 // MARK: PhotoWallModelType protocol
 protocol PhotoWallModelType: class {
@@ -44,6 +45,11 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
         return manager
     }()
     
+    lazy var userLocationManager: UserLocationManager = {
+        let manager = UserLocationManager()
+        return manager
+    }()
+    
     // MARK: Init method
     
     init(labelQuery: String, container: PhotoContainerType, results: PhotoResultsType) {
@@ -56,6 +62,7 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
         
         var data: PhotoResultsType
         
+        
         switch sortedKey {
         case .mostVoted:
             data = container.sortedBy(sortedKey: "numOfLikes", ascending: false)
@@ -64,6 +71,8 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
         case .mostLife:
             data = container.sortedBy(sortedKey: "expirationDate", ascending: false)
         case .nearest:
+            
+            
             data = container.all()
         case .random:
             data = container.allRandom(randomKey: getRandomKey())
@@ -84,22 +93,6 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
         
     }
     
-//    convenience init(sortedKey: String, container: PhotoContainerType = PhotoContainer.instance) {
-//        
-//        let data = container.sortedBy(sortedKey: sortedKey)
-//        
-//        self.init(labelQuery: sortedKey, container: container, results: data)
-//        
-//        container.load()
-//            .subscribe()
-//            .addDisposableTo(disposeBag)
-//        
-//        
-//        self.results.didUpdate = { [weak self] in
-//            self?.didUpdate()
-//        }
-//        
-//    }
     
     convenience init(name: String) {
         
@@ -153,6 +146,8 @@ extension PhotoWallFirebaseModel {
         
         var totalRef : FIRDatabaseQuery
         
+        var geoQueryRef: GFCircleQuery?
+        
         var observable: Observable<FIRDataSnapshot>
         var modifyObservable: Observable<FIRDataSnapshot>
         
@@ -167,19 +162,45 @@ extension PhotoWallFirebaseModel {
             totalRef = rootRef.queryOrdered(byChild: "numOfLikes")
         case .lessLife, .mostLife:
             totalRef = rootRef.queryOrdered(byChild: "expirationDate")
-        case .nearest:
-            totalRef = rootRef
-        case .random:
+        case .random, .nearest:
             totalRef = rootRef
         }
-
-        observable = totalRef.rx_observeSingleEvent(of: .value)
-        modifyObservable = totalRef.rx_observe(.childChanged)
-        
+ 
         self.container.deleteAll().subscribe().addDisposableTo(DisposeBag())
         
-        databaseManager.setupObservables(observable: observable, modifyObservable: modifyObservable, inContainer: self.container).addDisposableTo(disposeBag)
+        if filter != .nearest {
+            observable = totalRef.rx_observeSingleEvent(of: .value)
+            modifyObservable = totalRef.rx_observe(.childChanged)
+            
+            databaseManager.setupObservables(observable: observable, modifyObservable: modifyObservable, inContainer: self.container).addDisposableTo(disposeBag)
+            
+        } else {
+            
+            let when = DispatchTime.now() + 1
+            
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                geoQueryRef = self.circleQuery(self.userLocationManager)
+                let geofireObservable = geoQueryRef?.rx_observeEvent(of: .keyEntered)
+                
+                self.databaseManager.setupGeoObservable(observable: geofireObservable!, inContainer: self.container).addDisposableTo(self.disposeBag)
+            }
+            
+        }
         
+   
+    }
+    
+    func circleQuery(_ userLocationManager: UserLocationManager?) -> GFCircleQuery? {
+    
+        //let location1 = CLLocation(latitude: 37.332332611084, longitude: -122.031219482422)
+
+        let location = userLocationManager?.currentLocation
+        
+        let geoFire = GeoFire(firebaseRef: FIRDatabase.database().reference().child("geofirePhotos"))
+        
+        let circleQuery = geoFire?.query(at: location, withRadius: 1)
+       
+        return circleQuery
     }
     
     func loadUserPhotos()  {
@@ -211,3 +232,4 @@ extension PhotoWallFirebaseModel {
         databaseManager.setupObservables(observable: observable, modifyObservable: modifyObservable, inContainer: self.container).addDisposableTo(disposeBag)
     }
 }
+
