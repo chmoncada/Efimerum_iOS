@@ -9,6 +9,8 @@
 import UIKit
 
 class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
+    
+    var tagsInteractor : TagsInteractor?
 
     var hideWhileScrolling = true
     var isFloatActionMenu : Bool = false
@@ -44,6 +46,8 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         self.floatButtonType = buttonType
         previousOffset = self.scrollView.contentOffset.y
         super.init(frame: CGRect.zero)
+        
+        tagsInteractor = TagsInteractor(interface: self)
         
         setButton(buttonType: buttonType, parentView: parentView)
         
@@ -386,7 +390,7 @@ extension MBFloatScrollButton :UITextFieldDelegate {
         if let text = textField.text {
             
             delegate?.didTypeSearchChanged(text: text)
-            addTagSearchView(searchTextField: textField, tagsResults: ["dog", "cat", "bunny"])
+            self.tagsInteractor?.getTagWith(query: text)
         }
     }
     
@@ -446,6 +450,15 @@ extension MBFloatScrollButton :TagsTableViewDelegate {
         addSearchSelectedView(text: tag)
         self.parentView.endEditing(true)
         self.tagsView?.isHidden = true
+    }
+}
+
+
+extension MBFloatScrollButton :TagsInteractorOutput {
+    
+    func loadObtained(tags: [String]) {
+        print(tags)
+        addTagSearchView(searchTextField: self.searchTextField!, tagsResults: tags)
     }
 }
 

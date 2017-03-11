@@ -21,10 +21,10 @@ class FirebaseDatabaseManager {
     }
     
     static let instance: FirebaseDatabaseManager = FirebaseDatabaseManager()
+    let ref = FIRDatabase.database().reference()
     
     func getUserDataForUserWithUID(_ uid: String, completion: @escaping (_ name: String?, _ email: String?, _ imageURL: URL?) -> Void) {
         
-        let ref = FIRDatabase.database().reference()
         ref.child("users").child(uid).observeSingleEvent(of: .value, with: { (snap) in
             if let dictionary = snap.value as? [String: Any] {
                 let name = dictionary["name"] as! String
@@ -38,7 +38,6 @@ class FirebaseDatabaseManager {
     }
     
     func registerUserIntoDatabaseWithUID(_ uid: String, values: [String: Any],completion: @escaping (_ success: Bool, _ error: Error?) -> Void) {
-        let ref = FIRDatabase.database().reference()
         
         ref.child("users").child(uid).updateChildValues(values, withCompletionBlock: { (err, ref) in
             if err != nil {
@@ -49,6 +48,17 @@ class FirebaseDatabaseManager {
             completion(true, nil)
             
         })
+    }
+    
+    func getTagsWith(query q: String, completion: @escaping (_ tags: [String]?) -> Void) {
+        
+        ref.child("labels").child("EN").queryOrderedByKey().observe(.value, with: { (snap) in
+            if let dict = snap.value as? [String: Any] {
+                let tagsFound = Array(dict.keys)
+                completion(tagsFound)
+            }
+        })
+        
     }
     
     func setupObservables(observable: Observable<FIRDataSnapshot>, modifyObservable: Observable<FIRDataSnapshot>, inContainer container: PhotoContainerType) -> Disposable {
