@@ -52,7 +52,7 @@ class FirebaseDatabaseManager {
     
     func getTagsWith(query q: String, completion: @escaping (_ tags: [String]?) -> Void) {
         
-        ref.child("labels").child("EN").queryOrderedByKey().observe(.value, with: { (snap) in
+        ref.child("labels").child("EN").queryOrderedByKey().queryStarting(atValue: q.lowercased()).queryEnding(atValue: "\(q.lowercased())\("uf8ff")").observeSingleEvent(of: .value, with: { (snap) in
             if let dict = snap.value as? [String: Any] {
                 let tagsFound = Array(dict.keys)
                 completion(tagsFound)
