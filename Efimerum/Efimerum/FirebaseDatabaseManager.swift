@@ -107,21 +107,18 @@ class FirebaseDatabaseManager {
 
     func setupGeoObservable(observable: Observable<String>, inContainer container: PhotoContainerType) -> Disposable {
         
-        var photos: [Photo] = []
+        //var photos: [Photo] = []
         var photoToSave: Photo?
         //var photosToEdit: [Photo] = []
         
         let disposable = observable.observeOn(MainScheduler.instance)
             .subscribe(onNext: { (key) in
                 
-                
-                let ref = FIRDatabase.database().reference()
-                
 //                ref.child("labels").child("EN").queryOrderedByKey().queryStarting(atValue: "b").queryEnding(atValue: "c").observeSingleEvent(of: .value, with: { (snap) in
 //                    print(snap)
 //                })
                 
-                ref.child("photos").queryOrderedByKey().queryEqual(toValue: key).observeSingleEvent(of: .value, with: { (snap) in
+                self.ref.child("photos").queryOrderedByKey().queryEqual(toValue: key).observeSingleEvent(of: .value, with: { (snap) in
                     if snap.exists() {
                         for child in snap.children {
                             let photoSnap = child as! FIRDataSnapshot
@@ -140,23 +137,6 @@ class FirebaseDatabaseManager {
                 })
                 
                 
-//                if snap.exists() {
-//                    for child in snap.children {
-//                        let photoSnap = child as! FIRDataSnapshot
-//                        if let dictionary = photoSnap.value as? [String: Any] {
-//                            if let photo = PhotoResponse(json: dictionary) {
-//                                let key = photoSnap.key
-//                                let photoToSave = Photo(identifier: key, photoResponse: photo)
-//                                photos.append(photoToSave)
-//                                
-//                            }
-//                        }
-//                    }
-//                    let observable2: Observable<Void>
-//                    //photos = photos.reversed()
-//                    observable2 = container.save(photos: photos)
-//                    observable2.subscribe().addDisposableTo(DisposeBag())
-//                }
             })
         
 //        let disposable = modifyObservable.observeOn(MainScheduler.instance)
