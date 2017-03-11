@@ -106,7 +106,6 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
             .subscribe()
             .addDisposableTo(disposeBag)
         
-        
         self.results.didUpdate = { [weak self] in
             self?.didUpdate()
         }
@@ -116,8 +115,7 @@ final class PhotoWallFirebaseModel: PhotoWallModelType {
         } else if name == "LikesPhotos" {
             loadLikesPhotos()
         }
-        
-        
+   
     }
     
     // MARK: PhotoWallModelType protocol implementation
@@ -176,30 +174,30 @@ extension PhotoWallFirebaseModel {
             
         } else {
             
-            let when = DispatchTime.now() + 1
+            let when = DispatchTime.now() + 2
+            userLocationManager.locationManager.startUpdatingLocation()
             
             DispatchQueue.main.asyncAfter(deadline: when) {
                 geoQueryRef = self.circleQuery(self.userLocationManager)
                 let geofireObservable = geoQueryRef?.rx_observeEvent(of: .keyEntered)
                 
                 self.databaseManager.setupGeoObservable(observable: geofireObservable!, inContainer: self.container).addDisposableTo(self.disposeBag)
+                
+                self.userLocationManager.locationManager.stopUpdatingLocation()
             }
             
         }
-        
    
     }
     
     func circleQuery(_ userLocationManager: UserLocationManager?) -> GFCircleQuery? {
-    
-        //let location1 = CLLocation(latitude: 37.332332611084, longitude: -122.031219482422)
 
-        let location = userLocationManager?.currentLocation
-        
         let geoFire = GeoFire(firebaseRef: FIRDatabase.database().reference().child("geofirePhotos"))
         
-        let circleQuery = geoFire?.query(at: location, withRadius: 1)
-       
+        let location = userLocationManager?.currentLocation
+        
+        let circleQuery = geoFire?.query(at: location!, withRadius: 1)
+        
         return circleQuery
     }
     

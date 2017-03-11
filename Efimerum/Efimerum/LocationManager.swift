@@ -42,7 +42,7 @@ class UserLocationManager : NSObject, CLLocationManagerDelegate {
         
         currentLocation = locations.last
  
-//        print("latitude: \(currentLocation?.coordinate.latitude) - longitude: \(currentLocation?.coordinate.longitude)")
+        print("latitude: \(currentLocation?.coordinate.latitude) - longitude: \(currentLocation?.coordinate.longitude)")
         
         DispatchQueue.main.async {
             self.delegate?.locationDidUpdateToLocation(location: self.currentLocation!, manager: self)
