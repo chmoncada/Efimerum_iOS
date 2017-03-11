@@ -23,6 +23,8 @@ public protocol PhotoContainerType {
     /// Update an array of photos in the container
     func edit(photos: [Photo]) -> Observable<Void>
     
+    func editIfExist(photos: [Photo]) -> Observable<Void>
+    
     func delete(photosWithIdentifiers: [String]) -> Observable<Void>
 
     /// Deletes the photo with a given identifier
@@ -32,7 +34,7 @@ public protocol PhotoContainerType {
     func deleteAll() -> Observable<Void>
 
     /// Determines if the container contains a volume with a given identifier
-    func contains(photoWithIdentifier: Int) -> Bool
+    func contains(photoWithIdentifier: String) -> Bool
 
     /// Returns all the volumes in the container
     func all() -> PhotoResultsType
@@ -92,9 +94,9 @@ extension PhotoContainer: PhotoContainerType {
         return PhotoResults(container: container, sortedKey: sortedKey, ascending: ascending)
     }
     
-    public func contains(photoWithIdentifier: Int) -> Bool {
+    public func contains(photoWithIdentifier: String) -> Bool {
         
-        let predicate = NSPredicate(format: "index == %d", photoWithIdentifier)
+        let predicate = NSPredicate(format: "identifier == %@", photoWithIdentifier)
         let results = container.objects(PhotoEntry.self).filter(predicate)
         
         if results.count > 0 {
@@ -134,6 +136,22 @@ extension PhotoContainer: PhotoContainerType {
             }
         }
     }
+    
+    public func editIfExist(photos: [Photo]) -> Observable<Void> {
+        return performBackgroundTask { container in
+            try container.write {
+                for photo in photos {
+                    
+                    if self.contains(photoWithIdentifier: photo.identifier) {
+                        let photoEntry = PhotoEntry(photo: photo)
+                        container.add(photoEntry, update: true)
+                    }
+                    
+                }
+            }
+        }
+    }
+
     
     public func delete(photosWithIdentifiers: [String]) -> Observable<Void> {
         return performBackgroundTask { container in

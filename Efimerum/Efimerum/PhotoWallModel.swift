@@ -180,8 +180,11 @@ extension PhotoWallFirebaseModel {
             DispatchQueue.main.asyncAfter(deadline: when) {
                 geoQueryRef = self.circleQuery(self.userLocationManager)
                 let geofireObservable = geoQueryRef?.rx_observeEvent(of: .keyEntered)
+                let modifyObservable = ref.child("photos").rx_observe(.childChanged)
                 
                 self.databaseManager.setupGeoObservable(observable: geofireObservable!, inContainer: self.container).addDisposableTo(self.disposeBag)
+                
+                self.databaseManager.setupGeoObservableChanges(observable: modifyObservable, inContainer: self.container).addDisposableTo(self.disposeBag)
                 
                 self.userLocationManager.locationManager.stopUpdatingLocation()
             }
