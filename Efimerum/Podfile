@@ -24,6 +24,7 @@ target 'Efimerum' do
   pod 'RxSwift', '~> 3.0'
   pod 'RxCocoa', '~> 3.0'
   pod 'Kingfisher', '~> 3.0'
+  pod 'GeoFire', :git => 'https://github.com/firebase/geofire-objc.git'
 
   target 'EfimerumTests' do
     inherit! :search_paths

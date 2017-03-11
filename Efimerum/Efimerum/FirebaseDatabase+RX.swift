@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseDatabase
 import RxSwift
+import GeoFire
 
 extension FIRDatabaseQuery {
     
@@ -41,6 +42,22 @@ extension FIRDatabaseQuery {
             
             return Disposables.create()
         }
+    }
+    
+}
+
+extension GFQuery {
+    
+    func rx_observeEvent(of eventType: GFEventType) -> Observable<String> {
+        
+        return Observable.create { observer in
+            self.observe(eventType, with: { (key, location) in
+                observer.onNext(key!)
+
+            })
+            return Disposables.create()
+        }
+        
     }
     
 }
