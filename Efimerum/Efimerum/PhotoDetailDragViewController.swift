@@ -23,6 +23,8 @@ class PhotoDetailDragViewController: UIViewController {
 
     weak var output: PhotoDetailDragViewControllerOutput!
     
+    var didAskPhotoInfo: (String) -> Void = { _ in }
+    
     lazy var authInteractor: AuthInteractor = {
         let interactor = AuthInteractor.instance
         return interactor
@@ -55,6 +57,34 @@ class PhotoDetailDragViewController: UIViewController {
         
     }()
     
+    let infoButton: UIButton = {
+        let button = UIButton(type: UIButtonType.infoLight)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleInfo), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    let skipButton: UIButton = {
+        let button = UIButton(type: UIButtonType.custom)
+        let image = UIImage(named: "btn_skip_pressed")
+        button.setImage(image, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleSkipButton), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    let likeButton: UIButton = {
+        let button = UIButton(type: UIButtonType.custom)
+        let image = UIImage(named: "btn_like_pressed")
+        button.setImage(image, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleLikeButton), for: .touchUpInside)
+        
+        return button
+    }()
+    
     //TEMPORAL BUTTON
     let logoutButton: UIButton = {
         
@@ -85,6 +115,7 @@ class PhotoDetailDragViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.black
+        view.tintColor = UIColor.white
         
         setupKolodaView()
         view.addSubview(kolodaView)
@@ -92,9 +123,18 @@ class PhotoDetailDragViewController: UIViewController {
         view.addSubview(closeButton)
         setupCloseButton()
         
+        view.addSubview(infoButton)
+        setupInfoButton()
+        
+        view.addSubview(skipButton)
+        setupSkipButton()
+        
+        view.addSubview(likeButton)
+        setupLikeButton()
+        
         //TEMPORARY BUTTON
-        view.addSubview(logoutButton)
-        setupLogoutButton()
+        //view.addSubview(logoutButton)
+        //setupLogoutButton()
         
         PhotoDetailDragConfigurator.instance.configure(viewController: self)
         

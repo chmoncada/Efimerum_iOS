@@ -33,6 +33,19 @@ final class PhotoDetailDragCoordinator: Coordinator {
             self.didFinish()
         }
         
+        viewController.didAskPhotoInfo = { [weak self] photoIdentifier in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            let coordinator = PhotoDetailInfoCoordinator(navigationController: navigationController, identifier: photoIdentifier)
+            
+            strongSelf.add(child: coordinator)
+            
+            coordinator.start()
+            
+        }
+        
         viewController.needAuthLogin = { [weak self] identifier in
             guard let strongSelf = self else {
                 return

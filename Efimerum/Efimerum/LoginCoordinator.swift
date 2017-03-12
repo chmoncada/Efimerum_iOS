@@ -26,10 +26,6 @@ final class LoginCoordinator: Coordinator {
                 return
             }
             
-//            if success {
-//                self.action()
-//            }
-            
             // This will remove the coordinator from its parent
             self.navigationController.dismiss(animated: true) { _ in
                 if success {
