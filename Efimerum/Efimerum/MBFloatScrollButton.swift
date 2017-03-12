@@ -390,7 +390,7 @@ extension MBFloatScrollButton :UITextFieldDelegate {
         if let text = textField.text {
             
             delegate?.didTypeSearchChanged(text: text)
-            self.tagsInteractor?.getTagWith(query: text)
+            self.tagsInteractor?.getSuggestedTagsWith(query: text)
         }
     }
     
@@ -456,7 +456,7 @@ extension MBFloatScrollButton :TagsTableViewDelegate {
 
 extension MBFloatScrollButton :TagsInteractorOutput {
     
-    func loadObtained(tags: [String]) {
+    func loadSuggested(tags: [String]) {
         print(tags)
         addTagSearchView(searchTextField: self.searchTextField!, tagsResults: tags)
     }

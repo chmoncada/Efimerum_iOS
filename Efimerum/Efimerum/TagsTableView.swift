@@ -31,7 +31,7 @@ class TagsTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         self.backgroundColor = .clear
         self.separatorStyle = .none
         
-        self.rowHeight = 50.0
+        self.rowHeight = 40.0
         
                 
     }

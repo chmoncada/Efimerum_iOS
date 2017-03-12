@@ -11,13 +11,13 @@ import Foundation
 
 protocol TagsInteractorInput :class {
     
-    func getTagWith(query: String)
+    func getSuggestedTagsWith(query: String)
     
 }
 
 protocol TagsInteractorOutput : class {
     
-    func loadObtained(tags: [String])
+    func loadSuggested(tags: [String])
 
 }
 
@@ -37,12 +37,12 @@ class TagsInteractor: TagsInteractorInput {
         self.interface = interface
     }
     
-    func getTagWith(query q: String) {
+    func getSuggestedTagsWith(query q: String) {
         
         self.databaseManager.getTagsWith(query: q) { (tags) in
             if let tags = tags {
                 print(tags)
-                self.interface?.loadObtained(tags: tags)
+                self.interface?.loadSuggested(tags: tags)
             }
         }
     }

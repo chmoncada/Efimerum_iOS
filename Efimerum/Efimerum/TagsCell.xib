@@ -12,17 +12,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="TagsCell" customModule="Efimerum" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hb6-ei-ehA">
-                        <rect key="frame" x="8" y="10" width="304" height="30"/>
+                        <rect key="frame" x="8" y="5" width="304" height="30"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CsC-DL-PRS">
-                                <rect key="frame" x="8" y="3" width="288" height="25"/>
+                                <rect key="frame" x="8" y="0.0" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -30,18 +30,18 @@
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CsC-DL-PRS" firstAttribute="leading" secondItem="Hb6-ei-ehA" secondAttribute="leading" constant="8" id="RHK-OX-jyx"/>
-                            <constraint firstAttribute="trailing" secondItem="CsC-DL-PRS" secondAttribute="trailing" constant="8" id="Sz3-xK-Lbm"/>
-                            <constraint firstItem="CsC-DL-PRS" firstAttribute="top" secondItem="Hb6-ei-ehA" secondAttribute="top" constant="3" id="UU7-eB-J2v"/>
-                            <constraint firstAttribute="bottom" secondItem="CsC-DL-PRS" secondAttribute="bottom" constant="2" id="aiB-3b-Pqz"/>
+                            <constraint firstItem="CsC-DL-PRS" firstAttribute="top" secondItem="Hb6-ei-ehA" secondAttribute="top" id="0jR-rT-HSl"/>
+                            <constraint firstItem="CsC-DL-PRS" firstAttribute="leading" secondItem="Hb6-ei-ehA" secondAttribute="leading" constant="8" id="E08-2c-FVa"/>
+                            <constraint firstAttribute="trailing" secondItem="CsC-DL-PRS" secondAttribute="trailing" constant="8" id="GaX-Mf-CPI"/>
+                            <constraint firstAttribute="bottom" secondItem="CsC-DL-PRS" secondAttribute="bottom" id="WOv-lA-feA"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Hb6-ei-ehA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Gp2-NB-gHs"/>
-                    <constraint firstAttribute="trailing" secondItem="Hb6-ei-ehA" secondAttribute="trailing" constant="8" id="OGz-1e-CXu"/>
-                    <constraint firstAttribute="bottom" secondItem="Hb6-ei-ehA" secondAttribute="bottom" constant="9.5" id="lBS-4i-Q7j"/>
-                    <constraint firstItem="Hb6-ei-ehA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="vgu-uu-S62"/>
+                    <constraint firstItem="Hb6-ei-ehA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="7Pu-Uv-q15"/>
+                    <constraint firstAttribute="trailing" secondItem="Hb6-ei-ehA" secondAttribute="trailing" constant="8" id="KaK-lU-y9U"/>
+                    <constraint firstItem="Hb6-ei-ehA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="R2a-D8-6IW"/>
+                    <constraint firstAttribute="bottom" secondItem="Hb6-ei-ehA" secondAttribute="bottom" constant="4" id="swV-dD-P3Y"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
