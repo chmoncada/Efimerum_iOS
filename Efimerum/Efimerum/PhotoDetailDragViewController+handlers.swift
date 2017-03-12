@@ -36,10 +36,11 @@ extension PhotoDetailDragViewController {
     func handleInfo() {
         
         let index = kolodaView.currentCardIndex
-        let photo = model?.photo(at: startIndex + index)
-        let identifier = photo!.identifier
-        print(identifier)
-        didAskPhotoInfo(identifier)
+        
+        if let photo = model?.photo(at: startIndex + index) {
+            didAskPhotoInfo(photo)
+        }
+
     }
     
     func handleSkipButton() {

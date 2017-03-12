@@ -23,7 +23,7 @@ class PhotoDetailDragViewController: UIViewController {
 
     weak var output: PhotoDetailDragViewControllerOutput!
     
-    var didAskPhotoInfo: (String) -> Void = { _ in }
+    var didAskPhotoInfo: (Photo) -> Void = { _ in }
     
     lazy var authInteractor: AuthInteractor = {
         let interactor = AuthInteractor.instance

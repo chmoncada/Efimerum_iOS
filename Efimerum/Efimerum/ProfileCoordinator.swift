@@ -32,6 +32,18 @@ final class ProfileCoordinator: Coordinator {
             
         }
         
+        viewController.didSelectSettings = { [weak self] in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            let coordinator = UserSettingCoordinator(navigationController: navigationController)
+            
+            strongSelf.add(child: coordinator)
+            
+            coordinator.start()
+        }
+        
     }
     
     override func start() {
