@@ -61,6 +61,25 @@ class FirebaseDatabaseManager {
         
     }
     
+    func getPhotoWIth(identifier: String, completion: @escaping (_ photo: Photo?) -> Void) {
+        
+        ref.child("photos").queryOrderedByKey().queryEqual(toValue: identifier).queryLimited(toFirst: 1).observeSingleEvent(of: .value, with: { (snap) in
+            if snap.exists() {
+                for child in snap.children {
+                    let dict = child as! FIRDataSnapshot
+                    if let dictionary = dict.value as? [String: Any] {
+                        if let photo = PhotoResponse(json: dictionary) {
+                            let key = snap.key
+                            let photoToSHow = Photo(identifier: key, photoResponse: photo)
+                            completion(photoToSHow)
+                        }
+                    }
+                }
+            }
+        })
+        
+    }
+    
     func setupObservables(observable: Observable<FIRDataSnapshot>, modifyObservable: Observable<FIRDataSnapshot>, inContainer container: PhotoContainerType) -> Disposable {
         
         var photos: [Photo] = []

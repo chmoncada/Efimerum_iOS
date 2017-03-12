@@ -101,7 +101,7 @@ class ProfileViewController: UIViewController {
     
     var output: ProfileViewControllerOutput!
     
-    var didSelectPhoto: (Photo) -> Void = { _ in }
+    var didSelectPhoto: (String) -> Void = { _ in }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -214,7 +214,7 @@ extension ProfileViewController: UICollectionViewDataSource  {
 extension ProfileViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        didSelectPhoto(self.model.photo(at: indexPath.item))
+        didSelectPhoto(self.model.photo(at: indexPath.item).identifier)
     }
 }
 

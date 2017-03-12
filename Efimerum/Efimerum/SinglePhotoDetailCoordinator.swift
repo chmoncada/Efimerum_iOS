@@ -12,12 +12,12 @@ final class SinglePhotoDetailCoordinator: Coordinator {
     
     private unowned let navigationController: UINavigationController
     private let viewController: SinglePhotoDetailViewController
-    private let photo: Photo
+    private let identifier: String
     
-    init(navigationController: UINavigationController, photo: Photo) {
+    init(navigationController: UINavigationController, identifier: String) {
         self.navigationController = navigationController
-        self.photo = photo
-        self.viewController = SinglePhotoDetailViewController(photo: photo)
+        self.identifier = identifier
+        self.viewController = SinglePhotoDetailViewController(identifier: identifier)
         
         super.init()
         

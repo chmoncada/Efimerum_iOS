@@ -33,11 +33,13 @@ class SinglePhotoDetailViewController: UIViewController {
         return sv
     }()
     
+    var identifier: String?
     var photo: Photo?
     
-    init(photo: Photo) {
+    init(identifier: String) {
        super.init(nibName: nil, bundle: nil)
-        self.photo = photo
+        self.identifier = identifier
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -47,16 +49,21 @@ class SinglePhotoDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(screenView)
-        setupScreenView()
+        FirebaseDatabaseManager.instance.getPhotoWIth(identifier: identifier!) { [weak self] (result) in
+            self?.photo = result
+            self?.view.addSubview((self?.screenView)!)
+            self?.setupScreenView()
+            
+            self?.view.addSubview((self?.closeButton)!)
+            self?.setupCloseButton()
+            
+            self?.view.addSubview((self?.contentView)!)
+            self?.setupContentView()
+        }
         
-        view.addSubview(closeButton)
-        setupCloseButton()
-        
-        view.addSubview(contentView)
-        setupContentView()
         
         
+
         // create an instance of UITapGestureRecognizer and tell it to run
         // an action we'll call "handleTap:"
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
