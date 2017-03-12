@@ -34,6 +34,7 @@
 		A19AD01A1E75910900102A8F /* UserSettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19AD0191E75910900102A8F /* UserSettingsCoordinator.swift */; };
 		A19AD01C1E75911D00102A8F /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19AD01B1E75911D00102A8F /* UserSettingsViewController.swift */; };
 		A19AD01E1E75A2AC00102A8F /* UserSettingsViewController+setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19AD01D1E75A2AC00102A8F /* UserSettingsViewController+setup.swift */; };
+		A19AD0201E75F23700102A8F /* UserSettingsViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19AD01F1E75F23700102A8F /* UserSettingsViewController+handlers.swift */; };
 		A19CEF4C1E5A6F2A00C23B1E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19CEF4B1E5A6F2A00C23B1E /* Utils.swift */; };
 		A1A350FA1E607B1100100C56 /* FirebaseAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A350F91E607B1100100C56 /* FirebaseAuthenticationManager.swift */; };
 		A1A350FC1E61D42D00100C56 /* PhotoDetailDragInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A350FB1E61D42D00100C56 /* PhotoDetailDragInteractor.swift */; };
@@ -131,6 +132,7 @@
 		A19AD0191E75910900102A8F /* UserSettingsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsCoordinator.swift; sourceTree = "<group>"; };
 		A19AD01B1E75911D00102A8F /* UserSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		A19AD01D1E75A2AC00102A8F /* UserSettingsViewController+setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserSettingsViewController+setup.swift"; sourceTree = "<group>"; };
+		A19AD01F1E75F23700102A8F /* UserSettingsViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserSettingsViewController+handlers.swift"; sourceTree = "<group>"; };
 		A19CEF4B1E5A6F2A00C23B1E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		A1A350F91E607B1100100C56 /* FirebaseAuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationManager.swift; sourceTree = "<group>"; };
 		A1A350FB1E61D42D00100C56 /* PhotoDetailDragInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailDragInteractor.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				A19AD0191E75910900102A8F /* UserSettingsCoordinator.swift */,
 				A19AD01B1E75911D00102A8F /* UserSettingsViewController.swift */,
 				A19AD01D1E75A2AC00102A8F /* UserSettingsViewController+setup.swift */,
+				A19AD01F1E75F23700102A8F /* UserSettingsViewController+handlers.swift */,
 			);
 			name = "User Settings";
 			sourceTree = "<group>";
@@ -747,6 +750,7 @@
 				A1E9CAA61E4C2426002F4493 /* Coordinator.swift in Sources */,
 				A1A351001E63487800100C56 /* PhotoDetailDragViewController+handlers.swift in Sources */,
 				ADBC62DB1E66EC1700FD6B4F /* LocationManager.swift in Sources */,
+				A19AD0201E75F23700102A8F /* UserSettingsViewController+handlers.swift in Sources */,
 				A1690B291E67BB870099AFA6 /* PhotoWallViewController+setup.swift in Sources */,
 				A1E6B82E1E4D184900445895 /* Photo.swift in Sources */,
 				A1E9CAC31E4C2564002F4493 /* PhotoWallModel.swift in Sources */,

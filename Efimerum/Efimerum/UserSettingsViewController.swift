@@ -17,12 +17,17 @@ class UserSettingsViewController: UITableViewController {
         return cell
     } ()
     
-    lazy var notificationsCell: UITableViewCell = {
+    lazy var likeNotificationCell: UITableViewCell = {
         let cell = UITableViewCell()
         cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-        cell.textLabel?.text = "Notifications"
-        
-        
+        cell.textLabel?.text = "My photos receive a like"
+        return cell
+    } ()
+    
+    lazy var favoritesPostNotificationCell: UITableViewCell = {
+        let cell = UITableViewCell()
+        cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        cell.textLabel?.text = "Photos in my favorites"
         return cell
     } ()
     
@@ -33,11 +38,13 @@ class UserSettingsViewController: UITableViewController {
         return cell
     } ()
     
-    var lastNameCell: UITableViewCell = UITableViewCell()
-    var shareCell: UITableViewCell = UITableViewCell()
-    
-    //var firstNameText: UITextField = UITextField()
-    var lastNameText: UITextField = UITextField()
+    lazy var modifyUserCell: UITableViewCell = {
+        let cell = UITableViewCell()
+        cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        cell.textLabel?.text = "Modify User"
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    } ()
     
     override func loadView() {
         super.loadView()
@@ -45,22 +52,10 @@ class UserSettingsViewController: UITableViewController {
         // set the title
         self.title = "Settings"
         
-        let notificationSwitch = UISwitch(frame: CGRect(x: self.notificationsCell.contentView.bounds.maxX, y: self.notificationsCell.contentView.bounds.minY + 5, width: 100, height: 20))
-        notificationSwitch.setOn(true, animated: false)
-        notificationSwitch.onTintColor = UIColor.green
-        self.notificationsCell.addSubview(notificationSwitch)
-        
-        
-        // construct last name cell, section 0, row 1
-        self.lastNameCell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-        self.lastNameText = UITextField(frame: self.lastNameCell.contentView.bounds.insetBy(dx: 15, dy: 0))
-        self.lastNameText.placeholder = "Last Name"
-        self.lastNameCell.addSubview(self.lastNameText)
-        
-        // construct share cell, section 1, row 0
-        self.shareCell.textLabel?.text = "Share with Friends"
-        self.shareCell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-        self.shareCell.accessoryType = UITableViewCellAccessoryType.checkmark
+        setupLikeNotificationSwitch()
+        setupFavoritesPostNotificationSwitch()
+        setupAdultContentSwitch()
+
     }
     
     
@@ -80,8 +75,8 @@ class UserSettingsViewController: UITableViewController {
     // Return the number of rows for each section in your static table
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch(section) {
-        case 0: return 3    // section 0 has 2 rows
-        case 1: return 3    // section 1 has 1 row
+        case 0: return 3
+        case 1: return 2
         default: fatalError("Unknown number of sections")
         }
     }
@@ -92,15 +87,14 @@ class UserSettingsViewController: UITableViewController {
         case 0:
             switch(indexPath.row) {
             case 0: return self.logoutCell
-            case 1: return self.notificationsCell
+            case 1: return self.modifyUserCell
             case 2: return self.adultContentCell
             default: fatalError("Unknown row in section 0")
             }
         case 1:
             switch(indexPath.row) {
-            case 0: return self.shareCell
-            case 1: return self.shareCell
-            case 2: return self.shareCell
+            case 0: return self.likeNotificationCell
+            case 1: return self.favoritesPostNotificationCell
             default: fatalError("Unknown row in section 1")
             }
         default: fatalError("Unknown section")
@@ -110,8 +104,8 @@ class UserSettingsViewController: UITableViewController {
     // Customize the section headings for each section
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch(section) {
-        case 0: return "Profile"
-        case 1: return "App Info"
+        case 0: return "User Settings"
+        case 1: return "Notifications"
         default: fatalError("Unknown section")
         }
     }
@@ -120,17 +114,23 @@ class UserSettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // Handle social cell selection to toggle checkmark
-        if(indexPath.section == 1 && indexPath.row == 2) {
+        if(indexPath.section == 1) {
             
             // deselect row
             tableView.deselectRow(at: indexPath, animated: false)
-            
-            // toggle check mark
-            if(self.shareCell.accessoryType == UITableViewCellAccessoryType.none) {
-                self.shareCell.accessoryType = UITableViewCellAccessoryType.checkmark;
-            } else {
-                self.shareCell.accessoryType = UITableViewCellAccessoryType.none;
+
+        }
+        
+        if (indexPath.section == 0) {
+            switch indexPath.row {
+            case 0:
+                handleLogout()
+            case 1:
+                handleModifyUser()
+            default:
+                print("no se hace nada")
             }
+            tableView.deselectRow(at: indexPath, animated: false)
         }
     }
     
