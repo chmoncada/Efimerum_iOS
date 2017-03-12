@@ -56,6 +56,8 @@ class FirebaseDatabaseManager {
             if let dict = snap.value as? [String: Any] {
                 let tagsFound = Array(dict.keys)
                 completion(tagsFound)
+            } else {
+                completion(nil)
             }
         })
         

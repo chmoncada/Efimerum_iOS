@@ -43,6 +43,8 @@ class TagsInteractor: TagsInteractorInput {
             if let tags = tags {
                 print(tags)
                 self.interface?.loadSuggested(tags: tags)
+            } else {
+                self.interface?.loadSuggested(tags: [String]())
             }
         }
     }
