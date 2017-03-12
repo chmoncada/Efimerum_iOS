@@ -12,6 +12,13 @@ final class AppCoordinator: Coordinator {
 
     private let window: UIWindow
     private let navigationController = UINavigationController()
+    var coordinator: PhotoWallCoordinator?
+    var photoIdentifier: String? {
+        didSet {
+            print("me setearon")
+            coordinator?.photoIdentifier = photoIdentifier
+        }
+    }
     
     init(window: UIWindow) {
         self.window = window
@@ -23,10 +30,12 @@ final class AppCoordinator: Coordinator {
         
         window.rootViewController = navigationController
 
-        let coordinator = PhotoWallCoordinator(navigationController: navigationController)
+        coordinator = PhotoWallCoordinator(navigationController: navigationController)
 
-        add(child: coordinator)
-        coordinator.start()
+        add(child: coordinator!)
+        coordinator?.start()
+        
+        
 
         window.makeKeyAndVisible()
     }

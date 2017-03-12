@@ -12,6 +12,14 @@ final class PhotoWallCoordinator: Coordinator {
     
     private unowned let navigationController: UINavigationController
     private let viewController: PhotoWallViewController
+    var coordinator: Coordinator?
+    
+    var photoIdentifier: String? {
+        didSet {
+            print("me setearon en la vista de grid")
+            viewController.didShowSinglePhoto(photoIdentifier!)
+        }
+    }
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -19,16 +27,29 @@ final class PhotoWallCoordinator: Coordinator {
         
         super.init()
         
+        viewController.didShowSinglePhoto = { [weak self] photoIdentifier in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            let coordinator = SinglePhotoDetailCoordinator(navigationController: navigationController, identifier: photoIdentifier)
+            
+            strongSelf.add(child: coordinator)
+            
+            coordinator.start()
+            
+        }
+        
         viewController.didSelectPhoto = { [weak self] model, startIndex in
             guard let strongSelf = self else {
                 return
             }
 
-            let coordinator = PhotoDetailDragCoordinator(navigationController: navigationController, model: model, startIndex: startIndex)
+            strongSelf.coordinator = PhotoDetailDragCoordinator(navigationController: navigationController, model: model, startIndex: startIndex)
             
-            strongSelf.add(child: coordinator)
+            strongSelf.add(child: strongSelf.coordinator!)
             
-            coordinator.start()
+            strongSelf.coordinator?.start()
             
         }
         

@@ -171,13 +171,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Disconnected from FCM.")
     }
     // [END disconnect_from_fcm]
-
-    internal func load() -> Observable<FIRDataSnapshot> {
-
-        let firebaseQuery = FIRDatabase.database().reference().child("photos").queryOrderedByKey()
-        return firebaseQuery.rx_observe(.childAdded)
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        if let incomingURL = userActivity.webpageURL {
+            let linkHandled = FIRDynamicLinks.dynamicLinks()!.handleUniversalLink(incomingURL, completion: { [weak self] (dynamiclink, error) in
+                guard let strongSelf = self else { return }
+                if let dynamiclink = dynamiclink, let _ = dynamiclink.url {
+                    strongSelf.handleIncomingDynamicLink(dynamicLink: dynamiclink)
+                } else if let error = error{
+                    print(error.localizedDescription)
+                }
+            })
+            return linkHandled
+        }
+        return false
     }
     
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        print("I am handling a link through the openURL method!")
+        if let dynamicLink = FIRDynamicLinks.dynamicLinks()?.dynamicLink(fromCustomSchemeURL: url) {
+            self.handleIncomingDynamicLink(dynamicLink: dynamicLink)
+            return true
+        }
+        
+        return false
+    }
+    
+    
+    // Handle the dynamic link
+    func handleIncomingDynamicLink(dynamicLink: FIRDynamicLink) {
+        
+        guard let pathComponents = dynamicLink.url?.pathComponents else { return }
+        
+        if let photoIdentifier = pathComponents.last {
+            print("deberia mostrar la vista de single photo con la foto: \(photoIdentifier)")
+            coordinator?.photoIdentifier = photoIdentifier
+        }
+        
+
+    }
+ 
     
 }
 

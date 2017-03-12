@@ -21,6 +21,7 @@ class PhotoWallViewController: UIViewController {
     
     // Called when the user selects a photo in the grid
     var didSelectPhoto: (PhotoWallModelType, Int) -> Void = { _ in }
+    var didShowSinglePhoto: (String) -> Void = { _ in }
     var goToProfile: () -> Void = {}
     var needAuthLogin: () -> Void = {}
     var selectedTag: String = ""
