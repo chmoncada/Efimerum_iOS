@@ -16,7 +16,6 @@ final class PhotoWallCoordinator: Coordinator {
     
     var photoIdentifier: String? {
         didSet {
-            print("me setearon en la vista de grid")
             viewController.didShowSinglePhoto(photoIdentifier!)
         }
     }

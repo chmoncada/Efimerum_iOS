@@ -15,6 +15,10 @@ extension ProfileViewController {
         let _ = navigationController?.popViewController(animated: false)
     }
     
+    func handleSettingsButton() {
+        didSelectSettings()
+    }
+    
     func handleCollectionChange(sender: UISegmentedControl) {
         
         if sender.selectedSegmentIndex == 0 {

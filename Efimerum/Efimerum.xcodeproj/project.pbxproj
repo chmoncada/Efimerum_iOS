@@ -31,6 +31,9 @@
 		A192287D1E74CC2900FCBADB /* PhotoDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A192287C1E74CC2900FCBADB /* PhotoDetailInfoViewController.swift */; };
 		A192287F1E74CC7500FCBADB /* PhotoDetailInfoViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A192287E1E74CC7500FCBADB /* PhotoDetailInfoViewController+handlers.swift */; };
 		A19228811E74CD0D00FCBADB /* PhotoDetailInfoViewController+setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19228801E74CD0D00FCBADB /* PhotoDetailInfoViewController+setup.swift */; };
+		A19AD01A1E75910900102A8F /* UserSettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19AD0191E75910900102A8F /* UserSettingsCoordinator.swift */; };
+		A19AD01C1E75911D00102A8F /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19AD01B1E75911D00102A8F /* UserSettingsViewController.swift */; };
+		A19AD01E1E75A2AC00102A8F /* UserSettingsViewController+setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19AD01D1E75A2AC00102A8F /* UserSettingsViewController+setup.swift */; };
 		A19CEF4C1E5A6F2A00C23B1E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19CEF4B1E5A6F2A00C23B1E /* Utils.swift */; };
 		A1A350FA1E607B1100100C56 /* FirebaseAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A350F91E607B1100100C56 /* FirebaseAuthenticationManager.swift */; };
 		A1A350FC1E61D42D00100C56 /* PhotoDetailDragInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A350FB1E61D42D00100C56 /* PhotoDetailDragInteractor.swift */; };
@@ -125,6 +128,9 @@
 		A192287C1E74CC2900FCBADB /* PhotoDetailInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailInfoViewController.swift; sourceTree = "<group>"; };
 		A192287E1E74CC7500FCBADB /* PhotoDetailInfoViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoDetailInfoViewController+handlers.swift"; sourceTree = "<group>"; };
 		A19228801E74CD0D00FCBADB /* PhotoDetailInfoViewController+setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoDetailInfoViewController+setup.swift"; sourceTree = "<group>"; };
+		A19AD0191E75910900102A8F /* UserSettingsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsCoordinator.swift; sourceTree = "<group>"; };
+		A19AD01B1E75911D00102A8F /* UserSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
+		A19AD01D1E75A2AC00102A8F /* UserSettingsViewController+setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserSettingsViewController+setup.swift"; sourceTree = "<group>"; };
 		A19CEF4B1E5A6F2A00C23B1E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		A1A350F91E607B1100100C56 /* FirebaseAuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationManager.swift; sourceTree = "<group>"; };
 		A1A350FB1E61D42D00100C56 /* PhotoDetailDragInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailDragInteractor.swift; sourceTree = "<group>"; };
@@ -262,14 +268,6 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
-		A17386F61E651797009903ED /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				A1B022FF1E69D92900F41B5A /* AuthInteractor.swift */,
-			);
-			name = Common;
-			sourceTree = "<group>";
-		};
 		A19228791E74C4E100FCBADB /* Photo Detail Info */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +277,24 @@
 				A19228801E74CD0D00FCBADB /* PhotoDetailInfoViewController+setup.swift */,
 			);
 			name = "Photo Detail Info";
+			sourceTree = "<group>";
+		};
+		A19AD0171E7590A300102A8F /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				A1B022FF1E69D92900F41B5A /* AuthInteractor.swift */,
+			);
+			name = Interactors;
+			sourceTree = "<group>";
+		};
+		A19AD0181E7590DB00102A8F /* User Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A19AD0191E75910900102A8F /* UserSettingsCoordinator.swift */,
+				A19AD01B1E75911D00102A8F /* UserSettingsViewController.swift */,
+				A19AD01D1E75A2AC00102A8F /* UserSettingsViewController+setup.swift */,
+			);
+			name = "User Settings";
 			sourceTree = "<group>";
 		};
 		A19CEF4A1E59E3CB00C23B1E /* Models */ = {
@@ -294,12 +310,12 @@
 		A1A350F81E60748E00100C56 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				A17386F61E651797009903ED /* Common */,
-				A1690B1F1E67A3290099AFA6 /* Single Photo Detail */,
-				A17386EE1E646AB7009903ED /* Profile */,
 				A1E9CAA11E4C23E7002F4493 /* Photo Wall */,
 				A1E9CAB51E4C24C4002F4493 /* Photo Detail Drag */,
+				A1690B1F1E67A3290099AFA6 /* Single Photo Detail */,
 				A19228791E74C4E100FCBADB /* Photo Detail Info */,
+				A17386EE1E646AB7009903ED /* Profile */,
+				A19AD0181E7590DB00102A8F /* User Settings */,
 				A10477501E4D6D9E00F2C3C3 /* Login */,
 			);
 			name = Scenes;
@@ -341,6 +357,7 @@
 		A1E9CAA21E4C23FA002F4493 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				A1E9CAA71E4C243C002F4493 /* FrameWorks */,
 				A12F47061E579D4B00EBD98C /* FirebaseDatabase+RX.swift */,
 				A127899B1E5BE2ED007EE2F0 /* UIImage+Rotation.swift */,
 				A1E9CAA51E4C2426002F4493 /* Coordinator.swift */,
@@ -419,11 +436,11 @@
 				A1106CB31E670A320032B06B /* Efimerum.entitlements */,
 				A12F46FA1E56615900EBD98C /* Managers */,
 				A19CEF4A1E59E3CB00C23B1E /* Models */,
+				A19AD0171E7590A300102A8F /* Interactors */,
 				A1A350F81E60748E00100C56 /* Scenes */,
 				D0BA66801E53842C00C4F18F /* API */,
 				D0BA66771E52308300C4F18F /* MBFloatButtonScroll */,
 				A1E9CA9E1E4C23B5002F4493 /* Bootstrap */,
-				A1E9CAA71E4C243C002F4493 /* FrameWorks */,
 				A1E9CAA21E4C23FA002F4493 /* Others */,
 				D04B0D2F1E3D2BB5008E4777 /* LaunchScreen.storyboard */,
 				D04B0D2D1E3D2BB5008E4777 /* Assets.xcassets */,
@@ -696,8 +713,11 @@
 				A192287B1E74CB8600FCBADB /* PhotoDetailInfoCoordinator.swift in Sources */,
 				A17386F01E646AD0009903ED /* ProfileViewController.swift in Sources */,
 				D0BA667B1E52350B00C4F18F /* MBFloatScrollButton.swift in Sources */,
+				A19AD01A1E75910900102A8F /* UserSettingsCoordinator.swift in Sources */,
 				D0BA667C1E52350B00C4F18F /* FilterItemView.swift in Sources */,
 				A1E9CAB41E4C24A4002F4493 /* SwipeResultDirection.swift in Sources */,
+				A19AD01C1E75911D00102A8F /* UserSettingsViewController.swift in Sources */,
+				A19AD01E1E75A2AC00102A8F /* UserSettingsViewController+setup.swift in Sources */,
 				A19CEF4C1E5A6F2A00C23B1E /* Utils.swift in Sources */,
 				A17386F81E651A14009903ED /* FirebaseDatabaseManager.swift in Sources */,
 				A1B712BE1E53BFA100C21046 /* PhotoEntry.swift in Sources */,

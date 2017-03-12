@@ -44,14 +44,14 @@ final class AppCoordinator: Coordinator {
         
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
-//        let navigationBarAppearance = UINavigationBar.appearance()
-//        let barTintColor = UIColor.black
-//
-//        navigationBarAppearance.barStyle = .black // This will make the status bar white by default
-//        navigationBarAppearance.barTintColor = barTintColor
-//        navigationBarAppearance.tintColor = UIColor.white
-//        navigationBarAppearance.titleTextAttributes = [
-//            NSForegroundColorAttributeName: UIColor.white
-//        ]
+        let navigationBarAppearance = UINavigationBar.appearance()
+        let barTintColor = UIColor.black
+
+        navigationBarAppearance.barStyle = .black // This will make the status bar white by default
+        navigationBarAppearance.barTintColor = barTintColor
+        navigationBarAppearance.tintColor = UIColor.white
+        navigationBarAppearance.titleTextAttributes = [
+            NSForegroundColorAttributeName: UIColor.white
+        ]
     }
 }

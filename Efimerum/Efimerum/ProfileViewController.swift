@@ -51,7 +51,7 @@ class ProfileViewController: UIViewController {
         button.setImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         
-        button.addTarget(self, action: #selector(handleDismissView), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleSettingsButton), for: .touchUpInside)
         return button
         
     }()
@@ -102,6 +102,8 @@ class ProfileViewController: UIViewController {
     var output: ProfileViewControllerOutput!
     
     var didSelectPhoto: (String) -> Void = { _ in }
+    
+    var didSelectSettings: () -> Void = {}
     
     override func viewDidLoad() {
         super.viewDidLoad()
