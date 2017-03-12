@@ -33,6 +33,13 @@ class PhotoDetailInfoViewController: UIViewController {
         return sv
     }()
     
+    let webView: UIWebView = {
+        let web = UIWebView(frame: CGRect.zero)
+        web.backgroundColor = .black
+        web.translatesAutoresizingMaskIntoConstraints = false
+        return web
+    }()
+    
     var identifier: String?
     
     var didFinish: () -> Void = {}
@@ -51,6 +58,11 @@ class PhotoDetailInfoViewController: UIViewController {
         
         view.addSubview(screenView)
         setupScreenView()
+        
+        view.addSubview(webView)
+        setupWebview()
+        let urlRequest = URLRequest(url: URL(string: "https://efimerum-48618.firebaseapp.com?photoUUID=\(identifier!)")!)
+        webView.loadRequest(urlRequest)
         
         view.addSubview(closeButton)
         setupCloseButton()
