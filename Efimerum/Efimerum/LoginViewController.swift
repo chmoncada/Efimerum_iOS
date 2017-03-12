@@ -151,6 +151,8 @@ class LoginViewController: UIViewController {
         setupLoginCancelButton()
         setupForgetCredentialsButton()
         
+        self.hideKeyboardWhenTappedAround()
+        
         LoginConfigurator.instance.configure(viewController: self)
         
     }

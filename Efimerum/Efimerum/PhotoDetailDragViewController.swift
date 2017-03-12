@@ -133,8 +133,8 @@ class PhotoDetailDragViewController: UIViewController {
         setupLikeButton()
         
         //TEMPORARY BUTTON
-        //view.addSubview(logoutButton)
-        //setupLogoutButton()
+        view.addSubview(logoutButton)
+        setupLogoutButton()
         
         PhotoDetailDragConfigurator.instance.configure(viewController: self)
         
