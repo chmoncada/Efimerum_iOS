@@ -40,13 +40,13 @@ class PhotoDetailInfoViewController: UIViewController {
         return web
     }()
     
-    var identifier: String?
+    var photo: Photo?
     
     var didFinish: () -> Void = {}
     
-    init(identifier: String) {
+    init(photo: Photo) {
         super.init(nibName: nil, bundle: nil)
-        self.identifier = identifier
+        self.photo = photo
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -61,8 +61,10 @@ class PhotoDetailInfoViewController: UIViewController {
         
         view.addSubview(webView)
         setupWebview()
-        let urlRequest = URLRequest(url: URL(string: "https://efimerum-48618.firebaseapp.com?photoUUID=\(identifier!)")!)
-        webView.loadRequest(urlRequest)
+        if let photo = photo {
+            let urlRequest = URLRequest(url: URL(string: "https://efimerum-48618.firebaseapp.com?photoUUID=\(photo.identifier)")!)
+            webView.loadRequest(urlRequest)
+        }
         
         view.addSubview(closeButton)
         setupCloseButton()

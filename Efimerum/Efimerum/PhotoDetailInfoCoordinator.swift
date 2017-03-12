@@ -12,13 +12,13 @@ final class PhotoDetailInfoCoordinator: Coordinator {
     
     private unowned let navigationController: UINavigationController
     private let viewController: PhotoDetailInfoViewController
-    private var identifier : String
+    private var photo : Photo
     
     
-    init(navigationController: UINavigationController, identifier: String) {
+    init(navigationController: UINavigationController, photo: Photo) {
         self.navigationController = navigationController
-        self.identifier = identifier
-        self.viewController = PhotoDetailInfoViewController(identifier: identifier)
+        self.photo = photo
+        self.viewController = PhotoDetailInfoViewController(photo: photo)
         
         super.init()
         
