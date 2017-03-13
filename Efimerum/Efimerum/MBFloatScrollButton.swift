@@ -163,6 +163,13 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         }
     }
     
+    func showFavoriteTagsAction() {
+        
+        if let tags = UserDefaultsManager().getFavoritesArray() {
+            addTagSearchView(searchTextField: self.searchTextField!, tagsResults: tags)
+        }
+    }
+    
     //MARK: - Search textField
     
     fileprivate func setupSearchTextField() {
@@ -177,6 +184,20 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         searchTextField?.font = UIFont.systemFont(ofSize: 14)
         searchTextField?.placeholder = "Search tags..."
         searchTextField?.addTarget(self, action: #selector(MBFloatScrollButton.textFieldDidChange(_:)), for: .editingChanged)
+        searchTextField?.rightViewMode = .unlessEditing
+        
+        let favoriteTagsButton = UIImageView(frame: CGRect(x: 0,
+                                                           y: 0,
+                                                           width: 30,
+                                                           height: searchTextField!.bounds.height))
+        favoriteTagsButton.backgroundColor = .green
+        favoriteTagsButton.isUserInteractionEnabled = true
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(MBFloatScrollButton.showFavoriteTagsAction))
+        favoriteTagsButton.addGestureRecognizer(tap)
+        
+        searchTextField?.rightView = favoriteTagsButton
+        
         self.addSubview(searchTextField!)
     }
     
@@ -328,20 +349,20 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
                                         y: self.parentView.bounds.origin.y + 80,
                                         width: orderBubbleView!.bounds.size.width,
                                         height: orderBubbleView!.bounds.size.height)
-        orderBubbleView?.deletegate = self
+        orderBubbleView?.delegate = self
         self.parentView.addSubview(orderBubbleView!)
     }
     
     func addSearchSelectedView(text: String) {
         searchBubbleView?.removeFromSuperview()
-        searchBubbleView = BubbleView(text: text)
+        searchBubbleView = BubbleView(text: text, favorite: true)
         searchBubbleView?.frame = CGRect(x: self.parentView.bounds.origin.x + 20,
                                         y: self.parentView.bounds.origin.y + 80,
                                         width: searchBubbleView!.bounds.size.width,
                                         height: searchBubbleView!.bounds.size.height)
         
         searchBubbleView?.backgroundColor = .white
-        searchBubbleView?.deletegate = self
+        searchBubbleView?.delegate = self
         
         if let _ = orderBubbleView {
             let orderPosX = orderBubbleView!.frame.origin.x
@@ -438,7 +459,13 @@ extension MBFloatScrollButton :BubbleViewDelegate {
             delegate?.didTapOnSearchDone(text: "")
         }
         view.removeFromSuperview()
-        
+    }
+    
+    func didTapFavorite(view: BubbleView) {
+        print("tap favorite: \(view.title)")
+        if UserDefaultsManager().markFavorite(tag: view.title) {
+            
+        }
     }
 }
 

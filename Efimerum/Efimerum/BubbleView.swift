@@ -10,15 +10,19 @@ import UIKit
 
 class BubbleView: UIView {
     
-    weak var deletegate :BubbleViewDelegate?
+    weak var delegate :BubbleViewDelegate?
 
     var titleLabel :UILabel!
     var dismissView :UIImageView!
     
-    let title :String
+    var favoriteView :UIImageView?
     
-    init(text: String) {
+    let title :String
+    let isFavorite : Bool
+    
+    init(text: String, favorite: Bool = false) {
         self.title = text
+        self.isFavorite = favorite
         
         let frame = CGRect.zero
         super.init(frame: frame)
@@ -37,16 +41,49 @@ class BubbleView: UIView {
         titleLabel.text = self.title
         titleLabel.backgroundColor = .white
         titleLabel.sizeToFit()
+
+        if isFavorite {
+            
+            self.frame = CGRect(x: 0,
+                                y: 0,
+                                width: titleLabel.bounds.size.width + 70,
+                                height: 30)
+            
+            favoriteView = UIImageView(frame: CGRect(x: self.bounds.origin.x,
+                                                     y: self.bounds.origin.y,
+                                                     width: 30,
+                                                     height: 30))
+            
+            if UserDefaultsManager().isFavorite(tag: self.title) {
+                favoriteView?.backgroundColor = .blue
+            } else {
+                favoriteView?.backgroundColor = .red
+            }
+            
+            favoriteView?.backgroundColor = .blue
+            favoriteView?.isUserInteractionEnabled = true
+            let tapFavorite = UITapGestureRecognizer(target: self, action: #selector(BubbleView.favotiteAction))
+            favoriteView?.addGestureRecognizer(tapFavorite)
+            self.addSubview(favoriteView!)
+            
+            titleLabel.frame = CGRect(x: self.bounds.origin.x + favoriteView!.bounds.width + 4,
+                                      y: self.bounds.origin.y,
+                                      width: titleLabel.bounds.size.width,
+                                      height: 30)
+            
+        } else {
+            
+            self.frame = CGRect(x: 0,
+                                y: 0,
+                                width: titleLabel.bounds.size.width + 60,
+                                height: 30)
         
-        self.frame = CGRect(x: 0,
-                            y: 0,
-                            width: titleLabel.bounds.size.width + 60,
-                            height: 30)
-        
-        titleLabel.frame = CGRect(x: self.bounds.origin.x + 10,
+            titleLabel.frame = CGRect(x: self.bounds.origin.x + 10,
                                   y: self.bounds.origin.y,
                                   width: titleLabel.bounds.size.width,
                                   height: 30)
+        }
+        
         self.addSubview(titleLabel)
         
         
@@ -73,8 +110,11 @@ class BubbleView: UIView {
     }
     
     func dismiss() {
-        
-        deletegate?.didTapDismissView(view: self)
+        delegate?.didTapDismissView(view: self)
+    }
+    
+    func favotiteAction() {
+        delegate?.didTapFavorite(view: self)
     }
 
 }
@@ -83,6 +123,8 @@ class BubbleView: UIView {
 protocol BubbleViewDelegate :class {
 
     func didTapDismissView(view: BubbleView)
+    
+    func didTapFavorite(view: BubbleView)
 }
 
 
