@@ -34,7 +34,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     var searchBubbleView :BubbleView?
     
     var tagsView :TagsTableView?
- 
+    var maskTagsView :UIControl?
     
     var previousOffset :CGFloat = 0.0
     var originalPosY :CGFloat = 0.0
@@ -274,8 +274,8 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         self.maskBackgroundView?.isUserInteractionEnabled = true
         self.maskBackgroundView?.addTarget(self, action: #selector(MBFloatScrollButton.dismissMenu), for: .allTouchEvents)
         self.bringSubview(toFront: self.scrollView)
-        
         self.scrollView.addSubview(self.maskBackgroundView!)
+        self.scrollView.isScrollEnabled = false
         
         filterItem1 = FilterItemView(filterType: .nearest)
         filterItem1.frame.origin.x = self.frame.origin.x
@@ -330,7 +330,13 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
             self.filterItem2 = nil
             self.filterItem3 = nil
             self.filterItem4 = nil
+            self.scrollView.isScrollEnabled = true
         }
+    }
+    
+    func dismissTagsView() {
+        
+        self.maskTagsView?.removeFromSuperview()
     }
     
     func addOrderSelectedView(text: String) {
@@ -378,6 +384,15 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     
     func addTagSearchView(searchTextField: UITextField, tagsResults model: [String]) {
         
+        if self.maskTagsView == nil {
+            self.maskTagsView = UIControl(frame: self.parentView.bounds)
+            self.maskTagsView?.backgroundColor = UIColor(white: 0, alpha: 0.5)
+            self.maskTagsView?.isUserInteractionEnabled = true
+            self.maskTagsView?.addTarget(self, action: #selector(MBFloatScrollButton.dismissTagsView), for: .allTouchEvents)
+            self.bringSubview(toFront: self.parentView)
+            self.parentView.addSubview(self.maskTagsView!)
+        }
+    
         if self.tagsView == nil {
     
             self.tagsView = TagsTableView(model: model, on: searchTextField)
@@ -385,7 +400,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
                                     y: self.parentView.frame.origin.y + 100,
                                     width: searchTextField.bounds.size.width,
                                     height: 300)
-            self.parentView.addSubview(tagsView!)
+            self.maskTagsView?.addSubview(tagsView!)
             self.tagsView?.tagDelegate = self
             self.tagsView?.isHidden = false
             
@@ -396,7 +411,6 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
             self.tagsView?.isHidden = false
         }
     }
-
 }
 
 extension MBFloatScrollButton :UITextFieldDelegate {
@@ -479,6 +493,7 @@ extension MBFloatScrollButton :TagsTableViewDelegate {
         addSearchSelectedView(text: tag)
         self.parentView.endEditing(true)
         self.tagsView?.isHidden = true
+        dismissTagsView()
     }
 }
 
