@@ -12,6 +12,8 @@ extension UserSettingsViewController {
     
     func handleLogout() {
         print("me deberia desloguear")
+        
+        didFinish()
     }
     
     func handleModifyUser() {

@@ -46,6 +46,8 @@ class UserSettingsViewController: UITableViewController {
         return cell
     } ()
     
+    var didFinish: () -> Void = {}
+    
     override func loadView() {
         super.loadView()
         

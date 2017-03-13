@@ -26,6 +26,8 @@ final class ProfileCoordinator: Coordinator {
             
             let coordinator = SinglePhotoDetailCoordinator(navigationController: navigationController, identifier: photoIdentifier)
             
+            
+            
             strongSelf.add(child: coordinator)
             
             coordinator.start()
@@ -38,6 +40,16 @@ final class ProfileCoordinator: Coordinator {
             }
             
             let coordinator = UserSettingCoordinator(navigationController: navigationController)
+            
+            coordinator.closeIt = { [weak self] in
+                guard let strongSelf = self else {
+                    return
+                }
+                
+                let _ = strongSelf.navigationController.popViewController(animated: false)
+                strongSelf.didFinish()
+            }
+            
             
             strongSelf.add(child: coordinator)
             
