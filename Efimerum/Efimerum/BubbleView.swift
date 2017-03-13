@@ -18,11 +18,11 @@ class BubbleView: UIView {
     var favoriteView :UIImageView?
     
     let title :String
-    let isFavorite : Bool
+    let hasFavoriteAction : Bool
     
     init(text: String, favorite: Bool = false) {
         self.title = text
-        self.isFavorite = favorite
+        self.hasFavoriteAction = favorite
         
         let frame = CGRect.zero
         super.init(frame: frame)
@@ -42,7 +42,7 @@ class BubbleView: UIView {
         titleLabel.backgroundColor = .white
         titleLabel.sizeToFit()
 
-        if isFavorite {
+        if hasFavoriteAction {
             
             self.frame = CGRect(x: 0,
                                 y: 0,
@@ -54,13 +54,7 @@ class BubbleView: UIView {
                                                      width: 30,
                                                      height: 30))
             
-            if UserDefaultsManager().isFavorite(tag: self.title) {
-                favoriteView?.backgroundColor = .blue
-            } else {
-                favoriteView?.backgroundColor = .red
-            }
-            
-            favoriteView?.backgroundColor = .blue
+            updateFavoriteView()            
             favoriteView?.isUserInteractionEnabled = true
             let tapFavorite = UITapGestureRecognizer(target: self, action: #selector(BubbleView.favotiteAction))
             favoriteView?.addGestureRecognizer(tapFavorite)
@@ -107,6 +101,15 @@ class BubbleView: UIView {
         self.layer.shadowOpacity = 0.5
         self.backgroundColor = .white
 
+    }
+    
+    func updateFavoriteView() {
+        let userDefaultsManager = UserDefaultsManager()
+        if userDefaultsManager.isFavorite(tag: self.title) {
+            favoriteView?.backgroundColor = .red
+        } else {
+            favoriteView?.backgroundColor = .blue
+        }
     }
     
     func dismiss() {

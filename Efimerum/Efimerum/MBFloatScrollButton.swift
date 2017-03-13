@@ -462,9 +462,11 @@ extension MBFloatScrollButton :BubbleViewDelegate {
     }
     
     func didTapFavorite(view: BubbleView) {
-        print("tap favorite: \(view.title)")
-        if UserDefaultsManager().markFavorite(tag: view.title) {
-            
+        let tag = view.title
+        print("tap favorite: \(tag)")
+        let userDefaultsManager = UserDefaultsManager()
+        if userDefaultsManager.markFavorite(tag: tag) {
+           view.updateFavoriteView()
         }
     }
 }
