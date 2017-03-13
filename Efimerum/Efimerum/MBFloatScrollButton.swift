@@ -384,14 +384,14 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     
     func addTagSearchView(searchTextField: UITextField, tagsResults model: [String]) {
         
-        if self.maskTagsView == nil {
-            self.maskTagsView = UIControl(frame: self.parentView.bounds)
-            self.maskTagsView?.backgroundColor = UIColor(white: 0, alpha: 0.5)
-            self.maskTagsView?.isUserInteractionEnabled = true
-            self.maskTagsView?.addTarget(self, action: #selector(MBFloatScrollButton.dismissTagsView), for: .allTouchEvents)
-            self.bringSubview(toFront: self.parentView)
-            self.parentView.addSubview(self.maskTagsView!)
-        }
+//        if self.maskTagsView == nil {
+//            self.maskTagsView = UIControl(frame: self.parentView.bounds)
+//            self.maskTagsView?.backgroundColor = UIColor(white: 0, alpha: 0.5)
+//            self.maskTagsView?.isUserInteractionEnabled = true
+//            self.maskTagsView?.addTarget(self, action: #selector(MBFloatScrollButton.dismissTagsView), for: .allTouchEvents)
+//            self.bringSubview(toFront: self.parentView)
+//            self.parentView.addSubview(self.maskTagsView!)
+//        }
     
         if self.tagsView == nil {
     
@@ -400,7 +400,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
                                     y: self.parentView.frame.origin.y + 100,
                                     width: searchTextField.bounds.size.width,
                                     height: 300)
-            self.maskTagsView?.addSubview(tagsView!)
+            self.parentView.addSubview(tagsView!)
             self.tagsView?.tagDelegate = self
             self.tagsView?.isHidden = false
             
