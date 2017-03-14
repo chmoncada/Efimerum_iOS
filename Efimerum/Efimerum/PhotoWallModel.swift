@@ -195,7 +195,7 @@ extension PhotoWallFirebaseModel {
     
     func circleQuery(_ userLocationManager: UserLocationManager?) -> GFCircleQuery? {
 
-        let geoFire = GeoFire(firebaseRef: FIRDatabase.database().reference().child("geofirePhotos"))
+        let geoFire = GeoFire(firebaseRef: FIRDatabase.database().reference().child("photos"))
         
         let location = userLocationManager?.currentLocation
         

@@ -13,7 +13,7 @@ import CoreLocation
 private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
 
-protocol PhotoDetailDragViewControllerOutput {
+protocol PhotoDetailDragViewControllerOutput: class {
     func deletePhotosOfIndexes( _ indexes: [String])
     func likeToPhotoWithIdentifier(_ identifier: String, location: CLLocation?)
 
