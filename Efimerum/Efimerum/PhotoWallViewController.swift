@@ -23,7 +23,7 @@ class PhotoWallViewController: UIViewController {
     var didSelectPhoto: (PhotoWallModelType, Int) -> Void = { _ in }
     var didShowSinglePhoto: (String) -> Void = { _ in }
     var goToProfile: () -> Void = {}
-    var needAuthLogin: () -> Void = {}
+    var needAuthLogin: (String) -> Void = {_ in }
     var selectedTag: String = ""
     var selectedFilter: FilterType = .random
     

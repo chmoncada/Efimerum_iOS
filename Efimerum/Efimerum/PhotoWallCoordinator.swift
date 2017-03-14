@@ -65,7 +65,7 @@ final class PhotoWallCoordinator: Coordinator {
             
         }
         
-        viewController.needAuthLogin = { [weak self] in
+        viewController.needAuthLogin = { [weak self]  scene in
             guard let strongSelf = self else {
                 return
             }
@@ -74,8 +74,14 @@ final class PhotoWallCoordinator: Coordinator {
             strongSelf.add(child: coordinator)
             
             coordinator.action = {
-                print("termine de logearme ahora toma la foto")
-                strongSelf.viewController.takePicture()
+                print("termine de logearme ahora anda a donde necesites")
+                
+                if scene == "profile" {
+                    strongSelf.viewController.goToProfile()
+                } else if scene == "takePhoto" {
+                    strongSelf.viewController.takePicture()
+                }
+                
             }
             
             coordinator.start()

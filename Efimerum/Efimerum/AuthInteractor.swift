@@ -31,4 +31,8 @@ class AuthInteractor: AuthInteractorInput {
         return authManager.isNotAuthenticated()
     }
     
+    func logout() {
+        authManager.logout()
+    }
+    
 }

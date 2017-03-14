@@ -46,6 +46,11 @@ class UserSettingsViewController: UITableViewController {
         return cell
     } ()
     
+    lazy var authManager: FirebaseAuthenticationManager = {
+        let manager = FirebaseAuthenticationManager.instance
+        return manager
+    }()
+    
     var didMoveFromParent: () -> Void = {}
     
     override func loadView() {
