@@ -63,7 +63,9 @@ class PhotoDetailDragViewController: UIViewController {
     }()
     
     let infoButton: UIButton = {
-        let button = UIButton(type: UIButtonType.infoLight)
+        let button = UIButton(type: UIButtonType.custom)
+        let image = UIImage(named: "btn_info")
+        button.setImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleInfo), for: .touchUpInside)
         
@@ -103,6 +105,8 @@ class PhotoDetailDragViewController: UIViewController {
         
     }()
     
+    var buttonSize: CGFloat?
+    
     // MARK: init
     init(model: PhotoWallModelType, startIndex: Int) {
         super.init(nibName: nil, bundle: nil)
@@ -124,6 +128,7 @@ class PhotoDetailDragViewController: UIViewController {
         
         view.backgroundColor = UIColor.black
         view.tintColor = UIColor.white
+        buttonSize = (view.bounds.width / 10)
         
         setupKolodaView()
         view.addSubview(kolodaView)
