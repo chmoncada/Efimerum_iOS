@@ -178,7 +178,7 @@ extension PhotoWallFirebaseModel {
             userLocationManager.locationManager.startUpdatingLocation()
             
             DispatchQueue.main.asyncAfter(deadline: when) {
-                geoQueryRef = self.circleQuery(self.userLocationManager)
+                geoQueryRef = self.circleQuery(self.userLocationManager, ref: rootRef)
                 let geofireObservable = geoQueryRef?.rx_observeEvent(of: .keyEntered)
                 let modifyObservable = ref.child("photos").rx_observe(.childChanged)
                 
@@ -193,9 +193,9 @@ extension PhotoWallFirebaseModel {
    
     }
     
-    func circleQuery(_ userLocationManager: UserLocationManager?) -> GFCircleQuery? {
+    func circleQuery(_ userLocationManager: UserLocationManager?, ref: FIRDatabaseReference) -> GFCircleQuery? {
 
-        let geoFire = GeoFire(firebaseRef: FIRDatabase.database().reference().child("photos"))
+        let geoFire = GeoFire(firebaseRef: ref)
         
         let location = userLocationManager?.currentLocation
         
