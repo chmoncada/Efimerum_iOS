@@ -29,7 +29,10 @@ class FirebaseDatabaseManager {
             if let dictionary = snap.value as? [String: Any] {
                 let name = dictionary["name"] as! String
                 let email = dictionary["email"] as! String
-                let imageURLString = dictionary["profileImageURL"] as! String
+                guard let imageURLString = dictionary["profileImageURL"] as? String else {
+                    completion(name, email, nil)
+                    return
+                }
                 let imageURL = URL(string: imageURLString)
                 
                 completion(name, email, imageURL)
