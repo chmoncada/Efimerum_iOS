@@ -11,6 +11,8 @@ import UIKit
 class BubbleView: UIView {
     
     weak var delegate :BubbleViewDelegate?
+    
+    var tagsInteractor = TagsInteractor()
 
     var titleLabel :UILabel!
     var dismissView :UIImageView!
@@ -54,7 +56,7 @@ class BubbleView: UIView {
                                                      width: 30,
                                                      height: 30))
             
-            updateFavoriteView()            
+            updateFavoriteView(tagsInteractor.isFavorite(tag: title))
             favoriteView?.isUserInteractionEnabled = true
             let tapFavorite = UITapGestureRecognizer(target: self, action: #selector(BubbleView.favotiteAction))
             favoriteView?.addGestureRecognizer(tapFavorite)
@@ -103,9 +105,8 @@ class BubbleView: UIView {
 
     }
     
-    func updateFavoriteView() {
-        let userDefaultsManager = UserDefaultsManager()
-        if userDefaultsManager.isFavorite(tag: self.title) {
+    func updateFavoriteView(_ isFavorite: Bool) {
+        if isFavorite {
             favoriteView?.backgroundColor = .red
         } else {
             favoriteView?.backgroundColor = .blue

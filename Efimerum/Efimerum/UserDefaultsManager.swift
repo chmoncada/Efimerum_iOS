@@ -17,11 +17,11 @@ class UserDefaultsManager {
     
     fileprivate let favoriteTagsKey = "favorites tags"
     
-    func markFavorite(tag: String) -> Bool {
+    func markFavorite(tag: String) -> (Bool, Bool) {
         if isFavorite(tag: tag) {
-            return deleteFavorite(tag: tag)
+            return (deleteFavorite(tag: tag), false)
         } else {
-            return saveFavorite(tag: tag)
+            return (saveFavorite(tag: tag), true)
         }
     }
     
