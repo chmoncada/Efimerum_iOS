@@ -41,17 +41,19 @@ class ApiClient {
         
         case likes(token: String, photoKey: String, latitude: Double?, longitude: Double?)
         case photos(token: String, latitude: Double?, longitude: Double?)
-        case photo
+        case favoriteTags(token: String, language: String)
+        case saveFavorite(tag: String, token: String, language: String)
+        case deleteFavorite(tag: String, token: String, language: String)
 //        case report(String)
         
         fileprivate var method: Alamofire.HTTPMethod {
             switch self {
-            case .photo:
+            case .favoriteTags:
                 return .get
-            case .photos,
-                 .likes:
-//                 .report:
+            case .photos, .likes, .saveFavorite:
                 return .post
+            case .deleteFavorite:
+                return .delete
             }
         }
         
@@ -61,15 +63,20 @@ class ApiClient {
                 return baseURL + "/photos"
             case .likes:
                 return baseURL + "/likes"
-            case .photo:
-                return baseURL + "/photo"
-//            case .report:
-//                return baseURL + "/report"
+            case .favoriteTags:
+                return baseURL + "/labels"
+            case .saveFavorite:
+                return baseURL + "/favoriteLabels"
+            case .deleteFavorite:
+                return baseURL + "/favoriteLabels"
+
             }
         }
         
         fileprivate var parameters: [String : String] {
+            
             switch self {
+                
             case let .likes(token: t, photoKey: p, latitude: lat, longitude: lon):
                 
                 if let lat = lat,
@@ -93,17 +100,30 @@ class ApiClient {
                         "idToken": t,
                         "latitude": "\(lat)",
                         "longitude": "\(lon)"
-                    ]
+                        ]
                 } else {
                     return [
                         "idToken": t
                         ]
                 }
-            case .photo:
-                return [String : String]()
-//            case .report(let keywords):
-//                parameters["keywords"] = keywords
-//                break
+            case let .favoriteTags(token: t, language: lang):
+                return [
+                    "idToken": t,
+                    "lang": "\(lang)"
+                ]
+            case let .saveFavorite(tag: tag, token: t, language: lang):
+                return [
+                    "label": tag,
+                    "idToken": t,
+                    "lang": "\(lang)"
+                    ]
+            case let .deleteFavorite(tag: tag, token: t, language: lang):
+                return [
+                    "label": tag,
+                    "idToken": t,
+                    "lang": "\(lang)"
+                ]
+
             }
         }
     }
@@ -185,7 +205,6 @@ extension ApiClient {
     public static func postPhoto(photoData: Data, token t: String, latitude lat: Double?, longitude lon: Double?, completion: @escaping (Result<EfimerumResponse, ApiError>) -> Void) {
         
         self.upload(data: photoData, endpoint: .photos(token: t, latitude: lat, longitude: lon)) { (result) in
-            
             completion(result)
         }
     }
@@ -196,6 +215,44 @@ extension ApiClient {
         let _ = self.request(endpoint: .likes(token: t, photoKey: k, latitude: lat, longitude: lon)) { (result) in
             
             completion(result)
+        }
+    }
+    
+    public static func getFavoriteTags(token t: String, language lang: String, completion: @escaping ([String]?, ApiError?) -> Void) {
+        
+        let _ = self.request(endpoint: .favoriteTags(token: t, language: lang)) { (result) in
+            
+            if let error = result.error {
+                completion(nil, error)
+            } else {
+                if let response = result.value {
+                    print(response)
+                }
+            }
+            
+        }
+    }
+    
+    public static func saveFavoriteTag(tag: String, token t: String, language lang: String, completion: @escaping (Bool, ApiError?) -> Void) {
+        
+        let _ = self.request(endpoint: .saveFavorite(tag: tag, token: t, language: lang)) { (result) in
+            
+            if let error = result.error {
+                completion(false, error)
+            } else {
+                completion(true, nil)
+            }
+        }
+    }
+    
+    public static func deleteFavoriteTag(tag: String, token t: String, language lang: String, completion: @escaping (Bool, ApiError?) -> Void) {
+        
+        let _ = self.request(endpoint: .deleteFavorite(tag: tag, token: t, language: lang)) { (result) in
+            if let error = result.error {
+                completion(false, error)
+            } else {
+                completion(true, nil)
+            }
         }
     }
     

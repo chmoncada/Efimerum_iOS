@@ -24,6 +24,11 @@ protocol TagsInteractorOutput : class {
 
 class TagsInteractor: TagsInteractorInput {
     
+    lazy var authManager: FirebaseAuthenticationManager = {
+        let manager = FirebaseAuthenticationManager.instance
+        return manager
+    }()
+    
     
     lazy var databaseManager: FirebaseDatabaseManager = {
         let manager = FirebaseDatabaseManager.instance
