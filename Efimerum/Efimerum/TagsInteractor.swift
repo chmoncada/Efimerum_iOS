@@ -13,6 +13,10 @@ protocol TagsInteractorInput :class {
     
     func getSuggestedTagsWith(query: String)
     
+    func markFavorite(tag: String) -> (Bool, Bool)
+    
+    func isFavorite(tag: String) -> Bool
+    
 }
 
 protocol TagsInteractorOutput : class {
@@ -29,6 +33,11 @@ class TagsInteractor: TagsInteractorInput {
         return manager
     }()
     
+    lazy var userDefaultsManager: UserDefaultsManager = {
+        let manager = UserDefaultsManager()
+        return manager
+    }()
+    
     
     lazy var databaseManager: FirebaseDatabaseManager = {
         let manager = FirebaseDatabaseManager.instance
@@ -42,6 +51,8 @@ class TagsInteractor: TagsInteractorInput {
         self.interface = interface
     }
     
+    init() {}
+    
     func getSuggestedTagsWith(query q: String) {
         
         self.databaseManager.getTagsWith(query: q) { (tags) in
@@ -53,5 +64,14 @@ class TagsInteractor: TagsInteractorInput {
             }
         }
     }
+    
+    func markFavorite(tag: String) -> (Bool, Bool) {
+       return userDefaultsManager.markFavorite(tag: tag)
+    }
+    
+    func isFavorite(tag: String) -> Bool {
+        return userDefaultsManager.isFavorite(tag: tag)
+    }
+    
     
 }

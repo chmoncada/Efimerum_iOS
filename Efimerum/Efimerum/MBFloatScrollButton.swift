@@ -10,7 +10,7 @@ import UIKit
 
 class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     
-    var tagsInteractor : TagsInteractor?
+    var tagsInteractor : TagsInteractor!
 
     var hideWhileScrolling = true
     var isFloatActionMenu : Bool = false
@@ -478,10 +478,12 @@ extension MBFloatScrollButton :BubbleViewDelegate {
     func didTapFavorite(view: BubbleView) {
         let tag = view.title
         print("tap favorite: \(tag)")
-        let userDefaultsManager = UserDefaultsManager()
-        if userDefaultsManager.markFavorite(tag: tag) {
-           view.updateFavoriteView()
+        
+        let (success, isFavorite) = tagsInteractor.markFavorite(tag: tag)
+        if success {
+            view.updateFavoriteView(isFavorite)
         }
+     
     }
 }
 
