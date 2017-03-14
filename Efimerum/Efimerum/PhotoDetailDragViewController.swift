@@ -8,6 +8,7 @@
 
 import UIKit
 import pop
+import CoreLocation
 
 private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
@@ -15,7 +16,7 @@ private let frameAnimationSpringSpeed: CGFloat = 16
 protocol PhotoDetailDragViewControllerOutput: class {
     func deletePhotosOfIndexes( _ indexes: [String])
     func logout()
-    func likeToPhotoWithIdentifier(_ identifier: String)
+    func likeToPhotoWithIdentifier(_ identifier: String, location: CLLocation?)
 
 }
 
@@ -30,11 +31,16 @@ class PhotoDetailDragViewController: UIViewController {
         return interactor
     }()
     
+    lazy var userLocationManager: UserLocationManager = {
+        let manager = UserLocationManager()
+        return manager
+    }()
+    
     // MARK: Properties
     
     var model: PhotoWallModelType?
     var didFinish: () -> Void = {}
-    var needAuthLogin: (String) -> Void = { _ in }
+    var needAuthLogin: (String, CLLocation?) -> Void = { _ in }
     var startIndex: Int = 0
     var indexesToDelete: [String] = []
     
@@ -194,8 +200,13 @@ extension PhotoDetailDragViewController: KolodaViewDelegate {
         case .left:
             indexesToDelete.append(identifier)
         case .right:
-            handleLikePhotoWithIdentifier(identifier)
-            indexesToDelete.append(identifier)
+            let when = DispatchTime.now() + 2
+            userLocationManager.locationManager.startUpdatingLocation()
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                self.handleLikePhotoWithIdentifier(identifier, userLocationManager: self.userLocationManager)
+                self.indexesToDelete.append(identifier)
+            }
+            
         default:
             print("No pasa nada")
         }

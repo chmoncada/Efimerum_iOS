@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import CoreLocation
 
 protocol PhotoDetailDragInteractorInput {
     func deletePhotosOfIndexes( _ indexes: [String])
     func logout()
-    func likeToPhotoWithIdentifier(_ identifier: String)
+    func likeToPhotoWithIdentifier(_ identifier: String, location: CLLocation?)
 }
 
 class PhotoDetailDragInteractor: PhotoDetailDragInteractorInput {
@@ -22,11 +23,12 @@ class PhotoDetailDragInteractor: PhotoDetailDragInteractorInput {
     }()
 
     
-    func likeToPhotoWithIdentifier(_ identifier: String) {
+    func likeToPhotoWithIdentifier(_ identifier: String, location: CLLocation?) {
         
         authManager.getTokenForUser() { token in
             if let idToken = token {
-                ApiClient.likePhoto(token: idToken, photoKey: identifier, latitude: 41.375, longitude: 2.1706, completion: { (result) in
+                
+                ApiClient.likePhoto(token: idToken, photoKey: identifier, latitude: location?.coordinate.latitude, longitude: location?.coordinate.longitude, completion: { (result) in
                     print(result)
                 })
             }

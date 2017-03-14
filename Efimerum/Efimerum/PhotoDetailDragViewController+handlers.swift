@@ -23,12 +23,14 @@ extension PhotoDetailDragViewController {
         output.logout()
     }
     
-    func handleLikePhotoWithIdentifier(_ identifier: String) {
+    func handleLikePhotoWithIdentifier(_ identifier: String, userLocationManager: UserLocationManager) {
         
+        let location = userLocationManager.currentLocation
         if self.authInteractor.isNotAuthenticated() {
-            needAuthLogin(identifier)
+            needAuthLogin(identifier, location)
         } else {
-            output.likeToPhotoWithIdentifier(identifier)
+            
+            output.likeToPhotoWithIdentifier(identifier, location: location)
         }
         
     }

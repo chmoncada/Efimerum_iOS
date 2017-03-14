@@ -46,7 +46,7 @@ final class PhotoDetailDragCoordinator: Coordinator {
             
         }
         
-        viewController.needAuthLogin = { [weak self] identifier in
+        viewController.needAuthLogin = { [weak self] identifier, location in
             guard let strongSelf = self else {
                 return
             }
@@ -55,7 +55,7 @@ final class PhotoDetailDragCoordinator: Coordinator {
             strongSelf.add(child: coordinator)
             
             coordinator.action = {
-                strongSelf.viewController.output.likeToPhotoWithIdentifier(identifier)
+                strongSelf.viewController.output.likeToPhotoWithIdentifier(identifier, location: location)
             }
             
             coordinator.start()
