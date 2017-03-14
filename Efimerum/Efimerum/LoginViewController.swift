@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
     
     var output: LoginViewControllerOutput!
     
-    var tempImage = UIImage()
+    var userImage: UIImage?
     
     var inputsContainerViewHeightAnchor: NSLayoutConstraint?
     var nameTextFieldHeightAnchor: NSLayoutConstraint?
@@ -126,7 +126,7 @@ class LoginViewController: UIViewController {
        let sc = UISegmentedControl(items: ["Login", "Register"])
         sc.translatesAutoresizingMaskIntoConstraints = false
         sc.tintColor = UIColor.white
-        sc.selectedSegmentIndex = 1
+        sc.selectedSegmentIndex = 0
         sc.addTarget(self, action: #selector(handleLoginRegisterChange), for: .valueChanged)
         return sc
     }()

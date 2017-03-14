@@ -35,7 +35,7 @@ class ProfileInteractor: ProfileInteractorInput {
         authManager.getUserUID { (uid) in
             if let uid = uid {
                 databaseManager.getUserDataForUserWithUID(uid) { name, email, imageURL in
-                    if let name = name, let email = email, let imageURL = imageURL {
+                    if let name = name, let email = email {
                         self.output.bindViewWithName(name, email: email, imageURL: imageURL)
                     }
                 }

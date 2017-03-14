@@ -18,14 +18,17 @@ extension LoginViewController {
         //Disable imageView user interacction
         profileImageView.isUserInteractionEnabled = loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? false : true
         
-        // Recover logo image when we select login
-        
         if loginRegisterSegmentedControl.selectedSegmentIndex == 0 {
-            tempImage = profileImageView.image!
             profileImageView.image = UIImage(named: "flame")
             forgetCredentialsButton.isHidden = false
         } else {
-            profileImageView.image = tempImage
+            
+            if userImage != nil {
+                profileImageView.image = userImage
+            } else {
+                profileImageView.image = UIImage(named: "default_user_icon")
+            }
+            
             forgetCredentialsButton.isHidden = true
         }
         
@@ -110,7 +113,7 @@ extension LoginViewController {
         
         HUD.show(.progress)
         
-        output.register(withEmail: email, password: password, name: name, image: self.profileImageView.image) { success in
+        output.register(withEmail: email, password: password, name: name, image: self.userImage) { success in
             if success {
                 self.didFinish(success)
             }
@@ -124,7 +127,6 @@ extension LoginViewController {
 extension LoginViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("canceled picker")
         dismiss(animated: true, completion: nil)
     }
     
@@ -139,6 +141,7 @@ extension LoginViewController: UIImagePickerControllerDelegate, UINavigationCont
         }
         
         if let selectedImage = selectedImageFromPicker {
+            userImage = selectedImage
             profileImageView.image = selectedImage
         }
         

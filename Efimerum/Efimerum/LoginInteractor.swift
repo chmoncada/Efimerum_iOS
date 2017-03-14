@@ -104,6 +104,7 @@ class LoginInteractor: LoginInteractorInput {
         let imageName = NSUUID().uuidString
         let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName).jpg")
         
+        
         if let profileImage = image, let uploadData = UIImageJPEGRepresentation(profileImage, 0.1) {
             storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                 
@@ -126,6 +127,17 @@ class LoginInteractor: LoginInteractorInput {
                     
                 }
                 
+            })
+        } else {
+            print("no tiene foto, lo subire vacio")
+            let values = ["name": name, "email": email]
+            self.databaseManager.registerUserIntoDatabaseWithUID(uid, values: values, completion: { (success, err) in
+                if err != nil {
+                    HUD.flash(.label(err?.localizedDescription), delay: 1)
+                    return
+                }
+                HUD.flash(.success, delay: 1.0)
+                completion(success)
             })
         }
         

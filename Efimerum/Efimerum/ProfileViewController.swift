@@ -181,7 +181,12 @@ extension ProfileViewController: ProfileViewControllerInput {
     
     func bindViewWithName(_ name: String, email: String, imageURL: URL?) {
         
-        profileImageView.kf.setImage(with: imageURL!)
+        if let imageURL = imageURL {
+           profileImageView.kf.setImage(with: imageURL)
+        } else {
+            profileImageView.image = UIImage(named: "default_user_icon")
+        }
+        
         nameLabel.text = name
         emailLabel.text = email
     }
