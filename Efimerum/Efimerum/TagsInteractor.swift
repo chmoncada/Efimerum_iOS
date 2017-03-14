@@ -17,11 +17,14 @@ protocol TagsInteractorInput :class {
     
     func isFavorite(tag: String) -> Bool
     
+    func getFavoriteTags()
 }
 
 protocol TagsInteractorOutput : class {
     
     func loadSuggested(tags: [String])
+    
+    func loadFavorite(tags: [String]?)
 
 }
 
@@ -71,6 +74,11 @@ class TagsInteractor: TagsInteractorInput {
     
     func isFavorite(tag: String) -> Bool {
         return userDefaultsManager.isFavorite(tag: tag)
+    }
+    
+    func getFavoriteTags() {
+        let tags = userDefaultsManager.getFavoritesArray()
+        self.interface?.loadFavorite(tags: tags)
     }
     
     

@@ -164,10 +164,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     }
     
     func showFavoriteTagsAction() {
-        
-        if let tags = UserDefaultsManager().getFavoritesArray() {
-            addTagSearchView(searchTextField: self.searchTextField!, tagsResults: tags)
-        }
+        tagsInteractor.getFavoriteTags()
     }
     
     //MARK: - Search textField
@@ -505,6 +502,13 @@ extension MBFloatScrollButton :TagsInteractorOutput {
     func loadSuggested(tags: [String]) {
         print(tags)
         addTagSearchView(searchTextField: self.searchTextField!, tagsResults: tags)
+    }
+    
+    func loadFavorite(tags: [String]?) {
+        
+        if let tags = tags {
+            addTagSearchView(searchTextField: self.searchTextField!, tagsResults: tags)
+        }
     }
 }
 
