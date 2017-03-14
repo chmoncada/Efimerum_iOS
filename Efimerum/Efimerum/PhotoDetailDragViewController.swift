@@ -13,7 +13,7 @@ import CoreLocation
 private let frameAnimationSpringBounciness: CGFloat = 9
 private let frameAnimationSpringSpeed: CGFloat = 16
 
-protocol PhotoDetailDragViewControllerOutput: class {
+protocol PhotoDetailDragViewControllerOutput {
     func deletePhotosOfIndexes( _ indexes: [String])
     func likeToPhotoWithIdentifier(_ identifier: String, location: CLLocation?)
 
@@ -21,7 +21,7 @@ protocol PhotoDetailDragViewControllerOutput: class {
 
 class PhotoDetailDragViewController: UIViewController {
 
-    weak var output: PhotoDetailDragViewControllerOutput!
+    var output: PhotoDetailDragViewControllerOutput!
     
     var didAskPhotoInfo: (Photo) -> Void = { _ in }
     
@@ -108,6 +108,7 @@ class PhotoDetailDragViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.model = model
         self.startIndex = startIndex
+        
    
     }
     
@@ -119,6 +120,8 @@ class PhotoDetailDragViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        PhotoDetailDragConfigurator.instance.configure(viewController: self)
+        
         view.backgroundColor = UIColor.black
         view.tintColor = UIColor.white
         
@@ -140,8 +143,6 @@ class PhotoDetailDragViewController: UIViewController {
         //TEMPORARY BUTTON
         view.addSubview(reportButton)
         setupReportButton()
-        
-        PhotoDetailDragConfigurator.instance.configure(viewController: self)
         
         self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         

@@ -25,7 +25,6 @@ extension PhotoDetailDragViewController {
         if self.authInteractor.isNotAuthenticated() {
             needAuthLogin(identifier, location)
         } else {
-            
             output.likeToPhotoWithIdentifier(identifier, location: location)
         }
         
