@@ -13,7 +13,9 @@ extension UserSettingsViewController {
     func handleLogout() {
         print("me deberia desloguear")
         
-        didFinish()
+        //didFinish()
+        
+        let _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
     func handleModifyUser() {

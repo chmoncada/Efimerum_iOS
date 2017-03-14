@@ -41,19 +41,20 @@ final class ProfileCoordinator: Coordinator {
             
             let coordinator = UserSettingCoordinator(navigationController: navigationController)
             
-            coordinator.closeIt = { [weak self] in
-                guard let strongSelf = self else {
-                    return
-                }
-                
-                let _ = strongSelf.navigationController.popViewController(animated: false)
-                strongSelf.didFinish()
-            }
-            
             
             strongSelf.add(child: coordinator)
             
             coordinator.start()
+        }
+        
+        viewController.didMoveFromParent = { [weak self] in
+            guard let `self` = self else {
+                return
+            }
+            
+            // This will remove the coordinator from its parent
+            self.didFinish()
+            
         }
         
     }
