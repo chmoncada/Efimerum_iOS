@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
     lazy var loginRegisterButton: UIButton = {
         let button = UIButton(type: UIButtonType.system)
         button.backgroundColor = UIColor(r: 216, g: 67, b: 21)
-        button.setTitle("Register", for: .normal)
+        button.setTitle("Login", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)

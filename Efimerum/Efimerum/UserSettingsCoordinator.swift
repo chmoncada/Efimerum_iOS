@@ -14,7 +14,6 @@ final class UserSettingCoordinator: Coordinator {
     
     private unowned let navigationController: UINavigationController
     private let viewController: UserSettingsViewController
-    var closeIt: () -> Void = {}
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -22,18 +21,16 @@ final class UserSettingCoordinator: Coordinator {
         
         super.init()
         
-        viewController.didFinish = { [weak self] in
+        
+        viewController.didMoveFromParent = { [weak self] in
             guard let `self` = self else {
                 return
             }
             
             // This will remove the coordinator from its parent
-            //self.navigationController.dismiss(animated: true)
-            let _ = self.navigationController.popViewController(animated: false)
-            self.closeIt()
             self.didFinish()
+            
         }
-        
         
     }
     

@@ -15,14 +15,13 @@ private let frameAnimationSpringSpeed: CGFloat = 16
 
 protocol PhotoDetailDragViewControllerOutput: class {
     func deletePhotosOfIndexes( _ indexes: [String])
-    func logout()
     func likeToPhotoWithIdentifier(_ identifier: String, location: CLLocation?)
 
 }
 
 class PhotoDetailDragViewController: UIViewController {
 
-    weak var output: PhotoDetailDragViewControllerOutput!
+    var output: PhotoDetailDragViewControllerOutput!
     
     var didAskPhotoInfo: (Photo) -> Void = { _ in }
     
@@ -92,14 +91,14 @@ class PhotoDetailDragViewController: UIViewController {
     }()
     
     //TEMPORAL BUTTON
-    let logoutButton: UIButton = {
+    let reportButton: UIButton = {
         
         let button = UIButton(type: UIButtonType.system)
-        button.setTitle("Logout", for: .normal)
+        button.setTitle("Report Photo", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
         
-        button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleReport), for: .touchUpInside)
         return button
         
     }()
@@ -109,6 +108,7 @@ class PhotoDetailDragViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.model = model
         self.startIndex = startIndex
+        
    
     }
     
@@ -120,6 +120,8 @@ class PhotoDetailDragViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        PhotoDetailDragConfigurator.instance.configure(viewController: self)
+        
         view.backgroundColor = UIColor.black
         view.tintColor = UIColor.white
         
@@ -139,10 +141,8 @@ class PhotoDetailDragViewController: UIViewController {
         setupLikeButton()
         
         //TEMPORARY BUTTON
-        view.addSubview(logoutButton)
-        setupLogoutButton()
-        
-        PhotoDetailDragConfigurator.instance.configure(viewController: self)
+        view.addSubview(reportButton)
+        setupReportButton()
         
         self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         

@@ -9,7 +9,6 @@
 import UIKit
 
 extension PhotoDetailDragInteractor: PhotoDetailDragViewControllerOutput {}
-extension PhotoDetailDragInteractor : FireBaseManagerLogoutOutput {}
 
 class PhotoDetailDragConfigurator {
     
@@ -24,10 +23,6 @@ class PhotoDetailDragConfigurator {
     func configure(viewController: PhotoDetailDragViewController) {
         
         let interactor = PhotoDetailDragInteractor()
-        
-        //let authInteractor = AuthInteractor.instance
-        
-        interactor.authManager.output = interactor
         
         viewController.output = interactor
 

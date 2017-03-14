@@ -48,12 +48,12 @@ extension PhotoDetailDragViewController {
     
     // TEMPORAL FUNC
     
-    func setupLogoutButton() {
-        logoutButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30).isActive = true
-        logoutButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
-        logoutButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        logoutButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        logoutButton.isHidden = true
+    func setupReportButton() {
+        reportButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30).isActive = true
+        reportButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
+        reportButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        reportButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        reportButton.isHidden = true
     }
     
     func setupKolodaView() {

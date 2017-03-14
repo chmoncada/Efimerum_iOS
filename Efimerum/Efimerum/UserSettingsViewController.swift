@@ -46,7 +46,12 @@ class UserSettingsViewController: UITableViewController {
         return cell
     } ()
     
-    var didFinish: () -> Void = {}
+    lazy var authManager: FirebaseAuthenticationManager = {
+        let manager = FirebaseAuthenticationManager.instance
+        return manager
+    }()
+    
+    var didMoveFromParent: () -> Void = {}
     
     override func loadView() {
         super.loadView()
@@ -67,6 +72,14 @@ class UserSettingsViewController: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func didMove(toParentViewController parent: UIViewController?) {
+        super.didMove(toParentViewController: parent)
+        
+        if parent == nil {
+            didMoveFromParent()
+        }
     }
     
     // Return the number of sections

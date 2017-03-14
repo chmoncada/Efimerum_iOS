@@ -13,7 +13,10 @@ extension UserSettingsViewController {
     func handleLogout() {
         print("me deberia desloguear")
         
-        didFinish()
+        authManager.output = self
+        authManager.logout()
+        
+        let _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
     func handleModifyUser() {
@@ -32,4 +35,18 @@ extension UserSettingsViewController {
         print("movieron el switch a: \(sender.isOn)")
     }
     
+}
+
+extension UserSettingsViewController: FireBaseManagerLogoutOutput {
+    
+    func userDidLogout(success: Bool) {
+        print("FUNCIONA!!!!")
+        if success {
+            authManager.loginAnonymous()
+        }
+    }
+    
+    func userLoginAnonymous(success: Bool) {
+        print("TERMINE EL LOGEO")
+    }
 }

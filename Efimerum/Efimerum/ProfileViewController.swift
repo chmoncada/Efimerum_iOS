@@ -105,6 +105,8 @@ class ProfileViewController: UIViewController {
     
     var didSelectSettings: () -> Void = {}
     
+    var didMoveFromParent: () -> Void = {}
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -162,6 +164,14 @@ class ProfileViewController: UIViewController {
         setupBindings()
         
         
+    }
+    
+    override func didMove(toParentViewController parent: UIViewController?) {
+        super.didMove(toParentViewController: parent)
+        
+        if parent == nil {
+            didMoveFromParent()
+        }
     }
     
     func setupBindings() {
