@@ -11,7 +11,6 @@ import CoreLocation
 
 protocol PhotoDetailDragInteractorInput {
     func deletePhotosOfIndexes( _ indexes: [String])
-    func logout()
     func likeToPhotoWithIdentifier(_ identifier: String, location: CLLocation?)
 }
 
@@ -43,25 +42,3 @@ class PhotoDetailDragInteractor: PhotoDetailDragInteractorInput {
 }
 
 
-// TODO: Cleaning, temporal, it should be go to profile settings scene
-extension PhotoDetailDragInteractor {
-    
-    func logout() {
-        authManager.logout()
-    }
-    
-    func loginAnonymous() {
-        authManager.loginAnonymous()
-    }
-    
-    func userDidLogout(success: Bool) {
-        if success {
-            loginAnonymous()
-        }
-    }
-    
-    func userLoginAnonymous(success: Bool) {
-        print("el usuario se logeo anonimo: \(success)")
-    }
-    
-}

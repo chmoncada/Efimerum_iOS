@@ -19,10 +19,6 @@ extension PhotoDetailDragViewController {
         let _ = navigationController?.popViewController(animated: false)
     }
     
-    func handleLogout() {
-        output.logout()
-    }
-    
     func handleLikePhotoWithIdentifier(_ identifier: String, userLocationManager: UserLocationManager) {
         
         let location = userLocationManager.currentLocation
@@ -33,6 +29,10 @@ extension PhotoDetailDragViewController {
             output.likeToPhotoWithIdentifier(identifier, location: location)
         }
         
+    }
+    
+    func handleReport() {
+        print("reporta esta foto al backend")
     }
     
     func handleInfo() {
@@ -56,7 +56,7 @@ extension PhotoDetailDragViewController {
     func handleTouch() {
         
         closeButton.isHidden = !closeButton.isHidden
-        logoutButton.isHidden = !logoutButton.isHidden
+        reportButton.isHidden = !reportButton.isHidden
     }
     
     

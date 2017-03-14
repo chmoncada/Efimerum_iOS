@@ -15,7 +15,6 @@ private let frameAnimationSpringSpeed: CGFloat = 16
 
 protocol PhotoDetailDragViewControllerOutput: class {
     func deletePhotosOfIndexes( _ indexes: [String])
-    func logout()
     func likeToPhotoWithIdentifier(_ identifier: String, location: CLLocation?)
 
 }
@@ -92,14 +91,14 @@ class PhotoDetailDragViewController: UIViewController {
     }()
     
     //TEMPORAL BUTTON
-    let logoutButton: UIButton = {
+    let reportButton: UIButton = {
         
         let button = UIButton(type: UIButtonType.system)
-        button.setTitle("Logout", for: .normal)
+        button.setTitle("Report Photo", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
         
-        button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleReport), for: .touchUpInside)
         return button
         
     }()
@@ -139,8 +138,8 @@ class PhotoDetailDragViewController: UIViewController {
         setupLikeButton()
         
         //TEMPORARY BUTTON
-        view.addSubview(logoutButton)
-        setupLogoutButton()
+        view.addSubview(reportButton)
+        setupReportButton()
         
         PhotoDetailDragConfigurator.instance.configure(viewController: self)
         

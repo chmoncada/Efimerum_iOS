@@ -13,7 +13,7 @@ extension PhotoWallViewController {
     func handleTakePhoto() {
         
         if self.authInteractor.isNotAuthenticated() {
-            needAuthLogin()
+            needAuthLogin("takePhoto")
         } else {
             takePicture()
         }
@@ -50,7 +50,12 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
     }
     
     func didTapOnProfile(button: MBFloatScrollButton) {
-        goToProfile()
+        if self.authInteractor.isNotAuthenticated() {
+            needAuthLogin("profile")
+        } else {
+            goToProfile()
+        }
+        
     }
     
     func didTap(filter: FilterType) {
