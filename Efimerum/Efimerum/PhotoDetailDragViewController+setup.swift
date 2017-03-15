@@ -46,6 +46,14 @@ extension PhotoDetailDragViewController {
         likeButton.heightAnchor.constraint(equalToConstant: buttonSize!).isActive = true
     }
     
+    func setupShareButton() {
+        shareButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
+        shareButton.bottomAnchor.constraint(equalTo: likeButton.bottomAnchor).isActive = true
+        shareButton.widthAnchor.constraint(equalToConstant: buttonSize!).isActive = true
+        shareButton.heightAnchor.constraint(equalToConstant: buttonSize!).isActive = true
+        
+    }
+    
     
     func setupReportButton() {
         reportButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30).isActive = true

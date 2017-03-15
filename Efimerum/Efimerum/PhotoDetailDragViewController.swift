@@ -72,6 +72,16 @@ class PhotoDetailDragViewController: UIViewController {
         return button
     }()
     
+    let shareButton: UIButton = {
+        let button = UIButton(type: UIButtonType.custom)
+        let image = UIImage(named: "btn_share")
+        button.setImage(image, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleShare), for: .touchUpInside)
+        
+        return button
+    }()
+    
     let skipButton: UIButton = {
         let button = UIButton(type: UIButtonType.custom)
         let image = UIImage(named: "btn_skip_pressed")
@@ -92,13 +102,13 @@ class PhotoDetailDragViewController: UIViewController {
         return button
     }()
     
-    //TEMPORAL BUTTON
     let reportButton: UIButton = {
         
         let button = UIButton(type: UIButtonType.system)
-        button.setTitle("Report Photo", for: .normal)
+        button.setTitle("Report", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.contentHorizontalAlignment = .right
         
         button.addTarget(self, action: #selector(handleReport), for: .touchUpInside)
         return button
@@ -145,7 +155,9 @@ class PhotoDetailDragViewController: UIViewController {
         view.addSubview(likeButton)
         setupLikeButton()
         
-        //TEMPORARY BUTTON
+        view.addSubview(shareButton)
+        setupShareButton()
+        
         view.addSubview(reportButton)
         setupReportButton()
         
