@@ -6,8 +6,6 @@
 //  Copyright © 2017 mibarbou. All rights reserved.
 //
 
-import Foundation
-
 import UIKit
 
 final class UserSettingCoordinator: Coordinator {
