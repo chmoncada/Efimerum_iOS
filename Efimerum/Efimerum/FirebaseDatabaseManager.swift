@@ -58,7 +58,8 @@ class FirebaseDatabaseManager {
         ref.child("labels").child("EN").queryOrderedByKey().queryStarting(atValue: q.lowercased()).queryEnding(atValue: "\(q.lowercased())\("uf8ff")").observeSingleEvent(of: .value, with: { (snap) in
             if let dict = snap.value as? [String: Any] {
                 let tagsFound = Array(dict.keys)
-                completion(tagsFound)
+                let tagsOrdered = tagsFound.sorted{ $0 < $1 }
+                completion(tagsOrdered)
             } else {
                 completion(nil)
             }
