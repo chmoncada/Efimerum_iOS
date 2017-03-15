@@ -9,7 +9,7 @@
 import Foundation
 import FirebaseDatabase
 import RxSwift
-import GeoFire
+
 
 extension FIRDatabaseQuery {
     

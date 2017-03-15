@@ -11,7 +11,7 @@ import Photos
 import RxSwift
 import FirebaseDatabase
 import FirebaseAuth
-import GeoFire
+
 
 // MARK: PhotoWallModelType protocol
 protocol PhotoWallModelType: class {

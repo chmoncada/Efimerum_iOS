@@ -15,6 +15,11 @@
 		A1239C221E6F774200DFDFA7 /* PhotoWallConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1239C211E6F774200DFDFA7 /* PhotoWallConfigurator.swift */; };
 		A127899C1E5BE2ED007EE2F0 /* UIImage+Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127899B1E5BE2ED007EE2F0 /* UIImage+Rotation.swift */; };
 		A12F47071E579D4B00EBD98C /* FirebaseDatabase+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F47061E579D4B00EBD98C /* FirebaseDatabase+RX.swift */; };
+		A16361C71E79841A00291A85 /* GeoFire.m in Sources */ = {isa = PBXBuildFile; fileRef = A16361BE1E79841A00291A85 /* GeoFire.m */; };
+		A16361C81E79841A00291A85 /* GFBase32Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A16361C01E79841A00291A85 /* GFBase32Utils.m */; };
+		A16361C91E79841A00291A85 /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = A16361C21E79841A00291A85 /* GFGeoHash.m */; };
+		A16361CA1E79841A00291A85 /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = A16361C41E79841A00291A85 /* GFGeoHashQuery.m */; };
+		A16361CB1E79841A00291A85 /* GFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = A16361C61E79841A00291A85 /* GFQuery.m */; };
 		A1690B1C1E6789A80099AFA6 /* ProfileViewController+setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1690B1B1E6789A80099AFA6 /* ProfileViewController+setup.swift */; };
 		A1690B1E1E678C000099AFA6 /* ProfileViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1690B1D1E678C000099AFA6 /* ProfileViewController+handlers.swift */; };
 		A1690B211E67A3560099AFA6 /* SinglePhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1690B201E67A3560099AFA6 /* SinglePhotoDetailViewController.swift */; };
@@ -114,6 +119,22 @@
 		A1239C211E6F774200DFDFA7 /* PhotoWallConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallConfigurator.swift; sourceTree = "<group>"; };
 		A127899B1E5BE2ED007EE2F0 /* UIImage+Rotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Rotation.swift"; sourceTree = "<group>"; };
 		A12F47061E579D4B00EBD98C /* FirebaseDatabase+RX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FirebaseDatabase+RX.swift"; sourceTree = "<group>"; };
+		A16361B31E79829F00291A85 /* Efimerum-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Efimerum-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		A16361B71E79841A00291A85 /* GeoFire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoFire.h; sourceTree = "<group>"; };
+		A16361B81E79841A00291A85 /* GFCircleQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFCircleQuery.h; sourceTree = "<group>"; };
+		A16361B91E79841A00291A85 /* GFQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFQuery.h; sourceTree = "<group>"; };
+		A16361BA1E79841A00291A85 /* GFRegionQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFRegionQuery.h; sourceTree = "<group>"; };
+		A16361BB1E79841A00291A85 /* GeoFire-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoFire-Prefix.pch"; sourceTree = "<group>"; };
+		A16361BD1E79841A00291A85 /* GeoFire+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoFire+Private.h"; sourceTree = "<group>"; };
+		A16361BE1E79841A00291A85 /* GeoFire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoFire.m; sourceTree = "<group>"; };
+		A16361BF1E79841A00291A85 /* GFBase32Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFBase32Utils.h; sourceTree = "<group>"; };
+		A16361C01E79841A00291A85 /* GFBase32Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFBase32Utils.m; sourceTree = "<group>"; };
+		A16361C11E79841A00291A85 /* GFGeoHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFGeoHash.h; sourceTree = "<group>"; };
+		A16361C21E79841A00291A85 /* GFGeoHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHash.m; sourceTree = "<group>"; };
+		A16361C31E79841A00291A85 /* GFGeoHashQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFGeoHashQuery.h; sourceTree = "<group>"; };
+		A16361C41E79841A00291A85 /* GFGeoHashQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHashQuery.m; sourceTree = "<group>"; };
+		A16361C51E79841A00291A85 /* GFQuery+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GFQuery+Private.h"; sourceTree = "<group>"; };
+		A16361C61E79841A00291A85 /* GFQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFQuery.m; sourceTree = "<group>"; };
 		A1690B1B1E6789A80099AFA6 /* ProfileViewController+setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+setup.swift"; sourceTree = "<group>"; };
 		A1690B1D1E678C000099AFA6 /* ProfileViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+handlers.swift"; sourceTree = "<group>"; };
 		A1690B201E67A3560099AFA6 /* SinglePhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePhotoDetailViewController.swift; sourceTree = "<group>"; };
@@ -249,6 +270,44 @@
 			name = Managers;
 			sourceTree = "<group>";
 		};
+		A16361B51E79841A00291A85 /* GeoFire */ = {
+			isa = PBXGroup;
+			children = (
+				A16361B61E79841A00291A85 /* API */,
+				A16361BB1E79841A00291A85 /* GeoFire-Prefix.pch */,
+				A16361BC1E79841A00291A85 /* Implementation */,
+			);
+			path = GeoFire;
+			sourceTree = "<group>";
+		};
+		A16361B61E79841A00291A85 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				A16361B71E79841A00291A85 /* GeoFire.h */,
+				A16361B81E79841A00291A85 /* GFCircleQuery.h */,
+				A16361B91E79841A00291A85 /* GFQuery.h */,
+				A16361BA1E79841A00291A85 /* GFRegionQuery.h */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		A16361BC1E79841A00291A85 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				A16361BD1E79841A00291A85 /* GeoFire+Private.h */,
+				A16361BE1E79841A00291A85 /* GeoFire.m */,
+				A16361BF1E79841A00291A85 /* GFBase32Utils.h */,
+				A16361C01E79841A00291A85 /* GFBase32Utils.m */,
+				A16361C11E79841A00291A85 /* GFGeoHash.h */,
+				A16361C21E79841A00291A85 /* GFGeoHash.m */,
+				A16361C31E79841A00291A85 /* GFGeoHashQuery.h */,
+				A16361C41E79841A00291A85 /* GFGeoHashQuery.m */,
+				A16361C51E79841A00291A85 /* GFQuery+Private.h */,
+				A16361C61E79841A00291A85 /* GFQuery.m */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
 		A1690B1F1E67A3290099AFA6 /* Single Photo Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +434,7 @@
 		A1E9CAA71E4C243C002F4493 /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
+				A16361B51E79841A00291A85 /* GeoFire */,
 				A1E9CAA81E4C2464002F4493 /* Koloda */,
 			);
 			name = FrameWorks;
@@ -439,6 +499,7 @@
 		D04B0D2A1E3D2BB5008E4777 /* Efimerum */ = {
 			isa = PBXGroup;
 			children = (
+				A16361B31E79829F00291A85 /* Efimerum-Bridging-Header.h */,
 				A1106CB31E670A320032B06B /* Efimerum.entitlements */,
 				A12F46FA1E56615900EBD98C /* Managers */,
 				A19CEF4A1E59E3CB00C23B1E /* Models */,
@@ -715,6 +776,7 @@
 				A1A350FE1E61DB0800100C56 /* PhotoDetailDragConfigurator.swift in Sources */,
 				A1E9CABF1E4C254F002F4493 /* PhotoWallCoordinator.swift in Sources */,
 				A19228811E74CD0D00FCBADB /* PhotoDetailInfoViewController+setup.swift in Sources */,
+				A16361CA1E79841A00291A85 /* GFGeoHashQuery.m in Sources */,
 				A1239C221E6F774200DFDFA7 /* PhotoWallConfigurator.swift in Sources */,
 				A192287B1E74CB8600FCBADB /* PhotoDetailInfoCoordinator.swift in Sources */,
 				A17386F01E646AD0009903ED /* ProfileViewController.swift in Sources */,
@@ -753,8 +815,11 @@
 				A17386F21E646AE8009903ED /* ProfileCoordinator.swift in Sources */,
 				A1E9CAA61E4C2426002F4493 /* Coordinator.swift in Sources */,
 				A1A351001E63487800100C56 /* PhotoDetailDragViewController+handlers.swift in Sources */,
+				A16361C71E79841A00291A85 /* GeoFire.m in Sources */,
 				ADBC62DB1E66EC1700FD6B4F /* LocationManager.swift in Sources */,
 				A19AD0201E75F23700102A8F /* UserSettingsViewController+handlers.swift in Sources */,
+				A16361CB1E79841A00291A85 /* GFQuery.m in Sources */,
+				A16361C91E79841A00291A85 /* GFGeoHash.m in Sources */,
 				A1690B291E67BB870099AFA6 /* PhotoWallViewController+setup.swift in Sources */,
 				A1E6B82E1E4D184900445895 /* Photo.swift in Sources */,
 				A1E9CAC31E4C2564002F4493 /* PhotoWallModel.swift in Sources */,
@@ -776,6 +841,7 @@
 				A1690B271E67A45E0099AFA6 /* SinglePhotoDetailCoordinator.swift in Sources */,
 				A1E9CAB21E4C2499002F4493 /* OverlayView.swift in Sources */,
 				A127899C1E5BE2ED007EE2F0 /* UIImage+Rotation.swift in Sources */,
+				A16361C81E79841A00291A85 /* GFBase32Utils.m in Sources */,
 				A12F47071E579D4B00EBD98C /* FirebaseDatabase+RX.swift in Sources */,
 				D01E3C151E64A50800736F20 /* BubbleView.swift in Sources */,
 				A1239C1E1E6F74F100DFDFA7 /* PhotoWallViewController+handlers.swift in Sources */,
@@ -918,6 +984,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.charlesmoncada.Efimerum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Efimerum-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -935,6 +1002,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.charlesmoncada.Efimerum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Efimerum-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
