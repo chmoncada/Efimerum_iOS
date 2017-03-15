@@ -51,11 +51,12 @@ class BubbleView: UIView {
                                 width: titleLabel.bounds.size.width + 70,
                                 height: 30)
             
-            favoriteView = UIImageView(frame: CGRect(x: self.bounds.origin.x,
-                                                     y: self.bounds.origin.y,
-                                                     width: 30,
-                                                     height: 30))
+            favoriteView = UIImageView(frame: CGRect(x: self.bounds.origin.x + 2,
+                                                     y: self.bounds.origin.y + 5,
+                                                     width: 20,
+                                                     height: 20))
             
+            favoriteView?.contentMode = .scaleAspectFit
             updateFavoriteView(tagsInteractor.isFavorite(tag: title))
             favoriteView?.isUserInteractionEnabled = true
             let tapFavorite = UITapGestureRecognizer(target: self, action: #selector(BubbleView.favotiteAction))
@@ -85,10 +86,11 @@ class BubbleView: UIView {
         
         
         dismissView = UIImageView(frame: CGRect(x: self.bounds.size.width - 30,
-                                                y: self.bounds.origin.y,
-                                            width: 30,
-                                           height: 30))
-        dismissView.backgroundColor = .green
+                                                y: self.bounds.origin.y + 5,
+                                            width: 20,
+                                           height: 20))
+        dismissView.contentMode = .scaleAspectFit
+        dismissView.image = UIImage(named: "btn_dismiss_bubble")
         dismissView.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(BubbleView.dismiss))
         dismissView.addGestureRecognizer(tap)
@@ -107,9 +109,9 @@ class BubbleView: UIView {
     
     func updateFavoriteView(_ isFavorite: Bool) {
         if isFavorite {
-            favoriteView?.backgroundColor = .red
+            favoriteView?.image = UIImage(named: "favorite_on")
         } else {
-            favoriteView?.backgroundColor = .blue
+            favoriteView?.image = UIImage(named: "favorite_off")
         }
     }
     

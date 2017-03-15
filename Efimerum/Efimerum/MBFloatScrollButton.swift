@@ -187,7 +187,8 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
                                                            y: 0,
                                                            width: 30,
                                                            height: searchTextField!.bounds.height))
-        favoriteTagsButton.backgroundColor = .green
+        favoriteTagsButton.image = UIImage(named: "favorite_off")
+        favoriteTagsButton.contentMode = .scaleAspectFit
         favoriteTagsButton.isUserInteractionEnabled = true
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(MBFloatScrollButton.showFavoriteTagsAction))
