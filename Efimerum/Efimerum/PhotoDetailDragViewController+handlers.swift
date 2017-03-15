@@ -36,29 +36,46 @@ extension PhotoDetailDragViewController {
     }
     
     func handleShare() {
-        print("Comparte esta foto")
+//        print("Comparte esta foto")
+//        
+//        let alert = UIAlertController(title: "Sharing photo...", message: nil, preferredStyle: .alert)
+//        let twitterAction = UIAlertAction(title: "Share in Twitter", style: .default) { _ in
+//            let vc = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+//            vc?.setInitialText("Hola")
+//            
+//            self.present(vc!, animated: true, completion: nil)
+//        }
+//        alert.addAction(twitterAction)
+//        
+//        let facebookAction = UIAlertAction(title: "Share in Facebok", style: .default) { _ in
+//            let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+//            vc?.setInitialText("Hola")
+//            
+//            self.present(vc!, animated: true, completion: nil)
+//        }
+//        alert.addAction(facebookAction)
+//        
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//        alert.addAction(cancelAction)
+//        
+//        present(alert, animated: true, completion: nil)
         
-        let alert = UIAlertController(title: "Sharing photo...", message: nil, preferredStyle: .alert)
-        let twitterAction = UIAlertAction(title: "Share in Twitter", style: .default) { _ in
-            let vc = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-            vc?.setInitialText("Hola")
-            
-            self.present(vc!, animated: true, completion: nil)
+        let shareText = "texto y deeplink a compartir"
+        
+        let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
+        
+        //activityViewController.setValue("texto y deeplink a compartir")
+        //New Excluded Activities Code
+        activityViewController.excludedActivityTypes = [UIActivityType.airDrop, UIActivityType.addToReadingList]
+        
+        //Chequear si estamos en un iPad, si quieres te paso la extension para esto
+        if UIDevice().screenType == .iPad {
+            // esto es para que no pete en iPad, hay que decirle que parte de una vista, en tu caso en la vista del boton de compartir
+            //activityViewController.popoverPresentationController?.sourceView = cell.shareButton
         }
-        alert.addAction(twitterAction)
         
-        let facebookAction = UIAlertAction(title: "Share in Facebok", style: .default) { _ in
-            let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-            vc?.setInitialText("Hola")
-            
-            self.present(vc!, animated: true, completion: nil)
-        }
-        alert.addAction(facebookAction)
+        self.present(activityViewController, animated: true, completion: nil)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alert.addAction(cancelAction)
-        
-        present(alert, animated: true, completion: nil)
     }
     
     func handleInfo() {
