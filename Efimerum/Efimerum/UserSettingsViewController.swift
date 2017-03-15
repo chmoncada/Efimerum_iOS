@@ -53,6 +53,8 @@ class UserSettingsViewController: UITableViewController {
     
     var didMoveFromParent: () -> Void = {}
     
+    var goToModifyUser: () -> Void = {}
+    
     override func loadView() {
         super.loadView()
         
