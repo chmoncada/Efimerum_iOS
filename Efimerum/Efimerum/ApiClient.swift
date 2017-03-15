@@ -22,7 +22,7 @@ class ApiClient {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
         
-        configuration.timeoutIntervalForRequest = 70
+        configuration.timeoutIntervalForRequest = 45
         
         //        configuration.URLCache = NSURLCache.sharedURLCache()
         //        configuration.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
@@ -44,13 +44,13 @@ class ApiClient {
         case favoriteTags(token: String, language: String)
         case saveFavorite(tag: String, token: String, language: String)
         case deleteFavorite(tag: String, token: String, language: String)
-//        case report(String)
+        case reportPhoto(token: String, photoKey: String, reportCode: String)
         
         fileprivate var method: Alamofire.HTTPMethod {
             switch self {
             case .favoriteTags:
                 return .get
-            case .photos, .likes, .saveFavorite:
+            case .photos, .likes, .saveFavorite, .reportPhoto:
                 return .post
             case .deleteFavorite:
                 return .delete
@@ -69,6 +69,8 @@ class ApiClient {
                 return baseURL + "/favoriteLabels"
             case .deleteFavorite:
                 return baseURL + "/favoriteLabels"
+            case .reportPhoto:
+                return baseURL + "/reportPhoto"
 
             }
         }
@@ -122,8 +124,13 @@ class ApiClient {
                     "label": tag,
                     "idToken": t,
                     "lang": "\(lang)"
-                ]
-
+                    ]
+            case let .reportPhoto(token: t, photoKey: k, reportCode: c):
+                return [
+                    "idToken": t,
+                    "photoKey": k,
+                    "reportCode": c
+                    ]
             }
         }
     }
@@ -248,6 +255,17 @@ extension ApiClient {
     public static func deleteFavoriteTag(tag: String, token t: String, language lang: String, completion: @escaping (Bool, ApiError?) -> Void) {
         
         let _ = self.request(endpoint: .deleteFavorite(tag: tag, token: t, language: lang)) { (result) in
+            if let error = result.error {
+                completion(false, error)
+            } else {
+                completion(true, nil)
+            }
+        }
+    }
+    
+    public static func reportPhoto(token t: String, photoKey k: String, reportCode c: String, completion: @escaping (Bool, ApiError?) -> Void) {
+        
+        let _ = self.request(endpoint: .reportPhoto(token: t, photoKey: k, reportCode: c)) { (result) in
             if let error = result.error {
                 completion(false, error)
             } else {
