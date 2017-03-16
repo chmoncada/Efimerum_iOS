@@ -19,6 +19,10 @@ class PhotoWallViewController: UIViewController {
     
     var collectionView: UICollectionView!
     
+    // MBFloatScrollButtons
+    var orderByButton :MBFloatScrollButton!
+    var searchButton :MBFloatScrollButton!
+    
     // Called when the user selects a photo in the grid
     var didSelectPhoto: (PhotoWallModelType, Int) -> Void = { _ in }
     var didShowSinglePhoto: (String) -> Void = { _ in }

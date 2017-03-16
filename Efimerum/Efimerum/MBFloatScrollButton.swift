@@ -311,30 +311,54 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     }
     
     func dismissMenu() {
-        isShowingMenu = false
         
-        UIView.animate(withDuration: 0.25, animations: {
-            self.filterItem1.titleLabel.alpha = 0
-            self.filterItem2.titleLabel.alpha = 0
-            self.filterItem3.titleLabel.alpha = 0
-            self.filterItem4.titleLabel.alpha = 0
-            self.filterItem1.center.y += 70
-            self.filterItem2.center.y += 70 * 2
-            self.filterItem3.center.y += 70 * 3
-            self.filterItem4.center.y += 70 * 4
-        }) { (finished) in
-            self.maskBackgroundView?.removeFromSuperview()
-            self.filterItem1 = nil
-            self.filterItem2 = nil
-            self.filterItem3 = nil
-            self.filterItem4 = nil
-            self.scrollView.isScrollEnabled = true
+        if isShowingMenu {
+        
+            isShowingMenu = false
+            
+            UIView.animate(withDuration: 0.25, animations: {
+                self.filterItem1.titleLabel.alpha = 0
+                self.filterItem2.titleLabel.alpha = 0
+                self.filterItem3.titleLabel.alpha = 0
+                self.filterItem4.titleLabel.alpha = 0
+                self.filterItem1.center.y += 70
+                self.filterItem2.center.y += 70 * 2
+                self.filterItem3.center.y += 70 * 3
+                self.filterItem4.center.y += 70 * 4
+            }) { (finished) in
+                self.maskBackgroundView?.removeFromSuperview()
+                self.filterItem1 = nil
+                self.filterItem2 = nil
+                self.filterItem3 = nil
+                self.filterItem4 = nil
+                self.scrollView.isScrollEnabled = true
+            }
         }
     }
     
-    func dismissTagsView() {
+    func showMaskTagView() {
+        
+        if self.maskTagsView == nil {
+            self.maskTagsView = UIControl(frame: self.scrollView.bounds)
+            self.maskTagsView?.backgroundColor = UIColor(white: 0, alpha: 0.5)
+            self.maskTagsView?.isUserInteractionEnabled = true
+            self.maskTagsView?.addTarget(self, action: #selector(MBFloatScrollButton.dismissTagsView), for: .allTouchEvents)
+            self.bringSubview(toFront: self.scrollView)
+            self.scrollView.addSubview(self.maskTagsView!)
+            self.scrollView.isScrollEnabled = false
+        }
+    }
+    
+    func dismissTagsView(isSearching: Bool = false) {
         
         self.maskTagsView?.removeFromSuperview()
+        self.tagsView = nil
+        self.maskTagsView = nil
+        
+        if !isSearching {
+            self.parentView.endEditing(true)
+        }
+   
     }
     
     func addOrderSelectedView(text: String) {
@@ -381,24 +405,15 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     }
     
     func addTagSearchView(searchTextField: UITextField, tagsResults model: [String]) {
-        
-//        if self.maskTagsView == nil {
-//            self.maskTagsView = UIControl(frame: self.parentView.bounds)
-//            self.maskTagsView?.backgroundColor = UIColor(white: 0, alpha: 0.5)
-//            self.maskTagsView?.isUserInteractionEnabled = true
-//            self.maskTagsView?.addTarget(self, action: #selector(MBFloatScrollButton.dismissTagsView), for: .allTouchEvents)
-//            self.bringSubview(toFront: self.parentView)
-//            self.parentView.addSubview(self.maskTagsView!)
-//        }
     
         if self.tagsView == nil {
     
             self.tagsView = TagsTableView(model: model, on: searchTextField)
-            self.tagsView?.frame = CGRect(x: self.parentView.bounds.width/2 - searchTextField.bounds.size.width/2,
-                                    y: self.parentView.frame.origin.y + 100,
+            self.tagsView?.frame = CGRect(x: self.maskTagsView!.bounds.width/2 - searchTextField.bounds.size.width/2,
+                                    y: self.maskTagsView!.frame.origin.y + 100,
                                     width: searchTextField.bounds.size.width,
                                     height: 300)
-            self.parentView.addSubview(tagsView!)
+            self.maskTagsView?.addSubview(tagsView!)
             self.tagsView?.tagDelegate = self
             self.tagsView?.isHidden = false
             
@@ -413,17 +428,21 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
 
 extension MBFloatScrollButton :UITextFieldDelegate {
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        return true
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        showMaskTagView()
+        delegate?.didBeginSearch(button: self)
     }
     
     func textFieldDidChange(_ textField: UITextField) {
         
         if let text = textField.text {
             
-            delegate?.didTypeSearchChanged(text: text)
-            self.tagsInteractor?.getSuggestedTagsWith(query: text)
+            if text != "" {
+                delegate?.didTypeSearchChanged(text: text)
+                self.tagsInteractor?.getSuggestedTagsWith(query: text)
+            } else {
+                addTagSearchView(searchTextField: textField, tagsResults: [String]())
+            }
         }
     }
     
@@ -502,12 +521,19 @@ extension MBFloatScrollButton :TagsInteractorOutput {
     
     func loadSuggested(tags: [String]) {
         print(tags)
-        addTagSearchView(searchTextField: self.searchTextField!, tagsResults: tags)
+        
+        if tags.count > 0 {
+            addTagSearchView(searchTextField: self.searchTextField!, tagsResults: tags)
+        } else if self.maskTagsView != nil {
+            dismissTagsView(isSearching: true)
+        }
+
     }
     
     func loadFavorite(tags: [String]?) {
         
         if let tags = tags {
+            showMaskTagView()
             addTagSearchView(searchTextField: self.searchTextField!, tagsResults: tags)
         }
     }
@@ -525,6 +551,8 @@ protocol MBFloatScrollButtonDelegate :class {
     func didTypeSearchChanged(text: String)
     
     func didTapOnSearchDone(text: String)
+    
+    func didBeginSearch(button: MBFloatScrollButton)
     
 }
 

@@ -46,10 +46,16 @@ extension PhotoWallViewController {
 extension PhotoWallViewController :MBFloatScrollButtonDelegate {
     
     func didTapOnCamera(button: MBFloatScrollButton) {
+        if self.orderByButton.isShowingMenu {
+            self.orderByButton.dismissMenu()
+        }
         handleTakePhoto()
     }
     
     func didTapOnProfile(button: MBFloatScrollButton) {
+        if self.orderByButton.isShowingMenu {
+            self.orderByButton.dismissMenu()
+        }
         if self.authInteractor.isNotAuthenticated() {
             needAuthLogin("profile")
         } else {
@@ -61,6 +67,13 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
     func didTap(filter: FilterType) {
         selectedFilter = filter
         handleModelFilter(filter)
+    }
+    
+    func didBeginSearch(button: MBFloatScrollButton) {
+        
+        if self.orderByButton.isShowingMenu {
+            self.orderByButton.dismissMenu()
+        }
     }
     
     func didTypeSearchChanged(text: String) {

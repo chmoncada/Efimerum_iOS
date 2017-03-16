@@ -24,13 +24,13 @@ extension PhotoWallViewController {
         let settingsButton = MBFloatScrollButton(buttonType: .profile, on: scroll, for: self.view)
         settingsButton.delegate = self
         
-        let orderByButton = MBFloatScrollButton(buttonType: .orderBy, on: scroll, for: self.view)
+        orderByButton = MBFloatScrollButton(buttonType: .orderBy, on: scroll, for: self.view)
         orderByButton.delegate = self
         
         let cameraButton = MBFloatScrollButton(buttonType: .camera, on: scroll, for: self.view)
         cameraButton.delegate = self
         
-        let searchButton = MBFloatScrollButton(buttonType: .search, on: scroll, for: self.view)
+        searchButton = MBFloatScrollButton(buttonType: .search, on: scroll, for: self.view)
         searchButton.delegate = self
         
         let logoButton = MBFloatScrollButton(buttonType: .logo, on: scroll, for: self.view)
