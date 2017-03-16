@@ -164,6 +164,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     }
     
     func showFavoriteTagsAction() {
+        self.delegate?.didBeginSearch(button: self)
         tagsInteractor.getFavoriteTags()
     }
     
