@@ -52,3 +52,6 @@ extension UserSettingsViewController: FireBaseManagerLogoutOutput {
         print("TERMINE EL LOGEO")
     }
 }
+
+
+
