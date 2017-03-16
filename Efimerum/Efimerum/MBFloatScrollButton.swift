@@ -410,6 +410,10 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     func addTagSearchView(searchTextField: UITextField, tagsResults model: [String]) {
     
         if self.tagsView == nil {
+            
+            if self.maskTagsView == nil {
+                showMaskTagView()
+            }
     
             self.tagsView = TagsTableView(model: model, on: searchTextField)
             self.tagsView?.frame = CGRect(x: self.maskTagsView!.bounds.width/2 - searchTextField.bounds.size.width/2,
