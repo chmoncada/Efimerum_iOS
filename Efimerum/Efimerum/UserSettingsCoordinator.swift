@@ -30,6 +30,19 @@ final class UserSettingCoordinator: Coordinator {
             
         }
         
+        viewController.goToModifyUser = { [weak self]  in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            let coordinator = ModifyUserCoordinator(navigationController: navigationController)
+            
+            strongSelf.add(child: coordinator)
+            
+            coordinator.start()
+            
+        }
+        
     }
     
     override func start() {

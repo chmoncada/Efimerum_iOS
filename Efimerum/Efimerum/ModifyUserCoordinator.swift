@@ -20,6 +20,26 @@ final class ModifyUserCoordinator: Coordinator {
         super.init()
         
         
+        viewController.didFinish = { [weak self] in
+            guard let `self` = self else {
+                return
+            }
+            
+            // This will remove the coordinator from its parent
+            self.didFinish()
+            
+        }
+        
+        viewController.didMoveFromParent = { [weak self] in
+            guard let `self` = self else {
+                return
+            }
+            
+            // This will remove the coordinator from its parent
+            self.didFinish()
+            
+        }
+        
     }
     
     override func start() {

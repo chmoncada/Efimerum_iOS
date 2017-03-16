@@ -21,6 +21,8 @@ extension UserSettingsViewController {
     
     func handleModifyUser() {
         print("deberia modificar datos de usuario")
+        goToModifyUser()
+        
     }
     
     func handleLikeNotificationSwitchChanged(sender: UISwitch) {
@@ -50,3 +52,6 @@ extension UserSettingsViewController: FireBaseManagerLogoutOutput {
         print("TERMINE EL LOGEO")
     }
 }
+
+
+

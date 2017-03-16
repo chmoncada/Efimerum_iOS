@@ -24,6 +24,8 @@
 		A16362061E79A77600291A85 /* ModifyUserViewController+setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16362051E79A77600291A85 /* ModifyUserViewController+setup.swift */; };
 		A16362081E79A79200291A85 /* ModifyUserViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16362071E79A79200291A85 /* ModifyUserViewController+handlers.swift */; };
 		A163620A1E79AADD00291A85 /* ModifyUserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16362091E79AADD00291A85 /* ModifyUserCoordinator.swift */; };
+		A163620D1E79E43800291A85 /* ModifyUserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A163620C1E79E43800291A85 /* ModifyUserInteractor.swift */; };
+		A163620F1E79E4A800291A85 /* ModifyUserConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A163620E1E79E4A800291A85 /* ModifyUserConfigurator.swift */; };
 		A1690B1C1E6789A80099AFA6 /* ProfileViewController+setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1690B1B1E6789A80099AFA6 /* ProfileViewController+setup.swift */; };
 		A1690B1E1E678C000099AFA6 /* ProfileViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1690B1D1E678C000099AFA6 /* ProfileViewController+handlers.swift */; };
 		A1690B211E67A3560099AFA6 /* SinglePhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1690B201E67A3560099AFA6 /* SinglePhotoDetailViewController.swift */; };
@@ -143,6 +145,8 @@
 		A16362051E79A77600291A85 /* ModifyUserViewController+setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModifyUserViewController+setup.swift"; sourceTree = "<group>"; };
 		A16362071E79A79200291A85 /* ModifyUserViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModifyUserViewController+handlers.swift"; sourceTree = "<group>"; };
 		A16362091E79AADD00291A85 /* ModifyUserCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyUserCoordinator.swift; sourceTree = "<group>"; };
+		A163620C1E79E43800291A85 /* ModifyUserInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyUserInteractor.swift; sourceTree = "<group>"; };
+		A163620E1E79E4A800291A85 /* ModifyUserConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyUserConfigurator.swift; sourceTree = "<group>"; };
 		A1690B1B1E6789A80099AFA6 /* ProfileViewController+setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+setup.swift"; sourceTree = "<group>"; };
 		A1690B1D1E678C000099AFA6 /* ProfileViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+handlers.swift"; sourceTree = "<group>"; };
 		A1690B201E67A3560099AFA6 /* SinglePhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePhotoDetailViewController.swift; sourceTree = "<group>"; };
@@ -320,9 +324,11 @@
 			isa = PBXGroup;
 			children = (
 				A16362091E79AADD00291A85 /* ModifyUserCoordinator.swift */,
+				A163620E1E79E4A800291A85 /* ModifyUserConfigurator.swift */,
 				A16362031E79A6F800291A85 /* ModifyUserViewController.swift */,
 				A16362051E79A77600291A85 /* ModifyUserViewController+setup.swift */,
 				A16362071E79A79200291A85 /* ModifyUserViewController+handlers.swift */,
+				A163620C1E79E43800291A85 /* ModifyUserInteractor.swift */,
 			);
 			name = "Modify User";
 			sourceTree = "<group>";
@@ -856,6 +862,7 @@
 				D04B0D2C1E3D2BB5008E4777 /* AppDelegate.swift in Sources */,
 				D0BA66841E54C54400C4F18F /* ApiError.swift in Sources */,
 				D0F18A021E6C9C14007A4177 /* TagsTableView.swift in Sources */,
+				A163620F1E79E4A800291A85 /* ModifyUserConfigurator.swift in Sources */,
 				A17386FC1E651E25009903ED /* ProfileConfigurator.swift in Sources */,
 				A1B022FE1E69D86300F41B5A /* LoginViewController+setup.swift in Sources */,
 				A1690B231E67A3940099AFA6 /* SinglePhotoDetailViewController+setup.swift in Sources */,
@@ -865,6 +872,7 @@
 				A1690B271E67A45E0099AFA6 /* SinglePhotoDetailCoordinator.swift in Sources */,
 				A1E9CAB21E4C2499002F4493 /* OverlayView.swift in Sources */,
 				A127899C1E5BE2ED007EE2F0 /* UIImage+Rotation.swift in Sources */,
+				A163620D1E79E43800291A85 /* ModifyUserInteractor.swift in Sources */,
 				A16361C81E79841A00291A85 /* GFBase32Utils.m in Sources */,
 				A12F47071E579D4B00EBD98C /* FirebaseDatabase+RX.swift in Sources */,
 				D01E3C151E64A50800736F20 /* BubbleView.swift in Sources */,

@@ -59,7 +59,6 @@ class ProfileViewController: UIViewController {
     let nameLabel: UILabel = {
         let tf = UILabel()
         tf.textColor = UIColor.white
-        //tf.backgroundColor = .red
         tf.textAlignment = .center
         tf.font = UIFont.boldSystemFont(ofSize: 20)
         tf.translatesAutoresizingMaskIntoConstraints = false
