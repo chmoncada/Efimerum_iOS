@@ -106,6 +106,8 @@ class ProfileViewController: UIViewController {
     
     var didMoveFromParent: () -> Void = {}
     
+    var isViewExists = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -167,9 +169,16 @@ class ProfileViewController: UIViewController {
     
     override func didMove(toParentViewController parent: UIViewController?) {
         super.didMove(toParentViewController: parent)
-        
         if parent == nil {
             didMoveFromParent()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if isViewExists {
+            output.getDataFromUser()
+        } else {
+            isViewExists = true
         }
     }
     
