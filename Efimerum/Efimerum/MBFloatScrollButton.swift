@@ -355,6 +355,8 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         self.maskTagsView?.removeFromSuperview()
         self.tagsView = nil
         self.maskTagsView = nil
+        self.scrollView.isScrollEnabled = true
+        
         
         if !isSearching {
             self.parentView.endEditing(true)
