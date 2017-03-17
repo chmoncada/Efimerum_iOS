@@ -46,6 +46,11 @@ class PhotoWallViewController: UIViewController {
         return interactor
     }()
     
+    lazy var photoInteractor: PhotoInteractor = {
+        let interactor = PhotoInteractor(interface: self)
+        return interactor
+    }()
+    
     let layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         return layout
@@ -196,7 +201,7 @@ extension PhotoWallViewController :UIImagePickerControllerDelegate, UINavigation
             
         }
         
-        output.postPhotoWithImageData(imageData, withLocationManager: userLocationManager)
+        photoInteractor.postPhotoWithImageData(imageData, withLocationManager: userLocationManager)
     }
 
 }

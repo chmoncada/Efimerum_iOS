@@ -11,7 +11,6 @@
 		A10477521E4D6DC300F2C3C3 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10477511E4D6DC300F2C3C3 /* LoginCoordinator.swift */; };
 		A1106CB51E670CCB0032B06B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1106CB41E670CCB0032B06B /* GoogleService-Info.plist */; };
 		A1239C1E1E6F74F100DFDFA7 /* PhotoWallViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1239C1D1E6F74F100DFDFA7 /* PhotoWallViewController+handlers.swift */; };
-		A1239C201E6F75D700DFDFA7 /* PhotoWallInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1239C1F1E6F75D700DFDFA7 /* PhotoWallInteractor.swift */; };
 		A1239C221E6F774200DFDFA7 /* PhotoWallConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1239C211E6F774200DFDFA7 /* PhotoWallConfigurator.swift */; };
 		A127899C1E5BE2ED007EE2F0 /* UIImage+Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A127899B1E5BE2ED007EE2F0 /* UIImage+Rotation.swift */; };
 		A12F47071E579D4B00EBD98C /* FirebaseDatabase+RX.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F47061E579D4B00EBD98C /* FirebaseDatabase+RX.swift */; };
@@ -80,6 +79,7 @@
 		A1E9CAC61E4C258A002F4493 /* PhotoWallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAC51E4C258A002F4493 /* PhotoWallCell.swift */; };
 		ADA2A95C1E76880600FA1EFA /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA2A95B1E76880600FA1EFA /* UserDefaultsManager.swift */; };
 		ADBC62DB1E66EC1700FD6B4F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC62DA1E66EC1700FD6B4F /* LocationManager.swift */; };
+		ADED35891E7C01D400B93EA6 /* PhotoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED35881E7C01D400B93EA6 /* PhotoInteractor.swift */; };
 		B55305C277B45378805B2DF0 /* Pods_Efimerum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF573619DAAF686EA3943A9 /* Pods_Efimerum.framework */; };
 		D01E3C151E64A50800736F20 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E3C141E64A50800736F20 /* BubbleView.swift */; };
 		D04B0D2C1E3D2BB5008E4777 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B0D2B1E3D2BB5008E4777 /* AppDelegate.swift */; };
@@ -120,7 +120,6 @@
 		A1106CB31E670A320032B06B /* Efimerum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Efimerum.entitlements; sourceTree = "<group>"; };
 		A1106CB41E670CCB0032B06B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A1239C1D1E6F74F100DFDFA7 /* PhotoWallViewController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoWallViewController+handlers.swift"; sourceTree = "<group>"; };
-		A1239C1F1E6F75D700DFDFA7 /* PhotoWallInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallInteractor.swift; sourceTree = "<group>"; };
 		A1239C211E6F774200DFDFA7 /* PhotoWallConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallConfigurator.swift; sourceTree = "<group>"; };
 		A127899B1E5BE2ED007EE2F0 /* UIImage+Rotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Rotation.swift"; sourceTree = "<group>"; };
 		A12F47061E579D4B00EBD98C /* FirebaseDatabase+RX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FirebaseDatabase+RX.swift"; sourceTree = "<group>"; };
@@ -200,6 +199,7 @@
 		A1E9CAC51E4C258A002F4493 /* PhotoWallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallCell.swift; sourceTree = "<group>"; };
 		ADA2A95B1E76880600FA1EFA /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		ADBC62DA1E66EC1700FD6B4F /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		ADED35881E7C01D400B93EA6 /* PhotoInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInteractor.swift; sourceTree = "<group>"; };
 		C46CD46925E841A53F082941 /* Pods-Efimerum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Efimerum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Efimerum/Pods-Efimerum.debug.xcconfig"; sourceTree = "<group>"; };
 		D01E3C141E64A50800736F20 /* BubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		D04B0D281E3D2BB5008E4777 /* Efimerum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Efimerum.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -369,7 +369,9 @@
 		A19AD0171E7590A300102A8F /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
+				D065FAB51E745DD00033D680 /* TagsInteractor.swift */,
 				A1B022FF1E69D92900F41B5A /* AuthInteractor.swift */,
+				ADED35881E7C01D400B93EA6 /* PhotoInteractor.swift */,
 			);
 			name = Interactors;
 			sourceTree = "<group>";
@@ -438,7 +440,6 @@
 				A1690B281E67BB870099AFA6 /* PhotoWallViewController+setup.swift */,
 				A1239C1D1E6F74F100DFDFA7 /* PhotoWallViewController+handlers.swift */,
 				A1E9CAC51E4C258A002F4493 /* PhotoWallCell.swift */,
-				A1239C1F1E6F75D700DFDFA7 /* PhotoWallInteractor.swift */,
 			);
 			name = "Photo Wall";
 			sourceTree = "<group>";
@@ -561,7 +562,6 @@
 				D0F18A011E6C9C14007A4177 /* TagsTableView.swift */,
 				D0F18A031E6C9F17007A4177 /* TagsCell.swift */,
 				D0F18A041E6C9F17007A4177 /* TagsCell.xib */,
-				D065FAB51E745DD00033D680 /* TagsInteractor.swift */,
 			);
 			name = MBFloatButtonScroll;
 			sourceTree = "<group>";
@@ -828,7 +828,6 @@
 				A192287D1E74CC2900FCBADB /* PhotoDetailInfoViewController.swift in Sources */,
 				D065FAB61E745DD00033D680 /* TagsInteractor.swift in Sources */,
 				A1E9CAB71E4C24F2002F4493 /* PhotoDetailDragCoordinator.swift in Sources */,
-				A1239C201E6F75D700DFDFA7 /* PhotoWallInteractor.swift in Sources */,
 				A1B023001E69D92900F41B5A /* AuthInteractor.swift in Sources */,
 				A1B023041E69DFC800F41B5A /* LoginConfigurator.swift in Sources */,
 				A1E9CAA01E4C23D0002F4493 /* AppCoordinator.swift in Sources */,
@@ -843,6 +842,7 @@
 				A16361C71E79841A00291A85 /* GeoFire.m in Sources */,
 				ADBC62DB1E66EC1700FD6B4F /* LocationManager.swift in Sources */,
 				A19AD0201E75F23700102A8F /* UserSettingsViewController+handlers.swift in Sources */,
+				ADED35891E7C01D400B93EA6 /* PhotoInteractor.swift in Sources */,
 				A16361CB1E79841A00291A85 /* GFQuery.m in Sources */,
 				A16361C91E79841A00291A85 /* GFGeoHash.m in Sources */,
 				A1690B291E67BB870099AFA6 /* PhotoWallViewController+setup.swift in Sources */,

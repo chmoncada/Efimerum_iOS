@@ -1,23 +1,39 @@
 //
-//  PhotoWallInteractor.swift
+//  PhotoInteractor.swift
 //  Efimerum
 //
-//  Created by Charles Moncada on 07/03/17.
+//  Created by Michel on 17/03/2017.
 //  Copyright © 2017 mibarbou. All rights reserved.
 //
 
 import Foundation
 
-protocol PhotoWallInteractorInput {
+protocol PhotoInteractorInput :class {
+    
     func postPhotoWithImageData(_ imageData: Data, withLocationManager userlocationManager: UserLocationManager?)
+    
 }
 
-class PhotoWallInteractor: PhotoWallInteractorInput {
+protocol PhotoInteractorOutput : class {
+    
+    func showLoading()
+    func dismissLoading()
+}
+
+class PhotoInteractor :PhotoInteractorInput {
     
     lazy var authManager: FirebaseAuthenticationManager = {
         let manager = FirebaseAuthenticationManager.instance
         return manager
     }()
+    
+    weak fileprivate var interface :PhotoInteractorOutput?
+    
+    init(interface: PhotoInteractorOutput) {
+        
+        self.interface = interface
+    }
+    
     
     func postPhotoWithImageData(_ imageData: Data, withLocationManager userlocationManager: UserLocationManager?) {
         
@@ -39,11 +55,12 @@ class PhotoWallInteractor: PhotoWallInteractorInput {
             }
             userlocationManager?.locationManager.stopUpdatingLocation()
             
+            self.interface?.showLoading()
+            
             ApiClient.postPhoto(photoData: imageData, token: token, latitude: latitude, longitude: longitude, completion: { (result) in
                 print(result)
+                self.interface?.dismissLoading()
             })
         }
-        
-        
     }
 }

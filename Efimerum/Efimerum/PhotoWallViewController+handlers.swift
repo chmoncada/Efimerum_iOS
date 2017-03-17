@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 extension PhotoWallViewController {
     
@@ -85,3 +86,33 @@ extension PhotoWallViewController :MBFloatScrollButtonDelegate {
         handleTagSelection(selectedTag)
     }
 }
+
+
+extension PhotoWallViewController :PhotoInteractorOutput {
+    
+    func showLoading() {
+        HUD.show(.progress)
+    }
+    
+    func dismissLoading() {
+        HUD.flash(.success, delay: 1.0)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
