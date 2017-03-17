@@ -91,7 +91,6 @@
 		D0BA667B1E52350B00C4F18F /* MBFloatScrollButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA66781E52350A00C4F18F /* MBFloatScrollButton.swift */; };
 		D0BA667C1E52350B00C4F18F /* FilterItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA66791E52350A00C4F18F /* FilterItemView.swift */; };
 		D0BA667D1E52350B00C4F18F /* FilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA667A1E52350B00C4F18F /* FilterType.swift */; };
-		D0BA667F1E523E2D00C4F18F /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = D0BA667E1E523E2D00C4F18F /* plus.png */; };
 		D0BA66821E53846100C4F18F /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA66811E53846100C4F18F /* ApiClient.swift */; };
 		D0BA66841E54C54400C4F18F /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA66831E54C54400C4F18F /* ApiError.swift */; };
 		D0BA668A1E54CA8D00C4F18F /* EfimerumResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA66891E54CA8D00C4F18F /* EfimerumResponse.swift */; };
@@ -216,7 +215,6 @@
 		D0BA66781E52350A00C4F18F /* MBFloatScrollButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBFloatScrollButton.swift; sourceTree = "<group>"; };
 		D0BA66791E52350A00C4F18F /* FilterItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterItemView.swift; sourceTree = "<group>"; };
 		D0BA667A1E52350B00C4F18F /* FilterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterType.swift; sourceTree = "<group>"; };
-		D0BA667E1E523E2D00C4F18F /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
 		D0BA66811E53846100C4F18F /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		D0BA66831E54C54400C4F18F /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		D0BA66891E54CA8D00C4F18F /* EfimerumResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EfimerumResponse.swift; sourceTree = "<group>"; };
@@ -555,7 +553,6 @@
 		D0BA66771E52308300C4F18F /* MBFloatButtonScroll */ = {
 			isa = PBXGroup;
 			children = (
-				D0BA667E1E523E2D00C4F18F /* plus.png */,
 				D0BA66781E52350A00C4F18F /* MBFloatScrollButton.swift */,
 				D0BA66791E52350A00C4F18F /* FilterItemView.swift */,
 				D0BA667A1E52350B00C4F18F /* FilterType.swift */,
@@ -681,7 +678,6 @@
 				D04B0D2E1E3D2BB5008E4777 /* Assets.xcassets in Resources */,
 				A1106CB51E670CCB0032B06B /* GoogleService-Info.plist in Resources */,
 				D04B0D311E3D2BB5008E4777 /* LaunchScreen.storyboard in Resources */,
-				D0BA667F1E523E2D00C4F18F /* plus.png in Resources */,
 				D0F18A061E6C9F17007A4177 /* TagsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

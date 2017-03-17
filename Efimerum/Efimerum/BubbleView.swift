@@ -56,7 +56,7 @@ class BubbleView: UIView {
                                                      width: 20,
                                                      height: 20))
             
-            favoriteView?.contentMode = .scaleAspectFit
+            favoriteView?.contentMode = .center
             updateFavoriteView(tagsInteractor.isFavorite(tag: title))
             favoriteView?.isUserInteractionEnabled = true
             let tapFavorite = UITapGestureRecognizer(target: self, action: #selector(BubbleView.favotiteAction))
@@ -89,7 +89,7 @@ class BubbleView: UIView {
                                                 y: self.bounds.origin.y + 5,
                                             width: 20,
                                            height: 20))
-        dismissView.contentMode = .scaleAspectFit
+        dismissView.contentMode = .center
         dismissView.image = UIImage(named: "btn_dismiss_bubble")
         dismissView.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(BubbleView.dismiss))

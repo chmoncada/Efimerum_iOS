@@ -30,6 +30,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     private var filterItem4 : FilterItemView!
     
     var searchTextField :UITextField?
+    var favoriteTagsButton : UIImageView?
     var orderBubbleView :BubbleView?
     var searchBubbleView :BubbleView?
     
@@ -184,16 +185,16 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         searchTextField?.addTarget(self, action: #selector(MBFloatScrollButton.textFieldDidChange(_:)), for: .editingChanged)
         searchTextField?.rightViewMode = .unlessEditing
         
-        let favoriteTagsButton = UIImageView(frame: CGRect(x: 0,
+        favoriteTagsButton = UIImageView(frame: CGRect(x: 0,
                                                            y: 0,
                                                            width: 30,
                                                            height: searchTextField!.bounds.height))
-        favoriteTagsButton.image = UIImage(named: "favorite_off")
-        favoriteTagsButton.contentMode = .scaleAspectFit
-        favoriteTagsButton.isUserInteractionEnabled = true
+        favoriteTagsButton?.image = UIImage(named: "favorite_off")
+        favoriteTagsButton?.contentMode = .center
+        favoriteTagsButton?.isUserInteractionEnabled = true
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(MBFloatScrollButton.showFavoriteTagsAction))
-        favoriteTagsButton.addGestureRecognizer(tap)
+        favoriteTagsButton?.addGestureRecognizer(tap)
         
         searchTextField?.rightView = favoriteTagsButton
         
@@ -356,7 +357,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         self.tagsView = nil
         self.maskTagsView = nil
         self.scrollView.isScrollEnabled = true
-        
+        favoriteTagsButton?.image = UIImage(named: "favorite_off")
         
         if !isSearching {
             self.parentView.endEditing(true)
@@ -540,7 +541,9 @@ extension MBFloatScrollButton :TagsInteractorOutput {
     func loadFavorite(tags: [String]?) {
         
         if let tags = tags {
+            
             showMaskTagView()
+            favoriteTagsButton?.image = UIImage(named: "favorite_on")
             addTagSearchView(searchTextField: self.searchTextField!, tagsResults: tags)
         }
     }
