@@ -33,6 +33,12 @@ extension PhotoDetailDragViewController {
     
     func handleReport() {
         print("reporta esta foto al backend")
+        let index = kolodaView.currentCardIndex
+        
+        if let photo = model?.photo(at: startIndex + index) {
+            output.reporPhotoWith(identifier: photo.identifier, code: "adult")
+        }
+
     }
     
     func handleShare() {

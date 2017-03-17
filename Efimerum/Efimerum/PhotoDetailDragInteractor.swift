@@ -12,6 +12,7 @@ import CoreLocation
 protocol PhotoDetailDragInteractorInput {
     func deletePhotosOfIndexes( _ indexes: [String])
     func likeToPhotoWithIdentifier(_ identifier: String, location: CLLocation?)
+    func reporPhotoWith(identifier: String, code: String)
 }
 
 class PhotoDetailDragInteractor: PhotoDetailDragInteractorInput {
@@ -36,6 +37,22 @@ class PhotoDetailDragInteractor: PhotoDetailDragInteractorInput {
 
     internal func deletePhotosOfIndexes(_ indexes: [String]) {
         RxSwiftManager.deletePhotosOfIndexes(indexes)
+    }
+    
+    func reporPhotoWith(identifier: String, code: String) {
+        
+        authManager.getTokenForUser { (token) in
+            if let idToken = token {
+                
+                ApiClient.reportPhoto(token: idToken, photoKey: identifier, reportCode: code, completion: { (success, error) in
+                    if success {
+                        print("Photo with ID: \(identifier) was reported")
+                    } else {
+                        print(error!)
+                    }
+                })
+            }
+        }
     }
 
     

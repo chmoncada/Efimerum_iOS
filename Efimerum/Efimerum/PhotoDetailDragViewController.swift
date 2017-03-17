@@ -16,6 +16,7 @@ private let frameAnimationSpringSpeed: CGFloat = 16
 protocol PhotoDetailDragViewControllerOutput: class {
     func deletePhotosOfIndexes( _ indexes: [String])
     func likeToPhotoWithIdentifier(_ identifier: String, location: CLLocation?)
+    func reporPhotoWith(identifier: String, code: String)
 
 }
 
