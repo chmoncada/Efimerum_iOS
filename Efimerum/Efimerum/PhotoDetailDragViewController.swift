@@ -213,6 +213,7 @@ extension PhotoDetailDragViewController: KolodaViewDelegate {
         let photo = model?.photo(at: startIndex + index)
         let identifier = photo!.identifier
         print(identifier)
+        reportButton.isEnabled = true
         
         switch direction {
         case .left:

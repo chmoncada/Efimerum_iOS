@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import PKHUD
 
 protocol PhotoDetailDragInteractorInput {
     func deletePhotosOfIndexes( _ indexes: [String])
@@ -44,9 +45,11 @@ class PhotoDetailDragInteractor: PhotoDetailDragInteractorInput {
         authManager.getTokenForUser { (token) in
             if let idToken = token {
                 
+                HUD.show(.label("Reporting photo..."))
                 ApiClient.reportPhoto(token: idToken, photoKey: identifier, reportCode: code, completion: { (success, error) in
                     if success {
                         print("Photo with ID: \(identifier) was reported")
+                        HUD.flash(.success, delay: 1.0)
                     } else {
                         print(error!)
                     }

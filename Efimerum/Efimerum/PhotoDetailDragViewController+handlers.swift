@@ -37,34 +37,13 @@ extension PhotoDetailDragViewController {
         
         if let photo = model?.photo(at: startIndex + index) {
             output.reporPhotoWith(identifier: photo.identifier, code: "adult")
+            reportButton.isEnabled = false
         }
+        
 
     }
     
     func handleShare() {
-//        print("Comparte esta foto")
-//        
-//        let alert = UIAlertController(title: "Sharing photo...", message: nil, preferredStyle: .alert)
-//        let twitterAction = UIAlertAction(title: "Share in Twitter", style: .default) { _ in
-//            let vc = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-//            vc?.setInitialText("Hola")
-//            
-//            self.present(vc!, animated: true, completion: nil)
-//        }
-//        alert.addAction(twitterAction)
-//        
-//        let facebookAction = UIAlertAction(title: "Share in Facebok", style: .default) { _ in
-//            let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-//            vc?.setInitialText("Hola")
-//            
-//            self.present(vc!, animated: true, completion: nil)
-//        }
-//        alert.addAction(facebookAction)
-//        
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//        alert.addAction(cancelAction)
-//        
-//        present(alert, animated: true, completion: nil)
         
         let shareText = "texto y deeplink a compartir"
         
