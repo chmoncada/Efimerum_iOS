@@ -26,6 +26,14 @@ extension SinglePhotoDetailViewController {
         screenView.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
         
     }
+    
+    func setupInfoButton() {
+        infoButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        infoButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -30).isActive = true
+        infoButton.widthAnchor.constraint(equalToConstant: self.view.bounds.width / 10).isActive = true
+        infoButton.heightAnchor.constraint(equalToConstant: self.view.bounds.width / 10).isActive = true
+    }
+    
     func setupContentView() {
         
             contentView.translatesAutoresizingMaskIntoConstraints = false

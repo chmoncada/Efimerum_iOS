@@ -21,6 +21,17 @@ class SinglePhotoDetailViewController: UIViewController {
         
     }()
     
+    let infoButton: UIButton = {
+        let button = UIButton(type: UIButtonType.custom)
+        let image = UIImage(named: "btn_info")
+        button.setImage(image, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleInfo), for: .touchUpInside)
+        
+        return button
+    }()
+
+    
     let contentView: UIImageView = {
         let cv = UIImageView()
         return cv
@@ -35,6 +46,8 @@ class SinglePhotoDetailViewController: UIViewController {
     
     var identifier: String?
     var photo: Photo?
+    
+    var didAskPhotoInfo: (Photo) -> Void = { _ in }
     
     init(identifier: String) {
        super.init(nibName: nil, bundle: nil)
@@ -59,6 +72,9 @@ class SinglePhotoDetailViewController: UIViewController {
             
             self?.view.addSubview((self?.contentView)!)
             self?.setupContentView()
+            
+           self?.view.addSubview((self?.infoButton)!)
+            self?.setupInfoButton()
         }
         
         

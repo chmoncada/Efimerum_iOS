@@ -60,14 +60,15 @@ class ModifyUserInteractor: ModifyUserInteractorInput {
             
             if let profileImage = newImage, let uploadData = UIImageJPEGRepresentation(profileImage, 0.1) {
                 storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
-                    if error != nil {
-                        HUD.flash(.label(error?.localizedDescription), delay: 1)
+                    if let error = error {
+                        HUD.flash(.label(error.localizedDescription), delay: 1)
                         return
                     }
                     
                     if let profileImageURL = metadata?.downloadURL()?.absoluteString {
                         
-                        var values: [String:String]
+                        var values: [String : Any]
+                        
                         if let newName = newName {
                             values = ["name": newName, "profileImageURL": profileImageURL]
                         } else {
@@ -76,8 +77,8 @@ class ModifyUserInteractor: ModifyUserInteractorInput {
                         
                         
                         self.databaseManager.registerUserIntoDatabaseWithUID(uid, values: values, completion: { (success, err) in
-                            if err != nil {
-                                HUD.flash(.label(err?.localizedDescription), delay: 1)
+                            if let err = err {
+                                HUD.flash(.label(err.localizedDescription), delay: 1)
                                 return
                             }
                             HUD.flash(.success, delay: 1.0)
@@ -88,10 +89,14 @@ class ModifyUserInteractor: ModifyUserInteractorInput {
                 })
             } else {
                 print("no ha cambiado foto, lo subire vacio")
-                let values = ["name": newName]
+                var values: [String : Any] = [:]
+                if let newName = newName {
+                   values = ["name": newName]
+                }
+                
                 self.databaseManager.registerUserIntoDatabaseWithUID(uid, values: values, completion: { (success, err) in
-                    if err != nil {
-                        HUD.flash(.label(err?.localizedDescription), delay: 1)
+                    if let err = err {
+                        HUD.flash(.label(err.localizedDescription), delay: 1)
                         return
                     }
                     HUD.flash(.success, delay: 1.0)

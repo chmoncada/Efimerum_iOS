@@ -21,6 +21,18 @@ final class SinglePhotoDetailCoordinator: Coordinator {
         
         super.init()
         
+        viewController.didAskPhotoInfo = { [weak self] photo in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            let coordinator = PhotoDetailInfoCoordinator(navigationController: navigationController, photo: photo)
+            
+            strongSelf.add(child: coordinator)
+            
+            coordinator.start()
+            
+        }
         
     }
     

@@ -18,4 +18,12 @@ extension SinglePhotoDetailViewController {
     func handleTap() {
         closeButton.isHidden = !closeButton.isHidden
     }
+    
+    func handleInfo() {
+        if let photo = photo {
+            didAskPhotoInfo(photo)
+        }
+        
+    }
+    
 }
