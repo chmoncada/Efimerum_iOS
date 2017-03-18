@@ -69,7 +69,17 @@ extension FirebaseAuthenticationManager: AuthenticationManagerType {
                 print("soy anonimo, no me voy a desloguear, gracias")
             } else {
                 do {
-                    print("me deslogueare")
+                    
+                    let values = ["fcmToken": ""]
+                    if let uid = FIRAuth.auth()?.currentUser?.uid {
+                        FirebaseDatabaseManager.Instance().registerUserIntoDatabaseWithUID(uid, values: values, completion: { (success, err) in
+                            if err != nil {
+                                return
+                            }
+                            print(success)
+                        })
+                    }
+                    
                     try FIRAuth.auth()?.signOut()
                 } catch let logoutError {
                     print(logoutError)

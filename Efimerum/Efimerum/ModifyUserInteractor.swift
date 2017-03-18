@@ -55,6 +55,7 @@ class ModifyUserInteractor: ModifyUserInteractorInput {
                 return
             }
             
+            let fcmToken = FirebaseMessagingManager.Instance().getFcmToken()!
             let imageName = NSUUID().uuidString
             let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName).jpg")
             
@@ -70,7 +71,7 @@ class ModifyUserInteractor: ModifyUserInteractorInput {
                         var values: [String : Any]
                         
                         if let newName = newName {
-                            values = ["name": newName, "profileImageURL": profileImageURL]
+                            values = ["name": newName, "profileImageURL": profileImageURL, "fcmToken": fcmToken]
                         } else {
                             values = ["profileImageURL": profileImageURL]
                         }
@@ -91,7 +92,7 @@ class ModifyUserInteractor: ModifyUserInteractorInput {
                 print("no ha cambiado foto, lo subire vacio")
                 var values: [String : Any] = [:]
                 if let newName = newName {
-                   values = ["name": newName]
+                   values = ["name": newName, "fcmToken": fcmToken]
                 }
                 
                 self.databaseManager.registerUserIntoDatabaseWithUID(uid, values: values, completion: { (success, err) in

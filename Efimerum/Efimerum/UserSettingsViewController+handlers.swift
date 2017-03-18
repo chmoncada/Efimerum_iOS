@@ -7,16 +7,18 @@
 //
 
 import UIKit
+import PKHUD
 
 extension UserSettingsViewController {
     
     func handleLogout() {
         print("me deberia desloguear")
-        
+        HUD.show(.label("Logout..."))
         authManager.output = self
         authManager.logout()
         
         let _ = self.navigationController?.popToRootViewController(animated: true)
+        HUD.flash(.success, delay: 1.0)
     }
     
     func handleModifyUser() {

@@ -77,6 +77,7 @@
 		A1E9CAC11E4C2559002F4493 /* PhotoWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAC01E4C2559002F4493 /* PhotoWallViewController.swift */; };
 		A1E9CAC31E4C2564002F4493 /* PhotoWallModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAC21E4C2564002F4493 /* PhotoWallModel.swift */; };
 		A1E9CAC61E4C258A002F4493 /* PhotoWallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAC51E4C258A002F4493 /* PhotoWallCell.swift */; };
+		A1EDAE171E7D926F00D147F5 /* FirebaseMessagingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EDAE161E7D926F00D147F5 /* FirebaseMessagingManager.swift */; };
 		ADA2A95C1E76880600FA1EFA /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA2A95B1E76880600FA1EFA /* UserDefaultsManager.swift */; };
 		ADBC62DB1E66EC1700FD6B4F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC62DA1E66EC1700FD6B4F /* LocationManager.swift */; };
 		ADED35891E7C01D400B93EA6 /* PhotoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED35881E7C01D400B93EA6 /* PhotoInteractor.swift */; };
@@ -197,6 +198,7 @@
 		A1E9CAC01E4C2559002F4493 /* PhotoWallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallViewController.swift; sourceTree = "<group>"; };
 		A1E9CAC21E4C2564002F4493 /* PhotoWallModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallModel.swift; sourceTree = "<group>"; };
 		A1E9CAC51E4C258A002F4493 /* PhotoWallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallCell.swift; sourceTree = "<group>"; };
+		A1EDAE161E7D926F00D147F5 /* FirebaseMessagingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseMessagingManager.swift; sourceTree = "<group>"; };
 		ADA2A95B1E76880600FA1EFA /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		ADBC62DA1E66EC1700FD6B4F /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		ADED35881E7C01D400B93EA6 /* PhotoInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInteractor.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 			children = (
 				A1A350F91E607B1100100C56 /* FirebaseAuthenticationManager.swift */,
 				A17386F71E651A14009903ED /* FirebaseDatabaseManager.swift */,
+				A1EDAE161E7D926F00D147F5 /* FirebaseMessagingManager.swift */,
 				A1A351031E63798300100C56 /* RxSwiftManager.swift */,
 				ADBC62DA1E66EC1700FD6B4F /* LocationManager.swift */,
 				ADA2A95B1E76880600FA1EFA /* UserDefaultsManager.swift */,
@@ -838,6 +841,7 @@
 				A1B023021E69DE2500F41B5A /* LoginInteractor.swift in Sources */,
 				A17386F21E646AE8009903ED /* ProfileCoordinator.swift in Sources */,
 				A1E9CAA61E4C2426002F4493 /* Coordinator.swift in Sources */,
+				A1EDAE171E7D926F00D147F5 /* FirebaseMessagingManager.swift in Sources */,
 				A1A351001E63487800100C56 /* PhotoDetailDragViewController+handlers.swift in Sources */,
 				A16361C71E79841A00291A85 /* GeoFire.m in Sources */,
 				ADBC62DB1E66EC1700FD6B4F /* LocationManager.swift in Sources */,
