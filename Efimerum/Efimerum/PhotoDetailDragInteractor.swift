@@ -52,6 +52,7 @@ class PhotoDetailDragInteractor: PhotoDetailDragInteractorInput {
                         HUD.flash(.success, delay: 1.0)
                     } else {
                         print(error!)
+                        HUD.flash(.error, delay: 1.0)
                     }
                 })
             }
