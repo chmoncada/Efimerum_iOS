@@ -418,7 +418,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
     
             self.tagsView = TagsTableView(model: model, on: searchTextField)
             self.tagsView?.frame = CGRect(x: self.maskTagsView!.bounds.width/2 - searchTextField.bounds.size.width/2,
-                                    y: self.maskTagsView!.frame.origin.y + 100,
+                                    y: self.searchTextField!.frame.origin.y + 100,
                                     width: searchTextField.bounds.size.width,
                                     height: 300)
             self.maskTagsView?.addSubview(tagsView!)
