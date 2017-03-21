@@ -33,6 +33,26 @@ extension PhotoDetailInfoViewController {
         webView.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
     }
     
+    func setupFooterView() {
+        footerView.bottomAnchor.constraint(equalTo: webView.bottomAnchor).isActive = true
+        footerView.leftAnchor.constraint(equalTo: webView.leftAnchor).isActive = true
+        footerView.widthAnchor.constraint(equalTo: webView.widthAnchor).isActive = true
+        footerView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        
+        let numOfLikes = UILabel(frame: CGRect.zero)
+        numOfLikes.frame = CGRect(x: footerView.bounds.origin.x + 8,
+                                   y: footerView.bounds.origin.y + 8,
+                                   width: 100,
+                                   height: 20)
+        
+        numOfLikes.text = "Number of likes: \(Int(self.photo!.numOfLikes))"
+        numOfLikes.textColor = .white
+        numOfLikes.adjustsFontSizeToFitWidth = true
+        numOfLikes.textAlignment = .left
+        footerView.addSubview(numOfLikes)
+
+    }
+    
     
 }
 

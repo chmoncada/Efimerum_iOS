@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PKHUD
 
 extension PhotoDetailInfoViewController {
     
@@ -17,5 +18,21 @@ extension PhotoDetailInfoViewController {
     
     func handleTap() {
         closeButton.isHidden = !closeButton.isHidden
+    }
+}
+
+extension PhotoDetailInfoViewController :UIWebViewDelegate {
+    
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        HUD.show(.progress)
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        HUD.hide()
+    }
+    
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        print(error)
+        HUD.hide()
     }
 }

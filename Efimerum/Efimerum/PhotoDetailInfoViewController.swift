@@ -40,6 +40,13 @@ class PhotoDetailInfoViewController: UIViewController {
         return web
     }()
     
+    let footerView: UIView = {
+        let v = UIView(frame: CGRect.zero)
+        v.backgroundColor = UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: 0.6)
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+    
     var photo: Photo?
     
     var didFinish: () -> Void = {}
@@ -61,6 +68,7 @@ class PhotoDetailInfoViewController: UIViewController {
         
         view.addSubview(webView)
         setupWebview()
+        webView.delegate = self
         if let photo = photo {
             let urlRequest = URLRequest(url: URL(string: "https://efimerum-48618.firebaseapp.com?photoUUID=\(photo.identifier)")!)
             webView.loadRequest(urlRequest)
@@ -69,7 +77,8 @@ class PhotoDetailInfoViewController: UIViewController {
         view.addSubview(closeButton)
         setupCloseButton()
         
-        
+        webView.addSubview(footerView)
+        setupFooterView()
         
         // create an instance of UITapGestureRecognizer and tell it to run
         // an action we'll call "handleTap:"
