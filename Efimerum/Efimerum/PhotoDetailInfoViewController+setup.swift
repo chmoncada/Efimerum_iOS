@@ -90,7 +90,8 @@ extension PhotoDetailInfoViewController {
                             width: UIScreen.main.bounds.size.width - 16,
                             height: 30)
         
-        tags.text = UtilTags.getTagsString(tags: self.photo!.tags)
+        let tagsArray = UtilTags.getTagsString(tags: self.photo!.tags)
+        tags.text = "Tags: \(tagsArray)"
         tags.textColor = .white
         tags.numberOfLines = 2
         tags.adjustsFontSizeToFitWidth = true
