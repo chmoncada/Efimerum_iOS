@@ -76,3 +76,27 @@ extension UIDevice {
         }
     }
 }
+
+class UtilTime {
+    
+    static func getDate(time: Double) -> String {
+        let date = Date(timeIntervalSince1970: time)
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/YY HH:mm"
+ 
+        return formatter.string(from: date)
+    }
+    
+    fileprivate static func secondsToHoursMinutesSeconds (_ seconds : Double) -> (Int, Int, Int) {
+        return (Int(seconds) / 3600, (Int(seconds) % 3600) / 60, (Int(seconds) % 3600) % 60)
+    }
+}
+
+
+
+
+
+
+
+

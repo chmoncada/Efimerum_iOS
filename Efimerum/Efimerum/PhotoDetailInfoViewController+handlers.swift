@@ -19,6 +19,19 @@ extension PhotoDetailInfoViewController {
     func handleTap() {
         closeButton.isHidden = !closeButton.isHidden
     }
+    
+    func getAuthorName(userID: String) {
+        
+        let manager = FirebaseDatabaseManager.instance
+        
+        manager.getUserDataForUserWithUID(userID) { (name, email, url) in
+            
+            if let author = name {
+                self.setupInfoLabelsWith(authorName: author)
+            }
+        }
+    }
+    
 }
 
 extension PhotoDetailInfoViewController :UIWebViewDelegate {
