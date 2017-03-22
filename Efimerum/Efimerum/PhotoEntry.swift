@@ -32,6 +32,8 @@ class PhotoEntry: Object {
     dynamic var thumbnailHeight: Double = 0
     dynamic var thumbnailURLString: String = ""
     
+    dynamic var dynamicLink: String = ""
+    
     dynamic var md5: String = ""
     dynamic var randomString: String = ""
     dynamic var sha1: String = ""
@@ -73,6 +75,7 @@ extension PhotoEntry {
         randomString = photo.randomString
         sha1 = photo.sha1
         sha256 = photo.sha256
+        dynamicLink = photo.dynamicLink
         
         for tag in photo.tags {
             let myTag = Tags()

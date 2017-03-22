@@ -45,22 +45,31 @@ extension PhotoDetailDragViewController {
     
     func handleShare() {
         
-        let shareText = "texto y deeplink a compartir"
+        var linkText: String = ""
+        let index = kolodaView.currentCardIndex
         
-        let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
-        
-        //activityViewController.setValue("texto y deeplink a compartir")
-        //New Excluded Activities Code
-        activityViewController.excludedActivityTypes = [UIActivityType.airDrop, UIActivityType.addToReadingList]
-        
-        //Chequear si estamos en un iPad, si quieres te paso la extension para esto
-        if UIDevice().screenType == .iPad {
-            // esto es para que no pete en iPad, hay que decirle que parte de una vista, en tu caso en la vista del boton de compartir
-            //activityViewController.popoverPresentationController?.sourceView = cell.shareButton
+        if let photo = model?.photo(at: startIndex + index) {
+            linkText = photo.dynamicLink
+            if linkText != "" {
+                let shareText = "Look this photo at Efimerum!!.  Click this link: " + linkText
+                
+                let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
+                
+                activityViewController.excludedActivityTypes = [UIActivityType.airDrop, UIActivityType.addToReadingList]
+                
+                //Chequear si estamos en un iPad, si quieres te paso la extension para esto
+                /*
+                 if UIDevice().screenType == .iPad {
+                 // esto es para que no pete en iPad, hay que decirle que parte de una vista, en tu caso en la vista del boton de compartir
+                 //activityViewController.popoverPresentationController?.sourceView = cell.shareButton
+                 }
+                 */
+                
+                self.present(activityViewController, animated: true, completion: nil)
+            }
+       
         }
-        
-        self.present(activityViewController, animated: true, completion: nil)
-        
+   
     }
     
     func handleInfo() {

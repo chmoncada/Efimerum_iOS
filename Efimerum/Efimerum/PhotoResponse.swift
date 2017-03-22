@@ -23,6 +23,8 @@ struct PhotoResponse :Decodable {
     let sha1 :String
     let sha256 :String
     
+    let dynamicLink: String?
+    
     let imageData :PictureData
     let thumbnailData :PictureData
     
@@ -73,6 +75,7 @@ struct PhotoResponse :Decodable {
         self.expirationDate = expirationDate
         self.latitude = "latitude" <~~ json
         self.longitude = "longitude" <~~ json
+        self.dynamicLink = "dynamicLink" <~~ json
         self.md5 = md5
         self.numOfLikes = numOfLikes
         //self.numOfViews = numOfViews

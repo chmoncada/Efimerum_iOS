@@ -47,10 +47,12 @@ public struct Photo {
     let thumbnailHeight: Double
     let thumbnailURL: URL
     
+    let dynamicLink: String
+    
     /// photo Tags?
     let tags: Array<String>
     
-    init(identifier: String, index: String, creationDate: Double, expirationDate: Double, authorID: String, longitude: Float, latitude: Float, numOfLikes: Double, imageWidth: Double, imageHeight: Double, imageURL: URL, thumbnailWidth: Double, thumbnailHeight: Double, thumbnailURL: URL, tags: Array<String>, md5: String, randomString: String, sha1: String, sha256: String) {
+    init(identifier: String, index: String, creationDate: Double, expirationDate: Double, authorID: String, longitude: Float, latitude: Float, numOfLikes: Double, imageWidth: Double, imageHeight: Double, imageURL: URL, thumbnailWidth: Double, thumbnailHeight: Double, thumbnailURL: URL, tags: Array<String>, md5: String, randomString: String, sha1: String, sha256: String, dynamicLink: String) {
         self.identifier = identifier
         self.index = index
         self.creationDate = creationDate
@@ -70,6 +72,8 @@ public struct Photo {
         self.randomString = randomString
         self.sha1 = sha1
         self.sha256 = sha256
+        
+        self.dynamicLink = dynamicLink
         
         self.tags = tags
     }
@@ -98,6 +102,7 @@ extension Photo {
         self.randomString = entry.randomString
         self.sha1 = entry.sha1
         self.sha256 = entry.sha256
+        self.dynamicLink = entry.dynamicLink
         
         var tags: [String] = []
         for tag in entry.labels_ES {
@@ -124,6 +129,11 @@ extension Photo {
         self.sha1 = photoResponse.sha1
         self.sha256 = photoResponse.sha256
         self.tags = photoResponse.tags
+        if let dynamicLink = photoResponse.dynamicLink {
+            self.dynamicLink = dynamicLink
+        } else {
+            self.dynamicLink = ""
+        }
         
         if let latitude = photoResponse.latitude, let longitude = photoResponse.longitude {
             self.latitude = latitude
