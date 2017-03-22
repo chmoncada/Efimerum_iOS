@@ -70,7 +70,7 @@ class PhotoDetailInfoViewController: UIViewController {
         setupWebview()
         webView.delegate = self
         if let photo = photo {
-            let urlRequest = URLRequest(url: URL(string: "http://efimerum-48618.appspot.com/api/v1/likesMap?photoUUID=\(photo.identifier)")!)
+            let urlRequest = URLRequest(url: URL(string: "https://efimerum-48618.appspot.com/api/v1/likesMap?photoUUID=\(photo.identifier)")!)
             webView.loadRequest(urlRequest)
         }
         
