@@ -26,6 +26,8 @@ struct PhotoResponse :Decodable {
     let imageData :PictureData
     let thumbnailData :PictureData
     
+    var tags = [String]()
+    
     
     init?(json: JSON) {
         
@@ -81,7 +83,17 @@ struct PhotoResponse :Decodable {
         
         self.imageData = imageData
         self.thumbnailData = thumbnailData
-
+        
+        guard let labelsJSON: JSON = "labels" <~~ json else {
+            return
+        }
+        
+        guard let tagsJSON: JSON = "EN" <~~ labelsJSON else {
+            return
+        }
+        
+        self.tags = Array(tagsJSON.keys)
+        
     }
 }
 
@@ -110,16 +122,6 @@ struct PictureData :Decodable {
         self.height = height
         self.width = width
         self.url = url
-    }
-}
-
-
-struct PhotoLabels :Decodable {
-    
-    
-    
-    init?(json: JSON) {
-        
     }
 }
 

@@ -88,8 +88,26 @@ class UtilTime {
         return formatter.string(from: date)
     }
     
+
     fileprivate static func secondsToHoursMinutesSeconds (_ seconds : Double) -> (Int, Int, Int) {
         return (Int(seconds) / 3600, (Int(seconds) % 3600) / 60, (Int(seconds) % 3600) % 60)
+    }
+}
+
+class UtilTags {
+    
+    static func getTagsString(tags: [String]) -> String {
+        var str = ""
+        
+        for i in 0..<tags.count {
+            if i == tags.count - 1 {
+                str = str + "\(tags[i])"
+            } else {
+                str = str + "\(tags[i]) • "
+                
+            }
+        }
+        return str
     }
 }
 

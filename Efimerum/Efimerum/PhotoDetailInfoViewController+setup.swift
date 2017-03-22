@@ -88,9 +88,9 @@ extension PhotoDetailInfoViewController {
         tags.frame = CGRect(x: footerView.bounds.origin.x + 8,
                             y: willDie.frame.origin.y + willDie.bounds.size.height + 6,
                             width: UIScreen.main.bounds.size.width - 16,
-                            height: 15)
+                            height: 30)
         
-        tags.text = "TAGS"
+        tags.text = UtilTags.getTagsString(tags: self.photo!.tags)
         tags.textColor = .white
         tags.numberOfLines = 2
         tags.adjustsFontSizeToFitWidth = true
