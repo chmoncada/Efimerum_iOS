@@ -42,7 +42,7 @@ class PhotoDetailInfoViewController: UIViewController {
     
     let footerView: UIView = {
         let v = UIView(frame: CGRect.zero)
-        v.backgroundColor = UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: 0.6)
+        v.backgroundColor = UIColor(colorLiteralRed: 0.0, green: 0.0, blue: 0.0, alpha: 0.4)
         v.translatesAutoresizingMaskIntoConstraints = false
         return v
     }()
