@@ -27,16 +27,10 @@ class FirebaseDatabaseManager {
         
         ref.child("users").child(uid).observeSingleEvent(of: .value, with: { (snap) in
             if let dictionary = snap.value as? [String: Any] {
-<<<<<<< HEAD
-                let name = dictionary["name"] as? String
-                let email = dictionary["email"] as? String
-                guard let imageURLString = dictionary["profileImageURL"] as? String else {
-                    completion(name, email, nil)
-=======
+                
                 let email = dictionary["email"] as! String
                 guard let name = dictionary["name"] as? String, let imageURLString = dictionary["profileImageURL"] as? String else {
                     completion(nil, email, nil)
->>>>>>> feature/handle_Notification
                     return
                 }
                 let imageURL = URL(string: imageURLString)
