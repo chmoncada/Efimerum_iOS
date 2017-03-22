@@ -39,13 +39,19 @@ extension PhotoDetailInfoViewController {
         footerView.widthAnchor.constraint(equalTo: webView.widthAnchor).isActive = true
         footerView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
+//        getAuthorName(userID: self.photo!.authorID)
+        
+        setupInfoLabelsWith(authorName: "Unknown")
+    }
+    
+    func setupInfoLabelsWith(authorName: String) {
         let author = UILabel(frame: CGRect.zero)
         author.frame = CGRect(x: footerView.bounds.origin.x + 8,
-                                  y: footerView.bounds.origin.y + 6,
-                                  width: UIScreen.main.bounds.size.width - 16,
-                                  height: 15)
+                              y: footerView.bounds.origin.y + 6,
+                              width: UIScreen.main.bounds.size.width - 16,
+                              height: 15)
         
-        author.text = "Author: Unknown"
+        author.text = "Author: \(authorName)"
         author.textColor = .white
         author.adjustsFontSizeToFitWidth = true
         author.textAlignment = .left
@@ -53,9 +59,9 @@ extension PhotoDetailInfoViewController {
         
         let numOfLikes = UILabel(frame: CGRect.zero)
         numOfLikes.frame = CGRect(x: footerView.bounds.origin.x + 8,
-                                   y: author.frame.origin.y + author.bounds.size.height + 6,
-                                   width: UIScreen.main.bounds.size.width - 16,
-                                   height: 15)
+                                  y: author.frame.origin.y + author.bounds.size.height + 6,
+                                  width: UIScreen.main.bounds.size.width - 16,
+                                  height: 15)
         
         numOfLikes.text = "Number of likes: \(Int(self.photo!.numOfLikes))"
         numOfLikes.textColor = .white
@@ -65,9 +71,9 @@ extension PhotoDetailInfoViewController {
         
         let willDie = UILabel(frame: CGRect.zero)
         willDie.frame = CGRect(x: footerView.bounds.origin.x + 8,
-                                  y: numOfLikes.frame.origin.y + numOfLikes.bounds.size.height + 6,
-                                  width: UIScreen.main.bounds.size.width - 16,
-                                  height: 15)
+                               y: numOfLikes.frame.origin.y + numOfLikes.bounds.size.height + 6,
+                               width: UIScreen.main.bounds.size.width - 16,
+                               height: 15)
         
         
         let dieDate = UtilTime.getDate(time: self.photo!.expirationDate)
@@ -80,9 +86,9 @@ extension PhotoDetailInfoViewController {
         
         let tags = UILabel(frame: CGRect.zero)
         tags.frame = CGRect(x: footerView.bounds.origin.x + 8,
-                               y: willDie.frame.origin.y + willDie.bounds.size.height + 6,
-                               width: UIScreen.main.bounds.size.width - 16,
-                               height: 15)
+                            y: willDie.frame.origin.y + willDie.bounds.size.height + 6,
+                            width: UIScreen.main.bounds.size.width - 16,
+                            height: 15)
         
         tags.text = "TAGS"
         tags.textColor = .white
@@ -90,7 +96,6 @@ extension PhotoDetailInfoViewController {
         tags.adjustsFontSizeToFitWidth = true
         tags.textAlignment = .left
         footerView.addSubview(tags)
-
     }
     
     
