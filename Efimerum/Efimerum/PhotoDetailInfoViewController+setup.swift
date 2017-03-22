@@ -39,9 +39,9 @@ extension PhotoDetailInfoViewController {
         footerView.widthAnchor.constraint(equalTo: webView.widthAnchor).isActive = true
         footerView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
-//        getAuthorName(userID: self.photo!.authorID)
+        getAuthorName(userID: self.photo!.authorID)
         
-        setupInfoLabelsWith(authorName: "Unknown")
+//        setupInfoLabelsWith(authorName: "Unknown")
     }
     
     func setupInfoLabelsWith(authorName: String) {

@@ -28,6 +28,8 @@ extension PhotoDetailInfoViewController {
             
             if let author = name {
                 self.setupInfoLabelsWith(authorName: author)
+            } else {
+                self.setupInfoLabelsWith(authorName: "Efimerum")
             }
         }
     }
