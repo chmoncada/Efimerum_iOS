@@ -35,11 +35,11 @@ extension PhotoDetailDragViewController {
         
         let alertController = UIAlertController(title: "REPORT THIS PHOTO", message: "Select a reason", preferredStyle: .actionSheet)
         
-        let reportCodes = ["reason1", "reason2", "reason3", "reason4"]
+        let reportCodes = ["Adult", "Spoof", "Medical", "Violence", "Other"]
         
         for code in reportCodes {
             alertController.addAction(UIAlertAction(title: code, style: .default, handler: { (action) in
-                self.reportPhotoWith(reasonCode: code)
+                self.reportPhotoWith(reasonCode: code.lowercased())
             }))
         }
 
