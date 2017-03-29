@@ -32,16 +32,33 @@ extension PhotoDetailDragViewController {
     }
     
     func handleReport() {
-        print("reporta esta foto al backend")
+        
+        let alertController = UIAlertController(title: "REPORT THIS PHOTO", message: "Select a reason", preferredStyle: .actionSheet)
+        
+        let reportCodes = ["Adult", "Spoof", "Medical", "Violence", "Other"]
+        
+        for code in reportCodes {
+            alertController.addAction(UIAlertAction(title: code, style: .default, handler: { (action) in
+                self.reportPhotoWith(reasonCode: code.lowercased())
+            }))
+        }
+
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+        }))
+        
+        self.present(alertController, animated: true, completion: nil)
+
+    }
+    
+    func reportPhotoWith(reasonCode code: String) {
         let index = kolodaView.currentCardIndex
         
         if let photo = model?.photo(at: startIndex + index) {
-            output.reporPhotoWith(identifier: photo.identifier, code: "adult")
+            output.reporPhotoWith(identifier: photo.identifier, code: code)
             reportButton.isEnabled = false
         }
-        
-
     }
+    
     
     func handleShare() {
         
@@ -92,8 +109,8 @@ extension PhotoDetailDragViewController {
     
     func handleTouch() {
         
-        closeButton.isHidden = !closeButton.isHidden
-        reportButton.isHidden = !reportButton.isHidden
+//        closeButton.isHidden = !closeButton.isHidden
+//        reportButton.isHidden = !reportButton.isHidden
     }
     
     
