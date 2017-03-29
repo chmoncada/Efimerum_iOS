@@ -20,7 +20,7 @@ extension PhotoDetailDragViewController {
         closeButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
         closeButton.widthAnchor.constraint(equalToConstant: buttonSize!).isActive = true
         closeButton.heightAnchor.constraint(equalToConstant: buttonSize!).isActive = true
-        closeButton.isHidden = true
+        closeButton.isHidden = false
     }
     
     func setupInfoButton() {
@@ -60,7 +60,7 @@ extension PhotoDetailDragViewController {
         reportButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
         reportButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         reportButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        reportButton.isHidden = true
+        reportButton.isHidden = false
     }
     
     func setupKolodaView() {
