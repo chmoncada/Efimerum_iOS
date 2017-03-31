@@ -78,6 +78,8 @@
 		A1E9CAC31E4C2564002F4493 /* PhotoWallModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAC21E4C2564002F4493 /* PhotoWallModel.swift */; };
 		A1E9CAC61E4C258A002F4493 /* PhotoWallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E9CAC51E4C258A002F4493 /* PhotoWallCell.swift */; };
 		A1EDAE171E7D926F00D147F5 /* FirebaseMessagingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EDAE161E7D926F00D147F5 /* FirebaseMessagingManager.swift */; };
+		AD23EB0C1E8E3E8C0085B00D /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA2A95B1E76880600FA1EFA /* UserDefaultsManager.swift */; };
+		AD23EB0E1E8E3EB90085B00D /* UserDefaultsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD23EB0D1E8E3EB90085B00D /* UserDefaultsManagerTests.swift */; };
 		ADA2A95C1E76880600FA1EFA /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA2A95B1E76880600FA1EFA /* UserDefaultsManager.swift */; };
 		ADBC62DB1E66EC1700FD6B4F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC62DA1E66EC1700FD6B4F /* LocationManager.swift */; };
 		ADED35891E7C01D400B93EA6 /* PhotoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED35881E7C01D400B93EA6 /* PhotoInteractor.swift */; };
@@ -199,6 +201,7 @@
 		A1E9CAC21E4C2564002F4493 /* PhotoWallModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallModel.swift; sourceTree = "<group>"; };
 		A1E9CAC51E4C258A002F4493 /* PhotoWallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallCell.swift; sourceTree = "<group>"; };
 		A1EDAE161E7D926F00D147F5 /* FirebaseMessagingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseMessagingManager.swift; sourceTree = "<group>"; };
+		AD23EB0D1E8E3EB90085B00D /* UserDefaultsManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManagerTests.swift; sourceTree = "<group>"; };
 		ADA2A95B1E76880600FA1EFA /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		ADBC62DA1E66EC1700FD6B4F /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		ADED35881E7C01D400B93EA6 /* PhotoInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInteractor.swift; sourceTree = "<group>"; };
@@ -548,6 +551,7 @@
 		D04B0D3A1E3D2BB5008E4777 /* EfimerumTests */ = {
 			isa = PBXGroup;
 			children = (
+				AD23EB0D1E8E3EB90085B00D /* UserDefaultsManagerTests.swift */,
 				D04B0D3B1E3D2BB5008E4777 /* EfimerumTests.swift */,
 				D04B0D3D1E3D2BB5008E4777 /* Info.plist */,
 			);
@@ -884,6 +888,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD23EB0E1E8E3EB90085B00D /* UserDefaultsManagerTests.swift in Sources */,
+				AD23EB0C1E8E3E8C0085B00D /* UserDefaultsManager.swift in Sources */,
 				D04B0D3C1E3D2BB5008E4777 /* EfimerumTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

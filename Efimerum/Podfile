@@ -1,6 +1,15 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '9.0'
 
+def firebase_pods
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Database'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/DynamicLinks'
+end
+
 target 'Efimerum' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
@@ -8,6 +17,7 @@ target 'Efimerum' do
   # Pods for Efimerum
   source 'https://github.com/CocoaPods/Specs.git'
 
+  firebase_pods
   pod 'Gloss'
   pod 'Alamofire'
   pod 'Result'	
@@ -15,12 +25,6 @@ target 'Efimerum' do
   pod 'GreedoLayout'
   pod 'pop', '~> 1.0'
   pod 'PKHUD', '~> 4.0'
-  pod 'Firebase/Core'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Storage'
-  pod 'Firebase/Database'
-  pod 'Firebase/Messaging'
-  pod 'Firebase/DynamicLinks'
   pod 'RealmSwift'
   pod 'RxSwift', '~> 3.0'
   pod 'RxCocoa', '~> 3.0'
@@ -29,6 +33,7 @@ target 'Efimerum' do
   target 'EfimerumTests' do
     inherit! :search_paths
     # Pods for testing
+    firebase_pods
   end
 
 end

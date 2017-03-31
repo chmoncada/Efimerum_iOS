@@ -45,6 +45,11 @@ class UserDefaultsManager {
         return savedTags
     }
     
+    
+    func clearFavoritesTags() {
+        userDefaults.set(nil, forKey: favoriteTagsKey)
+    }
+    
     //MARK: - Private Methods
     
     fileprivate func saveFavorite(tag: String) -> Bool {
@@ -79,4 +84,22 @@ class UserDefaultsManager {
         return false
     }
     
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
