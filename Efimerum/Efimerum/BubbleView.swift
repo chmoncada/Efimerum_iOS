@@ -43,12 +43,24 @@ class BubbleView: UIView {
         titleLabel.text = self.title
         titleLabel.backgroundColor = .white
         titleLabel.sizeToFit()
+        
+        var labelWidth = titleLabel.bounds.size.width
+        
+        if labelWidth > 100 {
+            labelWidth = 100.0
+            titleLabel.frame = CGRect(x: titleLabel.frame.origin.x,
+                                      y: titleLabel.frame.origin.y,
+                                      width: labelWidth,
+                                      height: 30)
+        }
+        
+        titleLabel.adjustsFontSizeToFitWidth = true
 
         if hasFavoriteAction {
             
             self.frame = CGRect(x: 0,
                                 y: 0,
-                                width: titleLabel.bounds.size.width + 70,
+                                width: labelWidth + 70,
                                 height: 30)
             
             favoriteView = UIImageView(frame: CGRect(x: self.bounds.origin.x + 2,
@@ -65,19 +77,19 @@ class BubbleView: UIView {
             
             titleLabel.frame = CGRect(x: self.bounds.origin.x + favoriteView!.bounds.width + 4,
                                       y: self.bounds.origin.y,
-                                      width: titleLabel.bounds.size.width,
+                                      width: labelWidth,
                                       height: 30)
             
         } else {
             
             self.frame = CGRect(x: 0,
                                 y: 0,
-                                width: titleLabel.bounds.size.width + 60,
+                                width: labelWidth + 60,
                                 height: 30)
         
             titleLabel.frame = CGRect(x: self.bounds.origin.x + 10,
                                   y: self.bounds.origin.y,
-                                  width: titleLabel.bounds.size.width,
+                                  width: labelWidth,
                                   height: 30)
         }
         
