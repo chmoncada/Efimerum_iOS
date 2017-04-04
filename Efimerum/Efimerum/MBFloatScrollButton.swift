@@ -89,10 +89,10 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
             self.addGestureRecognizer(tap)
             isFloatActionMenu = true
         case .search:
-            self.frame = CGRect(x: scrollView.bounds.size.width/2 - size3/2,
-                                y: scrollView.bounds.origin.y + 30 + (size1 - size4) / 2,
-                                width: size3,
-                                height: size4)
+            self.frame = CGRect(x: scrollView.bounds.origin.x + 60,
+                                y: scrollView.bounds.origin.y + 30,
+                                width: scrollView.bounds.size.width - 80,
+                                height: 30)
                 self.layer.cornerRadius = self.bounds.size.height/2
                 self.backgroundColor = .white
             setupSearchTextField()
@@ -110,8 +110,8 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
             
             self.frame = CGRect(x: scrollView.bounds.origin.x + 20,
                                 y: scrollView.bounds.origin.y + 30,
-                                width: size1,
-                                height: size1)
+                                width: 30,
+                                height: 30)
             self.image = UIImage(named: "flame")!
             hideWhileScrolling = false
         }
@@ -378,7 +378,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         }
         
         orderBubbleView?.frame = CGRect(x: posX,
-                                        y: self.parentView.bounds.origin.y + 80,
+                                        y: self.parentView.bounds.origin.y + 70,
                                         width: orderBubbleView!.bounds.size.width,
                                         height: orderBubbleView!.bounds.size.height)
         orderBubbleView?.delegate = self
@@ -389,7 +389,7 @@ class MBFloatScrollButton: UIImageView, UIScrollViewDelegate {
         searchBubbleView?.removeFromSuperview()
         searchBubbleView = BubbleView(text: text, favorite: true)
         searchBubbleView?.frame = CGRect(x: self.parentView.bounds.origin.x + 20,
-                                        y: self.parentView.bounds.origin.y + 80,
+                                        y: self.parentView.bounds.origin.y + 70,
                                         width: searchBubbleView!.bounds.size.width,
                                         height: searchBubbleView!.bounds.size.height)
         
