@@ -94,9 +94,14 @@ extension PhotoWallViewController :PhotoInteractorOutput {
         HUD.show(.progress)
     }
     
-    func dismissLoading() {
+    func dismissLoadingSuccess() {
         HUD.flash(.success, delay: 1.0)
     }
+    
+    func dismissLoadingFailed() {
+        HUD.flash(.error, delay: 1.0)
+    }
+
 }
 
 
