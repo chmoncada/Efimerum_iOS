@@ -17,7 +17,8 @@ protocol PhotoInteractorInput :class {
 protocol PhotoInteractorOutput : class {
     
     func showLoading()
-    func dismissLoading()
+    func dismissLoadingFailed()
+    func dismissLoadingSuccess()
 }
 
 class PhotoInteractor :PhotoInteractorInput {
@@ -59,7 +60,14 @@ class PhotoInteractor :PhotoInteractorInput {
             
             ApiClient.postPhoto(photoData: imageData, token: token, latitude: latitude, longitude: longitude, completion: { (result) in
                 print(result)
-                self.interface?.dismissLoading()
+                
+                if let error = result.error {
+                    print("error posting a Photo: \(error)")
+                    self.interface?.dismissLoadingFailed()
+                } else {
+                    self.interface?.dismissLoadingSuccess()
+                }
+                
             })
         }
     }
