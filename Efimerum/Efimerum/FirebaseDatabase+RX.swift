@@ -11,9 +11,9 @@ import FirebaseDatabase
 import RxSwift
 
 
-extension FIRDatabaseQuery {
+extension DatabaseQuery {
     
-    func rx_observe(_ eventType: FIRDataEventType) -> Observable<FIRDataSnapshot> {
+    func rx_observe(_ eventType: DataEventType) -> Observable<DataSnapshot> {
         return Observable.create { observer in
             let handle = self.observe(eventType, with: observer.onNext, withCancel: observer.onError)
             return Disposables.create {
@@ -22,7 +22,7 @@ extension FIRDatabaseQuery {
         }
     }
     
-    func rx_observeSingleEvent(of eventType: FIRDataEventType) -> Observable<FIRDataSnapshot> {
+    func rx_observeSingleEvent(of eventType: DataEventType) -> Observable<DataSnapshot> {
         return Observable.create { observer in
             self.observeSingleEvent(of: eventType, with: { (snapshot) in
                 observer.onNext(snapshot)
@@ -33,7 +33,7 @@ extension FIRDatabaseQuery {
         }
     }
     
-    func rx_observeEvent(of eventType: FIRDataEventType) -> Observable<FIRDataSnapshot> {
+    func rx_observeEvent(of eventType: DataEventType) -> Observable<DataSnapshot> {
         return Observable.create { observer in
             self.observe(eventType, with: { (snapshot) in
                 observer.onNext(snapshot)

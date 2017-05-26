@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C2D1FAF8E1FD096BDC8ED27 /* Pods_EfimerumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398AC87E508AB1563F87D297 /* Pods_EfimerumTests.framework */; };
+		54EC556143E9392D73401D8B /* Pods_EfimerumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D33834CE94C09C332A0663A /* Pods_EfimerumTests.framework */; };
+		8F7DC474EED0D121E6A7C6E4 /* Pods_Efimerum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583E16B52917B5C0D94F5392 /* Pods_Efimerum.framework */; };
 		A10477521E4D6DC300F2C3C3 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10477511E4D6DC300F2C3C3 /* LoginCoordinator.swift */; };
 		A1106CB51E670CCB0032B06B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1106CB41E670CCB0032B06B /* GoogleService-Info.plist */; };
 		A1239C1E1E6F74F100DFDFA7 /* PhotoWallViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1239C1D1E6F74F100DFDFA7 /* PhotoWallViewController+handlers.swift */; };
@@ -83,7 +84,6 @@
 		ADA2A95C1E76880600FA1EFA /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA2A95B1E76880600FA1EFA /* UserDefaultsManager.swift */; };
 		ADBC62DB1E66EC1700FD6B4F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC62DA1E66EC1700FD6B4F /* LocationManager.swift */; };
 		ADED35891E7C01D400B93EA6 /* PhotoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED35881E7C01D400B93EA6 /* PhotoInteractor.swift */; };
-		B55305C277B45378805B2DF0 /* Pods_Efimerum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF573619DAAF686EA3943A9 /* Pods_Efimerum.framework */; };
 		D01E3C151E64A50800736F20 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E3C141E64A50800736F20 /* BubbleView.swift */; };
 		D04B0D2C1E3D2BB5008E4777 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B0D2B1E3D2BB5008E4777 /* AppDelegate.swift */; };
 		D04B0D2E1E3D2BB5008E4777 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D04B0D2D1E3D2BB5008E4777 /* Assets.xcassets */; };
@@ -114,11 +114,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		11F661A47F85895402995AE5 /* Pods-Efimerum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Efimerum.release.xcconfig"; path = "Pods/Target Support Files/Pods-Efimerum/Pods-Efimerum.release.xcconfig"; sourceTree = "<group>"; };
-		1CF573619DAAF686EA3943A9 /* Pods_Efimerum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Efimerum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E5BB7434DD4DEEED93B9DCA /* Pods-EfimerumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EfimerumTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EfimerumTests/Pods-EfimerumTests.release.xcconfig"; sourceTree = "<group>"; };
-		398AC87E508AB1563F87D297 /* Pods_EfimerumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EfimerumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		55D1975ABD99428D75EBB75D /* Pods-EfimerumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EfimerumTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EfimerumTests/Pods-EfimerumTests.debug.xcconfig"; sourceTree = "<group>"; };
+		39B789F17F8965F60AB223F2 /* Pods-EfimerumTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EfimerumTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EfimerumTests/Pods-EfimerumTests.release.xcconfig"; sourceTree = "<group>"; };
+		583E16B52917B5C0D94F5392 /* Pods_Efimerum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Efimerum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D33834CE94C09C332A0663A /* Pods_EfimerumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EfimerumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90D4B00227683D9074AC10C6 /* Pods-Efimerum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Efimerum.release.xcconfig"; path = "Pods/Target Support Files/Pods-Efimerum/Pods-Efimerum.release.xcconfig"; sourceTree = "<group>"; };
 		A10477511E4D6DC300F2C3C3 /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		A1106CB31E670A320032B06B /* Efimerum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Efimerum.entitlements; sourceTree = "<group>"; };
 		A1106CB41E670CCB0032B06B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -201,11 +200,11 @@
 		A1E9CAC21E4C2564002F4493 /* PhotoWallModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallModel.swift; sourceTree = "<group>"; };
 		A1E9CAC51E4C258A002F4493 /* PhotoWallCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoWallCell.swift; sourceTree = "<group>"; };
 		A1EDAE161E7D926F00D147F5 /* FirebaseMessagingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseMessagingManager.swift; sourceTree = "<group>"; };
+		A7A6E8F049ED9A430F05A1F3 /* Pods-EfimerumTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EfimerumTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EfimerumTests/Pods-EfimerumTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AD23EB0D1E8E3EB90085B00D /* UserDefaultsManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManagerTests.swift; sourceTree = "<group>"; };
 		ADA2A95B1E76880600FA1EFA /* UserDefaultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		ADBC62DA1E66EC1700FD6B4F /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		ADED35881E7C01D400B93EA6 /* PhotoInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoInteractor.swift; sourceTree = "<group>"; };
-		C46CD46925E841A53F082941 /* Pods-Efimerum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Efimerum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Efimerum/Pods-Efimerum.debug.xcconfig"; sourceTree = "<group>"; };
 		D01E3C141E64A50800736F20 /* BubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		D04B0D281E3D2BB5008E4777 /* Efimerum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Efimerum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D04B0D2B1E3D2BB5008E4777 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -227,6 +226,7 @@
 		D0F18A011E6C9C14007A4177 /* TagsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsTableView.swift; sourceTree = "<group>"; };
 		D0F18A031E6C9F17007A4177 /* TagsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCell.swift; sourceTree = "<group>"; };
 		D0F18A041E6C9F17007A4177 /* TagsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsCell.xib; sourceTree = "<group>"; };
+		F6327F45572C988E3035D5A0 /* Pods-Efimerum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Efimerum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Efimerum/Pods-Efimerum.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,7 +234,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B55305C277B45378805B2DF0 /* Pods_Efimerum.framework in Frameworks */,
+				8F7DC474EED0D121E6A7C6E4 /* Pods_Efimerum.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,22 +242,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C2D1FAF8E1FD096BDC8ED27 /* Pods_EfimerumTests.framework in Frameworks */,
+				54EC556143E9392D73401D8B /* Pods_EfimerumTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1A682E55FCB92AB6A3B16379 /* Pods */ = {
+		427C5197A1DF9D82EFC6EB22 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C46CD46925E841A53F082941 /* Pods-Efimerum.debug.xcconfig */,
-				11F661A47F85895402995AE5 /* Pods-Efimerum.release.xcconfig */,
-				55D1975ABD99428D75EBB75D /* Pods-EfimerumTests.debug.xcconfig */,
-				1E5BB7434DD4DEEED93B9DCA /* Pods-EfimerumTests.release.xcconfig */,
+				F6327F45572C988E3035D5A0 /* Pods-Efimerum.debug.xcconfig */,
+				90D4B00227683D9074AC10C6 /* Pods-Efimerum.release.xcconfig */,
+				A7A6E8F049ED9A430F05A1F3 /* Pods-EfimerumTests.debug.xcconfig */,
+				39B789F17F8965F60AB223F2 /* Pods-EfimerumTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		9E8D5007A70B8566747AA6E0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				583E16B52917B5C0D94F5392 /* Pods_Efimerum.framework */,
+				5D33834CE94C09C332A0663A /* Pods_EfimerumTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A10477501E4D6D9E00F2C3C3 /* Login */ = {
@@ -498,23 +507,14 @@
 			name = "Photo Detail Drag";
 			sourceTree = "<group>";
 		};
-		B90C4115485EA2B8A6EFB461 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1CF573619DAAF686EA3943A9 /* Pods_Efimerum.framework */,
-				398AC87E508AB1563F87D297 /* Pods_EfimerumTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		D04B0D1F1E3D2BB5008E4777 = {
 			isa = PBXGroup;
 			children = (
 				D04B0D2A1E3D2BB5008E4777 /* Efimerum */,
 				D04B0D3A1E3D2BB5008E4777 /* EfimerumTests */,
 				D04B0D291E3D2BB5008E4777 /* Products */,
-				1A682E55FCB92AB6A3B16379 /* Pods */,
-				B90C4115485EA2B8A6EFB461 /* Frameworks */,
+				427C5197A1DF9D82EFC6EB22 /* Pods */,
+				9E8D5007A70B8566747AA6E0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -591,12 +591,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D04B0D401E3D2BB5008E4777 /* Build configuration list for PBXNativeTarget "Efimerum" */;
 			buildPhases = (
-				F60AE6C491E516C97C5A46A2 /* [CP] Check Pods Manifest.lock */,
+				77881F350753D820B4859A0B /* [CP] Check Pods Manifest.lock */,
 				D04B0D241E3D2BB5008E4777 /* Sources */,
 				D04B0D251E3D2BB5008E4777 /* Frameworks */,
 				D04B0D261E3D2BB5008E4777 /* Resources */,
-				816D783B11D74E96EDA84DD6 /* [CP] Embed Pods Frameworks */,
-				260021E8413BA42A13E7180F /* [CP] Copy Pods Resources */,
+				43B2A63885C9544916D31192 /* [CP] Embed Pods Frameworks */,
+				5094ABC99FC4AC38701CFEBD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -611,12 +611,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D04B0D431E3D2BB5008E4777 /* Build configuration list for PBXNativeTarget "EfimerumTests" */;
 			buildPhases = (
-				1BBD5DCE8092CA3D881E119A /* [CP] Check Pods Manifest.lock */,
+				C27C1D59CF5777C6479A807A /* [CP] Check Pods Manifest.lock */,
 				D04B0D331E3D2BB5008E4777 /* Sources */,
 				D04B0D341E3D2BB5008E4777 /* Frameworks */,
 				D04B0D351E3D2BB5008E4777 /* Resources */,
-				4FCCFBF6A8A32A0C66940263 /* [CP] Embed Pods Frameworks */,
-				4E9CBEA42D326F7527F793B1 /* [CP] Copy Pods Resources */,
+				6C53B2D3808CDBA089F3D420 /* [CP] Embed Pods Frameworks */,
+				BCE49B56259E35B12BE6FC25 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -699,67 +699,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1BBD5DCE8092CA3D881E119A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		260021E8413BA42A13E7180F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Efimerum/Pods-Efimerum-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4E9CBEA42D326F7527F793B1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EfimerumTests/Pods-EfimerumTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4FCCFBF6A8A32A0C66940263 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EfimerumTests/Pods-EfimerumTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		816D783B11D74E96EDA84DD6 /* [CP] Embed Pods Frameworks */ = {
+		43B2A63885C9544916D31192 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -774,7 +714,37 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Efimerum/Pods-Efimerum-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F60AE6C491E516C97C5A46A2 /* [CP] Check Pods Manifest.lock */ = {
+		5094ABC99FC4AC38701CFEBD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Efimerum/Pods-Efimerum-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6C53B2D3808CDBA089F3D420 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EfimerumTests/Pods-EfimerumTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		77881F350753D820B4859A0B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -786,7 +756,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BCE49B56259E35B12BE6FC25 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EfimerumTests/Pods-EfimerumTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C27C1D59CF5777C6479A807A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1011,7 +1011,7 @@
 		};
 		D04B0D411E3D2BB5008E4777 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C46CD46925E841A53F082941 /* Pods-Efimerum.debug.xcconfig */;
+			baseConfigurationReference = F6327F45572C988E3035D5A0 /* Pods-Efimerum.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1030,7 +1030,7 @@
 		};
 		D04B0D421E3D2BB5008E4777 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 11F661A47F85895402995AE5 /* Pods-Efimerum.release.xcconfig */;
+			baseConfigurationReference = 90D4B00227683D9074AC10C6 /* Pods-Efimerum.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1049,7 +1049,7 @@
 		};
 		D04B0D441E3D2BB5008E4777 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 55D1975ABD99428D75EBB75D /* Pods-EfimerumTests.debug.xcconfig */;
+			baseConfigurationReference = A7A6E8F049ED9A430F05A1F3 /* Pods-EfimerumTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1064,7 +1064,7 @@
 		};
 		D04B0D451E3D2BB5008E4777 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E5BB7434DD4DEEED93B9DCA /* Pods-EfimerumTests.release.xcconfig */;
+			baseConfigurationReference = 39B789F17F8965F60AB223F2 /* Pods-EfimerumTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

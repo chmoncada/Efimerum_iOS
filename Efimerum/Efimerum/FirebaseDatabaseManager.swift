@@ -21,7 +21,7 @@ class FirebaseDatabaseManager {
     }
     
     static let instance: FirebaseDatabaseManager = FirebaseDatabaseManager()
-    let ref = FIRDatabase.database().reference()
+    let ref = Database.database().reference()
     
     func getUserDataForUserWithUID(_ uid: String, completion: @escaping (_ name: String?, _ email: String?, _ imageURL: URL?) -> Void) {
         
@@ -72,7 +72,7 @@ class FirebaseDatabaseManager {
         ref.child("photos").queryOrderedByKey().queryEqual(toValue: identifier).queryLimited(toFirst: 1).observeSingleEvent(of: .value, with: { (snap) in
             if snap.exists() {
                 for child in snap.children {
-                    let dict = child as! FIRDataSnapshot
+                    let dict = child as! DataSnapshot
                     if let dictionary = dict.value as? [String: Any] {
                         if let photo = PhotoResponse(json: dictionary) {
                             let key = snap.key
@@ -86,7 +86,7 @@ class FirebaseDatabaseManager {
         
     }
     
-    func setupObservables(observable: Observable<FIRDataSnapshot>, modifyObservable: Observable<FIRDataSnapshot>, inContainer container: PhotoContainerType) -> Disposable {
+    func setupObservables(observable: Observable<DataSnapshot>, modifyObservable: Observable<DataSnapshot>, inContainer container: PhotoContainerType) -> Disposable {
         
         var photos: [Photo] = []
         var photosToEdit: [Photo] = []
@@ -95,7 +95,7 @@ class FirebaseDatabaseManager {
             .subscribe(onNext: { (snap) in
                 if snap.exists() {
                     for child in snap.children {
-                        let photoSnap = child as! FIRDataSnapshot
+                        let photoSnap = child as! DataSnapshot
                         if let dictionary = photoSnap.value as? [String: Any] {
                             if let photo = PhotoResponse(json: dictionary) {
                                 let key = photoSnap.key
@@ -141,7 +141,7 @@ class FirebaseDatabaseManager {
                 self.ref.child("photos").queryOrderedByKey().queryEqual(toValue: key).observeSingleEvent(of: .value, with: { (snap) in
                     if snap.exists() {
                         for child in snap.children {
-                            let photoSnap = child as! FIRDataSnapshot
+                            let photoSnap = child as! DataSnapshot
                             if let dictionary = photoSnap.value as? [String: Any] {
                                 if let photo = PhotoResponse(json: dictionary) {
                                     let key = photoSnap.key
@@ -159,7 +159,7 @@ class FirebaseDatabaseManager {
         return disposable
     }
     
-    func setupGeoObservableChanges(observable: Observable<FIRDataSnapshot>, inContainer container: PhotoContainerType) -> Disposable {
+    func setupGeoObservableChanges(observable: Observable<DataSnapshot>, inContainer container: PhotoContainerType) -> Disposable {
         
         var photosToEdit: [Photo] = []
         

@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        FIRApp.configure()
+        FirebaseApp.configure()
         
         registerForRemoteNotifications(application)
         setupTokenRefreshObserver()
@@ -32,8 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         
-        if (FIRAuth.auth()?.currentUser) == nil {
-            FIRAuth.auth()?.signInAnonymously(completion: { [weak self] (user, error) in
+        if (Auth.auth().currentUser) == nil {
+            Auth.auth().signInAnonymously(completion: { [weak self] (user, error) in
                 guard let strongSelf = self else {
                     return
                 }
@@ -64,7 +64,7 @@ extension AppDelegate {
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         if let incomingURL = userActivity.webpageURL {
-            let linkHandled = FIRDynamicLinks.dynamicLinks()!.handleUniversalLink(incomingURL, completion: { [weak self] (dynamiclink, error) in
+            let linkHandled = DynamicLinks.dynamicLinks()!.handleUniversalLink(incomingURL, completion: { [weak self] (dynamiclink, error) in
                 guard let strongSelf = self else { return }
                 if let dynamiclink = dynamiclink, let _ = dynamiclink.url {
                     strongSelf.handleIncomingDynamicLink(dynamicLink: dynamiclink)
@@ -79,7 +79,7 @@ extension AppDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         print("I am handling a link through the openURL method!")
-        if let dynamicLink = FIRDynamicLinks.dynamicLinks()?.dynamicLink(fromCustomSchemeURL: url) {
+        if let dynamicLink = DynamicLinks.dynamicLinks()?.dynamicLink(fromCustomSchemeURL: url) {
             self.handleIncomingDynamicLink(dynamicLink: dynamicLink)
             return true
         }
@@ -89,7 +89,7 @@ extension AppDelegate {
     
     
     // Handle the dynamic link
-    func handleIncomingDynamicLink(dynamicLink: FIRDynamicLink) {
+    func handleIncomingDynamicLink(dynamicLink: DynamicLink) {
         
         guard let pathComponents = dynamicLink.url?.pathComponents else { return }
         
@@ -185,7 +185,7 @@ extension AppDelegate {
                 completionHandler: {_, _ in })
             
             // For iOS 10 data message (sent via FCM)
-            FIRMessaging.messaging().remoteMessageDelegate = self
+            Messaging.messaging().delegate = self
             
         } else {
             let settings: UIUserNotificationSettings =
@@ -200,14 +200,14 @@ extension AppDelegate {
     func setupTokenRefreshObserver() {
         
         // Add observer for InstanceID token refresh callback.
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.tokenRefreshNotification),
-                                               name: .firInstanceIDTokenRefresh,
-                                               object: nil)
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(self.tokenRefreshNotification),
+//                                               name: .firInstanceIDTokenRefresh,
+//                                               object: nil)
     }
     
     func tokenRefreshNotification(_ notification: Notification) {
-        if let refreshedToken = FIRInstanceID.instanceID().token() {
+        if let refreshedToken = InstanceID.instanceID().token() {
             print("InstanceID token: \(refreshedToken)")
         }
         
@@ -218,10 +218,14 @@ extension AppDelegate {
 
 
 // MARK: FIRMessaging delegate for iOS 10
-extension AppDelegate : FIRMessagingDelegate {
+extension AppDelegate : MessagingDelegate {
     // Receive data message on iOS 10 devices while app is in the foreground.
-    func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
+    func application(received remoteMessage: MessagingRemoteMessage) {
         print(remoteMessage.appData)
+    }
+    
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        print("hola")
     }
 }
 

@@ -13,7 +13,7 @@ class SinglePhotoDetailViewController: UIViewController {
     let closeButton: UIButton = {
         
         let button = UIButton(type: UIButtonType.custom)
-        let image = UIImage(named: "cancel")
+        let image: UIImage = #imageLiteral(resourceName: "cancel")
         button.setImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleDismissView), for: .touchUpInside)
