@@ -57,10 +57,10 @@ class ModifyUserInteractor: ModifyUserInteractorInput {
             
             let fcmToken = FirebaseMessagingManager.Instance().getFcmToken()!
             let imageName = NSUUID().uuidString
-            let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName).jpg")
+            let storageRef = Storage.storage().reference().child("profile_images").child("\(imageName).jpg")
             
             if let profileImage = newImage, let uploadData = UIImageJPEGRepresentation(profileImage, 0.1) {
-                storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+                storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                     if let error = error {
                         HUD.flash(.label(error.localizedDescription), delay: 1)
                         return

@@ -138,16 +138,16 @@ extension PhotoWallFirebaseModel {
     
     func loadPhotos(withTag tag: String = "", sortedBy filter: FilterType = .random ) {
         
-        let ref = FIRDatabase.database().reference()
+        let ref = Database.database().reference()
         
-        var rootRef: FIRDatabaseReference
+        var rootRef: DatabaseReference
         
-        var totalRef : FIRDatabaseQuery
+        var totalRef : DatabaseQuery
         
         var geoQueryRef: GFCircleQuery?
         
-        var observable: Observable<FIRDataSnapshot>
-        var modifyObservable: Observable<FIRDataSnapshot>
+        var observable: Observable<DataSnapshot>
+        var modifyObservable: Observable<DataSnapshot>
         
         if tag == "" {
             rootRef = ref.child("photos")
@@ -195,7 +195,7 @@ extension PhotoWallFirebaseModel {
    
     }
     
-    func circleQuery(_ userLocationManager: UserLocationManager?, ref: FIRDatabaseReference) -> GFCircleQuery? {
+    func circleQuery(_ userLocationManager: UserLocationManager?, ref: DatabaseReference) -> GFCircleQuery? {
 
         let geoFire = GeoFire(firebaseRef: ref)
         
@@ -210,9 +210,9 @@ extension PhotoWallFirebaseModel {
     
     func loadUserPhotos()  {
         
-        let ref = FIRDatabase.database().reference()
+        let ref = Database.database().reference()
         
-        let uid = FIRAuth.auth()?.currentUser?.uid
+        let uid = Auth.auth().currentUser?.uid
         
         let observable = ref.child("photosPostedByUser").child(uid!).rx_observeSingleEvent(of: .value)
         let modifyObservable = ref.child("photosPostedByUser").child(uid!).rx_observe(.childChanged)
@@ -225,9 +225,9 @@ extension PhotoWallFirebaseModel {
     
     func loadLikesPhotos()  {
         
-        let ref = FIRDatabase.database().reference()
+        let ref = Database.database().reference()
         
-        let uid = FIRAuth.auth()?.currentUser?.uid
+        let uid = Auth.auth().currentUser?.uid
         
         let observable = ref.child("photosLikedByUser").child(uid!).rx_observeSingleEvent(of: .value)
         let modifyObservable = ref.child("photosLikedByUser").child(uid!).rx_observe(.childChanged)

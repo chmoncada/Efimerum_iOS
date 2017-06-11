@@ -34,7 +34,7 @@ class ApiClient {
     static let headers = ["Content-type": "application/x-www-form-urlencoded"]
     
     fileprivate func getToken() -> String {
-        return FIRInstanceID.instanceID().token()!
+        return InstanceID.instanceID().token()!
     }
     
     fileprivate enum Endpoints {

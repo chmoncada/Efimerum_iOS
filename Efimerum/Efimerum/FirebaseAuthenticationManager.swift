@@ -36,7 +36,7 @@ class FirebaseAuthenticationManager {
         
     func setupLoginListener() {
         
-        FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
+        Auth.auth().addStateDidChangeListener({ (auth, user) in
             
             if user != nil {
                 if (user?.isAnonymous)! {
@@ -63,7 +63,7 @@ extension FirebaseAuthenticationManager: AuthenticationManagerType {
     
     func logout() {
         
-        if let oldUser = FIRAuth.auth()?.currentUser {
+        if let oldUser = Auth.auth().currentUser {
             
             if (oldUser.isAnonymous) {
                 print("soy anonimo, no me voy a desloguear, gracias")
@@ -71,7 +71,7 @@ extension FirebaseAuthenticationManager: AuthenticationManagerType {
                 do {
                     
                     let values = ["fcmToken": ""]
-                    if let uid = FIRAuth.auth()?.currentUser?.uid {
+                    if let uid = Auth.auth().currentUser?.uid {
                         FirebaseDatabaseManager.Instance().registerUserIntoDatabaseWithUID(uid, values: values, completion: { (success, err) in
                             if err != nil {
                                 return
@@ -80,7 +80,7 @@ extension FirebaseAuthenticationManager: AuthenticationManagerType {
                         })
                     }
                     
-                    try FIRAuth.auth()?.signOut()
+                    try Auth.auth().signOut()
                 } catch let logoutError {
                     print(logoutError)
                 }
@@ -91,24 +91,24 @@ extension FirebaseAuthenticationManager: AuthenticationManagerType {
     
     func loginAnonymous() {
         
-        FIRAuth.auth()?.signInAnonymously(completion: { (user, error) in
+        Auth.auth().signInAnonymously(completion: { (user, error) in
             self.output.userLoginAnonymous(success: true)
         })
     }
     
     func isNotAuthenticated() -> Bool {
-        return FIRAuth.auth()?.currentUser?.uid == nil || (FIRAuth.auth()?.currentUser?.isAnonymous)!
+        return Auth.auth().currentUser?.uid == nil || (Auth.auth().currentUser?.isAnonymous)!
     }
     
     func isAnonymous() -> Bool? {
-        return FIRAuth.auth()?.currentUser?.isAnonymous
+        return Auth.auth().currentUser?.isAnonymous
     }
     
     func linkAccount(withEmail email: String, password: String, handleCompletion: @escaping (_ uid: String?, _ error: Error?) -> Void) {
         
-        let credential = FIREmailPasswordAuthProvider.credential(withEmail: email, password: password)
+        let credential = EmailAuthProvider.credential(withEmail: email, password: password)
         
-        FIRAuth.auth()?.currentUser?.link(with: credential, completion: { (user, error) in
+        Auth.auth().currentUser?.link(with: credential, completion: { (user, error) in
             if let uid = user?.uid {
                 handleCompletion(uid, error)
                 return
@@ -120,8 +120,8 @@ extension FirebaseAuthenticationManager: AuthenticationManagerType {
     }
     
     func getTokenForUser(completion: @escaping (_ token: String?) -> Void) {
-        let currentUser = FIRAuth.auth()?.currentUser
-        currentUser?.getTokenForcingRefresh(true) {idToken, error in
+        let currentUser = Auth.auth().currentUser
+        currentUser?.getIDTokenForcingRefresh(true) {idToken, error in
             if let error = error {
                 // Handle error
                 print(error)
@@ -136,7 +136,7 @@ extension FirebaseAuthenticationManager: AuthenticationManagerType {
     
     func sendPasswordReset(email: String, handleCompletion: @escaping (_ error: Error?) -> Void) {
         
-        FIRAuth.auth()?.sendPasswordReset(withEmail: email, completion: { (error) in
+        Auth.auth().sendPasswordReset(withEmail: email, completion: { (error) in
             
             if let error = error {
                 handleCompletion(error)
@@ -150,7 +150,7 @@ extension FirebaseAuthenticationManager: AuthenticationManagerType {
     
     func login(withEmail email: String, password: String, handleCompletion: @escaping (_ error: Error?) -> Void) {
         
-        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
             
             if let error = error {
                 handleCompletion(error)
@@ -165,7 +165,7 @@ extension FirebaseAuthenticationManager: AuthenticationManagerType {
     
     func getUserUID(completion: (_ uid: String?) -> Void) {
         
-        let uid = FIRAuth.auth()?.currentUser?.uid
+        let uid = Auth.auth().currentUser?.uid
         
         completion(uid)
     }

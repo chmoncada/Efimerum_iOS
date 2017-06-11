@@ -78,7 +78,7 @@ class LoginInteractor: LoginInteractorInput {
                 
                 let values = ["fcmToken": fcmToken]
                 
-                self.databaseManager.registerUserIntoDatabaseWithUID(uid, values: values, completion: { (success, err) in
+                self.databaseManager.registerUserIntoDatabaseWithUID(uid, values: values as Any as! [String : Any], completion: { (success, err) in
                     if err != nil {
                         HUD.flash(.label(err?.localizedDescription), delay: 1)
                         return
@@ -120,13 +120,13 @@ class LoginInteractor: LoginInteractorInput {
         
         // Success
         let imageName = NSUUID().uuidString
-        let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName).jpg")
+        let storageRef = Storage.storage().reference().child("profile_images").child("\(imageName).jpg")
         
         
         let fcmToken = FirebaseMessagingManager.Instance().getFcmToken()
         
         if let profileImage = image, let uploadData = UIImageJPEGRepresentation(profileImage, 0.1) {
-            storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+            storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                 
                 if error != nil {
                     HUD.flash(.label(error?.localizedDescription), delay: 1)
@@ -136,7 +136,7 @@ class LoginInteractor: LoginInteractorInput {
                 if let profileImageURL = metadata?.downloadURL()?.absoluteString {
                     let values = ["name": name, "email": email, "profileImageURL": profileImageURL, "fcmToken": fcmToken]
                     
-                    self.databaseManager.registerUserIntoDatabaseWithUID(uid, values: values, completion: { (success, err) in
+                    self.databaseManager.registerUserIntoDatabaseWithUID(uid, values: values as Any as! [String : Any], completion: { (success, err) in
                         if err != nil {
                             HUD.flash(.label(err?.localizedDescription), delay: 1)
                             return
@@ -151,7 +151,7 @@ class LoginInteractor: LoginInteractorInput {
         } else {
             print("no tiene foto, lo subire vacio")
             let values = ["name": name, "email": email, "fcmToken": fcmToken]
-            self.databaseManager.registerUserIntoDatabaseWithUID(uid, values: values, completion: { (success, err) in
+            self.databaseManager.registerUserIntoDatabaseWithUID(uid, values: values as Any as! [String : Any], completion: { (success, err) in
                 if err != nil {
                     HUD.flash(.label(err?.localizedDescription), delay: 1)
                     return
